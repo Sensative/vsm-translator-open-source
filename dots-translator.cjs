@@ -78,15 +78,18 @@ function translate(iotnode) {
         if (data.length<8)
             return {vsm: {rulesCrc32, translatorVersion}};
         // We have at least 8 bytes, a build timestamp follows
-        let buildTime = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+        let buildTime = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xfffffffc;
+        let buildType = 0;
+        if (buildTime > 1665684561) // Time when this feature was introduced
+            buildType = data[7] & 0x3;
         let buildDate = new Date(1000*buildTime);
         if (data.length<12)
-            return {vsm: {rulesCrc32, buildDate, translatorVersion}}
+            return {vsm: {rulesCrc32, buildDate, buildType, translatorVersion}}
         // We have 12 bytes or more, fill in the version as well
         let buildGitVersion = "";
         for (let pos = 8; pos < data.length; ++pos)
             buildGitVersion += String.fromCharCode(data[pos]);
-        return {result: { vsm: {rulesCrc32, buildDate, buildGitVersion, translatorVersion}}};
+        return {result: { vsm: {rulesCrc32, buildDate, buildType, buildGitVersion, translatorVersion}}};
     }
 
     // Decode uint32_8_t compressed time format
@@ -291,7 +294,7 @@ function translate(iotnode) {
             hexSSID+=ap.macAddress.substring(12,14);
             hexSSID+=ap.macAddress.substring(15,17);
             hex+= hexRSSI + hexSSID;
-            console.log("Rssi", ap.signalStrength, hexRSSI, "Ssid", hexSSID);
+            // console.log("Rssi", ap.signalStrength, hexRSSI, "Ssid", hexSSID);
         }
         return hex;
     }
@@ -512,11 +515,18 @@ function translate(iotnode) {
         return {result: {idd}};
     }
 
+    const decodePwrData = (iotnode, symbolTable, data, time) => {
+        let pwr = { timestamp: new Date(time), data: data.toString('hex') }
+        return {result: {pwr}};
+    }
+
+    
     // Must match definitions in app.c
     const mapPortToDecode = {
         /* APP_LORA_PORT_OUTPUT     */   1: { decode: decodeOutput,       name: 'output'        },
         /* APP_LORA_PORT_DIAGNOSTICS */	 2: { decode: decodeDiagnostics,  name: 'diagnostics'   },
-        /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           }, 
+        /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           },
+        /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
         /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
         /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
         /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },
@@ -906,7 +916,7 @@ M output gnssState 160 0xa0 1
                     timestamp: new Date(1637323469000),
                 }
             },
-            expect: {result: {"vsm":{"rulesCrc32":1418773317,"buildDate":"2021-12-02T22:24:07.000Z","buildGitVersion":"1ee0363-dirty", "translatorVersion":"###VERSION###"}}}
+            expect: {result: {"vsm":{"rulesCrc32":1418773317,"buildDate":"2021-12-02T22:24:04.000Z","buildType":0, "buildGitVersion":"1ee0363-dirty", "translatorVersion":"###VERSION###"}}}
         },
         { // 13 - Positioning metadata - with ages
             input: {
@@ -1044,6 +1054,23 @@ M output gnssState 160 0xa0 1
                         "loraSnrLpf":1475.3,
                         "wifiGwsLpf":0.3,
                         "gnssValidSVLpf":0.8}
+                    }
+                }
+        },
+        { // 21 - PWR data [raw for now]
+            input: {
+                vsm: {schema: description },
+                encodedData : {
+                    port : 5,
+                    hexEncoded : "0000111122223333",
+                    timestamp: new Date(1640860261670), // Not used
+                }
+            },
+            expect: {
+                "result": {
+                    "pwr":{
+                        "timestamp":"2021-12-30T10:31:01.670Z",
+                        "data":"0000111122223333"}
                     }
                 }
         },
