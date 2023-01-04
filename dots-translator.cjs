@@ -22,23 +22,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// Copyright (C) 2021, Sensative AB, All rights reserved
+// Copyright (C) 2021-2023, Sensative AB, All rights reserved
 // Author: Lars Mats
 //
 
 // Refer to VSM documentation for encoding reference
 function translate(iotnode) {
     // Response to a reference value query
-    const decodeReference = (iotnode, symbolTable, data, time) => {
-        const ref = data[0];
-        let name = "";
-        const val = (data[1]<<24) | (data[2] << 16) || (data[3] << 8) || (data[4]);
-        if (symbolTable.hasOwnProperty(ref)) {
-            name = symbolTable[ref].name;
-        } else
-            name = 'ref:' + ref;
+    const decodeReferences = (iotnode, symbolTable, data, time) => {
         let result = {};
-        result[name] = val;
+        for (let used = 0; used < data.length; ) {
+            const ref = data[used++];
+            let name = "";
+            const val = (data[used++]<<24) | (data[used++] << 16) || (data[used++] << 8) || (data[used++]);
+            if (symbolTable.hasOwnProperty(ref)) {
+                name = symbolTable[ref].name;
+            } else
+                name = 'ref:' + ref;
+            result[name] = val;
+        }
         return { result: { vsm: { debug: result }}};
     };
 
@@ -52,7 +54,7 @@ function translate(iotnode) {
     const decodeCrash = (iotnode, symbolTable, data, time) => {
         const index = (data[0]<<8) | data[1];
         let bytes = "";
-        for (let i = 2; i < 10; ++i) {
+        for (let i = 2; i < data.length; ++i) {
             let byte = data[i].toString(16);
             if (byte.length == 1)
                 byte = "0" + byte;
@@ -65,10 +67,9 @@ function translate(iotnode) {
     const decodeDiagnostics = (iotnode, symbolTable, data, time) => {
         if(data.length === 2)
             return decodeControl(iotnode, symbolTable, data, time);
-        if (data.length === 5)
-            return decodeReference(iotnode, symbolTable, data, time);
-        if (data.length === 10)
-            return decodeCrash(iotnode, symbolTable, data, time);
+        if (data.length % 5 === 0)
+            return decodeReferences(iotnode, symbolTable, data, time);
+        throw new Exception("Failed to decode diagnostics data");
     }
 
     // Rule update - CRC value (+build time, +version)
@@ -525,6 +526,7 @@ function translate(iotnode) {
     const mapPortToDecode = {
         /* APP_LORA_PORT_OUTPUT     */   1: { decode: decodeOutput,       name: 'output'        },
         /* APP_LORA_PORT_DIAGNOSTICS */	 2: { decode: decodeDiagnostics,  name: 'diagnostics'   },
+        /* APP_LORA_PORT_CRASH      */   3: { decode: decodeCrash,        name: 'crash'         },
         /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           },
         /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
         /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
@@ -944,12 +946,12 @@ M output gnssState 160 0xa0 1
         { // 15 - Diagnostics service - crash
             input: {
                 encodedData : {
-                    port: 2,
-                    hexEncoded: "01231020304050607080",
+                    port: 3,
+                    hexEncoded: "0123102030405060708090",
                     timestamp: new Date(1640860261670),
                 }
             },
-            expect: {result:{"vsm":{"crash": {index: 291, bytes: "1020304050607080"}}}}
+            expect: {result:{"vsm":{"crash": {index: 291, bytes: "102030405060708090"}}}}
         },
         { // 16 - Diagnostics service - reference
             input: {
