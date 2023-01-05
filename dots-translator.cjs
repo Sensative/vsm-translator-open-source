@@ -322,7 +322,9 @@ function translate(iotnode) {
                 return {};
             }
             const bContainsAssistPosition = bIsStreamHeader && (data[0] & 0x40);
-            result.gnss.streamSize = ((data[0]&0x3f) << 8) | data[1];
+            const bWasAutonomousScan = bIsStreamHeader && (data[0] & 0x20);
+            result.gnss.autonomous = bWasAutonomousScan ? 1 : 0;
+            result.gnss.streamSize = ((data[0]&0x1f) << 8) | data[1];
             pos+=2;
 
             gnssCaptureGpsTime = (data[pos]<<24) | (data[pos+1] << 16) | (data[pos+2] << 8) | (data[pos+3]);  
@@ -766,6 +768,7 @@ M output gnssState 160 0xa0 1
             },
             expect: {result:{
                         gnss: {
+                            "autonomous":0,
                             "streamSize":20,
                             "captureGpsTime":1322311999,
                             "assistanceLatitude":56.0302734375,
@@ -793,6 +796,7 @@ M output gnssState 160 0xa0 1
             },
             expect: {result:{
                         gnss: {
+                            "autonomous":0,
                             "streamSize":24,
                             "captureGpsTime":1322337254,
                             "assistanceLatitude":56.0302734375,
@@ -828,6 +832,7 @@ M output gnssState 160 0xa0 1
             },
             expect: {result:{
                           "gnss":{
+                              "autonomous":0,
                               "streamSize":24,
                               "captureGpsTime":1323771369,
                               "assistanceLatitude":55.72265625,
