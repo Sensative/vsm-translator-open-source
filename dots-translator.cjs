@@ -520,7 +520,7 @@ function translate(iotnode) {
 
     const decodePwrData = (iotnode, symbolTable, data, time) => {
         let pwr = { timestamp: new Date(time), data: data.toString('hex') }
-        return {result: {pwr}};
+        return {result: { vsm: { pwr }}};
     }
 
     const decodePortForward = (iotnode, symbolTable, data, time, port) => {
@@ -1089,11 +1089,14 @@ M output gnssState 160 0xa0 1
             },
             expect: {
                 "result": {
-                    "pwr":{
-                        "timestamp":"2021-12-30T10:31:01.670Z",
-                        "data":"0000111122223333"}
+                    "vsm":{
+                        "pwr":{
+                            "timestamp":"2021-12-30T10:31:01.670Z",
+                            "data":"0000111122223333"
+                        }
                     }
                 }
+            }
         },
         { // 22 - Port forward on port 32
             input: {
