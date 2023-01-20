@@ -74,7 +74,9 @@ function translate(iotnode) {
 
     // Rule update - CRC value (+build time, +version)
     const decodeRule = (iotnode, symbolTable, data, time) => {
-        const rulesCrc32 = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
+        let rulesCrc32 = ((data[0]&0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
+        if (data[0]&0x80)
+            rulesCrc32+=0x80000000;
         const translatorVersion = "###VERSION###"; // Replaced when loading into yggio
         if (data.length<8)
             return {vsm: {rulesCrc32, translatorVersion}};
