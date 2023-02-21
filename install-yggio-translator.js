@@ -30,6 +30,8 @@ import fetch from 'node-fetch'
 globalThis.fetch = fetch;
 import {translate} from './dots-translator.cjs';
 
+const translatorVersion = "0.0.31";
+
 const loginYggio = async (supplier, username, password) => {
     // Login to Yggio to obtain a token
     const supplierAccount = username;
@@ -98,11 +100,10 @@ const postYggioTranslator = async (supplier, token, translatorVersion) => {
     return response;
 }
 
-if (process.argv.length == 6) {
+if (process.argv.length == 5) {
     const yggioServer = process.argv[2];
     const yggioUsername = process.argv[3];
     const yggioPassword = process.argv[4];
-    const translatorVersion = process.argv[5];
     console.log("yggioServer: " + yggioServer);
     console.log("yggioUsername: " + yggioUsername);
     console.log("yggioPassword: " + "*****");
@@ -115,5 +116,5 @@ if (process.argv.length == 6) {
     let response = await postYggioTranslator(yggioServer, token, translatorVersion);
     console.log("Response:" + response);
 } else {
-    console.log("Usage: " + process.argv[0] + " <yggio-server> <yggio-username> <yggio-password> <translator-version>");
+    console.log("Usage: " + process.argv[0] + " <yggio-server> <yggio-username> <yggio-password>");
 }
