@@ -94,10 +94,11 @@ const generate = () => {
     knownSchemas += "};\n"
 
     // Read the open-source translator and expand it
-    let defaultTranslator = fs.readFileSync('dots-translator.template').toString();
+    let defaultTranslator = fs.readFileSync('dots-translator.template.cjs').toString();
     let extendedTranslator = defaultTranslator.replace('const knownSchemas = {};', knownSchemas);
     fs.writeFileSync(GENERATED_FILE, extendedTranslator);
     console.log("Generated new translator " + GENERATED_FILE);
 }
 
 exports.generate = generate;
+generate();

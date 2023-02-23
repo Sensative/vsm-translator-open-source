@@ -26,13 +26,15 @@ THE SOFTWARE.
 // Author: Lars Mats
 //
 
+
+// Refer to VSM documentation for encoding reference
+function translate(iotnode) {
+
 /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
 const knownSchemas = {};
 /// END DO NOT CHANGE THE ABOVE
 
-// Refer to VSM documentation for encoding reference
-function translate(iotnode) {
-    // Response to a reference value query
+// Response to a reference value query
     const decodeReferences = (iotnode, symbolTable, data, time) => {
         let result = {};
         for (let used = 0; used < data.length; ) {
@@ -76,23 +78,21 @@ function translate(iotnode) {
         throw new Exception("Failed to decode diagnostics data");
     }
 
-    // Rule update - CRC value (+build time, +version)
-    const decodeRule = (iotnode, symbolTable, data, time) => {
+   // Rule update - CRC value (+build time, +version)
+   const decodeRule = (iotnode, symbolTable, data, time) => {
         let rulesCrc32 = ((data[0]&0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         if (data[0]&0x80)
             rulesCrc32+=0x80000000;
 
-        let appname, schema, appversions;
+        let schemaInfo = {}
         if (knownSchemas[rulesCrc32]) {
             // there is a known schema for this node, use it [TBD how to handle conflicting CRCs]
-            appname = knownSchemas[rulesCrc32].name;
-            schema = knownSchemas[rulesCrc32].mapData;
-            appversions = knownSchemas[rulesCrc32].versions;
+            schemaInfo = { appName: knownSchemas[rulesCrc32].name, schema: knownSchemas[rulesCrc32].mapData, appVersions: knownSchemas[rulesCrc32].versions}
         }
 
         const translatorVersion = "###VERSION###"; // Replaced when loading into yggio
         if (data.length<8)
-            return {vsm: {rulesCrc32, translatorVersion, schema, appname, appversions}};
+            return {vsm: {...schemaInfo, rulesCrc32, translatorVersion}};
         // We have at least 8 bytes, a build timestamp follows
         let buildTime = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xfffffffc;
         let buildType = 0;
@@ -100,12 +100,12 @@ function translate(iotnode) {
             buildType = data[7] & 0x3;
         let buildDate = new Date(1000*buildTime);
         if (data.length<12)
-            return {vsm: {rulesCrc32, buildDate, buildType, translatorVersion, schema, appname, appversions}}
+            return {vsm: {...schemaInfo, rulesCrc32, buildDate, buildType, translatorVersion}}
         // We have 12 bytes or more, fill in the version as well
         let buildGitVersion = "";
         for (let pos = 8; pos < data.length; ++pos)
             buildGitVersion += String.fromCharCode(data[pos]);
-        return {result: { vsm: {rulesCrc32, buildDate, buildType, buildGitVersion, translatorVersion, schema, appname, appversions}}};
+        return {result: { vsm: {...schemaInfo, rulesCrc32, buildDate, buildType, buildGitVersion, translatorVersion}}};
     }
 
     // Decode uint32_8_t compressed time format
