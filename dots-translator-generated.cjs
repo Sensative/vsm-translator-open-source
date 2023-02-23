@@ -726,7 +726,7 @@ M input activation 130 0x82  1
         let schemaInfo = {}
         if (knownSchemas[rulesCrc32]) {
             // there is a known schema for this node, use it [TBD how to handle conflicting CRCs]
-            schemaInfo = { appname: knownSchemas[rulesCrc32].name, schema: knownSchemas[rulesCrc32].mapData, appVersions: knownSchemas[rulesCrc32].versions}
+            schemaInfo = { appName: knownSchemas[rulesCrc32].name, schema: knownSchemas[rulesCrc32].mapData, appVersions: knownSchemas[rulesCrc32].versions}
         }
 
         const translatorVersion = "###VERSION###"; // Replaced when loading into yggio

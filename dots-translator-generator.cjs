@@ -74,7 +74,8 @@ const generate = () => {
     }
 
     scanBuilds('../dots-builds');
-    const appkeys = Object.keys(apps);
+    let appkeys = Object.keys(apps);
+    appkeys = appkeys.sort((a,b)=>a>b);
     const count = appkeys.length;
     if (count == 0)
         throw new Error("Found no vso files");
