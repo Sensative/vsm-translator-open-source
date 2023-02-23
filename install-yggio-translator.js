@@ -28,9 +28,10 @@ THE SOFTWARE.
 
 import fetch from 'node-fetch'
 globalThis.fetch = fetch;
-import {translate} from './dots-translator.cjs';
 
-const translatorVersion = "0.0.31";
+import {translate} from './dots-translator-generated.cjs';
+
+const translatorVersion = "0.0.33";
 
 const loginYggio = async (supplier, username, password) => {
     // Login to Yggio to obtain a token
