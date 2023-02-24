@@ -34,6 +34,45 @@ function translate(iotnode) {
 const knownSchemas = {
 
 
+            38734: {
+                name: "dots,radon,temp",
+                versions: "",
+                mapData: `M output radon 144 0x90  1
+M output co2 176 0xb0  1
+M output humidity 177 0xb1  1
+M output button 160 0xa0  1
+M output temp 178 0xb2  0.01
+M output averageTemp 179 0xb3  0.01
+M input tempHysteresis 180 0xb4  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+`,
+            }, 
+        
+
+            23315822: {
+                name: "dots,temp,radar-v5",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output amplitude 179 0xb3  1
+M output distance 180 0xb4  0.01
+M output occupied 129 0x81  1
+M input amplitudeHysteresis 181 0xb5  1
+M input distanceHysteresis 163 0xa3  0.01
+M output batteryPercent 164 0xa4  1
+M output underVoltage 165 0xa5  1
+`,
+            }, 
+        
+
             178296843: {
                 name: "dots,temp,sweiot-riot-v3",
                 versions: "",
@@ -76,6 +115,31 @@ M output distance 180 0xb4  0.01
 M output occupied 129 0x81  1
 M output batteryPercent 163 0xa3  1
 M output underVoltage 164 0xa4  1
+`,
+            }, 
+        
+
+            264840926: {
+                name: "dots,radon,temp,air",
+                versions: "",
+                mapData: `M output radon 144 0x90  1
+M output co2 176 0xb0  1
+M output humidity 177 0xb1  1
+M output button 160 0xa0  1
+M output temp 178 0xb2  0.01
+M output averageTemp 179 0xb3  0.01
+M input tempHysteresis 180 0xb4  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output air_run_in_status 164 0xa4  1
+M output air_stab_status 165 0xa5  1
+M output air_iaq_accuracy 166 0xa6  1
+M output air_iaq 145 0x91  1
+M output air_co2 146 0x92  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
 `,
             }, 
         
@@ -461,6 +525,16 @@ M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
 M output volts 179 0xb3  0.001
 M input gnssIntervalMinutes 163 0xa3  1
+`,
+            }, 
+        
+
+            2631574295: {
+                name: "dots,gnss-autonomous-scan-test",
+                versions: "",
+                mapData: `M output numSatellites 160 0xa0  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
 `,
             }, 
         
