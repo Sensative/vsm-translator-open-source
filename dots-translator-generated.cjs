@@ -52,27 +52,6 @@ M input tempAlarmHighLevel 163 0xa3  1
             }, 
         
 
-            23315822: {
-                name: "dots,temp,radar-v5",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output amplitude 179 0xb3  1
-M output distance 180 0xb4  0.01
-M output occupied 129 0x81  1
-M input amplitudeHysteresis 181 0xb5  1
-M input distanceHysteresis 163 0xa3  0.01
-M output batteryPercent 164 0xa4  1
-M output underVoltage 165 0xa5  1
-`,
-            }, 
-        
-
             178296843: {
                 name: "dots,temp,sweiot-riot-v3",
                 versions: "",
@@ -478,6 +457,27 @@ M output volts 181 0xb5  0.001
 M input enableCapReports 163 0xa3  1
 M input capAlarmLevel 182 0xb6  1
 M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
+            1706698780: {
+                name: "dots,temp,radar-v5",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output amplitude 179 0xb3  1
+M output distance 180 0xb4  0.01
+M output occupied 129 0x81  1
+M input amplitudeHysteresis 181 0xb5  1
+M input distanceHysteresis 163 0xa3  0.01
+M output batteryPercent 164 0xa4  1
+M output underVoltage 165 0xa5  1
 `,
             }, 
         
