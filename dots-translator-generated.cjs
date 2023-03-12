@@ -190,6 +190,13 @@ M input tempAlarmHighLevel 163 0xa3  1
             }, 
         
 
+            429275861: {
+                name: "dots,sniffer",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             476614003: {
                 name: "dots,vitir,temp,air",
                 versions: "R0",
@@ -591,6 +598,13 @@ M output rxCount 185 0xb9  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
 `,
+            }, 
+        
+
+            2291011886: {
+                name: "dots,radiotest",
+                versions: "",
+                mapData: ``,
             }, 
         
 
