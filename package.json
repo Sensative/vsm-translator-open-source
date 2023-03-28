@@ -1,4 +1,12 @@
 {
+  "name": "vsm-translator",
+  "version": "0.0.45",
+  "description": "Open source translator for Sensative Virtual Sensor Machine driven devices (Puck, Box, Square) and Lifefinder",
+  "main": "dots-translator-generated.cjs",
+  "repository": "git@gitlab.com:sensative/vsm-translator-open-source.git",
+  "author": "Lars Mats <lars.mats@sensative.com>",
+  "license": "MIT",
+  "homepage": "www.sensative.com",
   "type": "module",
   "dependencies": {
     "node-fetch": "^3.0.0"
