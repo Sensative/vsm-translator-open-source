@@ -426,7 +426,7 @@ const knownSchemas = {};
             result.gnss.almanacChunkChecksum = (data[0]<<8)|data[1];
             return { result };
             // This is a checksum for a downloaded rule
-        } else if (data.length == 12) {
+        } else if (data.length == 12 || data.length == 16) {
             // This is age (in seconds) for assistance position and almanac
             let assistanceTimestamp = (data[0] << 24) | (data[1] << 16) | (data[2]<<8) | data[3];
             let almanacTimestamp = (data[4] << 24) | (data[5] << 16) | (data[6]<<8) | data[7];
@@ -440,6 +440,15 @@ const knownSchemas = {};
             result.gnss.assistanceLatitude  = 90.0*lat16/2048.0;
             result.gnss.assistanceLongitude = 180.0*lon16/2048.0;
 
+            // Optional device time age
+            let deviceTimeAge;
+            if (data.length >= 16) {
+                deviceTimeAge = (data[12] << 24) | (data[13] << 16) | (data[14]<<8) | data[15];
+                if (deviceTimeAge) {
+                    result.gnss.deviceTimeTimestamp = new Date(time-1000*deviceTimeAge);
+                } else
+                    result.gnss.deviceTimeTimestamp = "N/A";
+            } 
             return { result };
         }
         return null;

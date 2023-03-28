@@ -190,6 +190,36 @@ M input tempAlarmHighLevel 163 0xa3  1
             }, 
         
 
+            332499464: {
+                name: "dots,temp,comfort,air-v2",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output lux 179 0xb3  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 181 0xb5  0.01
+M input luxTresholdPercent 182 0xb6  1
+M input averageHumidityIntervalMinutes 163 0xa3  1
+M input averageLuxIntervalMinutes 164 0xa4  1
+M output air_run_in_status 165 0xa5  1
+M output air_stab_status 166 0xa6  1
+M output air_iaq_accuracy 167 0xa7  1
+M output air_iaq 146 0x92  1
+M output air_co2 147 0x93  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
+M input air_interval_minutes 168 0xa8  1
+`,
+            }, 
+        
+
             429275861: {
                 name: "dots,sniffer",
                 versions: "",
@@ -733,6 +763,28 @@ M output underVoltage 165 0xa5  1
             }, 
         
 
+            2865307395: {
+                name: "dots,temp,comfort",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output lux 179 0xb3  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 181 0xb5  0.01
+M input luxTresholdPercent 182 0xb6  1
+M input averageHumidityIntervalMinutes 163 0xa3  1
+M input averageLuxIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
             2867405484: {
                 name: "dots,temp,sound,comfort,air-v2",
                 versions: "R0",
@@ -878,6 +930,40 @@ M output air_breath_voc_equivalent 152 0x98  0.01
             }, 
         
 
+            3517627757: {
+                name: "dots,temp,sound,comfort,air-v2",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output soundLevel 179 0xb3  0.1
+M input soundThreshold 163 0xa3  1
+M input soundMinLevel 164 0xa4  1
+M input soundAvgMinutes 165 0xa5  1
+M output lux 180 0xb4  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 182 0xb6  0.01
+M input luxTresholdPercent 183 0xb7  1
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input averageLuxIntervalMinutes 167 0xa7  1
+M output air_run_in_status 168 0xa8  1
+M output air_stab_status 169 0xa9  1
+M output air_iaq_accuracy 170 0xaa  1
+M output air_iaq 146 0x92  1
+M output air_co2 147 0x93  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
+M input air_interval_minutes 171 0xab  1
+`,
+            }, 
+        
+
             3773954219: {
                 name: "dots,temp,vitir,air",
                 versions: "",
@@ -980,6 +1066,32 @@ M output radon 144 0x90  1
 M output co2 179 0xb3  1
 M output humidity 180 0xb4  1
 M output button 163 0xa3  1
+`,
+            }, 
+        
+
+            4046628706: {
+                name: "dots,temp,sound,comfort",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output soundLevel 179 0xb3  0.1
+M input soundThreshold 163 0xa3  1
+M input soundMinLevel 164 0xa4  1
+M input soundAvgMinutes 165 0xa5  1
+M output lux 180 0xb4  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 182 0xb6  0.01
+M input luxTresholdPercent 183 0xb7  1
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input averageLuxIntervalMinutes 167 0xa7  1
 `,
             }, 
         
@@ -1394,7 +1506,7 @@ M input activation 130 0x82  1
             result.gnss.almanacChunkChecksum = (data[0]<<8)|data[1];
             return { result };
             // This is a checksum for a downloaded rule
-        } else if (data.length == 12) {
+        } else if (data.length == 12 || data.length == 16) {
             // This is age (in seconds) for assistance position and almanac
             let assistanceTimestamp = (data[0] << 24) | (data[1] << 16) | (data[2]<<8) | data[3];
             let almanacTimestamp = (data[4] << 24) | (data[5] << 16) | (data[6]<<8) | data[7];
@@ -1408,6 +1520,15 @@ M input activation 130 0x82  1
             result.gnss.assistanceLatitude  = 90.0*lat16/2048.0;
             result.gnss.assistanceLongitude = 180.0*lon16/2048.0;
 
+            // Optional device time age
+            let deviceTimeAge;
+            if (data.length >= 16) {
+                deviceTimeAge = (data[12] << 24) | (data[13] << 16) | (data[14]<<8) | data[15];
+                if (deviceTimeAge) {
+                    result.gnss.deviceTimeTimestamp = new Date(time-1000*deviceTimeAge);
+                } else
+                    result.gnss.deviceTimeTimestamp = "N/A";
+            } 
             return { result };
         }
         return null;
