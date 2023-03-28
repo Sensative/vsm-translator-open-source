@@ -1172,7 +1172,7 @@ M input activation 130 0x82  1
 
         const translatorVersion = "###VERSION###"; // Replaced when loading into yggio
         if (data.length<8)
-            return {vsm: {...schemaInfo, rulesCrc32, translatorVersion}};
+            return {result: {vsm: {...schemaInfo, rulesCrc32, translatorVersion}}};
         // We have at least 8 bytes, a build timestamp follows
         let buildTime = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xfffffffc;
         let buildType = 0;
@@ -1180,7 +1180,7 @@ M input activation 130 0x82  1
             buildType = data[7] & 0x3;
         let buildDate = new Date(1000*buildTime);
         if (data.length<12)
-            return {vsm: {...schemaInfo, rulesCrc32, buildDate, buildType, translatorVersion}}
+            return {result: { vsm: {...schemaInfo, rulesCrc32, buildDate, buildType, translatorVersion}}}
         // We have 12 bytes or more, fill in the version as well
         let buildGitVersion = "";
         for (let pos = 8; pos < data.length; ++pos)
