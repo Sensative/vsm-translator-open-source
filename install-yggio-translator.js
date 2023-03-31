@@ -31,7 +31,7 @@ globalThis.fetch = fetch;
 
 import {translate} from './dots-translator-generated.cjs';
 
-const translatorVersion = "0.0.48";
+const translatorVersion = "0.0.49";
 
 const loginYggio = async (supplier, username, password) => {
     // Login to Yggio to obtain a token
