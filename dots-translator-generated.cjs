@@ -1520,14 +1520,12 @@ M input activation 130 0x82  1
             result.gnss.assistanceLatitude  = 90.0*lat16/2048.0;
             result.gnss.assistanceLongitude = 180.0*lon16/2048.0;
 
-            // Optional device time age
-            let deviceTimeAge;
+            // Device time
+            let deviceTime;
             if (data.length >= 16) {
-                deviceTimeAge = (data[12] << 24) | (data[13] << 16) | (data[14]<<8) | data[15];
-                if (deviceTimeAge) {
-                    result.gnss.deviceTimeTimestamp = new Date(time-1000*deviceTimeAge);
-                } else
-                    result.gnss.deviceTimeTimestamp = "N/A";
+                deviceTime = (data[12] << 24) | (data[13] << 16) | (data[14]<<8) | data[15];
+                result.gnss.deviceTime = new Date(1000*deviceTime);
+                result.gnss.deviceTimeTimestamp = time;
             } 
             return { result };
         }
