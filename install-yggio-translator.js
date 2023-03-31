@@ -30,8 +30,14 @@ import fetch from 'node-fetch'
 globalThis.fetch = fetch;
 
 import {translate} from './dots-translator-generated.cjs';
+import {readFileSync} from 'fs';
 
-const translatorVersion = "0.0.49";
+let translatorVersion = JSON.parse(readFileSync("package.json").toString("utf-8")).version;
+if (!translatorVersion) {
+    console.log("Failed to read translator version from package.json file");
+    process.exit(1);
+}
+console.log("Translator version: " + translatorVersion);
 
 const loginYggio = async (supplier, username, password) => {
     // Login to Yggio to obtain a token
