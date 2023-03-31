@@ -1525,7 +1525,7 @@ M input activation 130 0x82  1
             if (data.length >= 16) {
                 deviceTime = (data[12] << 24) | (data[13] << 16) | (data[14]<<8) | data[15];
                 result.gnss.deviceTime = new Date(1000*deviceTime);
-                result.gnss.deviceTimeTimestamp = time;
+                result.gnss.deviceTimeTimestamp = new Date(time);
             } 
             return { result };
         }
