@@ -659,7 +659,7 @@ const knownSchemas = {};
   }
 
 const selfTest = () => {
-    console.log("Running selftest before posting")
+    // console.log("Running selftest before posting")
     const description =`
 M output alarmTime 144 0x90
 M output capAlarm 128 0x80 1
@@ -1151,7 +1151,7 @@ M output gnssState 160 0xa0 1
             throw (new Error("Unexpected result for case " + c));
         }
         else {
-            console.log("Test case " + c + " PASSED.");
+            // console.log("Test case " + c + " PASSED.");
         }
     }
 }
