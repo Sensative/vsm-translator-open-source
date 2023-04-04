@@ -457,6 +457,32 @@ M output air_breath_voc_equivalent 152 0x98  0.01
             }, 
         
 
+            1148717673: {
+                name: "dots,temp,lifefinder-motion",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+M output motion 165 0xa5  1
+M output motionAlarm 166 0xa6  1
+M input motionThreshold 183 0xb7  0.001
+`,
+            }, 
+        
+
             1217004939: {
                 name: "dots,tracker",
                 versions: "R0",
@@ -528,6 +554,22 @@ M output buttonCount 144 0x90  1
                 name: "dots,radiotest",
                 versions: "R0",
                 mapData: ``,
+            }, 
+        
+
+            1466829705: {
+                name: "dots,temp,wifitracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input wifiIntervalMinutes 163 0xa3  1
+`,
             }, 
         
 
@@ -1739,7 +1781,7 @@ M input activation 130 0x82  1
   }
 
 const selfTest = () => {
-    console.log("Running selftest before posting")
+    // console.log("Running selftest before posting")
     const description =`
 M output alarmTime 144 0x90
 M output capAlarm 128 0x80 1
@@ -2231,7 +2273,7 @@ M output gnssState 160 0xa0 1
             throw (new Error("Unexpected result for case " + c));
         }
         else {
-            console.log("Test case " + c + " PASSED.");
+            // console.log("Test case " + c + " PASSED.");
         }
     }
 }
