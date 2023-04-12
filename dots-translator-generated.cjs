@@ -103,31 +103,6 @@ M output underVoltage 165 0xa5  1
             }, 
         
 
-            165777174: {
-                name: "dots,temp,lifefinder-motion-sound",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output alarmTime 144 0x90  1
-M output capAlarm 129 0x81  1
-M output buttonAlarm 130 0x82  1
-M output capReport1 179 0xb3  1
-M output capReport2 180 0xb4  1
-M output soundAlarm 131 0x83  1
-M output volts 181 0xb5  0.001
-M input enableCapReports 163 0xa3  1
-M input capAlarmLevel 182 0xb6  1
-M input alarmAck 164 0xa4  1
-M output motion 165 0xa5  1
-`,
-            }, 
-        
-
             178296843: {
                 name: "dots,temp,sweiot-riot-v3",
                 versions: "",
@@ -585,10 +560,59 @@ M input averageLuxIntervalMinutes 166 0xa6  1
             }, 
         
 
+            900402767: {
+                name: "dots,temp,lifefinder",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             1032327840: {
                 name: "dots,sniffer",
                 versions: "",
                 mapData: ``,
+            }, 
+        
+
+            1043174850: {
+                name: "dots,temp,lifefinder-motion-sound",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+M output motion 165 0xa5  1
+`,
             }, 
         
 
@@ -777,30 +801,6 @@ M input frequency 184 0xb8  1
 M output serial 152 0x98  1
 M output rssi 129 0x81  1
 M output rxCount 185 0xb9  1
-`,
-            }, 
-        
-
-            1671648917: {
-                name: "dots,temp,lifefinder",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output alarmTime 144 0x90  1
-M output capAlarm 129 0x81  1
-M output buttonAlarm 130 0x82  1
-M output capReport1 179 0xb3  1
-M output capReport2 180 0xb4  1
-M output soundAlarm 131 0x83  1
-M output volts 181 0xb5  0.001
-M input enableCapReports 163 0xa3  1
-M input capAlarmLevel 182 0xb6  1
-M input alarmAck 164 0xa4  1
 `,
             }, 
         
@@ -1305,6 +1305,32 @@ M input air_interval_minutes 171 0xab  1
             }, 
         
 
+            3378309920: {
+                name: "dots,temp,lifefinder-motion",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+M output motion 165 0xa5  1
+M output motionAlarm 166 0xa6  1
+M input motionThreshold 183 0xb7  0.001
+`,
+            }, 
+        
+
             3401069210: {
                 name: "dots,temp,vatette",
                 versions: "",
@@ -1561,32 +1587,6 @@ M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
 M output detection 129 0x81  1
 M input activation 130 0x82  1
-`,
-            }, 
-        
-
-            4270911988: {
-                name: "dots,temp,lifefinder-motion",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output alarmTime 144 0x90  1
-M output capAlarm 129 0x81  1
-M output buttonAlarm 130 0x82  1
-M output capReport1 179 0xb3  1
-M output capReport2 180 0xb4  1
-M output volts 181 0xb5  0.001
-M input enableCapReports 163 0xa3  1
-M input capAlarmLevel 182 0xb6  1
-M input alarmAck 164 0xa4  1
-M output motion 165 0xa5  1
-M output motionAlarm 166 0xa6  1
-M input motionThreshold 183 0xb7  0.001
 `,
             }, 
         };
