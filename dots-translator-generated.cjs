@@ -103,29 +103,6 @@ M output underVoltage 165 0xa5  1
             }, 
         
 
-            90139506: {
-                name: "dots,temp,tracker-stats-plus-adr",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output volts 179 0xb3  0.001
-M input gnssIntervalMinutes 163 0xa3  1
-M input gnssScanMode 180 0xb4  1
-M output numSatellites 164 0xa4  1
-M output bestSatellites 184 0xb8  1
-M output scanCount 185 0xb9  1
-M output gpsTime 186 0xba  1
-M output downlinkRssi 165 0xa5  1
-M output buttonCount 144 0x90  1
-`,
-            }, 
-        
-
             165777174: {
                 name: "dots,temp,lifefinder-motion-sound",
                 versions: "",
@@ -804,6 +781,30 @@ M output rxCount 185 0xb9  1
             }, 
         
 
+            1671648917: {
+                name: "dots,temp,lifefinder",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             1702715986: {
                 name: "dots,temp,lifefinder",
                 versions: "",
@@ -986,18 +987,8 @@ M output rxCount 185 0xb9  1
             }, 
         
 
-            2103141008: {
-                name: "dots,gnss",
-                versions: "R0",
-                mapData: `M output numSatellites 160 0xa0  1
-M output bestSatellites 184 0xb8  1
-M output scanCount 185 0xb9  1
-`,
-            }, 
-        
-
-            2211780184: {
-                name: "dots,temp,lifefinder",
+            2091741416: {
+                name: "dots,temp,tracker-stats-plus-adr",
                 versions: "",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -1006,16 +997,25 @@ M input averageTempIntervalMinutes 160 0xa0  1
 M output tempAlarm 128 0x80  1
 M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
-M output alarmTime 144 0x90  1
-M output capAlarm 129 0x81  1
-M output buttonAlarm 130 0x82  1
-M output capReport1 179 0xb3  1
-M output capReport2 180 0xb4  1
-M output soundAlarm 131 0x83  1
-M output volts 181 0xb5  0.001
-M input enableCapReports 163 0xa3  1
-M input capAlarmLevel 182 0xb6  1
-M input alarmAck 164 0xa4  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input gnssScanMode 180 0xb4  1
+M output numSatellites 164 0xa4  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 165 0xa5  1
+M output buttonCount 144 0x90  1
+`,
+            }, 
+        
+
+            2103141008: {
+                name: "dots,gnss",
+                versions: "R0",
+                mapData: `M output numSatellites 160 0xa0  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
 `,
             }, 
         
