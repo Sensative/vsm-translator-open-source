@@ -290,6 +290,52 @@ M output air_breath_voc_equivalent 152 0x98  0.01
             }, 
         
 
+            544151617: {
+                name: "dots,temp,tracker-stats",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input gnssScanMode 180 0xb4  1
+M output numSatellites 164 0xa4  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 165 0xa5  1
+M output buttonCount 144 0x90  1
+`,
+            }, 
+        
+
+            551190193: {
+                name: "dots,temp,tracker-stats-plus-adr",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input gnssScanMode 180 0xb4  1
+M output numSatellites 164 0xa4  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 165 0xa5  1
+M output buttonCount 144 0x90  1
+`,
+            }, 
+        
+
             559699338: {
                 name: "dots,temp,radar-v5",
                 versions: "R1",
@@ -901,29 +947,6 @@ M input averageLuxIntervalMinutes 167 0xa7  1
             }, 
         
 
-            1811844551: {
-                name: "dots,temp,tracker-stats",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output volts 179 0xb3  0.001
-M input gnssIntervalMinutes 163 0xa3  1
-M input gnssScanMode 180 0xb4  1
-M output numSatellites 164 0xa4  1
-M output bestSatellites 184 0xb8  1
-M output scanCount 185 0xb9  1
-M output gpsTime 186 0xba  1
-M output downlinkRssi 165 0xa5  1
-M output buttonCount 144 0x90  1
-`,
-            }, 
-        
-
             1828349702: {
                 name: "dots,temp,comfort",
                 versions: "",
@@ -983,29 +1006,6 @@ M input frequency 184 0xb8  1
 M output serial 152 0x98  1
 M output rssi 129 0x81  1
 M output rxCount 185 0xb9  1
-`,
-            }, 
-        
-
-            2091741416: {
-                name: "dots,temp,tracker-stats-plus-adr",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output volts 179 0xb3  0.001
-M input gnssIntervalMinutes 163 0xa3  1
-M input gnssScanMode 180 0xb4  1
-M output numSatellites 164 0xa4  1
-M output bestSatellites 184 0xb8  1
-M output scanCount 185 0xb9  1
-M output gpsTime 186 0xba  1
-M output downlinkRssi 165 0xa5  1
-M output buttonCount 144 0x90  1
 `,
             }, 
         
