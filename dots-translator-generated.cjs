@@ -174,6 +174,29 @@ M output air_breath_voc_equivalent 152 0x98  0.01
             }, 
         
 
+            319109405: {
+                name: "dots,temp,radar-v6",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 129 0x81  1
+M output bluetoothMacLS 184 0xb8  1
+M output bluetoothMacMS 185 0xb9  1
+M input amplitudeHysteresis 179 0xb3  1
+M input distanceHysteresis 163 0xa3  0.01
+M output batteryPercent 164 0xa4  1
+M output underVoltage 165 0xa5  1
+`,
+            }, 
+        
+
             329059545: {
                 name: "dots,temp,sweiot-riot-v3",
                 versions: "R0",
@@ -1301,6 +1324,23 @@ M output air_co2 147 0x93  1
 M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
 M input air_interval_minutes 171 0xab  1
+`,
+            }, 
+        
+
+            3362211822: {
+                name: "dots,temp,tracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input wifiIntervalMinutes 164 0xa4  1
 `,
             }, 
         
