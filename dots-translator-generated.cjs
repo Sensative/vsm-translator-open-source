@@ -1080,6 +1080,13 @@ M input air_interval_minutes 168 0xa8  1
             }, 
         
 
+            2482232773: {
+                name: "dots,sniffer",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             2507154056: {
                 name: "dots,temp,lifefinder-motion-sound",
                 versions: "",
@@ -1555,6 +1562,24 @@ M output gpsTime 186 0xba  1
             }, 
         
 
+            3930871691: {
+                name: "dots,temp,magnet,tracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output magnet 129 0x81  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input wifiIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
             4003863279: {
                 name: "dots,temp,vatette",
                 versions: "R1 R0",
@@ -1612,6 +1637,13 @@ M input luxTresholdPercent 183 0xb7  1
 M input averageHumidityIntervalMinutes 166 0xa6  1
 M input averageLuxIntervalMinutes 167 0xa7  1
 `,
+            }, 
+        
+
+            4079859890: {
+                name: "dots,radiotest",
+                versions: "",
+                mapData: ``,
             }, 
         
 
