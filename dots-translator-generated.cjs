@@ -970,6 +970,24 @@ M input averageLuxIntervalMinutes 167 0xa7  1
             }, 
         
 
+            1804225350: {
+                name: "dots,temp,magnet,tracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output magnet 129 0x81  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input wifiIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
             1828349702: {
                 name: "dots,temp,comfort",
                 versions: "",
@@ -1558,24 +1576,6 @@ M output numSatellites 164 0xa4  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
 M output gpsTime 186 0xba  1
-`,
-            }, 
-        
-
-            3930871691: {
-                name: "dots,temp,magnet,tracker",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output magnet 129 0x81  1
-M output volts 179 0xb3  0.001
-M input gnssIntervalMinutes 163 0xa3  1
-M input wifiIntervalMinutes 164 0xa4  1
 `,
             }, 
         
