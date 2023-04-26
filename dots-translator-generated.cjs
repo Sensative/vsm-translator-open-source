@@ -313,6 +313,23 @@ M output air_breath_voc_equivalent 152 0x98  0.01
             }, 
         
 
+            512125322: {
+                name: "dots,temp,heart",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output magnetDetect 129 0x81  1
+M output soundDetect 130 0x82  1
+M output buttonDetect 131 0x83  1
+`,
+            }, 
+        
+
             544151617: {
                 name: "dots,temp,tracker-stats",
                 versions: "",
