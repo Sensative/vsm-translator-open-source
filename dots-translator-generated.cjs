@@ -1085,6 +1085,13 @@ M output scanCount 185 0xb9  1
             }, 
         
 
+            2182170139: {
+                name: "dots,radiotest",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             2291011886: {
                 name: "dots,radiotest",
                 versions: "R1",
@@ -1683,6 +1690,28 @@ M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
 M output detection 129 0x81  1
 M input activation 130 0x82  1
+`,
+            }, 
+          // Additional known schemas:
+
+
+            777944170: {
+                name: "dots,temp,radar-v5-experimental",
+                versions: "R0-update",
+                mapData: `M output temp 176 0xb0 0.01 
+M output averageTemp 177 0xb1 0.01 
+M input tempHysteresis 178 0xb2 0.01 
+M input averageTempIntervalMinutes 160 0xa0 1 
+M output tempAlarm 128 0x80 1 
+M input tempAlarmLowLevel 161 0xa1 1 
+M input tempAlarmHighLevel 162 0xa2 1 
+M output amplitude 144 0x90 1 
+M output distance 145 0x91 0.01 
+M output occupied 129 0x81 1 
+M input amplitudeHysteresis 179 0xb3 1 
+M input distanceHysteresis 163 0xa3 0.01 
+M output batteryPercent 164 0xa4 1 
+M output underVoltage 165 0xa5 1
 `,
             }, 
         };
