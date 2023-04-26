@@ -2269,9 +2269,28 @@ M output underVoltage 165 0xa5 1
     // Generate a symbol table from the nodes vsm.schema field (todo: reference database of known CRCs to know?)
     function mkSymbolTable(iotnode) {
         let symbolTable = {};
-        if (!(iotnode.hasOwnProperty('vsm') && iotnode.vsm.hasOwnProperty("schema")))
-            return symbolTable;
-        const description = iotnode.vsm.schema;
+
+        let description = "";
+        if (iotnode.hasOwnProperty('vsm')) {
+            if (iotnode.vsm.hasOwnProperty("schema")) {
+                description = iotnode.vsm.schema;
+            } else {
+                if (iotnode.vsm.hasOwnProperty("rulesCrc32")) {
+                    // Lookup schema in knownSchemas - this is fallback solution when we got crc32 but the translator
+                    // did not previously regognize the CRC
+                    if (knownSchemas.hasOwnProperty(iotnode.vsm.rulesCrc32)) {
+                        description = knownSchemas[iotnode.vsm.rulesCrc32].mapData;
+                    } else {
+                        return symbolTable;
+                    }
+                } else {
+                    return symbolTable;
+                }
+            }
+        } else {
+            return symbolTable; // Do not know which application this is
+        }
+
         if (!description)
             return symbolTable;
         const descriptions = description.split(/\r\n|\r|\n/);
