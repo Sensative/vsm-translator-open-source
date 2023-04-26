@@ -1208,6 +1208,23 @@ M output underVoltage 165 0xa5  1
             }, 
         
 
+            2810837616: {
+                name: "dots,temp,heart",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output magnetDetect 129 0x81  1
+M output soundDetect 130 0x82  1
+M output buttonDetect 131 0x83  1
+`,
+            }, 
+        
+
             2815114797: {
                 name: "dots,temp,lifefinder",
                 versions: "R1",
@@ -1291,23 +1308,6 @@ M input air_interval_minutes 170 0xaa  1
                 name: "dots,radiotest",
                 versions: "",
                 mapData: ``,
-            }, 
-        
-
-            3011814091: {
-                name: "dots,temp,heart",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output magnetDetect 129 0x81  1
-M output soundDetect 130 0x82  1
-M output buttonDetect 131 0x83  1
-`,
             }, 
         
 
