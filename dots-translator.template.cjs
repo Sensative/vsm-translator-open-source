@@ -88,6 +88,8 @@ const knownSchemas = {};
         if (knownSchemas[rulesCrc32]) {
             // there is a known schema for this node, use it [TBD how to handle conflicting CRCs]
             schemaInfo = { appName: knownSchemas[rulesCrc32].name, schema: knownSchemas[rulesCrc32].mapData, appVersions: knownSchemas[rulesCrc32].versions}
+        } else {
+            console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
         const translatorVersion = "###VERSION###"; // Replaced when loading into yggio
