@@ -313,23 +313,6 @@ M output air_breath_voc_equivalent 152 0x98  0.01
             }, 
         
 
-            512125322: {
-                name: "dots,temp,heart",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output magnetDetect 129 0x81  1
-M output soundDetect 130 0x82  1
-M output buttonDetect 131 0x83  1
-`,
-            }, 
-        
-
             544151617: {
                 name: "dots,temp,tracker-stats",
                 versions: "",
@@ -1311,6 +1294,23 @@ M input air_interval_minutes 170 0xaa  1
             }, 
         
 
+            3011814091: {
+                name: "dots,temp,heart",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output magnetDetect 129 0x81  1
+M output soundDetect 130 0x82  1
+M output buttonDetect 131 0x83  1
+`,
+            }, 
+        
+
             3099888482: {
                 name: "dots,gnss-autonomous-scan-test",
                 versions: "",
@@ -1488,6 +1488,31 @@ M output air_iaq 146 0x92  1
 M output air_co2 147 0x93  1
 M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
+`,
+            }, 
+        
+
+            3506588956: {
+                name: "dots,temp,lifefinder-motion-sound",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+M output motion 165 0xa5  1
 `,
             }, 
         
