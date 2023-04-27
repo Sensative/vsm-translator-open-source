@@ -1,12 +1,17 @@
-README
-^^^^^^
+# README
 
 This software is designed to decode LoRaWan uplink traffic from the Sensative VSM driven applications in LoRaWan sensors.
-Documentation is available on request from Sensative AB (www.sensative.com).
-The entire software is under MIT license, see LICENSE.txt.
 
-Required Files
-^^^^^^^^^^^^^^
+* WE STRONGLY RECOMMEND NOT FORKING THIS OR MAKING A SEPARATE IMPLEMENTATION. THE CONTENT OF THIS REPOSITORY IS PARTIALLY
+GENERATED AND WILL BE UPDATED FREQUENTLY. INSTEAD USE THE VSM MQTT CLIENT FOR INTEGRATING THESE PRODUCTS INTO YOUR SYSTEM.
+
+* The entire software is under MIT license, see LICENSE.txt.
+
+## VSM MQTT CLIENT
+
+The recommended integration is through the https://gitlab.com/sensative/vsm-mqtt-client-open-source project.
+
+## Required Files
 
 LICENSE.txt
     The MIT software license.
@@ -14,8 +19,7 @@ LICENSE.txt
 dots-translator-generated.cjs
     Actual translator AND testcases/example calls to the translator.
 
-Optional Files 
-^^^^^^^^^^^^^^
+## Optional Files 
 
 install.sh
     Wrapper for install-yggio-translator.js
@@ -24,9 +28,7 @@ install-yggio-translator.js
     Install this translator in a Yggio server. User account is required. Contact Sensative for user account.
     For this there is a dependency to the node-fetch package.
 
-
-About the translator
-^^^^^^^^^^^^^^^^^^^^
+# About the Translator
 The translator is a partially context-free parser of uplinks from Sensative devices built on the VSM (Virtual Sensor Machine) architecture.
 Sensors run apps (aka rules or apps) which define their behaviour. Each app (ruleset) when compiled gets a map file which maps binary 
 output and input identifiers to their logical meaning. In the dots-translator-generated.cjs there is a table which provides the mapping 
@@ -42,6 +44,7 @@ but also in order to generate correct time series.
 
 Code Example: 
 
+```
     // First uplink
     let initialObject = { encodedData: { hexEncoded: "63F74F110000000004F30096", port:22, timestamp: "2023-02-23T17:01:07.473Z" } };
     let {result1, timeseries1} = translate(initialObject);
@@ -53,6 +56,7 @@ Code Example:
     let lastResult = restore(result from previous translation in your database);
     let secondObject = { ...lastResult, encodedData: { hexEncoded: "000102", port:1, timestamp: "2023-02-23T17:01:11.213Z" } };}
     let {result2, timeseries2} = translate(secondObject);
+```
 
 
 For outputs from the VM the translator generates two return values:
@@ -61,5 +65,7 @@ For outputs from the VM the translator generates two return values:
 
 Note that if the device has been off-line (common for mobile use-cases or if network goes down) or if a more urgent signal is generated it can generate out-of-order events and later upload older events.
 Also for this functionality the translator requires the previous translation result (timestamps object) to determine if an uplink is newer than the previous value.
+
+All this is made available in the MQTT client, which also support reformatting the output to fit your environment, and publishing it there.
 
 
