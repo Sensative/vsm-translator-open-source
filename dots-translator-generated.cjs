@@ -398,6 +398,28 @@ M input tempAlarmHighLevel 163 0xa3  1
             }, 
         
 
+            634388375: {
+                name: "dots,temp,tracker-stats",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input gnssScanMode 180 0xb4  1
+M output numSatellites 164 0xa4  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 165 0xa5  1
+`,
+            }, 
+        
+
             664086314: {
                 name: "dots,temp,comfort,air",
                 versions: "R0",
@@ -578,6 +600,28 @@ M input tempAlarmHighLevel 162 0xa2  1
 M output volts 179 0xb3  0.001
 M input gnssIntervalMinutes 163 0xa3  1
 M input wifiIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
+            826485752: {
+                name: "dots,temp,tracker-stats-plus-adr",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input gnssScanMode 180 0xb4  1
+M output numSatellites 164 0xa4  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 165 0xa5  1
 `,
             }, 
         
