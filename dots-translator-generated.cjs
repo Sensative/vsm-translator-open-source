@@ -888,6 +888,40 @@ M input gnssIntervalMinutes 160 0xa0  1
             }, 
         
 
+            1235266791: {
+                name: "dots,temp,sound,comfort,air-v2",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output soundLevel 179 0xb3  0.1
+M input soundThreshold 163 0xa3  1
+M input soundMinLevel 164 0xa4  1
+M input soundAvgMinutes 165 0xa5  1
+M output lux 180 0xb4  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 182 0xb6  0.01
+M input luxTresholdPercent 183 0xb7  1
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input averageLuxIntervalMinutes 167 0xa7  1
+M output air_run_in_status 168 0xa8  1
+M output air_stab_status 169 0xa9  1
+M output air_iaq_accuracy 170 0xaa  1
+M output air_iaq 146 0x92  1
+M output air_co2 147 0x93  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
+M input air_interval_minutes 171 0xab  1
+`,
+            }, 
+        
+
             1250041047: {
                 name: "dots,temp,sound,comfort,air-v2",
                 versions: "",
@@ -1122,6 +1156,28 @@ M input averageLuxIntervalMinutes 164 0xa4  1
             }, 
         
 
+            1889588246: {
+                name: "dots,temp,comfort",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output lux 179 0xb3  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 181 0xb5  0.01
+M input luxTresholdPercent 182 0xb6  1
+M input averageHumidityIntervalMinutes 163 0xa3  1
+M input averageLuxIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
             1936729084: {
                 name: "dots,temp,wifitracker",
                 versions: "",
@@ -1159,6 +1215,32 @@ M input frequency 184 0xb8  1
 M output serial 152 0x98  1
 M output rssi 129 0x81  1
 M output rxCount 185 0xb9  1
+`,
+            }, 
+        
+
+            2060560861: {
+                name: "dots,temp,sound,comfort",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output soundLevel 179 0xb3  0.1
+M input soundThreshold 163 0xa3  1
+M input soundMinLevel 164 0xa4  1
+M input soundAvgMinutes 165 0xa5  1
+M output lux 180 0xb4  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 182 0xb6  0.01
+M input luxTresholdPercent 183 0xb7  1
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input averageLuxIntervalMinutes 167 0xa7  1
 `,
             }, 
         
@@ -1531,6 +1613,36 @@ M output air_co2 147 0x93  1
 M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
 M input air_interval_minutes 171 0xab  1
+`,
+            }, 
+        
+
+            3343843731: {
+                name: "dots,temp,comfort,air-v2",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output lux 179 0xb3  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 181 0xb5  0.01
+M input luxTresholdPercent 182 0xb6  1
+M input averageHumidityIntervalMinutes 163 0xa3  1
+M input averageLuxIntervalMinutes 164 0xa4  1
+M output air_run_in_status 165 0xa5  1
+M output air_stab_status 166 0xa6  1
+M output air_iaq_accuracy 167 0xa7  1
+M output air_iaq 146 0x92  1
+M output air_co2 147 0x93  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
+M input air_interval_minutes 168 0xa8  1
 `,
             }, 
         
