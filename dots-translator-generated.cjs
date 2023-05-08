@@ -1345,6 +1345,21 @@ M input air_interval_minutes 168 0xa8  1
             }, 
         
 
+            2361835889: {
+                name: "dots,temp,button",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output buttonCount 152 0x98  1
+`,
+            }, 
+        
+
             2482232773: {
                 name: "dots,sniffer",
                 versions: "",
