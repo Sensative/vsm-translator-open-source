@@ -1974,6 +1974,13 @@ M input averageLuxIntervalMinutes 167 0xa7  1
             }, 
         
 
+            4058561182: {
+                name: "dots,empty",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             4079859890: {
                 name: "dots,radiotest",
                 versions: "",
