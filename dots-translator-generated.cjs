@@ -780,6 +780,13 @@ M input averageLuxIntervalMinutes 166 0xa6  1
             }, 
         
 
+            865502519: {
+                name: "dots,linkcheck",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             894044400: {
                 name: "dots,temp,tracker",
                 versions: "",
@@ -1104,6 +1111,13 @@ M input air_interval_minutes 171 0xab  1
             }, 
         
 
+            1319111708: {
+                name: "dots,compliance-test-adr",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             1340122546: {
                 name: "dots,temp,tracker-stats",
                 versions: "R1",
@@ -1123,28 +1137,6 @@ M output scanCount 185 0xb9  1
 M output gpsTime 186 0xba  1
 M output downlinkRssi 165 0xa5  1
 M output buttonCount 144 0x90  1
-`,
-            }, 
-        
-
-            1373786566: {
-                name: "dots,temp,tracker-stats-plus-adr",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output volts 179 0xb3  0.001
-M input gnssIntervalMinutes 163 0xa3  1
-M input gnssScanMode 180 0xb4  1
-M output numSatellites 164 0xa4  1
-M output bestSatellites 184 0xb8  1
-M output scanCount 185 0xb9  1
-M output gpsTime 186 0xba  1
-M output downlinkRssi 165 0xa5  1
 `,
             }, 
         
@@ -2304,6 +2296,28 @@ M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
 M output detection 129 0x81  1
 M input activation 130 0x82  1
+`,
+            }, 
+        
+
+            4184589025: {
+                name: "dots,temp,tracker-stats-plus-adr",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input gnssIntervalMinutes 163 0xa3  1
+M input gnssScanMode 180 0xb4  1
+M output numSatellites 164 0xa4  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 165 0xa5  1
 `,
             }, 
           // Additional known schemas:
