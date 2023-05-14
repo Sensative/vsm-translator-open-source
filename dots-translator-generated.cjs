@@ -780,13 +780,6 @@ M input averageLuxIntervalMinutes 166 0xa6  1
             }, 
         
 
-            865502519: {
-                name: "dots,linkcheck",
-                versions: "",
-                mapData: ``,
-            }, 
-        
-
             894044400: {
                 name: "dots,temp,tracker",
                 versions: "",
@@ -1835,6 +1828,13 @@ M input tempAlarmHighLevel 162 0xa2  1
 M output volts 179 0xb3  0.001
 M input wifiIntervalMinutes 163 0xa3  1
 `,
+            }, 
+        
+
+            3086277881: {
+                name: "dots,linkcheck",
+                versions: "",
+                mapData: ``,
             }, 
         
 
