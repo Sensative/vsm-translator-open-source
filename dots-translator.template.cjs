@@ -78,8 +78,23 @@ const knownSchemas = {};
         throw new Exception("Failed to decode diagnostics data");
     }
 
-   // Rule update - CRC value (+build time, +version)
-   const decodeRule = (iotnode, symbolTable, data, time) => {
+    // Link Control service output
+    const decodeLinkControl = (iotnode, symbolTable, data, time) => {
+        if (data.lenght == 3) {
+            const linkControlIndex = data[0];
+            const linkControlDL_RSSI = data[1];
+            const linkControlDL_SNR  = data[2];
+            return { result: { vsm: {linkControl: {linkControlIndex, linkControlDL_RSSI, linkControlDL_SNR, adr:0}}}};
+        } else if (data.length == 2) {
+            const linkControlDL_RSSI = data[0];
+            const linkControlDL_SNR  = data[1];
+            return { result: { vsm: {linkControl: {linkControlIndex:-1, linkControlDL_RSSI, linkControlDL_SNR, adr:1}}}};
+        }
+        throw new Exception("Failed to decode link control message")
+    }
+
+    // Rule update - CRC value (+build time, +version)
+    const decodeRule = (iotnode, symbolTable, data, time) => {
         let rulesCrc32 = ((data[0]&0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         if (data[0]&0x80)
             rulesCrc32+=0x80000000;
@@ -561,6 +576,7 @@ const knownSchemas = {};
         /* APP_LORA_PORT_CRASH      */   3: { decode: decodeCrash,        name: 'crash'         },
         /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           },
         /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
+        /* APP_LORA_PORT_PWR        */   6: { decode: decodeLinkControl,  name: 'link control'  }, 
         /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
         /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
         /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },
