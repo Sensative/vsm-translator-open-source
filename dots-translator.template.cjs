@@ -75,12 +75,12 @@ const knownSchemas = {};
             return decodeControl(iotnode, symbolTable, data, time);
         if (data.length % 5 === 0)
             return decodeReferences(iotnode, symbolTable, data, time);
-        throw new Exception("Failed to decode diagnostics data");
+        throw new Error("Failed to decode diagnostics data");
     }
 
     // Link Control service output
     const decodeLinkControl = (iotnode, symbolTable, data, time) => {
-        if (data.lenght == 3) {
+        if (data.length == 3) {
             const linkControlIndex = data[0];
             const linkControlDL_RSSI = data[1];
             const linkControlDL_SNR  = data[2];
@@ -90,7 +90,7 @@ const knownSchemas = {};
             const linkControlDL_SNR  = data[1];
             return { result: { vsm: {linkControl: {linkControlIndex:-1, linkControlDL_RSSI, linkControlDL_SNR, adr:1}}}};
         }
-        throw new Exception("Failed to decode link control message")
+        throw new Error("Failed to decode link control message")
     }
 
     // Rule update - CRC value (+build time, +version)
