@@ -1104,6 +1104,22 @@ M input air_interval_minutes 171 0xab  1
             }, 
         
 
+            1264557210: {
+                name: "dots,temp,wifitracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input motionThresholdG 180 0xb4  0.001
+`,
+            }, 
+        
+
             1319111708: {
                 name: "dots,compliance-test-adr",
                 versions: "",
@@ -1812,22 +1828,6 @@ M input air_interval_minutes 170 0xaa  1
                 name: "dots,radiotest",
                 versions: "",
                 mapData: ``,
-            }, 
-        
-
-            3066535796: {
-                name: "dots,temp,wifitracker",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output volts 179 0xb3  0.001
-M input motionThresholdG 180 0xb4  0.001
-`,
             }, 
         
 
