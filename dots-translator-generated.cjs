@@ -1815,7 +1815,7 @@ M input air_interval_minutes 170 0xaa  1
             }, 
         
 
-            2918955615: {
+            3066535796: {
                 name: "dots,temp,wifitracker",
                 versions: "",
                 mapData: `M output temp 176 0xb0  0.01
@@ -1826,7 +1826,7 @@ M output tempAlarm 128 0x80  1
 M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
 M output volts 179 0xb3  0.001
-M input wifiIntervalMinutes 163 0xa3  1
+M input motionThresholdG 180 0xb4  0.001
 `,
             }, 
         
