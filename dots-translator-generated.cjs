@@ -82,18 +82,24 @@ M input air_interval_minutes 168 0xa8  1
             }, 
         
 
-            82609751: {
-                name: "dots,roam,lptemp,wifitracker",
+            63670797: {
+                name: "dots,roam,temp,comfort",
                 versions: "",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalHours 160 0xa0  1
+M input averageTempIntervalMinutes 160 0xa0  1
 M output tempAlarm 128 0x80  1
 M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
-M output volts 179 0xb3  0.001
-M input motionThresholdG 180 0xb4  0.001
+M output lux 179 0xb3  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M output averageLux 145 0x91  1
+M input humidityTreshold 181 0xb5  0.01
+M input luxTresholdPercent 182 0xb6  1
+M input averageHumidityIntervalMinutes 163 0xa3  1
+M input averageLuxIntervalMinutes 164 0xa4  1
 `,
             }, 
         
@@ -2309,6 +2315,22 @@ M input air_interval_minutes 171 0xab  1
             }, 
         
 
+            3519329390: {
+                name: "dots,roam,lptemp,wifitracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input motionThresholdG 180 0xb4  0.001
+`,
+            }, 
+        
+
             3588420109: {
                 name: "dots,temp,comfort,air-v2",
                 versions: "",
@@ -2335,28 +2357,6 @@ M output air_co2 147 0x93  1
 M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
 M input air_interval_minutes 168 0xa8  1
-`,
-            }, 
-        
-
-            3605248052: {
-                name: "dots,roam,temp,comfort",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M output lux 179 0xb3  1
-M output humidity 180 0xb4  0.01
-M output averageHumidity 144 0x90  0.01
-M output averageLux 145 0x91  1
-M input humidityTreshold 181 0xb5  0.01
-M input luxTresholdPercent 182 0xb6  1
-M input averageHumidityIntervalMinutes 163 0xa3  1
-M input averageLuxIntervalMinutes 164 0xa4  1
 `,
             }, 
         
