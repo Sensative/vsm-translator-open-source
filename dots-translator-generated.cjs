@@ -84,7 +84,7 @@ M input air_interval_minutes 168 0xa8  1
 
             63670797: {
                 name: "dots,roam,temp,comfort",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -173,7 +173,7 @@ M output underVoltage 164 0xa4  1
 
             232297849: {
                 name: "dots,lptemp,heart",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -220,7 +220,7 @@ M output air_breath_voc_equivalent 152 0x98  0.01
 
             301262281: {
                 name: "dots,temp,comfort",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -390,7 +390,7 @@ M input wifiIntervalMinutes 164 0xa4  1
 
             434144794: {
                 name: "dots,lptemp,tracker-stats-plus-adr",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -573,7 +573,7 @@ M input tempAlarmHighLevel 163 0xa3  1
 
             623354129: {
                 name: "dots,lptemp,radar-v5",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -594,7 +594,7 @@ M output underVoltage 165 0xa5  1
 
             641691332: {
                 name: "dots,temp,lifefinder-motion",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -914,7 +914,7 @@ M input alarmAck 164 0xa4  1
 
             941334784: {
                 name: "dots,lptemp,tracker-stats",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1020,7 +1020,7 @@ M output air_breath_voc_equivalent 152 0x98  0.01
 
             1083856489: {
                 name: "dots,lptemp,radar-v6",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1174,7 +1174,7 @@ M input gnssIntervalMinutes 160 0xa0  1
 
             1248475833: {
                 name: "dots,lptemp,tracker",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1241,7 +1241,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             1319111708: {
                 name: "dots,compliance-test-adr",
-                versions: "",
+                versions: "R2",
                 mapData: ``,
             }, 
         
@@ -1278,7 +1278,7 @@ M output buttonCount 144 0x90  1
 
             1457770051: {
                 name: "dots,lptemp,wifitracker",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1512,7 +1512,7 @@ M input averageLuxIntervalMinutes 164 0xa4  1
 
             1835633969: {
                 name: "dots,radon,temp",
-                versions: "",
+                versions: "R2",
                 mapData: `M output radon 144 0x90  1
 M output co2 176 0xb0  1
 M output humidity 177 0xb1  1
@@ -1546,7 +1546,7 @@ M input wifiIntervalMinutes 163 0xa3  1
 
             1975534849: {
                 name: "dots,lptemp,button",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1618,7 +1618,7 @@ M output volts 181 0xb5  0.001
 
             2182170139: {
                 name: "dots,radiotest",
-                versions: "",
+                versions: "R2",
                 mapData: ``,
             }, 
         
@@ -1662,7 +1662,7 @@ M input air_interval_minutes 168 0xa8  1
 
             2337257755: {
                 name: "dots,temp,lifefinder-motion-sound",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1808,7 +1808,7 @@ M output scanCount 185 0xb9  1
 
             2733415194: {
                 name: "dots,radon,temp,air",
-                versions: "",
+                versions: "R2",
                 mapData: `M output radon 144 0x90  1
 M output co2 176 0xb0  1
 M output humidity 177 0xb1  1
@@ -1833,7 +1833,7 @@ M output air_breath_voc_equivalent 152 0x98  0.01
 
             2786799692: {
                 name: "dots,temp,comfort,air-v2",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1980,7 +1980,7 @@ M input air_interval_minutes 170 0xaa  1
 
             2880151562: {
                 name: "dots,temp,lifefinder",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2011,14 +2011,14 @@ M input alarmAck 164 0xa4  1
 
             3086277881: {
                 name: "dots,linkcheck",
-                versions: "",
+                versions: "R2",
                 mapData: ``,
             }, 
         
 
             3099888482: {
                 name: "dots,gnss-autonomous-scan-test",
-                versions: "",
+                versions: "R2",
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
@@ -2050,7 +2050,7 @@ M input averageLuxIntervalMinutes 164 0xa4  1
 
             3163247417: {
                 name: "dots,lptemp,netmap",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2126,7 +2126,7 @@ M input air_interval_minutes 171 0xab  1
 
             3286734209: {
                 name: "dots,temp,sound,comfort,air-v2",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2276,7 +2276,7 @@ M output motion 165 0xa5  1
 
             3509502476: {
                 name: "dots,sniffer",
-                versions: "",
+                versions: "R2",
                 mapData: ``,
             }, 
         
@@ -2317,7 +2317,7 @@ M input air_interval_minutes 171 0xab  1
 
             3519329390: {
                 name: "dots,roam,lptemp,wifitracker",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2363,7 +2363,7 @@ M input air_interval_minutes 168 0xa8  1
 
             3621733908: {
                 name: "dots,temp,vatette",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2379,7 +2379,7 @@ M input activation 130 0x82  1
 
             3709644955: {
                 name: "dots,lptemp,magnet,tracker",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2397,7 +2397,7 @@ M input wifiIntervalMinutes 164 0xa4  1
 
             3743911654: {
                 name: "dots,temp,sound,comfort",
-                versions: "",
+                versions: "R2",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2555,7 +2555,7 @@ M input averageLuxIntervalMinutes 167 0xa7  1
 
             4058561182: {
                 name: "dots,empty",
-                versions: "",
+                versions: "R2",
                 mapData: ``,
             }, 
         
