@@ -84,11 +84,11 @@ const knownSchemas = {};
             const linkControlIndex = data[0];
             const linkControlDL_RSSI = data[1]  << 24 >> 24; // Sign extension
             const linkControlDL_SNR  = data[2]  << 24 >> 24; // Sign extension
-            return { result: { vsm: {linkControl: {linkControlIndex, linkControlDL_RSSI, linkControlDL_SNR, adr:0}}}};
+            return { result: { vsm: {linkControl: {linkControlIndex, linkControlDL_RSSI, linkControlDL_SNR, adr:0, timestamp:new Date(time)}}}};
         } else if (data.length == 2) {
             const linkControlDL_RSSI = data[0]  << 24 >> 24;// Sign extension
             const linkControlDL_SNR  = data[1]  << 24 >> 24;// Sign extension
-            return { result: { vsm: {linkControl: {linkControlIndex:-1, linkControlDL_RSSI, linkControlDL_SNR, adr:1}}}};
+            return { result: { vsm: {linkControl: {linkControlIndex:-1, linkControlDL_RSSI, linkControlDL_SNR, adr:1, timestamp:new Date(time)}}}};
         }
         throw new Error("Failed to decode link control message")
     }
