@@ -3153,8 +3153,12 @@ M output underVoltage 165 0xa5 1
     }
 
     const decodePwrData = (iotnode, symbolTable, data, time) => {
-        let pwr = { timestamp: new Date(time), data: data.toString('hex') }
-        return {result: { vsm: { pwr }}};
+        if (data.length === 1) {
+            return {result: { vsm: { networkPowered:data[0] === 0 ? 1 : 0, batteryPercent:data[0] }}}
+        } else {
+            let pwr = { timestamp: new Date(time), data: data.toString('hex') }
+            return {result: { vsm: { pwr }}};
+        }
     }
 
     const decodePortForward = (iotnode, symbolTable, data, time, port) => {
