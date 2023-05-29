@@ -82,6 +82,22 @@ M input air_interval_minutes 168 0xa8  1
             }, 
         
 
+            39633691: {
+                name: "dots,roam,lptemp,wifitracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input motionThresholdG 180 0xb4  0.001
+`,
+            }, 
+        
+
             63670797: {
                 name: "dots,roam,temp,comfort",
                 versions: "R2",
@@ -1263,6 +1279,22 @@ M input motionThresholdG 180 0xb4  0.001
             }, 
         
 
+            1310902401: {
+                name: "dots,lptemp,wifitracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output volts 179 0xb3  0.001
+M input motionThresholdG 180 0xb4  0.001
+`,
+            }, 
+        
+
             1319111708: {
                 name: "dots,compliance-test-adr",
                 versions: "R2",
@@ -1604,6 +1636,25 @@ M input frequency 184 0xb8  1
 M output serial 152 0x98  1
 M output rssi 129 0x81  1
 M output rxCount 185 0xb9  1
+`,
+            }, 
+        
+
+            2075377118: {
+                name: "dots,temp,lifefinder-squad",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input maxAlarmMinutes 163 0xa3  1
+M input alarmAck 164 0xa4  1
 `,
             }, 
         
