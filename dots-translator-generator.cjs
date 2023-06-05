@@ -58,7 +58,12 @@ const generate = () => {
         let versions = version ? version : "";
         if (apps[crc]) {
             versions = apps[crc].versions;
-            if (apps[crc].name !== name)
+            if (apps[crc].name !== name && 
+                !apps[crc].name.includes("ompliance") &&  // Renamed but unchanged app
+                !apps[crc].name.includes("inkcheck") &&  // Renamed but unchanged app
+                !apps[crc].name.includes("adiotest") &&  // Renamed but unchanged app
+                !apps[crc].name.includes("niffer") &&  // Renamed but unchanged app
+                !apps[crc].name.includes("mpty")) // Renamed but unchanged app
                 throw new Error(`Same CRC for ${apps[crc].name} and ${name}: ${crc}`);
             if (version) {
                 let alreadyVersions = apps[crc].versions.split(" ");
