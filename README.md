@@ -28,6 +28,22 @@ install-yggio-translator.js
     Install this translator in a Yggio server. User account is required. Contact Sensative for user account.
     For this there is a dependency to the node-fetch package.
 
+
+# Troubleshooting
+
+## Device does not get output field (or it is empty)
+
+The indication looking at the data is that the translator is either not assigned (should be set to sensative-vsm-translator), or that for some reason the translator was not active at the time of joining the device.
+
+The data for the device should contain a .vsm field with device meta-information which in particular should hold the software revision of the sensor and which application it is running (including its translation schema). Without that information it does not know how to translate the sensor app output.
+
+So, check the following two items:
+* Is the translator active?
+* Rejoin the device if/when sure the translator is active.
+Should the problem persist after that I need to check with the yggio team how the server is configured.
+
+
+
 # About the Translator
 The translator is a partially context-free parser of uplinks from Sensative devices built on the VSM (Virtual Sensor Machine) architecture.
 Sensors run apps (aka rules or apps) which define their behaviour. Each app (ruleset) when compiled gets a map file which maps binary 
