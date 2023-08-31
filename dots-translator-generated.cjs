@@ -1640,6 +1640,30 @@ M output rxCount 185 0xb9  1
             }, 
         
 
+            1619903829: {
+                name: "Airport-budget",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_mm_s2 179 0xb3  1
+M output volts 180 0xb4  0.001
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M input quarterlyScanBudget 163 0xa3  1
+M input maxBudget 181 0xb5  1
+M input singleWifiScanAgain_minutes 164 0xa4  1
+M input minimumWifiCount 165 0xa5  1
+M input fullWifiScan_minutes 166 0xa6  1
+M input gpsScan_minutes 167 0xa7  1
+`,
+            }, 
+        
+
             1670617448: {
                 name: "dots,temp,lifefinder-motion",
                 versions: "",
