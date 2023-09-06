@@ -100,7 +100,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             57715230: {
                 name: "Tracker-stats",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M output volts 176 0xb0  0.001
 M input gnssIntervalMinutes 160 0xa0  1
 M input gnssScanMode 177 0xb1  1
@@ -440,7 +440,7 @@ M input wifiIntervalMinutes 164 0xa4  1
 
             376700598: {
                 name: "Puck-tracker",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -671,7 +671,7 @@ M output motion 165 0xa5  1
 
             596652351: {
                 name: "Lifefinder",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -761,7 +761,7 @@ M input motionThreshold 183 0xb7  0.001
 
             656740722: {
                 name: "Square-comfort",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -988,6 +988,33 @@ M input wifiIntervalMinutes 164 0xa4  1
             }, 
         
 
+            829406169: {
+                name: "Lifefinder-motion",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 165 0xa5  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+M output motion 166 0xa6  1
+M output motionAlarm 167 0xa7  1
+M input motionThreshold 183 0xb7  0.001
+`,
+            }, 
+        
+
             836878009: {
                 name: "dots,temp,comfort",
                 versions: "R0",
@@ -1037,7 +1064,7 @@ M input averageLuxIntervalMinutes 166 0xa6  1
 
             875676680: {
                 name: "Square-air",
-                versions: "",
+                versions: "R6",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -1531,7 +1558,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             1319111708: {
                 name: "Compliance-test",
-                versions: "R5 R4 R2",
+                versions: "R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -1642,7 +1669,7 @@ M output rxCount 185 0xb9  1
 
             1619903829: {
                 name: "Airport-budget",
-                versions: "",
+                versions: "R6",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1828,7 +1855,7 @@ M input wifiIntervalMinutes 164 0xa4  1
 
             1816763371: {
                 name: "Lifefinder-squad",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -2014,7 +2041,7 @@ M output volts 181 0xb5  0.001
 
             2182170139: {
                 name: "Radiotest",
-                versions: "R5 R4 R2",
+                versions: "R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -2133,7 +2160,7 @@ M output buttonCount 152 0x98  1
 
             2391995788: {
                 name: "Square-comfort-sound",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -2321,7 +2348,7 @@ M input air_interval_minutes 168 0xa8  1
 
             2794280370: {
                 name: "Wifi-tracker",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2509,7 +2536,7 @@ M input alarmAck 164 0xa4  1
 
             3086277881: {
                 name: "Linkcheck",
-                versions: "R5 R4 R2",
+                versions: "R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -2858,7 +2885,7 @@ M output motion 165 0xa5  1
 
             3509502476: {
                 name: "Sniffer",
-                versions: "R5 R4 R2",
+                versions: "R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -3054,6 +3081,52 @@ M input averageLuxIntervalMinutes 167 0xa7  1
             }, 
         
 
+            3867245800: {
+                name: "Airport-budget",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_mm_s2 179 0xb3  1
+M output volts 180 0xb4  0.001
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M input quarterlyScanBudget 163 0xa3  1
+M input maxBudget 181 0xb5  1
+M input singleWifiScanAgain_minutes 164 0xa4  1
+M input minimumWifiCount 165 0xa5  1
+M input fullWifiScan_minutes 166 0xa6  1
+M input gpsScan_minutes 167 0xa7  1
+`,
+            }, 
+        
+
+            3886254671: {
+                name: "Heartstarter",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output buttonDetect 129 0x81  1
+M output motionDetect 130 0x82  1
+M input soundScanIntervalMinutes 179 0xb3  1
+M input soundScanMinimumRepeat 163 0xa3  1
+M output soundIntervalS 152 0x98  0.001
+M output soundRepeat 131 0x83  1
+M input motionThresholdG 180 0xb4  0.001
+M output volts 181 0xb5  0.001
+`,
+            }, 
+        
+
             3927154410: {
                 name: "dots,temp,tracker-stats",
                 versions: "",
@@ -3137,7 +3210,7 @@ M input averageLuxIntervalMinutes 167 0xa7  1
 
             4058561182: {
                 name: "Empty",
-                versions: "R5 R4 R2",
+                versions: "R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -3163,7 +3236,7 @@ M input alarmAck 164 0xa4  1
 
             4078507651: {
                 name: "Puck-radar-v6",
-                versions: "R5",
+                versions: "R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
