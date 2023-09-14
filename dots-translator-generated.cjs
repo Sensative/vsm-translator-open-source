@@ -480,33 +480,6 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
-            421737293: {
-                name: "Lifefinder-motion",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 161 0xa1  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 162 0xa2  1
-M input tempAlarmHighLevel 163 0xa3  1
-M output alarmTime 144 0x90  1
-M output capAlarm 129 0x81  1
-M output buttonAlarm 130 0x82  1
-M output capReport1 179 0xb3  1
-M output capReport2 180 0xb4  1
-M output volts 181 0xb5  0.001
-M input enableCapReports 165 0xa5  1
-M input capAlarmLevel 182 0xb6  1
-M input alarmAck 164 0xa4  1
-M output motion 166 0xa6  1
-M output motionAlarm 167 0xa7  1
-M input motionThreshold 183 0xb7  0.001
-`,
-            }, 
-        
-
             429275861: {
                 name: "dots,sniffer",
                 versions: "R1",
@@ -557,6 +530,28 @@ M output air_iaq 145 0x91  1
 M output air_co2 146 0x92  1
 M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
+`,
+            }, 
+        
+
+            543401514: {
+                name: "Lifefinder-motion",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input alarmAck 164 0xa4  1
+M output motion 165 0xa5  1
+M output motionAlarm 166 0xa6  1
+M input motionThreshold 180 0xb4  0.001
 `,
             }, 
         
@@ -2993,6 +2988,31 @@ M output air_co2 147 0x93  1
 M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
 M input air_interval_minutes 168 0xa8  1
+`,
+            }, 
+        
+
+            3600193935: {
+                name: "Lifefinder",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 165 0xa5  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
 `,
             }, 
         
