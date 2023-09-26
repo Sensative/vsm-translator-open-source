@@ -1,6 +1,6 @@
 {
   "name": "vsm-translator",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "description": "Open source translator for Sensative Virtual Sensor Machine driven devices (Puck, Box, Square) and Lifefinder",
   "main": "dots-translator-generated.cjs",
   "repository": "git@gitlab.com:sensative/vsm-translator-open-source.git",
