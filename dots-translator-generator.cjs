@@ -63,6 +63,7 @@ const generate = () => {
                 !apps[crc].name.includes("inkcheck") &&  // Renamed but unchanged app
                 !apps[crc].name.includes("adiotest") &&  // Renamed but unchanged app
                 !apps[crc].name.includes("niffer") &&  // Renamed but unchanged app
+                !apps[crc].name.includes("dots,gnss-autonomous-scan-test") &&  // Renamed but unchanged app
                 !apps[crc].name.includes("mpty")) // Renamed but unchanged app
                 throw new Error(`Same CRC for ${apps[crc].name} and ${name}: ${crc}`);
             if (version) {
