@@ -137,6 +137,25 @@ M input averageLuxIntervalMinutes 164 0xa4  1
             }, 
         
 
+            79276854: {
+                name: "Lifefinder-squad",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input maxAlarmMinutes 180 0xb4  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             88243711: {
                 name: "dots,temp,radar-v5",
                 versions: "",
@@ -1094,6 +1113,30 @@ M input averageLuxIntervalMinutes 166 0xa6  1
             }, 
         
 
+            871865531: {
+                name: "Lifefinder",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 163 0xa3  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             875676680: {
                 name: "Square-air",
                 versions: "R6",
@@ -1965,24 +2008,6 @@ M input humidityTreshold 181 0xb5  0.01
 M input luxTresholdPercent 182 0xb6  1
 M input averageHumidityIntervalMinutes 163 0xa3  1
 M input averageLuxIntervalMinutes 164 0xa4  1
-`,
-            }, 
-        
-
-            1830988836: {
-                name: "Puck-tracker",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalHours 161 0xa1  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 162 0xa2  1
-M input tempAlarmHighLevel 163 0xa3  1
-M output volts 179 0xb3  0.001
-M input gnssIntervalMinutes 164 0xa4  1
-M input wifiIntervalMinutes 165 0xa5  1
 `,
             }, 
         
@@ -3146,6 +3171,27 @@ M input fullWifiScan_minutes 167 0xa7  1
 M input gpsScan_minutes 168 0xa8  1
 M input gpsScanAgain_minutes 169 0xa9  1
 M input minimumSatelliteCount 170 0xaa  1
+`,
+            }, 
+        
+
+            3685415244: {
+                name: "Lifefinder-motion",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input alarmAck 164 0xa4  1
+M output motion 163 0xa3  1
+M output motionAlarm 165 0xa5  1
+M input motionThreshold 180 0xb4  0.001
 `,
             }, 
         
