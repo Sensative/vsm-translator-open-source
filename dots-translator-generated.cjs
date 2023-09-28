@@ -100,7 +100,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             57715230: {
                 name: "Tracker-stats",
-                versions: "R6 R5",
+                versions: "R7 R6 R5",
                 mapData: `M output volts 176 0xb0  0.001
 M input gnssIntervalMinutes 160 0xa0  1
 M input gnssScanMode 177 0xb1  1
@@ -139,7 +139,7 @@ M input averageLuxIntervalMinutes 164 0xa4  1
 
             79276854: {
                 name: "Lifefinder-squad",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -712,7 +712,7 @@ M output motion 165 0xa5  1
 
             584652534: {
                 name: "Gnss-autonomous-test",
-                versions: "",
+                versions: "R7",
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
@@ -812,7 +812,7 @@ M input motionThreshold 183 0xb7  0.001
 
             656740722: {
                 name: "Square-comfort",
-                versions: "R6 R5",
+                versions: "R7 R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -1115,7 +1115,7 @@ M input averageLuxIntervalMinutes 166 0xa6  1
 
             871865531: {
                 name: "Lifefinder",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1139,7 +1139,7 @@ M input alarmAck 164 0xa4  1
 
             875676680: {
                 name: "Square-air",
-                versions: "R6",
+                versions: "R7 R6",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -1216,7 +1216,7 @@ M input alarmAck 164 0xa4  1
 
             924779957: {
                 name: "Puck-radar-v6",
-                versions: "",
+                versions: "R7",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -1657,7 +1657,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             1319111708: {
                 name: "Compliance-test",
-                versions: "R6 R5 R4 R2",
+                versions: "R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -1792,7 +1792,7 @@ M input gpsScan_minutes 167 0xa7  1
 
             1643871491: {
                 name: "Tracker-time",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2158,7 +2158,7 @@ M output volts 181 0xb5  0.001
 
             2182170139: {
                 name: "Radiotest",
-                versions: "R6 R5 R4 R2",
+                versions: "R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -2277,7 +2277,7 @@ M output buttonCount 152 0x98  1
 
             2391995788: {
                 name: "Square-comfort-sound",
-                versions: "R6 R5",
+                versions: "R7 R6 R5",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -2465,7 +2465,7 @@ M input air_interval_minutes 168 0xa8  1
 
             2794280370: {
                 name: "Wifi-tracker",
-                versions: "R6 R5",
+                versions: "R7 R6 R5",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2653,7 +2653,7 @@ M input alarmAck 164 0xa4  1
 
             3086277881: {
                 name: "Linkcheck",
-                versions: "R6 R5 R4 R2",
+                versions: "R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -3002,7 +3002,7 @@ M output motion 165 0xa5  1
 
             3509502476: {
                 name: "Sniffer",
-                versions: "R6 R5 R4 R2",
+                versions: "R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -3114,7 +3114,7 @@ M input alarmAck 164 0xa4  1
 
             3605076574: {
                 name: "Lifefinder-wifi",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -3150,7 +3150,7 @@ M input activation 130 0x82  1
 
             3629466160: {
                 name: "Tracker-budget",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -3177,7 +3177,7 @@ M input minimumSatelliteCount 170 0xaa  1
 
             3685415244: {
                 name: "Lifefinder-motion",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -3341,7 +3341,7 @@ M input gpsScan_minutes 167 0xa7  1
 
             3886254671: {
                 name: "Heartstarter",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -3363,7 +3363,7 @@ M output volts 181 0xb5  0.001
 
             3922413892: {
                 name: "Airport-budget",
-                versions: "",
+                versions: "R7",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -3468,7 +3468,7 @@ M input averageLuxIntervalMinutes 167 0xa7  1
 
             4058561182: {
                 name: "Empty",
-                versions: "R6 R5 R4 R2",
+                versions: "R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
