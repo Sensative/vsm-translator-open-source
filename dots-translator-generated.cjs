@@ -3677,6 +3677,14 @@ M output underVoltage 166 0xa6  1
             }, 
         
 
+            4120107816: {
+                name: "Linkcheck",
+                versions: "",
+                mapData: `M input linkCheckRate 160 0xa0  1
+`,
+            }, 
+        
+
             4154166845: {
                 name: "dots,temp,vatette",
                 versions: "",
