@@ -15,9 +15,13 @@
 
         ../dots-builds
         ../virtual-sensor-machine
+
+        Additionally, this file will emit json file indexing all hashes to the VSO file name and the 
+        versions. Such a file can be used to map a certain CRC to which version and rules file name matches the app CRC.
 */
 
 const GENERATED_FILE = 'dots-translator-generated.cjs';
+const VERSIONS_FILE = '../dots-builds/app-versions.json';
 
 const vsoReadFile = require ('../virtual-sensor-machine/vso-file-reader/vsoReadFile').vsoReadFile;
 const fs = require('fs');
@@ -146,6 +150,8 @@ const generate = () => {
     let extendedTranslator = defaultTranslator.replace('const knownSchemas = {};', knownSchemas);
     fs.writeFileSync(GENERATED_FILE, extendedTranslator);
     console.log("Generated new translator " + GENERATED_FILE);
+    fs.writeFileSync(VERSIONS_FILE, JSON.stringify(apps));
+    console.log("Generated new versions file " + VERSIONS_FILE);
 }
 
 exports.generate = generate;
