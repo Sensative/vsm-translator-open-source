@@ -2214,6 +2214,13 @@ M output buttonCount 152 0x98  1
             }, 
         
 
+            2023137642: {
+                name: "Default",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             2036851783: {
                 name: "dots,temp,netmap",
                 versions: "",
