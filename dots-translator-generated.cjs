@@ -524,6 +524,31 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
+            416405893: {
+                name: "Airport-int",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_mm_s2 179 0xb3  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 163 0xa3  1
+M input maxBudget 180 0xb4  1
+M input singleWifiScanAgain_minutes 164 0xa4  1
+M input minimumWifiCount 165 0xa5  1
+M input fullWifiScan_minutes 166 0xa6  1
+M input gpsScan_minutes 167 0xa7  1
+M input motionCountEnabled 168 0xa8  1
+`,
+            }, 
+        
+
             429275861: {
                 name: "dots,sniffer",
                 versions: "R1",
@@ -1777,6 +1802,41 @@ M output buttonCount 144 0x90  1
             }, 
         
 
+            1351707787: {
+                name: "Square-air",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 164 0xa4  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 165 0xa5  1
+M output air_run_in_status 166 0xa6  1
+M output air_stab_status 167 0xa7  1
+M output air_iaq_accuracy 168 0xa8  1
+M output air_iaq 146 0x92  1
+M output air_co2 147 0x93  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
+M output air_static_iaq 185 0xb9  1
+M input air_interval_minutes 169 0xa9  1
+M input air_static_iaq_alarm_level 186 0xba  1
+M input air_iaq_alarm_level 187 0xbb  1
+M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
             1423478092: {
                 name: "dots,radiotest",
                 versions: "R0",
@@ -2214,13 +2274,6 @@ M output buttonCount 152 0x98  1
             }, 
         
 
-            2023137642: {
-                name: "Default",
-                versions: "",
-                mapData: ``,
-            }, 
-        
-
             2036851783: {
                 name: "dots,temp,netmap",
                 versions: "",
@@ -2264,6 +2317,14 @@ M input alarmAck 164 0xa4  1
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
+`,
+            }, 
+        
+
+            2132727044: {
+                name: "Default",
+                versions: "",
+                mapData: `M output helloDefaultApp 160 0xa0  1
 `,
             }, 
         
@@ -2482,6 +2543,31 @@ M output magnet 129 0x81  1
 M output volts 179 0xb3  0.001
 M input gnssIntervalMinutes 163 0xa3  1
 M input wifiIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
+            2604624720: {
+                name: "Puck-radar",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 129 0x81  1
+M input amplitudeHysteresis 179 0xb3  1
+M input distanceHysteresis 164 0xa4  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 180 0xb4  1
+M input averageDistanceLowAlarmLevel 181 0xb5  0.01
+M input averageDistanceHighAlarmLevel 182 0xb6  0.01
+M output averageDistanceAlarm 130 0x82  1
 `,
             }, 
         
@@ -2782,6 +2868,34 @@ M input alarmAck 164 0xa4  1
                 name: "dots,radiotest",
                 versions: "",
                 mapData: ``,
+            }, 
+        
+
+            2990392526: {
+                name: "Tracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input roamNetworkCount 163 0xa3  1
+M input motionThreshold_mm_s2 179 0xb3  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 164 0xa4  1
+M input maxBudget 180 0xb4  1
+M input singleWifiScanAgain_minutes 165 0xa5  1
+M input minimumWifiCount 166 0xa6  1
+M input fullWifiScan_minutes 167 0xa7  1
+M input gpsScan_minutes 168 0xa8  1
+M input motionCountEnabled 169 0xa9  1
+M input movingScanIntervalMinutes 181 0xb5  1
+M input stationaryScanIntervalMinutes 182 0xb6  1
+`,
             }, 
         
 
