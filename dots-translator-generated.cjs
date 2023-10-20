@@ -98,6 +98,31 @@ M input motionThresholdG 180 0xb4  0.001
             }, 
         
 
+            47853213: {
+                name: "Lifefinder",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output capAlarm 129 0x81  1
+M output buttonAlarm 130 0x82  1
+M output capReport1 179 0xb3  1
+M output capReport2 180 0xb4  1
+M output soundAlarm 131 0x83  1
+M output volts 181 0xb5  0.001
+M input enableCapReports 165 0xa5  1
+M input capAlarmLevel 182 0xb6  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             57715230: {
                 name: "Tracker-stats",
                 versions: "R8 R7 R6 R5",
@@ -524,27 +549,22 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
-            416405893: {
-                name: "Airport-int",
+            399948366: {
+                name: "Lifefinder-squad",
                 versions: "",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalHours 160 0xa0  1
+M input averageTempIntervalMinutes 160 0xa0  1
 M output tempAlarm 128 0x80  1
 M input tempAlarmLowLevel 161 0xa1  1
 M input tempAlarmHighLevel 162 0xa2  1
-M input motionThreshold_mm_s2 179 0xb3  1
-M input limitedScanChannels 184 0xb8  1
-M input fullScanChannels 185 0xb9  1
-M output motionCount 186 0xba  1
-M input quarterlyScanBudget 163 0xa3  1
-M input maxBudget 180 0xb4  1
-M input singleWifiScanAgain_minutes 164 0xa4  1
-M input minimumWifiCount 165 0xa5  1
-M input fullWifiScan_minutes 166 0xa6  1
-M input gpsScan_minutes 167 0xa7  1
-M input motionCountEnabled 168 0xa8  1
+M output batteryPercent 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input maxAlarmMinutes 180 0xb4  1
+M input alarmAck 164 0xa4  1
 `,
             }, 
         
@@ -1529,6 +1549,42 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
+            1128699053: {
+                name: "Square-air",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 165 0xa5  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 166 0xa6  1
+M output air_run_in_status 167 0xa7  1
+M output air_stab_status 168 0xa8  1
+M output air_iaq_accuracy 169 0xa9  1
+M output air_iaq 146 0x92  1
+M output air_co2 147 0x93  1
+M output air_pressure 184 0xb8  0.01
+M output air_breath_voc_equivalent 152 0x98  0.01
+M output air_static_iaq 185 0xb9  1
+M input air_interval_minutes 170 0xaa  1
+M input air_static_iaq_alarm_level 186 0xba  1
+M input air_iaq_alarm_level 187 0xbb  1
+M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
             1145329888: {
                 name: "dots,temp,netmap",
                 versions: "",
@@ -1739,6 +1795,32 @@ M input motionThresholdG 180 0xb4  0.001
             }, 
         
 
+            1274106153: {
+                name: "Airport-int",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_mm_s2 179 0xb3  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 163 0xa3  1
+M input maxBudget 180 0xb4  1
+M input singleWifiScanAgain_minutes 164 0xa4  1
+M input minimumWifiCount 165 0xa5  1
+M input fullWifiScan_minutes 166 0xa6  1
+M input gpsScan_minutes 167 0xa7  1
+M input motionCountEnabled 168 0xa8  1
+M output batteryPercent 169 0xa9  1
+`,
+            }, 
+        
+
             1275709519: {
                 name: "Airport-budget",
                 versions: "",
@@ -1829,41 +1911,6 @@ M output scanCount 185 0xb9  1
 M output gpsTime 186 0xba  1
 M output downlinkRssi 165 0xa5  1
 M output buttonCount 144 0x90  1
-`,
-            }, 
-        
-
-            1351707787: {
-                name: "Square-air",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 161 0xa1  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 162 0xa2  1
-M input tempAlarmHighLevel 163 0xa3  1
-M output humidity 179 0xb3  0.01
-M output averageHumidity 144 0x90  0.01
-M input humidityTreshold 180 0xb4  0.01
-M input averageHumidityIntervalMinutes 164 0xa4  1
-M output lux 181 0xb5  1
-M output averageLux 145 0x91  1
-M input luxTresholdPercent 182 0xb6  1
-M input averageLuxIntervalMinutes 165 0xa5  1
-M output air_run_in_status 166 0xa6  1
-M output air_stab_status 167 0xa7  1
-M output air_iaq_accuracy 168 0xa8  1
-M output air_iaq 146 0x92  1
-M output air_co2 147 0x93  1
-M output air_pressure 184 0xb8  0.01
-M output air_breath_voc_equivalent 152 0x98  0.01
-M output air_static_iaq 185 0xb9  1
-M input air_interval_minutes 169 0xa9  1
-M input air_static_iaq_alarm_level 186 0xba  1
-M input air_iaq_alarm_level 187 0xbb  1
-M output air_iaq_alarm 129 0x81  1
 `,
             }, 
         
@@ -2037,6 +2084,24 @@ M output underVoltage 165 0xa5  1
             }, 
         
 
+            1711284143: {
+                name: "Tracker-stats",
+                versions: "",
+                mapData: `M output volts 176 0xb0  0.001
+M input gnssIntervalMinutes 160 0xa0  1
+M input gnssScanMode 177 0xb1  1
+M output numSatellites 161 0xa1  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 162 0xa2  1
+M input air_pressure_hysteresis_bar 163 0xa3  1
+M output air_pressure 187 0xbb  0.01
+M output batteryPercent 164 0xa4  1
+`,
+            }, 
+        
+
             1720392397: {
                 name: "dots,temp,sound,comfort",
                 versions: "",
@@ -2059,6 +2124,57 @@ M input humidityTreshold 182 0xb6  0.01
 M input luxTresholdPercent 183 0xb7  1
 M input averageHumidityIntervalMinutes 166 0xa6  1
 M input averageLuxIntervalMinutes 167 0xa7  1
+`,
+            }, 
+        
+
+            1727723267: {
+                name: "Heartstarter",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output buttonDetect 129 0x81  1
+M output motionDetect 130 0x82  1
+M input soundScanIntervalMinutes 179 0xb3  1
+M input soundScanMinimumRepeat 163 0xa3  1
+M output soundIntervalS 152 0x98  0.001
+M output soundRepeat 131 0x83  1
+M input motionThresholdG 180 0xb4  0.001
+M output volts 181 0xb5  0.001
+M output batteryPercent 164 0xa4  1
+`,
+            }, 
+        
+
+            1742321452: {
+                name: "Square-comfort-sound",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 165 0xa5  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 166 0xa6  1
+M output soundLevel 183 0xb7  0.1
+M input soundThreshold 167 0xa7  1
+M input soundMinLevel 168 0xa8  1
+M input soundAvgMinutes 169 0xa9  1
 `,
             }, 
         
@@ -2152,6 +2268,17 @@ M output magnet 129 0x81  1
 M output volts 179 0xb3  0.001
 M input gnssIntervalMinutes 163 0xa3  1
 M input wifiIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
+            1815337626: {
+                name: "Gnss-autonomous-test",
+                versions: "",
+                mapData: `M output numSatellites 160 0xa0  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output batteryPercent 161 0xa1  1
 `,
             }, 
         
@@ -2279,6 +2406,28 @@ M output air_pressure 184 0xb8  0.01
 M output air_breath_voc_equivalent 152 0x98  0.01
 M output air_static_iaq 185 0xb9  1
 M input air_interval_minutes 169 0xa9  1
+`,
+            }, 
+        
+
+            1938827428: {
+                name: "Lifefinder-motion",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input alarmAck 164 0xa4  1
+M output motion 165 0xa5  1
+M output motionAlarm 166 0xa6  1
+M input motionThreshold 180 0xb4  0.001
 `,
             }, 
         
@@ -2428,6 +2577,30 @@ M input air_interval_minutes 172 0xac  1
                 name: "dots,radiotest",
                 versions: "R1",
                 mapData: ``,
+            }, 
+        
+
+            2297466901: {
+                name: "Motion-measure",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output accX 144 0x90  0.001
+M output accY 145 0x91  0.001
+M output accZ 146 0x92  0.001
+M output pressure_hPa 184 0xb8  0.01
+M input motionThreshold_m_s2 179 0xb3  0.001
+M input sampleInterval_s 163 0xa3  1
+M input sampleCountMax 164 0xa4  1
+M input enableBarometer 165 0xa5  1
+M output motion 166 0xa6  1
+M output batteryPercent 167 0xa7  1
+`,
             }, 
         
 
@@ -3110,6 +3283,30 @@ M input air_interval_minutes 171 0xab  1
             }, 
         
 
+            3264322911: {
+                name: "Square-comfort",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 165 0xa5  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 166 0xa6  1
+`,
+            }, 
+        
+
             3286734209: {
                 name: "dots,temp,sound,comfort,air-v2",
                 versions: "R4 R2",
@@ -3782,6 +3979,27 @@ M output lux 181 0xb5  1
 M output averageLux 145 0x91  1
 M input luxTresholdPercent 182 0xb6  1
 M input averageLuxIntervalMinutes 165 0xa5  1
+`,
+            }, 
+        
+
+            3994244140: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output volts 179 0xb3  0.001
+M input maxAlarmMinutes 180 0xb4  1
+M input alarmAck 164 0xa4  1
+M input limitedScanChannels 184 0xb8  1
 `,
             }, 
         
