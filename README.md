@@ -9,7 +9,7 @@ GENERATED AND WILL BE UPDATED FREQUENTLY. INSTEAD USE THE VSM MQTT CLIENT FOR IN
 
 ## VSM MQTT CLIENT
 
-The recommended integration is through the https://gitlab.com/sensative/vsm-mqtt-client-open-source project.
+The recommended integration is through the https://github.com/Sensative/vsm-mqtt-client-open-source project.
 
 ## Required Files
 
