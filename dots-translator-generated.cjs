@@ -100,7 +100,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             47853213: {
                 name: "Lifefinder",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -551,7 +551,7 @@ M input alarmAck 164 0xa4  1
 
             399948366: {
                 name: "Lifefinder-squad",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -625,7 +625,7 @@ M output air_breath_voc_equivalent 152 0x98  0.01
 
             534670557: {
                 name: "Tracker",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1551,7 +1551,7 @@ M input alarmAck 164 0xa4  1
 
             1128699053: {
                 name: "Square-air",
-                versions: "",
+                versions: "R9",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -1797,7 +1797,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             1274106153: {
                 name: "Airport-int",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1863,7 +1863,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             1319111708: {
                 name: "Compliance-test",
-                versions: "R8 R7 R6 R5 R4 R2",
+                versions: "R9 R8 R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -2086,7 +2086,7 @@ M output underVoltage 165 0xa5  1
 
             1711284143: {
                 name: "Tracker-stats",
-                versions: "",
+                versions: "R9",
                 mapData: `M output volts 176 0xb0  0.001
 M input gnssIntervalMinutes 160 0xa0  1
 M input gnssScanMode 177 0xb1  1
@@ -2130,7 +2130,7 @@ M input averageLuxIntervalMinutes 167 0xa7  1
 
             1727723267: {
                 name: "Heartstarter",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2153,7 +2153,7 @@ M output batteryPercent 164 0xa4  1
 
             1742321452: {
                 name: "Square-comfort-sound",
-                versions: "",
+                versions: "R9",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -2274,7 +2274,7 @@ M input wifiIntervalMinutes 164 0xa4  1
 
             1815337626: {
                 name: "Gnss-autonomous-test",
-                versions: "",
+                versions: "R9",
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
@@ -2412,7 +2412,7 @@ M input air_interval_minutes 169 0xa9  1
 
             1938827428: {
                 name: "Lifefinder-motion",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2503,7 +2503,7 @@ M output scanCount 185 0xb9  1
 
             2132727044: {
                 name: "Default",
-                versions: "",
+                versions: "R9",
                 mapData: `M output helloDefaultApp 160 0xa0  1
 `,
             }, 
@@ -2533,7 +2533,7 @@ M output volts 181 0xb5  0.001
 
             2182170139: {
                 name: "Radiotest",
-                versions: "R8 R7 R6 R5 R4 R2",
+                versions: "R9 R8 R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -2582,7 +2582,7 @@ M input air_interval_minutes 172 0xac  1
 
             2297466901: {
                 name: "Motion-measure",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2753,7 +2753,7 @@ M input wifiIntervalMinutes 164 0xa4  1
 
             2604624720: {
                 name: "Puck-radar",
-                versions: "",
+                versions: "R9",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
@@ -3285,7 +3285,7 @@ M input air_interval_minutes 171 0xab  1
 
             3264322911: {
                 name: "Square-comfort",
-                versions: "",
+                versions: "R9",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -3524,7 +3524,7 @@ M output motion 165 0xa5  1
 
             3509502476: {
                 name: "Sniffer",
-                versions: "R8 R7 R6 R5 R4 R2",
+                versions: "R9 R8 R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -3732,6 +3732,32 @@ M output magnet 129 0x81  1
 M output volts 179 0xb3  0.001
 M input gnssIntervalMinutes 163 0xa3  1
 M input wifiIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
+            3721832161: {
+                name: "Airport-int",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_mm_s2 179 0xb3  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 163 0xa3  1
+M input maxBudget 180 0xb4  1
+M input singleWifiScanAgain_minutes 164 0xa4  1
+M input minimumWifiCount 165 0xa5  1
+M input fullWifiScan_minutes 166 0xa6  1
+M input gpsScan_minutes 167 0xa7  1
+M input motionCountEnabled 168 0xa8  1
+M output batteryPercent 169 0xa9  1
 `,
             }, 
         
@@ -3985,7 +4011,7 @@ M input averageLuxIntervalMinutes 165 0xa5  1
 
             3994244140: {
                 name: "Lifefinder-wifi",
-                versions: "",
+                versions: "R9",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -4066,7 +4092,7 @@ M input averageLuxIntervalMinutes 167 0xa7  1
 
             4058561182: {
                 name: "Empty",
-                versions: "R8 R7 R6 R5 R4 R2",
+                versions: "R9 R8 R7 R6 R5 R4 R2",
                 mapData: ``,
             }, 
         
@@ -4123,7 +4149,7 @@ M output underVoltage 166 0xa6  1
 
             4120107816: {
                 name: "Linkcheck",
-                versions: "",
+                versions: "R9",
                 mapData: `M input linkCheckRate 160 0xa0  1
 `,
             }, 
