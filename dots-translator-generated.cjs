@@ -1949,6 +1949,25 @@ M input gpsScan_minutes 167 0xa7  1
             }, 
         
 
+            1325798073: {
+                name: "Puck-radar",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 176 0xb0  1
+M input distanceHysteresis 161 0xa1  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 177 0xb1  1
+M input averageDistanceLowAlarmLevel 178 0xb2  0.01
+M input averageDistanceHighAlarmLevel 179 0xb3  0.01
+M output averageDistanceAlarm 129 0x81  1
+M output nfcContactCount 152 0x98  1
+`,
+            }, 
+        
+
             1340122546: {
                 name: "dots,temp,tracker-stats",
                 versions: "R1",
