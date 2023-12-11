@@ -2465,6 +2465,23 @@ M input averageLuxIntervalMinutes 164 0xa4  1
             }, 
         
 
+            1835511761: {
+                name: "Digital-gpio",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output detection 128 0x80  1
+M input activation 129 0x81  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 161 0xa1  1
+M output tempAlarm 130 0x82  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+`,
+            }, 
+        
+
             1835633969: {
                 name: "dots,radon,temp",
                 versions: "R4 R2",
