@@ -4048,6 +4048,13 @@ M input air_interval_minutes 169 0xa9  1
             }, 
         
 
+            3749068968: {
+                name: "US-Frequency-hop-test",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             3773954219: {
                 name: "dots,temp,vitir,air",
                 versions: "",
