@@ -255,6 +255,13 @@ M output underVoltage 164 0xa4  1
             }, 
         
 
+            190349531: {
+                name: "Radiotest-measure",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             200545042: {
                 name: "dots,temp,sweiot-riot-v2",
                 versions: "",
