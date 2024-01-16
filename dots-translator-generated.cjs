@@ -3833,6 +3833,16 @@ M input averageLuxIntervalMinutes 166 0xa6  1
             }, 
         
 
+            3578571565: {
+                name: "US-Frequency-hop-test",
+                versions: "",
+                mapData: `M input transmitInterval 176 0xb0  1
+M input transmitCount 184 0xb8  1
+M input count 185 0xb9  1
+`,
+            }, 
+        
+
             3588420109: {
                 name: "dots,temp,comfort,air-v2",
                 versions: "",
@@ -4045,13 +4055,6 @@ M output air_breath_voc_equivalent 152 0x98  0.01
 M output air_static_iaq 185 0xb9  1
 M input air_interval_minutes 169 0xa9  1
 `,
-            }, 
-        
-
-            3749068968: {
-                name: "US-Frequency-hop-test",
-                versions: "",
-                mapData: ``,
             }, 
         
 
