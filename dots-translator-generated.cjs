@@ -3840,16 +3840,6 @@ M input averageLuxIntervalMinutes 166 0xa6  1
             }, 
         
 
-            3578571565: {
-                name: "US-Frequency-hop-test",
-                versions: "",
-                mapData: `M input transmitInterval 176 0xb0  1
-M input transmitCount 184 0xb8  1
-M input count 185 0xb9  1
-`,
-            }, 
-        
-
             3588420109: {
                 name: "dots,temp,comfort,air-v2",
                 versions: "",
@@ -4271,6 +4261,16 @@ M output volts 179 0xb3  0.001
 M input maxAlarmMinutes 180 0xb4  1
 M input alarmAck 164 0xa4  1
 M input limitedScanChannels 184 0xb8  1
+`,
+            }, 
+        
+
+            3999624005: {
+                name: "US-Frequency-hop-test",
+                versions: "",
+                mapData: `M input transmitInterval 176 0xb0  1
+M input transmitCount 184 0xb8  1
+M input count 185 0xb9  1
 `,
             }, 
         
