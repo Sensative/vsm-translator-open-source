@@ -40,7 +40,7 @@ const knownSchemas = {};
         for (let used = 0; used < data.length; ) {
             const ref = data[used++];
             let name = "";
-            const val = (data[used++]<<24) | (data[used++] << 16) || (data[used++] << 8) || (data[used++]);
+            const val = (data[used++]<<24) | (data[used++] << 16) | (data[used++] << 8) | (data[used++]);
             if (symbolTable.hasOwnProperty(ref)) {
                 name = symbolTable[ref].name;
             } else
