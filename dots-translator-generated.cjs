@@ -860,6 +860,26 @@ M output underVoltage 165 0xa5  1
             }, 
         
 
+            561898260: {
+                name: "Puck-radar",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 176 0xb0  1
+M input distanceHysteresis 161 0xa1  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 177 0xb1  1
+M input averageDistanceLowAlarmLevel 178 0xb2  0.01
+M input averageDistanceHighAlarmLevel 179 0xb3  0.01
+M output averageDistanceAlarm 129 0x81  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_mV 180 0xb4  0.001
+`,
+            }, 
+        
+
             563305046: {
                 name: "dots,temp,sound,comfort",
                 versions: "",
@@ -1728,6 +1748,26 @@ M output volts 181 0xb5  0.001
 M input enableCapReports 163 0xa3  1
 M input capAlarmLevel 182 0xb6  1
 M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
+            1121182195: {
+                name: "Puck-radar-fast-rejoin",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 176 0xb0  1
+M input distanceHysteresis 161 0xa1  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 177 0xb1  1
+M input averageDistanceLowAlarmLevel 178 0xb2  0.01
+M input averageDistanceHighAlarmLevel 179 0xb3  0.01
+M output averageDistanceAlarm 129 0x81  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_mV 180 0xb4  0.001
 `,
             }, 
         
