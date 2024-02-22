@@ -875,7 +875,7 @@ M input averageDistanceLowAlarmLevel 178 0xb2  0.01
 M input averageDistanceHighAlarmLevel 179 0xb3  0.01
 M output averageDistanceAlarm 129 0x81  1
 M output nfcContactCount 152 0x98  1
-M output radarVoltage_mV 180 0xb4  0.001
+M output radarVoltage_V 180 0xb4  0.001
 `,
             }, 
         
@@ -1767,7 +1767,7 @@ M input averageDistanceLowAlarmLevel 178 0xb2  0.01
 M input averageDistanceHighAlarmLevel 179 0xb3  0.01
 M output averageDistanceAlarm 129 0x81  1
 M output nfcContactCount 152 0x98  1
-M output radarVoltage_mV 180 0xb4  0.001
+M output radarVoltage_V 180 0xb4  0.001
 `,
             }, 
         
