@@ -42,7 +42,7 @@ function Decode(fPort, bytes, variables) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 3530880224 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 4174894842 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }
 
@@ -55,29 +55,13 @@ function Decode(fPort, bytes, variables) {
 
 function translate(iotnode) {
 
-    /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+    /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     var schema = {
 
-        3530880224: {
+        4174894842: {
             name: "Square-comfort",
-            versions: "R12 R11",
-            mapData: "M input roamNetworkCount 160 0xa0  1 \
-                      M output batteryPercent 161 0xa1  1 \
-                      M output temp 176 0xb0  0.01 \
-                      M output averageTemp 177 0xb1  0.01 \
-                      M input tempHysteresis 178 0xb2  0.01 \
-                      M input averageTempIntervalMinutes 162 0xa2  1 \
-                      M output tempAlarm 128 0x80  1 \
-                      M input tempAlarmLowLevel 163 0xa3  1 \
-                      M input tempAlarmHighLevel 164 0xa4  1 \
-                      M output humidity 179 0xb3  0.01 \
-                      M output averageHumidity 144 0x90  0.01 \
-                      M input humidityTreshold 180 0xb4  0.01 \
-                      M input averageHumidityIntervalMinutes 165 0xa5  1 \
-                      M output lux 181 0xb5  1 \
-                      M output averageLux 145 0x91  1 \
-                      M input luxTresholdPercent 182 0xb6  1 \
-                      M input averageLuxIntervalMinutes 166 0xa6  1"
+            versions: "R13",            
+            mapData: "M input roamNetworkCount 160 0xa0  1 + M output batteryPercent 161 0xa1  1 + M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 162 0xa2  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempAlarmHighLevel 164 0xa4  1 + M output humidity 179 0xb3  0.01 + M output averageHumidity 144 0x90  0.01 + M input humidityTreshold 180 0xb4  0.01 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M output lux 181 0xb5  1 + M output averageLux 145 0x91  1 + M input luxTresholdPercent 182 0xb6  1 + M input averageLuxIntervalMinutes 166 0xa6"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -1067,7 +1051,7 @@ function translate(iotnode) {
         if (!description)
             return symbolTable;
 
-        var descriptions = description.split(/ {3,}/);
+        var descriptions = description.split(' + ');
         for (var i = 0; i < descriptions.length; ++i) {
             // Example MAP file line: M output OUTPUT_NOW 184 0xb8
             var regex = /^M\s(output|register|sensor|input|variable)\s+(\w+)\s+(\d+)\s+0x\w\w(\s+-?\d+.?\d*)?/g;

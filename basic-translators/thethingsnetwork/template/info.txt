@@ -1,1 +1,1 @@
-Note: Make sure the number of characters do not excede 40960 for The Things Network payload formatter
+Note: Make sure the number of characters do not excede 40960 for The Things Network payload formatter.
