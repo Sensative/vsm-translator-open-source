@@ -4593,6 +4593,9 @@ M output underVoltage 165 0xa5 1
 
 /// END DO NOT CHANGE THE ABOVE
 
+// Export knownSchemas
+exports.knownSchemas = knownSchemas;
+
 // Response to a reference value query
     const decodeReferences = (iotnode, symbolTable, data, time) => {
         let result = {};
