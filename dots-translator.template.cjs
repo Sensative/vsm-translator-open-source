@@ -34,6 +34,9 @@ function translate(iotnode) {
 const knownSchemas = {};
 /// END DO NOT CHANGE THE ABOVE
 
+// Export knownSchemas
+exports.knownSchemas = knownSchemas;
+
 // Response to a reference value query
     const decodeReferences = (iotnode, symbolTable, data, time) => {
         let result = {};
