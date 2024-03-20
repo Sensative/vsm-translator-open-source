@@ -1,0 +1,1 @@
+node dots-basic-translators-generator.cjs
