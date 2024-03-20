@@ -45,8 +45,8 @@ console.log("Translator version: " + translatorVersion);
 
 // Define templates
 const templates = [
-    { name: 'chirpstack', path: './chirpstack/template/dots-chirpstack-v3-decoder-template.cjs', outputDir: './chirpstack' },
-    { name: 'ttn',  path: './thethingsnetwork/template/dots-ttn-decoder-template.cjs', outputDir: './thethingsnetwork' },
+    { name: 'chirpstack-v3', path: './chirpstack-v3/template/dots-chirpstack-v3-decoder-template.cjs', outputDir: './chirpstack-v3' },
+    { name: 'ttn-and-chirpstack-v4',  path: './thethingsnetwork-chirpstack-v4/template/dots-ttn-and-chirpstack-v4-decoder-template.cjs', outputDir: './thethingsnetwork-chirpstack-v4' },
     // Add more templates as needed
 ];
 

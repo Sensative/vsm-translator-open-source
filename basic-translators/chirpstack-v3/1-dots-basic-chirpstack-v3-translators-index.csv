@@ -1,0 +1,21 @@
+Filename|Product Application|Versions|CRCs
+chirpstack-v3/Lifefinder-R13.js|Lifefinder|R13|3321548430
+chirpstack-v3/Lifefinder-squad-R13.js|Lifefinder-squad|R13|3505805917
+chirpstack-v3/Airport-int-R11-to-R13.js|Airport-int|R13 R12 R11|1695912328
+chirpstack-v3/Airport-int-R13.js|Airport-int|R13|1872032769
+chirpstack-v3/Radiotest-measure-R12-to-R13.js|Radiotest-measure|R13 R12|190349531
+chirpstack-v3/Square-air-R13.js|Square-air|R13|472391447
+chirpstack-v3/Square-air-R11-to-R12.js|Square-air|R12 R11|915094797
+chirpstack-v3/Puck-radar-R13.js|Puck-radar|R13|561898260
+chirpstack-v3/Puck-radar-R11-to-R12.js|Puck-radar|R12 R11|1325798073
+chirpstack-v3/Square-comfort-R11-to-R12.js|Square-comfort|R12 R11|3530880224
+chirpstack-v3/Square-comfort-R13.js|Square-comfort|R13|4174894842
+chirpstack-v3/Lifefinder-wifi-R13.js|Lifefinder-wifi|R13|691254335
+chirpstack-v3/Puck-radar-fast-rejoin-R12.js|Puck-radar-fast-rejoin|R12|729172455
+chirpstack-v3/Puck-radar-fast-rejoin-R13.js|Puck-radar-fast-rejoin|R13|1121182195
+chirpstack-v3/Sniffer-R12-to-R13.js|Sniffer|R13 R12|1047034189, 3509502476
+chirpstack-v3/Digital-gpio-R13.js|Digital-gpio|R13|1617091456, 1835511761, 3497448490
+chirpstack-v3/Square-comfort-sound-R11-to-R12.js|Square-comfort-sound|R12 R11|2387046759
+chirpstack-v3/Square-comfort-sound-R13.js|Square-comfort-sound|R13|2766427005
+chirpstack-v3/Lifefinder-motion-R13.js|Lifefinder-motion|R13|3031484599
+chirpstack-v3/US-Frequency-hop-test-R12-to-R13.js|US-Frequency-hop-test|R13 R12|3999624005
