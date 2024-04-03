@@ -2279,6 +2279,13 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
+            2944831603: {
+                name: "Radiotest-measure",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             3031484599: {
                 name: "Lifefinder-motion",
                 versions: "R13",
