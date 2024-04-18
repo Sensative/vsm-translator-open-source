@@ -75,11 +75,17 @@ templates.forEach((template) => {
 
             // Iterate over each group of knownSchemas with the same name
             for (let [name, schemas] of Object.entries(groupedSchemas)) {
+                // Check if all mapData have outputs mentioned within the group
+                const hasOutputInMapData = schemas.every(({ schema }) => /M\s+output\s+/g.test(schema.mapData));
+                if (!hasOutputInMapData) {
+                    console.log(`Skipping schemas with name ${name} because mapData does not have any output mentioned.`);
+                    continue;
+                }
                 // Check if all mapData are identical within the group
-                const uniqueMapData = new Set(schemas.map(({schema}) => schema.mapData));
+                const uniqueMapData = new Set(schemas.map(({ schema }) => schema.mapData));
                 if (uniqueMapData.size > 1) {
                     // If mapData is not identical, process each schema separately
-                    for (const {crc,schema} of schemas) {
+                    for (const { crc, schema } of schemas) {
                         // Skip processing if versions are missing or less than R11
                         if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R\d{2,}/)) {
                             console.log(`Skipping schema with CRC ${crc} because versions are missing or less than R11.`);
