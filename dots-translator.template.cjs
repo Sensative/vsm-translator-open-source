@@ -36,7 +36,10 @@ const knownSchemas = {};
 /// END DO NOT CHANGE THE ABOVE
 
 // Export knownSchemas
-exports.knownSchemas = knownSchemas;
+try {
+    exports.knownSchemas = knownSchemas;
+}
+catch (ignored) {}
 
 // Response to a reference value query
     const decodeReferences = (iotnode, symbolTable, data, time) => {
