@@ -179,8 +179,7 @@ function translate(iotnode) {
 
         var schemaInfo = {};
         if (schema[rulesCrc32]) {
-            // there is a known schema for this node, use it [TBD how to handle conflicting
-            // CRCs]
+            // there is a known schema for this node, use it
             schemaInfo = {
                 appName: schema[rulesCrc32].name,
                 schema: schema[rulesCrc32].mapData,
@@ -190,7 +189,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.1.52"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.1.54"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
@@ -286,19 +285,13 @@ function translate(iotnode) {
         var exp = (fp >> 10) & 0x1f;
         var base = fp & 0x3ff
         if (0 == exp)
-            return neg ?
-                -base :
-                base;
+            return neg ? -base : base;
         else if (1 == exp) { // compressed
             var value = (0x400 + base);
-            return neg ?
-                -value :
-                value;
+            return neg ? -value : value;
         } else { // Round to center of interval
             var value = ((0x400 + base) << (exp - 1)) + (1 << (exp - 2));
-            return neg ?
-                -value :
-                value;
+            return neg ? -value : value;
         }
     }
 
@@ -316,9 +309,8 @@ function translate(iotnode) {
         return byte;
     }
 
-    // Determine latest value on each field in time series, return that as a result
-    // object
-    var createResultFromTimeSeries = function (iotnode, series) {
+    // Determine latest value on each field in time series, return that as a result object
+    var createResultFromTimeSeries = function(iotnode, series) {
         var timestamps = iotnode.timestamps;
         var result = {
             output: {},
@@ -339,7 +331,6 @@ function translate(iotnode) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
                     var lastSampvartime = new Date(timestamps[name]);
-                    //if (lastSampvartime.getTime() < sampvartimestamp.getTime()) {
                     if (lastSampvartime < sampvartimestamp) {
                         timestamps[name] = sampvartimestamp; // Avoid overwrite from this series
                         result.timestamps[name] = sampvartimestamp;
@@ -387,17 +378,13 @@ function translate(iotnode) {
                         break;
                 }
             } else { // Compressed format
-                timesize = (head & 0x80) ?
-                    1 :
-                    0;
+                timesize = (head & 0x80) ? 1 : 0;
             }
             var confirmed = true;
             var decompressvalue = false;
             if (compressed && ((head & 0x40) == 0)) {
                 datasize = 0; // No data representation, value is 0
-                confirmed = (head & 32) ?
-                    false :
-                    true;
+                confirmed = (head & 32) ? false : true;
             } else {
                 switch ((head >> 3) & 7) {
                     case 0:
@@ -461,14 +448,12 @@ function translate(iotnode) {
                     pos += 2;
                     break;
                 case 1:
-                    age_s = compressed ?
-                        decode_uint32_8_t(data[pos]) * 2 :
-                        (data[pos]);
+                    age_s = compressed ? decode_uint32_8_t(data[pos]) * 2 : (data[pos]);
                     pos++;
                     break;
                 case 0:
                     age_ms += 1;
-                    break; // Adding a syntetic time difference because Yggio will not record multiple events at same time
+                    break; // Adding a syntetic time difference
             }
             time_s -= age_s; // Go back in time
 
@@ -477,7 +462,7 @@ function translate(iotnode) {
                 case 4:
                     value = (data[pos + 0] << 24) | (data[pos + 1] << 16) | (data[pos + 2] << 8) | (data[pos + 3]);
                     pos += 4;
-                    break; // TODO: Handle negative values
+                    break;
                 case 2:
                     if (decompressvalue) {
                         value = decode_int32_16_t(data[pos + 0] << 8) | (data[pos + 1]);
@@ -506,7 +491,6 @@ function translate(iotnode) {
                         output: valuestruct
                     }
                 };
-                // console.log(sample);
                 timeseries.push(sample);
             } else {
                 console.log("No symbol table entry for message id " + (kind + 128) + " value " + value);
@@ -567,7 +551,6 @@ function translate(iotnode) {
                 .macAddress
                 .substring(15, 17);
             hex += hexRSSI + hexSSID;
-            // console.log("Rssi", ap.signalStrength, hexRSSI, "Ssid", hexSSID);
         }
         return hex;
     }
@@ -589,9 +572,7 @@ function translate(iotnode) {
         var result = {
             gnss: {}
         };
-        var bIsStreamHeader = data[0] & 0x80 ?
-            true :
-            false;
+        var bIsStreamHeader = data[0] & 0x80 ? true : false;
         var gnssCaptureGpsTime = 0;
         if (bIsStreamHeader) {
             if (data.length < 10) {
@@ -601,9 +582,7 @@ function translate(iotnode) {
             }
             var bContainsAssistPosition = bIsStreamHeader && (data[0] & 0x40);
             var bWasAutonomousScan = bIsStreamHeader && (data[0] & 0x20);
-            result.gnss.autonomous = bWasAutonomousScan ?
-                1 :
-                0;
+            result.gnss.autonomous = bWasAutonomousScan ? 1 : 0;
             result.gnss.streamSize = ((data[0] & 0x1f) << 8) | data[1];
             pos += 2;
 
@@ -612,21 +591,16 @@ function translate(iotnode) {
             pos += 4;
 
             if (bContainsAssistPosition) {
-                var lat16 = ((data[pos] & 0x80 ?
-                    0xFFFF << 16 :
-                    0) | (data[pos] << 8) | data[pos + 1]);
+                var lat16 = ((data[pos] & 0x80 ? 0xFFFF << 16 : 0) | (data[pos] << 8) | data[pos + 1]);
                 pos += 2;
-                var lon16 = ((data[pos] & 0x80 ?
-                    0xFFFF << 16 :
-                    0) | (data[pos] << 8) | data[pos + 1]);
+                var lon16 = ((data[pos] & 0x80 ? 0xFFFF << 16 : 0) | (data[pos] << 8) | data[pos + 1]);
                 pos += 2;
-                // The below is magic: Convert from LR1110 driver 6.0 representation as used in
-                // va-gnss-stream.c
+                // The below is magic: Convert from LR1110 driver 6.0 representation as used in va-gnss-stream.c
                 result.gnss.assistanceLatitude = 90.0 * lat16 / 2048.0;
                 result.gnss.assistanceLongitude = 180.0 * lon16 / 2048.0;
             } else {
-                result.gnss.assistanceLatitude = 0; // TBD: how to erase field so not old field remains - this is a bug
-                result.gnss.assistanceLongitude = 0; // TBD: how to erase field so not old field remains - this is a bug
+                result.gnss.assistanceLatitude = 0;
+                result.gnss.assistanceLongitude = 0;
             }
             var hex = "";
             for (var i = pos + 1; i < data.length; ++i) // Note: skip first byte
@@ -675,7 +649,7 @@ function translate(iotnode) {
             result.gnss.assistanceLongitude = iotnode.gnss.assistanceLongitude;
             result.gnss.timestamp = new Date(1000 * (gnssCaptureGpsTime + UNIX_GPS_EPOCH_OFFSET)).toISOString();
 
-            var hex = iotnode.gnss.incompleteHex; // NOTE: Translators must be able to trust read-after-write semantics for iotnode
+            var hex = iotnode.gnss.incompleteHex;
             for (var i = pos; i < data.length; ++i)
                 hex += encode_uint8_hex(data[i]);
             if (hex.length / 2 === iotnode.gnss.streamSize - 1) {
@@ -718,8 +692,7 @@ function translate(iotnode) {
             var lon16 = ((data[10] & 0x80 ?
                 0xFFFF << 16 :
                 0) | (data[10] << 8) | data[11]);
-            // The below is magic: Convert from LR1110 driver 6.0 representation as used in
-            // va-gnss-stream.c
+            // The below is magic: Convert from LR1110 driver 6.0 representation as used in va-gnss-stream.c
             result.gnss.assistanceLatitude = 90.0 * lat16 / 2048.0;
             result.gnss.assistanceLongitude = 180.0 * lon16 / 2048.0;
 
@@ -774,8 +747,8 @@ function translate(iotnode) {
         if (data.length < 5)
             return null;
         var linktime = 1000 * ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
-        if (linktime > time)
-            return null; // No future uplinks, thankyou very much
+        if (linktime > time) 
+            return null; // No future uplinks
         var linkport = data[4];
         var linkdecoder = mapPortToDecode[linkport];
         if (!linkdecoder)
@@ -848,8 +821,7 @@ function translate(iotnode) {
             return {
                 result: {
                     vsm: {
-                        networkPowered: data[0] === 0 ?
-                            1 : 0,
+                        networkPowered: data[0] === 0 ? 1 : 0,
                         batteryPercent: data[0]
                     }
                 }
@@ -1022,8 +994,7 @@ function translate(iotnode) {
         return decimalArray;
     }
 
-    // Generate a symbol table from the nodes vsm.schema field (todo: reference
-    // database of known CRCs to know?)
+    // Generate a symbol table from the nodes vsm.schema field
     function mkSymbolTable(iotnode) {
         var symbolTable = {};
 
@@ -1090,7 +1061,6 @@ function translate(iotnode) {
                 type: type,
                 scale: scale
             };
-            // console.log("added " + id + ": " + name + " (" + type + ") scale: " + scale);
         }
         return symbolTable;
     }
