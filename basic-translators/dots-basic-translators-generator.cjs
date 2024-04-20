@@ -28,182 +28,265 @@ const fs = require('fs');
 const path = require('path');
 const { knownSchemas } = require('../dots-translator-generated.cjs');
 
-// Check if knownSchemas is defined
-if (!knownSchemas) {
-    console.log("No known schemas found. Exiting.");
+// Error Handling
+function exitWithError(message) {
+    console.error(message);
     process.exit(1);
 }
 
 // Update translator version 
 let translatorVersion = JSON.parse(fs.readFileSync("../package.json").toString("utf-8")).version;
 if (!translatorVersion) {
-    console.log("Failed to read translator version from package.json file");
-    process.exit(1);
+    exitWithError("Failed to read translator version from package.json file");
 }
 
 console.log("Translator version: " + translatorVersion);
 
-// Define templates
-const templates = [
-    { name: 'chirpstack-v3', path: './chirpstack-v3/template/dots-chirpstack-v3-decoder-template.cjs', outputDir: './chirpstack-v3' },
-    { name: 'ttn-and-chirpstack-v4',  path: './thethingsnetwork-chirpstack-v4/template/dots-ttn-and-chirpstack-v4-decoder-template.cjs', outputDir: './thethingsnetwork-chirpstack-v4' },
-    // Add more templates as needed
-];
-
-// Clean the output directories: delete generated .js files
-templates.forEach((template) => {
-    fs.readdirSync(template.outputDir).forEach(file => {
-        if (path.extname(file) === '.js' || path.extname(file) === '.csv') {
-            fs.unlinkSync(path.join(template.outputDir, file));
+/* // Function to group known schemas by name
+function groupSchemasByName() {
+    const groupedSchemas = {};
+    for (let [crc, schema] of Object.entries(knownSchemas)) {
+        // Skip processing if versions are less than R11
+        if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)) {
+            //console.log(`Skipping schema with CRC ${crc}, schema.name ${schema.name} because versions are less than R11.`); //Debug purposes only
+            continue;
         }
-    });  
-});
 
-// Iterate over each template
-templates.forEach((template) => {
-            // Prepare csv row data with header row
-            let csvData = [['Filename', 'Product Application', 'Versions', 'CRCs']];
+        // Process schema.mapData - replace \n with + and ensure proper concatenation                
+        schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").trim().replace(/\s+\+$/g, "");
 
-            // Group knownSchemas by name
-            const groupedSchemas = {};
-            for (let [crc, schema] of Object.entries(knownSchemas)) {
-                if (!(schema.name in groupedSchemas)) {
-                    groupedSchemas[schema.name] = [];
-                }
-                groupedSchemas[schema.name].push({crc,schema});
-            }
+        // Check if all mapData have outputs mentioned within the group            
+        if (!/M\s+output\s+/.test(schema.mapData)) {
+            //console.log(`Skipping schemas with name ${schema.name} because mapData does not have any output mentioned.`); //Debug purposes only
+            continue;
+        }
 
-            // Iterate over each group of knownSchemas with the same name
-            for (let [name, schemas] of Object.entries(groupedSchemas)) {
-                // Check if all mapData have outputs mentioned within the group
-                const hasOutputInMapData = schemas.every(({ schema }) => /M\s+output\s+/g.test(schema.mapData));
-                if (!hasOutputInMapData) {
-                    console.log(`Skipping schemas with name ${name} because mapData does not have any output mentioned.`);
-                    continue;
-                }
-                // Check if all mapData are identical within the group
-                const uniqueMapData = new Set(schemas.map(({ schema }) => schema.mapData));
-                if (uniqueMapData.size > 1) {
-                    // If mapData is not identical, process each schema separately
-                    for (const { crc, schema } of schemas) {
-                        // Skip processing if versions are missing or less than R11
-                        if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R\d{2,}/)) {
-                            console.log(`Skipping schema with CRC ${crc} because versions are missing or less than R11.`);
-                            continue;
-                        }
+        if (!(schema.name in groupedSchemas)) {
+            groupedSchemas[schema.name] = [];
+        }
 
-                        // Extract version numbers and ensure they are at least R11
-                        const versions = schema.versions.split(" ");
-                        const versionNumbers = versions.map(v => parseInt(v.slice(1))); // Extract and parse version numbers
-                        const minVersion = Math.min(...versionNumbers); // Find the minimum version
-                        if (minVersion < 11) {
-                            console.log(`Skipping schema with CRC ${crc} because versions are less than R11.`);
-                            continue;
-                        }
+        groupedSchemas[schema.name].push({ crc, schema });
+    }
+    //console.log(groupedSchemas); //Debug purposes only
+    return groupedSchemas;
+} */
 
-                        // Process schema.mapData - replace \n with +
-                        schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").slice(0, -3);
+function groupSchemasByNameAndMapData() {
+    const groupedSchemas = {};
+    for (let [crc, schema] of Object.entries(knownSchemas)) {
+        // Skip processing if versions are less than R11
+        if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)) {
+            //console.log(`Skipping schema with CRC ${crc}, schema.name ${schema.name} because versions are less than R11.`); //Debug purposes only
+            continue;
+        }
 
-                        const templateStr = fs.readFileSync(template.path, 'utf8');
-                        const newStr = getSchemaReplacement(templateStr, crc, schema);
-                        const newFilename = path.join(template.outputDir, getFilename(schema));
+        // Process schema.mapData - replace \n with + and ensure proper concatenation                
+        schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").trim().replace(/\s+\+$/g, "");
 
-                        // Write modified template to file
-                        fs.writeFileSync(newFilename, newStr, 'utf8');
-                        // Prepare schema data JSON
-                        const schemaJSON = JSON.stringify({
-                                [crc]: {
-                                    name: schema.name,
-                                    versions: schema.versions,
-                                    mapData: schema.mapData
-                                }
-                            }, null, 4)
-                            .replace(/"(\w+)":/g, '$1:')
-                            .replace(/\n/g, '\n    '); // Add indentation
+        // Check if all mapData have outputs mentioned within the group            
+        if (!/M\s+output\s+/.test(schema.mapData)) {
+            //console.log(`Skipping schemas with name ${schema.name} because mapData does not have any output mentioned.`); //Debug purposes only
+            continue;
+        }
 
-                        // Replace placeholder in template with schema data JSON
-                        const replacedTemplate = newStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n    var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
+        const key = `${schema.name}_${schema.mapData}`; // Using name and mapData as the key
+        if (!(key in groupedSchemas)) {
+            groupedSchemas[key] = [];
+        }
+
+        groupedSchemas[key].push({ crc, schema });
+    }
+    //console.log(groupedSchemas); //Debug purposes only
+    return groupedSchemas;
+}
+
+// Main Function
+function generateTranslators() {
+    // Define templates
+    const templates = [
+        { name: 'chirpstack-v3', path: './chirpstack-v3/template/dots-chirpstack-v3-decoder-template.cjs', outputDir: './chirpstack-v3' },
+        { name: 'ttn-and-chirpstack-v4', path: './thethingsnetwork-chirpstack-v4/template/dots-ttn-and-chirpstack-v4-decoder-template.cjs', outputDir: './thethingsnetwork-chirpstack-v4' },
+        // Add more templates as needed
+    ];    
+
+    // Iterate over each template
+    templates.forEach((template) => {
+        console.log(`Generating Basic translators for ${template.name}.`);
+
+        // Clean output directories
+        deleteExistingFiles(template.outputDir);
+
+        // Prepare csv row data with header row
+        let csvData = [['Filename', 'Product Application', 'Versions', 'CRCs']];
+
+        // Group knownSchemas by name
+        const groupedSchemas = groupSchemasByNameAndMapData();
+
+        // Schema Validation and Processing
+        processSchemas(template, groupedSchemas, csvData);
+
+        // Sort CSV data
+        const sortedCsvData = sortCsvData(csvData);
+
+        // Generate CSV file
+        generateCSV(template.name, template.outputDir, sortedCsvData);
+  
+    });
+    console.log(`Ready.`);
+}
+
+// File Handling
+function deleteExistingFiles(outputDir) {
+    fs.readdirSync(outputDir).forEach(file => {
+        if (path.extname(file) === '.js' || path.extname(file) === '.csv') {
+            fs.unlinkSync(path.join(outputDir, file));
+        }
+    });
+}
+
+function sortCsvData(csvData) {
+    // Extract header row
+    const headerRow = csvData.shift();
+
+    // Sort data rows by "Product Application" column
+    const sortedData = csvData.sort((a, b) => a[1].localeCompare(b[1]));
+
+    // Combine header row and sorted data rows
+    return [headerRow, ...sortedData];
+}
+
+// CSV Generation
+function generateCSV(templateName, outputDir, csvData) {
+    const csvString = csvData.map(row => row.join(',')).join('\n');
+    const csvFilename = `1-dots-basic-${templateName}-translators-index.csv`;
+    fs.writeFileSync(path.join(outputDir, csvFilename), csvString);
+}
+
+function processSchemaVersions(schema) {
+    const versions = schema.versions.split(" ");
+    const validVersions = versions.filter(version => version.match(/R(1[1-9]|[2-9]\d+)/)); // Filter out invalid versions
+    const combinedVersions = combineVersions(validVersions); // Combine versions
+    schema.versions = combinedVersions.join(' '); // Update schema versions    
+}
+
+function combineVersions(versions) {
+    const allVersions = new Set(); // Use a Set to store unique versions
+    versions.forEach(version => {
+        if (parseInt(version.slice(1)) >= 11) { // Check if version is R11 or higher
+            allVersions.add(version); // Add versions to the Set
+        }
+    });
+    return [...allVersions].sort(); // Convert Set back to an array and sort it
+}
+
+function processTemplate(template, crc, schema, csvData) {
+    const templateStr = fs.readFileSync(template.path, 'utf8');
+    const newStr = getSchemaReplacement(templateStr, crc, schema);
+    const newFilename = path.join(template.outputDir, getFilename(schema));
+
+    // Write modified template to file
+    fs.writeFileSync(newFilename, newStr, 'utf8');
+
+    // Prepare schema data JSON
+    const schemaJSON = prepareSchemaJSON(crc, schema);
+    
+    // Replace placeholder in template with schema data JSON
+    const replacedTemplate = replaceTemplatePlaceholders(newStr, schemaJSON);
+
+    // Write modified template to file
+    fs.writeFileSync(newFilename, replacedTemplate, 'utf8');
+
+    // Prepare csv row data
+    const csvRow = prepareCSVRow(template, crc, schema, newFilename);
+    csvData.push(csvRow);
+}
+
+function prepareSchemaJSON(crc, schema) {
+    return JSON.stringify({
+        [crc]: {
+            name: schema.name,
+            versions: schema.versions,
+            mapData: schema.mapData
+        }
+    }, null, 4)
+    .replace(/"(\w+)":/g, '$1:')
+    .replace(/\n/g, '\n    '); // Add indentation
+}
+
+function replaceTemplatePlaceholders(templateStr, schemaJSON) {
+    return templateStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n    var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
+}
+
+function prepareCSVRow(template, crc, schema, newFilename) {
+    return [
+        `${path.join(template.outputDir, path.basename(newFilename))}`,
+        `${schema.name.replace(/,/g, '-')}`,
+        `${schema.versions}`,
+        `${crc}`
+    ];
+}
+
+function areAllMapDataIdentical(schemas) {
+    const uniqueMapData = new Set(schemas.map(({ schema }) => schema.mapData));
+    return uniqueMapData.size === 1;
+}
+
+function processIdenticalMapData(template, schemas, csvData) {
+    const { crc, schema } = schemas[0];
+    schema.versions = combineAndSortVersions(schemas.map(({ schema }) => schema.versions));
+    processTemplate(template, crc, schema, csvData); // Process template
+
+    // Combine CRCs for schemas with the same name
+    const combinedCRCs = combineCRCs(schemas);
+    // Update the last item in csvData with combined CRCs
+    if (combinedCRCs.length > 0) {
+        csvData[csvData.length - 1][3] = combinedCRCs.join('|');
+    }
+}
+
+function combineAndSortVersions(versionArrays) {
+    const allVersions = versionArrays.flatMap(versions => versions.split(" "));
+    const combinedVersions = allVersions.filter(version => version.match(/R(1[1-9]|[2-9]\d+)/));
+    return [...new Set(combinedVersions)].sort().join(' ');
+}
+
+function combineCRCs(schemas) {
+    const crcSet = new Set();
+    schemas.forEach(({ crc }) => crcSet.add(crc));
+    return [...crcSet];
+}
+
+function processNonIdenticalMapData(template, schemas, csvData) {
+    schemas.forEach(({ crc, schema }) => {
+        processSchemaVersions(schema);
+        processTemplate(template, crc, schema, csvData);
+    });    
+}
+
+/* function processSchemas(template, groupedSchemas, csvData) {
+    // Iterate over each group of knownSchemas with the same name
+    for (let [name, schemas] of Object.entries(groupedSchemas)) {        
+        if (areAllMapDataIdentical(schemas)) {            
+            processIdenticalMapData(template, schemas, csvData);
+        } else {            
+            processNonIdenticalMapData(template, schemas, csvData);
+        }
+    }
+} */
+
+function processSchemas(template, groupedSchemas, csvData) {
+    // Iterate over each group of knownSchemas with the same name and mapData
+    for (let [key, schemas] of Object.entries(groupedSchemas)) {        
+        if (areAllMapDataIdentical(schemas)) {            
+            processIdenticalMapData(template, schemas, csvData);
+        } else {            
+            processNonIdenticalMapData(template, schemas, csvData);
+        }
+    }
+}
 
 
-                        // Write modified template to file
-                        fs.writeFileSync(newFilename, replacedTemplate, 'utf8');
-
-                        // Prepare csv row data
-                        const csvRow = [
-                            `${path.join(template.outputDir, path.basename(newFilename))}`,
-                            `${schema.name.replace(/,/g, '-')}`,
-                            `${schema.versions}`,
-                            `${crc}`
-                        ];
-
-                        csvData.push(csvRow);
-                    }
-                } else {
-                    // If mapData is identical, process only one schema for the group
-                    const {crc,schema} = schemas[0];
-                    // Skip processing if versions are missing or less than R11
-                    if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R\d{2,}/)) {
-                        console.log(`Skipping schema with CRC ${crc} because versions are missing or less than R11.`);
-                        continue;
-                    }
-
-                    // Extract version numbers and ensure they are at least R11
-                    const versions = schema.versions.split(" ");
-                    const versionNumbers = versions.map(v => parseInt(v.slice(1))); // Extract and parse version numbers
-                    const minVersion = Math.min(...versionNumbers); // Find the minimum version
-                    if (minVersion < 11) {
-                        console.log(`Skipping schema with CRC ${crc} because versions are less than R11.`);
-                        continue;
-                    }
-
-                    // Process schema.mapData - replace \n with +
-                    schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").slice(0, -3);
-
-                    // Log if mapData matches
-                    console.log(`MapData matched for schema: ${schema.name}`);
-
-                    const templateStr = fs.readFileSync(template.path, 'utf8');
-                    const newStr = getSchemaReplacement(templateStr, crc, schema);
-                    const newFilename = path.join(template.outputDir, getFilename(schema));
-
-                    // Write modified template to file
-                    fs.writeFileSync(newFilename, newStr, 'utf8');
-
-                    // Prepare schema data JSON
-                    const schemaJSON = JSON.stringify({
-                            [crc]: {
-                                name: schema.name,
-                                versions: schema.versions,
-                                mapData: schema.mapData
-                            }
-                        }, null, 4)
-                        .replace(/"(\w+)":/g, '$1:')
-                        .replace(/\n/g, '\n    '); // Add indentation
-
-                    // Replace placeholder in template with schema data JSON
-                    const replacedTemplate = newStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n    var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
-
-                    // Write modified template to file
-                    fs.writeFileSync(newFilename, replacedTemplate, 'utf8');
-
-                    // Prepare csv row data
-                    const csvRow = [
-                        `${path.join(template.outputDir, path.basename(newFilename))}`,
-                        `${schema.name.replace(/,/g, '-')}`,
-                        `${schema.versions}`,
-                        `${schemas.map(({ crc }) => crc).join(', ')}`
-                    ];
-
-                    csvData.push(csvRow);
-                    }
-            }
-
-    // Convert csvData to csv string and write to file
-    const csvString = csvData.map(row => row.join('|')).join('\n');
-    const csvFilename = `1-dots-basic-${template.name}-translators-index.csv`;
-    fs.writeFileSync(path.join(template.outputDir, csvFilename), csvString);
-});
-
+// Schema Replacement
 function getSchemaReplacement(template, crc, schema) {
     // Substitute in the new CRC schema and translator version
     return template.replace(/rulesCrc32: \d+/, `rulesCrc32: ${crc}`)                   
@@ -211,6 +294,7 @@ function getSchemaReplacement(template, crc, schema) {
                    .replace(/###VERSION###/g, translatorVersion);
 }
 
+// Filename Generation
 function getFilename(schema) {
     // Extract versions
     const versions = schema.versions.split(" ").sort();
@@ -244,3 +328,11 @@ function getFilename(schema) {
         return `${nameWithoutCommas}-${allVersions.map(v => `R${v}`).join('-')}.js`;
     }
 }
+
+// Check if knownSchemas is defined
+if (!knownSchemas) {
+    exitWithError("No known schemas found. Exiting.");
+}
+
+// Main Function Call
+generateTranslators();
