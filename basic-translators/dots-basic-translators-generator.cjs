@@ -234,17 +234,6 @@ function processNonIdenticalMapData(template, schemas, csvData) {
     });    
 }
 
-/* function processSchemas(template, groupedSchemas, csvData) {
-    // Iterate over each group of knownSchemas with the same name
-    for (let [name, schemas] of Object.entries(groupedSchemas)) {        
-        if (areAllMapDataIdentical(schemas)) {            
-            processIdenticalMapData(template, schemas, csvData);
-        } else {            
-            processNonIdenticalMapData(template, schemas, csvData);
-        }
-    }
-} */
-
 function processSchemas(template, groupedSchemas, csvData) {
     // Iterate over each group of knownSchemas with the same name and mapData
     for (let [key, schemas] of Object.entries(groupedSchemas)) {        
@@ -255,7 +244,6 @@ function processSchemas(template, groupedSchemas, csvData) {
         }
     }
 }
-
 
 // Schema Replacement
 function getSchemaReplacement(template, crc, schema) {
