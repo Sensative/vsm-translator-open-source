@@ -42,35 +42,6 @@ if (!translatorVersion) {
 
 console.log("Translator version: " + translatorVersion);
 
-/* // Function to group known schemas by name
-function groupSchemasByName() {
-    const groupedSchemas = {};
-    for (let [crc, schema] of Object.entries(knownSchemas)) {
-        // Skip processing if versions are less than R11
-        if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)) {
-            //console.log(`Skipping schema with CRC ${crc}, schema.name ${schema.name} because versions are less than R11.`); //Debug purposes only
-            continue;
-        }
-
-        // Process schema.mapData - replace \n with + and ensure proper concatenation                
-        schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").trim().replace(/\s+\+$/g, "");
-
-        // Check if all mapData have outputs mentioned within the group            
-        if (!/M\s+output\s+/.test(schema.mapData)) {
-            //console.log(`Skipping schemas with name ${schema.name} because mapData does not have any output mentioned.`); //Debug purposes only
-            continue;
-        }
-
-        if (!(schema.name in groupedSchemas)) {
-            groupedSchemas[schema.name] = [];
-        }
-
-        groupedSchemas[schema.name].push({ crc, schema });
-    }
-    //console.log(groupedSchemas); //Debug purposes only
-    return groupedSchemas;
-} */
-
 function groupSchemasByNameAndMapData() {
     const groupedSchemas = {};
     for (let [crc, schema] of Object.entries(knownSchemas)) {
