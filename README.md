@@ -84,4 +84,6 @@ Also for this functionality the translator requires the previous translation res
 
 All this is made available in the MQTT client, which also support reformatting the output to fit your environment, and publishing it there.
 
+# Basic Translator
 
+Should you require a simpler solution in the form of a single JS function to translate a single type of device, for example for Chirpstack, check out the Basic Translators branch https://github.com/Sensative/vsm-translator-open-source/tree/dots-basic-translators of this git repo. These translators are still under development and may be subject to bugs. The README of that branch contains more information on how to use them and the limitations inherit to them.
