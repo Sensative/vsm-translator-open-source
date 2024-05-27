@@ -548,7 +548,7 @@ const knownSchemas = {};
         idd.gnssSnrLpf = (data[b++]|data[b++]<<8)/10.0;
         idd.gnssSnrMaxLpf = (data[b++]|data[b++]<<8)/10.0;
         idd.loraRssiLpf = (0xffff0000|data[b++]|data[b++]<<8)/10.0;
-        idd.loraSnrLpf = (data[b++]|data[b++]<<8)/10.0;
+        idd.loraSnrLpf = ((data[b++]&0xff)|data[b++]<<8)/10.0;
         idd.wifiGwsLpf = data[b++]/10.0; 
         idd.gnssValidSVLpf = data[b++]/10.0; 
 
@@ -1135,7 +1135,7 @@ M output gnssState 160 0xa0 1
                         "gnssSnrLpf":0,
                         "gnssSnrMaxLpf":0,
                         "loraRssiLpf":-78,
-                        "loraSnrLpf":1475.3,
+                        "loraSnrLpf":1475.3, // Strange value, correction made 20240527
                         "wifiGwsLpf":0.3,
                         "gnssValidSVLpf":0.8}
                     }
