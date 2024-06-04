@@ -2023,6 +2023,27 @@ M input soundAvgMinutes 169 0xa9  1
             }, 
         
 
+            2355202201: {
+                name: "IR-proximity",
+                versions: "",
+                mapData: `M output proximityValue 152 0x98  1
+M input pollInterval 160 0xa0  1
+M input irMode 161 0xa1  1
+M input proximityHysteresis 176 0xb0  1
+M input irPower 162 0xa2  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempIntervalHours 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output batteryPercent 166 0xa6  1
+M output volts 180 0xb4  0.001
+`,
+            }, 
+        
+
             2387046759: {
                 name: "Square-comfort-sound",
                 versions: "R12 R11",
@@ -2883,6 +2904,26 @@ M input air_interval_minutes 170 0xaa  1
 M input air_static_iaq_alarm_level 186 0xba  1
 M input air_iaq_alarm_level 187 0xbb  1
 M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
+            3677859834: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M input maxAlarmMinutes 180 0xb4  1
+M input alarmAck 164 0xa4  1
 `,
             }, 
         
