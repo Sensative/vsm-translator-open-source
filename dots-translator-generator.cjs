@@ -46,6 +46,16 @@ M output batteryPercent 164 0xa4 1
 M output underVoltage 165 0xa5 1
 `
     },
+    3469695180: {
+        name: "Lifefinder-NFC-Reader-R1",
+        versions: "R1",
+        mapData: `M output card_1 152 0x98  1
+M output card_2 153 0x99  1
+M output card_3 154 0x9a  1
+M output serial 155 0x9b  1
+M input debounceSeconds 176 0xb0  1
+`
+    },
 };
 
 const generate = () => {
