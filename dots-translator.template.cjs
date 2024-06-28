@@ -111,10 +111,10 @@ const knownSchemas = {};
         } else if (data.length == 9) {
             let customizationCRC = data[0]<<24 | data[1]<<16 | data[2]<<8 | data[3];
             if (data[0]&0x80)
-                customizationCRC+=0x80000000;    
+                customizationCRC+=0x100000000;    
             let customizedAppCRC = data[4]<<24 | data[5]<<16 | data[6]<<8 | data[7];
             if (data[4]&0x80)
-                customizedAppCRC+=0x80000000;
+                customizedAppCRC+=0x100000000;
             status = translateCustomizationStatus(data[8]);
             return { result: { vsm: {customization: {status, customizedAppCRC, customizationCRC, timestamp:new Date() }}}};
         }
@@ -125,7 +125,7 @@ const knownSchemas = {};
     const decodeRule = (iotnode, symbolTable, data, time) => {
         let rulesCrc32 = ((data[0]&0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         if (data[0]&0x80)
-            rulesCrc32+=0x80000000;
+            rulesCrc32+=0x100000000;
 
         let schemaInfo = {}
         if (knownSchemas[rulesCrc32]) {
