@@ -3305,6 +3305,30 @@ M input debounceSeconds 176 0xb0  1
         throw new Error("Failed to decode link control message")
     }
 
+    // Link Control service output
+    const translateCustomizationStatus = (byte) => {
+        switch(byte) {
+            case 0: return "None";
+            case 1: return "Applied";
+            case 2: return "Error";
+            case 3: return "Dirty";
+            default: "Unknown";
+        }
+    }
+    const decodeCustomization = (iotnode, symbolTable, data, time) => {
+        let status;
+        if (data.length == 1) {
+            status = translateCustomizationStatus(data[0]);
+            return { result: { vsm: {customization: {status, customizedAppCRC:0, customizationCRC:0 }}}};
+        } else if (data.length == 9) {
+            let customizationCRC = data[0] | data[1] | data[2] | data[3];
+            let customizedAppCRC = data[4] | data[5] | data[6] | data[7];
+            status = translateCustomizationStatus(data[8]);
+            return { result: { vsm: {customization: {status, customizedAppCRC, customizationCRC }}}};
+        }
+        throw new Error("Failed to decode link control message")
+    }
+    
     // Rule update - CRC value (+build time, +version)
     const decodeRule = (iotnode, symbolTable, data, time) => {
         let rulesCrc32 = ((data[0]&0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
@@ -3793,6 +3817,7 @@ M input debounceSeconds 176 0xb0  1
         /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           },
         /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
         /* APP_LORA_PORT_PWR        */   6: { decode: decodeLinkControl,  name: 'link control'  }, 
+        /* APP_LORA_PORT_CUSTOMIZATION */7: { decode: decodeCustomization,name: 'customization' }, 
         /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
         /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
         /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },
