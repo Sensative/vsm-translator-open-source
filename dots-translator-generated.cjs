@@ -3319,12 +3319,16 @@ M input debounceSeconds 176 0xb0  1
         let status;
         if (data.length == 1) {
             status = translateCustomizationStatus(data[0]);
-            return { result: { vsm: {customization: {status, customizedAppCRC:0, customizationCRC:0 }}}};
+            return { result: { vsm: {customization: {status, customizedAppCRC:0, customizationCRC:0, timestamp:new Date() }}}};
         } else if (data.length == 9) {
-            let customizationCRC = data[0] | data[1] | data[2] | data[3];
-            let customizedAppCRC = data[4] | data[5] | data[6] | data[7];
+            let customizationCRC = data[0]<<24 | data[1]<<16 | data[2]<<8 | data[3];
+            if (data[0]&0x80)
+                customizationCRC+=0x80000000;    
+            let customizedAppCRC = data[4]<<24 | data[5]<<16 | data[6]<<8 | data[7];
+            if (data[4]&0x80)
+                customizedAppCRC+=0x80000000;
             status = translateCustomizationStatus(data[8]);
-            return { result: { vsm: {customization: {status, customizedAppCRC, customizationCRC }}}};
+            return { result: { vsm: {customization: {status, customizedAppCRC, customizationCRC, timestamp:new Date() }}}};
         }
         throw new Error("Failed to decode link control message")
     }
