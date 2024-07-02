@@ -42,6 +42,11 @@ if (!translatorVersion) {
 
 console.log("Translator version: " + translatorVersion);
 
+/**
+ * Groups schemas by name and mapData.
+ * 
+ * @returns {Object} An object containing grouped schemas.
+ */
 function groupSchemasByNameAndMapData() {
     const groupedSchemas = {};
     for (let [crc, schema] of Object.entries(knownSchemas)) {
@@ -71,7 +76,10 @@ function groupSchemasByNameAndMapData() {
     return groupedSchemas;
 }
 
-// Main Function
+/**
+ * Main Function: Generates basic translators for different templates.
+ * 
+ */
 function generateTranslators() {
     // Define templates
     const templates = [
@@ -106,7 +114,10 @@ function generateTranslators() {
     console.log(`Ready.`);
 }
 
-// File Handling
+/**
+ * Deletes existing files with the extensions '.js' and '.csv' from the specified directory.
+ * @param {string} outputDir - The directory path where the files are located.
+ */
 function deleteExistingFiles(outputDir) {
     fs.readdirSync(outputDir).forEach(file => {
         if (path.extname(file) === '.js' || path.extname(file) === '.csv') {
@@ -115,6 +126,12 @@ function deleteExistingFiles(outputDir) {
     });
 }
 
+/**
+ * Sorts the CSV data by the "Product Application" column.
+ *
+ * @param {Array<Array<string>>} csvData - The CSV data to be sorted.
+ * @returns {Array<Array<string>>} The sorted CSV data with the header row.
+ */
 function sortCsvData(csvData) {
     // Extract header row
     const headerRow = csvData.shift();
@@ -126,13 +143,24 @@ function sortCsvData(csvData) {
     return [headerRow, ...sortedData];
 }
 
-// CSV Generation
+/**
+ * Generates a CSV file with the given template name, output directory, and CSV data.
+ *
+ * @param {string} templateName - The name of the template.
+ * @param {string} outputDir - The output directory where the CSV file will be generated.
+ * @param {Array<Array<string>>} csvData - The data to be written to the CSV file.
+ * @returns {void}
+ */
 function generateCSV(templateName, outputDir, csvData) {
     const csvString = csvData.map(row => row.join(',')).join('\n');
     const csvFilename = `1-dots-basic-${templateName}-translators-index.csv`;
     fs.writeFileSync(path.join(outputDir, csvFilename), csvString);
 }
 
+/**
+ * Processes the schema versions by filtering out invalid versions and combining them.
+ * @param {Object} schema - The schema object to process.
+ */
 function processSchemaVersions(schema) {
     const versions = schema.versions.split(" ");
     const validVersions = versions.filter(version => version.match(/R(1[1-9]|[2-9]\d+)/)); // Filter out invalid versions
@@ -140,6 +168,12 @@ function processSchemaVersions(schema) {
     schema.versions = combinedVersions.join(' '); // Update schema versions    
 }
 
+/**
+ * Combines and sorts versions that are R11 or higher.
+ *
+ * @param {string[]} versions - An array of versions to combine.
+ * @returns {string[]} - An array of unique versions that are R11 or higher, sorted in ascending order.
+ */
 function combineVersions(versions) {
     const allVersions = new Set(); // Use a Set to store unique versions
     versions.forEach(version => {
@@ -150,6 +184,16 @@ function combineVersions(versions) {
     return [...allVersions].sort(); // Convert Set back to an array and sort it
 }
 
+/**
+ * Processes a template by replacing placeholders with schema data and writing the modified template to a file.
+ * Also prepares CSV row data for the template.
+ *
+ * @param {object} template - The template object.
+ * @param {string} crc - The CRC value.
+ * @param {object} schema - The schema object.
+ * @param {Array} csvData - The array to store CSV row data.
+ * @returns {void}
+ */
 function processTemplate(template, crc, schema, csvData) {
     const templateStr = fs.readFileSync(template.path, 'utf8');
     const newStr = getSchemaReplacement(templateStr, crc, schema);
@@ -172,6 +216,12 @@ function processTemplate(template, crc, schema, csvData) {
     csvData.push(csvRow);
 }
 
+/**
+ * Prepares the schema JSON by converting it to a string and applying formatting.
+ * @param {string} crc - The CRC value.
+ * @param {object} schema - The schema object.
+ * @returns {string} - The formatted schema JSON string.
+ */
 function prepareSchemaJSON(crc, schema) {
     return JSON.stringify({
         [crc]: {
@@ -184,10 +234,26 @@ function prepareSchemaJSON(crc, schema) {
     .replace(/\n/g, '\n    '); // Add indentation
 }
 
+/**
+ * Replaces template placeholders in a string with the provided schema JSON.
+ *
+ * @param {string} templateStr - The string containing the template placeholders.
+ * @param {string} schemaJSON - The JSON string representing the schema.
+ * @returns {string} The modified string with the template placeholders replaced.
+ */
 function replaceTemplatePlaceholders(templateStr, schemaJSON) {
     return templateStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n    var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
 }
 
+/**
+ * Prepares a CSV row based on the given template, CRC, schema, and new filename.
+ *
+ * @param {object} template - The template object.
+ * @param {string} crc - The CRC value.
+ * @param {object} schema - The schema object.
+ * @param {string} newFilename - The new filename.
+ * @returns {string[]} - The prepared CSV row as an array.
+ */
 function prepareCSVRow(template, crc, schema, newFilename) {
     return [
         `${path.join(template.outputDir, path.basename(newFilename))}`,
@@ -197,11 +263,23 @@ function prepareCSVRow(template, crc, schema, newFilename) {
     ];
 }
 
+/**
+ * Checks if all map data in the given array of schemas are identical.
+ *
+ * @param {Array<Object>} schemas - The array of schemas to check.
+ * @returns {boolean} - Returns true if all map data are identical, false otherwise.
+ */
 function areAllMapDataIdentical(schemas) {
     const uniqueMapData = new Set(schemas.map(({ schema }) => schema.mapData));
     return uniqueMapData.size === 1;
 }
 
+/**
+ * Processes identical map data using the provided template, schemas, and csvData.
+ * @param {Object} template - The template object.
+ * @param {Array} schemas - An array of schema objects.
+ * @param {Array} csvData - An array of CSV data.
+ */
 function processIdenticalMapData(template, schemas, csvData) {
     const { crc, schema } = schemas[0];
     schema.versions = combineAndSortVersions(schemas.map(({ schema }) => schema.versions));
@@ -215,18 +293,36 @@ function processIdenticalMapData(template, schemas, csvData) {
     }
 }
 
+/**
+ * Combines and sorts an array of version arrays, filtering out versions that do not match the pattern.
+ * @param {string[]} versionArrays - An array of version arrays.
+ * @returns {string} - A string containing the combined and sorted versions.
+ */
 function combineAndSortVersions(versionArrays) {
     const allVersions = versionArrays.flatMap(versions => versions.split(" "));
     const combinedVersions = allVersions.filter(version => version.match(/R(1[1-9]|[2-9]\d+)/));
     return [...new Set(combinedVersions)].sort().join(' ');
 }
 
+/**
+ * Combines the CRCs from an array of schemas into a unique set.
+ *
+ * @param {Array<Object>} schemas - An array of schemas containing a 'crc' property.
+ * @returns {Array<number>} - An array of unique CRC values.
+ */
 function combineCRCs(schemas) {
     const crcSet = new Set();
     schemas.forEach(({ crc }) => crcSet.add(crc));
     return [...crcSet];
 }
 
+/**
+ * Processes non-identical map data using the provided template, schemas, and csvData.
+ * 
+ * @param {object} template - The template object.
+ * @param {Array<object>} schemas - An array of schema objects.
+ * @param {object} csvData - The csv data object.
+ */
 function processNonIdenticalMapData(template, schemas, csvData) {
     schemas.forEach(({ crc, schema }) => {
         processSchemaVersions(schema);
@@ -234,6 +330,13 @@ function processNonIdenticalMapData(template, schemas, csvData) {
     });    
 }
 
+/**
+ * Processes the schemas based on the provided template, grouped schemas, and CSV data.
+ * 
+ * @param {Object} template - The template object.
+ * @param {Object} groupedSchemas - The grouped schemas object.
+ * @param {Array} csvData - The CSV data array.
+ */
 function processSchemas(template, groupedSchemas, csvData) {
     // Iterate over each group of knownSchemas with the same name and mapData
     for (let [key, schemas] of Object.entries(groupedSchemas)) {        
@@ -245,7 +348,14 @@ function processSchemas(template, groupedSchemas, csvData) {
     }
 }
 
-// Schema Replacement
+/**
+ * Replaces the schema, CRC, and translator version in the given template.
+ *
+ * @param {string} template - The template string to modify.
+ * @param {number} crc - The new CRC schema.
+ * @param {object} schema - The new schema object.
+ * @returns {string} The modified template with the updated schema, CRC, and translator version.
+ */
 function getSchemaReplacement(template, crc, schema) {
     // Substitute in the new CRC schema and translator version
     return template.replace(/rulesCrc32: \d+/, `rulesCrc32: ${crc}`)                   
@@ -253,7 +363,12 @@ function getSchemaReplacement(template, crc, schema) {
                    .replace(/###VERSION###/g, translatorVersion);
 }
 
-// Filename Generation
+/**
+ * Generates a filename based on the given schema.
+ *
+ * @param {object} schema - The schema object.
+ * @returns {string} The generated filename.
+ */
 function getFilename(schema) {
     // Extract versions
     const versions = schema.versions.split(" ").sort();
