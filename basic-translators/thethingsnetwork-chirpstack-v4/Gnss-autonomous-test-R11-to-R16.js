@@ -26,44 +26,46 @@ THE SOFTWARE.
 //
 // Decode decodes an array of bytes into an object.
 //  - fPort contains the LoRaWAN fPort number
-//  - bytes is base64 data
+//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
 //  - variables contains the device variables e.g. {"calibration": "3.5"} (both the key / value are of type string)
 // The function must return an object, e.g. {"temperature": 22.5}
+//
+// This Decoder is also applicable for Chirpstack v4
 
-function Decode(fPort, bytes, variables) {
-
-    var decoded = {};
-
+function decodeUplink(input) {
     var iotnode = {
         encodedData: {
-            port: fPort,
-            hexEncoded: bytes,
+            port: input.fPort,
+            hexEncoded: input.bytes,
             timestamp: Date.now(),
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 472391447 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 1815337626 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
-    }
+    }    
 
-    // Decode an uplink message from a buffer (array) of bytes to an object of
-    // fields.
-    decoded = translate(iotnode);
+    // Decode an uplink message from a buffer (array) of bytes to an object of fields.
+    var decoded = translate(iotnode);
 
-    return decoded;
+    return {
+        data: {
+            decoded
+        },
+        warnings: [],
+        errors: []
+    };  
 }
 
 function translate(iotnode) {
-
+    
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
-
-    // CRCs having similar schema: 472391447, 915094797, 3634715455, 4002204643
     var schema = 
     {
-        472391447: {
-            name: "Square-air",
-            versions: "R11 R12 R13 R14 R15",
-            mapData: "M input roamNetworkCount 160 0xa0  1 + M output batteryPercent 161 0xa1  1 + M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 162 0xa2  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempAlarmHighLevel 164 0xa4  1 + M output humidity 179 0xb3  0.01 + M output averageHumidity 144 0x90  0.01 + M input humidityTreshold 180 0xb4  0.01 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M output lux 181 0xb5  1 + M output averageLux 145 0x91  1 + M input luxTresholdPercent 182 0xb6  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M output air_run_in_status 167 0xa7  1 + M output air_stab_status 168 0xa8  1 + M output air_iaq_accuracy 169 0xa9  1 + M output air_iaq 146 0x92  1 + M output air_co2 147 0x93  1 + M output air_pressure 184 0xb8  0.01 + M output air_breath_voc_equivalent 152 0x98  0.01 + M output air_static_iaq 185 0xb9  1 + M input air_interval_minutes 170 0xaa  1 + M input air_static_iaq_alarm_level 186 0xba  1 + M input air_iaq_alarm_level 187 0xbb  1 + M output air_iaq_alarm 129 0x81  1"
+        1815337626: {
+            name: "Gnss-autonomous-test",
+            versions: "R11 R12 R13 R14 R15 R16",
+            mapData: "M output numSatellites 160 0xa0  1 + M output bestSatellites 184 0xb8  1 + M output scanCount 185 0xb9  1 + M output batteryPercent 161 0xa1  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -77,7 +79,7 @@ function translate(iotnode) {
             var val = (data[used++] << 24) | (data[used++] << 16) | (data[used++] << 8) | (data[used++]);
             if (symbolTable.hasOwnProperty(ref)) {
                 name = symbolTable[ref].name;
-            } else
+            } else 
                 name = 'ref:' + ref;
             result[name] = val;
         }
@@ -91,7 +93,7 @@ function translate(iotnode) {
     };
 
     // Control status update
-    var decodeControl = function (iotnode, symbolTable, data, time) {
+    var decodeControl = function(iotnode, symbolTable, data, time) {
         var vmError = data[0];
         var vmStatus = data[1];
         return {
@@ -104,12 +106,12 @@ function translate(iotnode) {
         };
     }
 
-    var decodeCrash = function (iotnode, symbolTable, data, time) {
+    var decodeCrash = function(iotnode, symbolTable, data, time) {
         var index = (data[0] << 8) | data[1];
         var bytes = "";
         for (var i = 2; i < data.length; ++i) {
             var byte = data[i].toString(16);
-            if (byte.length == 1)
+            if (byte.length == 1) 
                 byte = "0" + byte;
             bytes += byte;
         }
@@ -126,16 +128,16 @@ function translate(iotnode) {
     }
 
     // Diagnostics output
-    var decodeDiagnostics = function (iotnode, symbolTable, data, time) {
-        if (data.length === 2)
+    var decodeDiagnostics = function(iotnode, symbolTable, data, time) {
+        if (data.length === 2) 
             return decodeControl(iotnode, symbolTable, data, time);
-        if (data.length % 5 === 0)
+        if (data.length % 5 === 0) 
             return decodeReferences(iotnode, symbolTable, data, time);
         throw new Error("Failed to decode diagnostics data");
     }
 
     // Link Control service output
-    var decodeLinkControl = function (iotnode, symbolTable, data, time) {
+    var decodeLinkControl = function(iotnode, symbolTable, data, time) {
         if (data.length == 3) {
             var linkControlIndex = data[0];
             var linkControlDL_RSSI = data[1] << 24 >> 24; // Sign extension
@@ -170,16 +172,16 @@ function translate(iotnode) {
                 }
             };
         }
-        throw new Error("Failed to decode link control message");
+        throw new Error("Failed to decode link control message")
     }
 
     // Rule update - CRC value (+build time, +version)
-    var decodeRule = function (iotnode, symbolTable, data, time) {
+    var decodeRule = function(iotnode, symbolTable, data, time) {
         var rulesCrc32 = ((data[0] & 0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
-        if (data[0] & 0x80)
+        if (data[0] & 0x80) 
             rulesCrc32 += 0x80000000;
-
-        var schemaInfo = {};
+        
+        var schemaInfo = {}
         if (schema[rulesCrc32]) {
             // there is a known schema for this node, use it
             schemaInfo = {
@@ -242,7 +244,7 @@ function translate(iotnode) {
         }
         // We have 12 bytes or more, fill in the version as well
         var buildGitVersion = "";
-        for (var pos = 8; pos < data.length; ++pos)
+        for (var pos = 8; pos < data.length; ++pos) 
             buildGitVersion += String.fromCharCode(data[pos]);
         // Create a new object to hold the combined properties
         var resultVsm = {};
@@ -270,19 +272,19 @@ function translate(iotnode) {
     }
 
     // Decode uint32_8_t compressed time format
-    var decode_uint32_8_t = function (fp) {
+    var decode_uint32_8_t = function(fp) {
         var exp = (fp >> 3);
         var base = fp & 0x7;
-        if (0 == exp)
+        if (0 == exp) 
             return base;
         else if (1 == exp) // compressed
             return (8 + base);
         else // Round to center of interval
             return ((8 + base) << (exp - 1)) + (1 << (exp - 2));
-    }
-
+        }
+    
     // Decode int32_16_t compressed value format
-    var decode_int32_16_t = function (fp) {
+    var decode_int32_16_t = function(fp) {
         var neg = fp & 0x8000;
         var exp = (fp >> 10) & 0x1f;
         var base = fp & 0x3ff
@@ -297,16 +299,16 @@ function translate(iotnode) {
         }
     }
 
-    var encode_uint8_hex = function (hex) {
+    var encode_uint8_hex = function(hex) {
         var byte = hex.toString(16);
-        if (byte.length === 1)
+        if (byte.length === 1) 
             byte = "0" + byte;
         return byte;
     }
 
-    var encode_int8_hex = function (hex) {
+    var encode_int8_hex = function(hex) {
         var byte = (hex & 0xff).toString(16);
-        if (byte.length === 1)
+        if (byte.length === 1) 
             byte = "0" + byte;
         return byte;
     }
@@ -318,21 +320,21 @@ function translate(iotnode) {
             output: {},
             timestamps: {}
         };
-        if (!timestamps)
+        if (!timestamps) 
             timestamps = {}
-        series.map(function (sample) {
-            // Each sample has a field called value and a field called timestamp    
+      series.map(function(sample) {
+            // Each sample has a field called value and a field called timestamp
             var sampvartimestamp = sample.timestamp;
             var sampleValues = sample.value;
-            if (!sampleValues.output)
+            if (!sampleValues.output) 
                 throw new Error("The sample does not have output structure");
-
+            
             // Now check each field of this output (should be just one)
             var keys = Object.keys(sampleValues.output);
             for (var k = 0; k < keys.length; ++k) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
-                    var lastSampvartime = new Date(timestamps[name]);
+                    var lastSampvartime = new Date(timestamps[name]);                    
                     if (lastSampvartime < sampvartimestamp) {
                         timestamps[name] = sampvartimestamp; // Avoid overwrite from this series
                         result.timestamps[name] = sampvartimestamp;
@@ -352,7 +354,7 @@ function translate(iotnode) {
     }
 
     // Output from running ruleset
-    var decodeOutputCombined = function (iotnode, symbolTable, data, time, compressed) {
+    var decodeOutputCombined = function(iotnode, symbolTable, data, time, compressed) {
         var pos = 0;
         var time_s = Math.floor(time / 1000);
         var timeseries = [];
@@ -406,7 +408,7 @@ function translate(iotnode) {
                         if (compressed) {
                             datasize = 2;
                             decompressvalue = true;
-                        } else
+                        } else 
                             datasize = 4;
                         break;
                     case 4:
@@ -426,7 +428,7 @@ function translate(iotnode) {
                         if (compressed) {
                             datasize = 2;
                             decompressvalue = true;
-                        } else
+                        } else 
                             datasize = 4;
                         break;
                 }
@@ -475,10 +477,10 @@ function translate(iotnode) {
                         pos += 2;
                         break;
                     }
-                    case 1:
-                        value = (data[pos] << 24 >> 24);
-                        pos++;
-                        break;
+                case 1:
+                    value = (data[pos] << 24 >> 24);
+                    pos++;
+                    break;
             }
 
             if (symbolTable.hasOwnProperty(kind + 128)) {
@@ -492,7 +494,7 @@ function translate(iotnode) {
                     value: {
                         output: valuestruct
                     }
-                };
+                };                
                 timeseries.push(sample);
             } else {
                 console.log("No symbol table entry for message id " + (kind + 128) + " value " + value);
@@ -512,22 +514,22 @@ function translate(iotnode) {
         return decodeOutputCombined(iotnode, symbolTable, data, time, true);
     }
 
-    var addSemtechGnssObject = function (result) {
+    var addSemtechGnssObject = function(result) {
         var semtechObject = {
             msgtype: "gnss",
             gnss_capture_time: result.gnss.captureGpsTime,
             payload: result.gnss.completeHex
         };
         // Note: Should probably be NaN instead of 0,0 as illegal position
-        if (result.gnss.assistanceLatitude != 0.0 && result.gnss.assistanceLongitude != 0.0)
+        if (result.gnss.assistanceLatitude != 0.0 && result.gnss.assistanceLongitude != 0.0) 
             semtechObject.gnss_assist_position = [
                 result.gnss.assistanceLatitude, result.gnss.assistanceLongitude
             ],
 
             result.semtechEncoded = semtechObject;
-    }
-
-    var encodeSemtechWifi = function (wifi) {
+        }
+    
+    var encodeSemtechWifi = function(wifi) {
         var hex = "01"; // Tag indicating we have RSSI values included
         var aps = wifi.wifiAccessPoints;
         for (var i = 0; i < aps.length; ++i) {
@@ -557,18 +559,19 @@ function translate(iotnode) {
         return hex;
     }
 
-    var addSemtechWifiObject = function (result) {
+    var addSemtechWifiObject = function(result) {
         var semtechObject = {
             msgtype: "wifi",
             payload: encodeSemtechWifi(result.wifi),
             timestamp: result
                 .wifi
-                .timestamp
+                .timestamp               
+                .toISOString()
         };
         result.semtechEncoded = semtechObject;
     }
 
-    var decodeGnssStream = function (iotnode, symbolTable, data, time) {
+    var decodeGnssStream = function(iotnode, symbolTable, data, time) {
         var UNIX_GPS_EPOCH_OFFSET = 315964800;
         var pos = 0;
         var result = {
@@ -668,7 +671,7 @@ function translate(iotnode) {
         };
     }
 
-    var decodeGnssMetadata = function (iotnode, symbolTable, data, time) {
+    var decodeGnssMetadata = function(iotnode, symbolTable, data, time) {
         if (data.length == 2) {
             var result = {
                 gnss: {}
@@ -712,12 +715,12 @@ function translate(iotnode) {
         return null;
     }
 
-    var decodeWifiStream = function (iotnode, symbolTable, data, time) {
-        if (data.length < 4)
+    var decodeWifiStream = function(iotnode, symbolTable, data, time) {
+        if (data.length < 4) 
             return null;
         var age = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         var pos = 4;
-        if ((data.length - pos) % 7 != 0)
+        if ((data.length - pos) % 7 != 0) 
             return null; // Bad
         var result = {
             wifi: {
@@ -730,7 +733,7 @@ function translate(iotnode) {
             var macAddress = "";
             for (var i = 0; i < 6; ++i) {
                 macAddress += encode_uint8_hex(data[pos++]);
-                if (i < 5)
+                if (i < 5) 
                     macAddress += ":";
             }
             wifiAccessPoints.push({
@@ -745,17 +748,17 @@ function translate(iotnode) {
         };
     }
 
-    var decodeStoredUplink = function (iotnode, symbolTable, data, time) {
-        if (data.length < 5)
+    var decodeStoredUplink = function(iotnode, symbolTable, data, time) {
+        if (data.length < 5) 
             return null;
         var linktime = 1000 * ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
         if (linktime > time) 
             return null; // No future uplinks
         var linkport = data[4];
         var linkdecoder = mapPortToDecode[linkport];
-        if (!linkdecoder)
+        if (!linkdecoder) 
             return null;
-
+        
         var strRest = data
             .toString('hex')
             .substring(10); // Pull off 5 first bytes
@@ -763,8 +766,8 @@ function translate(iotnode) {
         return linkdecoder.decode(iotnode, symbolTable, newData, linktime);
     }
 
-    var decodeIddData = function (iotnode, symbolTable, data, time) {
-        if (data.length < 48)
+    var decodeIddData = function(iotnode, symbolTable, data, time) {
+        if (data.length < 48) 
             return null;
         var idd = {}
         idd.timestamp = new Date(time).toISOString();
@@ -782,9 +785,9 @@ function translate(iotnode) {
         idd.loraMcpsCount = data[b++] | data[b++] << 8;
 
         // Byte 16
-        if (b != 16)
+        if (b != 16) 
             console.log("Expected 16 but had " + b);
-
+        
         idd.loraMcpsFailCount = data[b++] | data[b++] << 8; // Number of failed MCPS LoRa transactions
         idd.joinCount = data[b++] | data[b++] << 8; // Number of 'NIF' in demo mode
         idd.watchdogCount = data[b++];
@@ -795,9 +798,9 @@ function translate(iotnode) {
         idd.lastDeviceTime = new Date((data[b++] | data[b++] << 8 | data[b++] << 16 | data[b++] << 24) * 1000).toISOString();
 
         // Byte 32
-        if (b != 32)
+        if (b != 32) 
             console.log("Expected 32 but had " + b);
-
+        
         idd.vmExecCount = data[b++] | data[b++] << 8 | data[b++] << 16 | data[b++] << 24;
         idd.crashStoreCount = data[b++];
         idd.gnssFoundSVLpf = data[b++] / 10.0;
@@ -808,7 +811,7 @@ function translate(iotnode) {
         idd.wifiGwsLpf = data[b++] / 10.0;
         idd.gnssValidSVLpf = data[b++] / 10.0;
 
-        if (b != 48)
+        if (b != 48) 
             console.log("Expected 48 but had " + b);
 
         return {
@@ -818,7 +821,7 @@ function translate(iotnode) {
         };
     }
 
-    var decodePwrData = function (iotnode, symbolTable, data, time) {
+    var decodePwrData = function(iotnode, symbolTable, data, time) {
         if (data.length === 1) {
             return {
                 result: {
@@ -843,7 +846,7 @@ function translate(iotnode) {
         }
     }
 
-    var decodePortForward = function (iotnode, symbolTable, data, time, port) {
+    var decodePortForward = function(iotnode, symbolTable, data, time, port) {
         var result = {
             result: {
                 forward: {}
@@ -978,23 +981,23 @@ function translate(iotnode) {
 
     // Convert a hexadecimal data representation to binary
     function hexToDecimalArray(data) {
-        if (!data)
+        if (!data) 
             return null;
 
         // Convert data to a string if it isn't already
         if (typeof data !== 'string') {
             data = data.toString();
         }
-
+        
         var decimalArray = [];
 
         for (var i = 0; i < data.length; i += 2) {
-            var hexValue = data.substring(i, i + 2);
+            var hexValue = data.substring(i, i+2);
             decimalArray.push(parseInt(hexValue, 16));
         }
-
+    
         return decimalArray;
-    }
+    }    
 
     // Generate a symbol table from the nodes vsm.schema field
     function mkSymbolTable(iotnode) {
@@ -1021,7 +1024,7 @@ function translate(iotnode) {
             return symbolTable; // Do not know which application this is
         }
 
-        if (!description)
+        if (!description) 
             return symbolTable;
 
         var descriptions = description.split(' + ');
@@ -1034,7 +1037,7 @@ function translate(iotnode) {
             while ((match = regex.exec(descriptions[i])) !== null) {
                 matches.push(match);
             }
-            if (1 != matches.length)
+            if (1 != matches.length) 
                 continue; // No match
             var item = matches[0];
 
@@ -1054,10 +1057,10 @@ function translate(iotnode) {
             var scale = 1;
             if (item.length >= 5) {
                 scale = parseFloat(item[4]);
-                if ((typeof (scale) !== 'number') || isNaN(scale))
+                if ((typeof(scale) !== 'number') || isNaN(scale)) 
                     scale = 1;
-            }
-
+                }
+            
             symbolTable[id] = {
                 name: name,
                 type: type,
@@ -1074,7 +1077,7 @@ function translate(iotnode) {
         return null;
     }
     // Actual data    
-    var data = iotnode.encodedData.hexEncoded;
+    var data = iotnode.encodedData.hexEncoded;    
     if (!data) {
         console.log("No valid hex data supplied: " + JSON.stringify(iotnode));
         return null;
@@ -1097,5 +1100,4 @@ function translate(iotnode) {
         console.log("No decode function for port " + port);
         return null;
     }
-    // NOT REACHABLE
 }
