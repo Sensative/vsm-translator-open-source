@@ -194,7 +194,7 @@ function combineVersions(versions) {
  * @param {Array} csvData - The array to store CSV row data.
  * @returns {void}
  */
-function processTemplate(template, crc, schema, csvData) {
+function processTemplate(template, crc, schema, csvData, relatedCRCs) {
     const templateStr = fs.readFileSync(template.path, 'utf8');
     const newStr = getSchemaReplacement(templateStr, crc, schema);
     const newFilename = path.join(template.outputDir, getFilename(schema));
@@ -206,7 +206,7 @@ function processTemplate(template, crc, schema, csvData) {
     const schemaJSON = prepareSchemaJSON(crc, schema);
     
     // Replace placeholder in template with schema data JSON
-    const replacedTemplate = replaceTemplatePlaceholders(newStr, schemaJSON);
+    const replacedTemplate = replaceTemplatePlaceholders(newStr, schemaJSON, relatedCRCs);
 
     // Write modified template to file
     fs.writeFileSync(newFilename, replacedTemplate, 'utf8');
@@ -241,8 +241,9 @@ function prepareSchemaJSON(crc, schema) {
  * @param {string} schemaJSON - The JSON string representing the schema.
  * @returns {string} The modified string with the template placeholders replaced.
  */
-function replaceTemplatePlaceholders(templateStr, schemaJSON) {
-    return templateStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n    var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
+function replaceTemplatePlaceholders(templateStr, schemaJSON, relatedCRCs) {
+    const crcComment = relatedCRCs.length > 1 ? `\n    // CRCs having similar schema: ${relatedCRCs.join(', ')}\n    ` : '    ';
+    return templateStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n${crcComment}var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
 }
 
 /**
@@ -283,7 +284,8 @@ function areAllMapDataIdentical(schemas) {
 function processIdenticalMapData(template, schemas, csvData) {
     const { crc, schema } = schemas[0];
     schema.versions = combineAndSortVersions(schemas.map(({ schema }) => schema.versions));
-    processTemplate(template, crc, schema, csvData); // Process template
+    const relatedCRCs = schemas.map(({ crc }) => crc);
+    processTemplate(template, crc, schema, csvData, relatedCRCs); // Process template
 
     // Combine CRCs for schemas with the same name
     const combinedCRCs = combineCRCs(schemas);
@@ -326,7 +328,7 @@ function combineCRCs(schemas) {
 function processNonIdenticalMapData(template, schemas, csvData) {
     schemas.forEach(({ crc, schema }) => {
         processSchemaVersions(schema);
-        processTemplate(template, crc, schema, csvData);
+        processTemplate(template, crc, schema, csvData, crc);
     });    
 }
 
