@@ -60,6 +60,8 @@ function decodeUplink(input) {
 function translate(iotnode) {
     
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
+
+    // CRCs having similar schema: 1695912328, 1872032769
     var schema = 
     {
         1695912328: {
@@ -193,7 +195,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.1.54"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.66"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
