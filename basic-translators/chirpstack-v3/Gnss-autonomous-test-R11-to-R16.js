@@ -42,7 +42,7 @@ function Decode(fPort, bytes, variables) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 1711284143 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 1815337626 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }
 
@@ -58,10 +58,10 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     var schema = 
     {
-        1711284143: {
-            name: "Tracker-stats",
-            versions: "R11 R12 R13 R14 R15",
-            mapData: "M output volts 176 0xb0  0.001 + M input gnssIntervalMinutes 160 0xa0  1 + M input gnssScanMode 177 0xb1  1 + M output numSatellites 161 0xa1  1 + M output bestSatellites 184 0xb8  1 + M output scanCount 185 0xb9  1 + M output gpsTime 186 0xba  1 + M output downlinkRssi 162 0xa2  1 + M input air_pressure_hysteresis_bar 163 0xa3  1 + M output air_pressure 187 0xbb  0.01 + M output batteryPercent 164 0xa4  1"
+        1815337626: {
+            name: "Gnss-autonomous-test",
+            versions: "R11 R12 R13 R14 R15 R16",
+            mapData: "M output numSatellites 160 0xa0  1 + M output bestSatellites 184 0xb8  1 + M output scanCount 185 0xb9  1 + M output batteryPercent 161 0xa1  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -189,7 +189,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.1.54"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.66"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
