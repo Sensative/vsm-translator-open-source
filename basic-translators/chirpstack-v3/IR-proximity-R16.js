@@ -42,7 +42,7 @@ function Decode(fPort, bytes, variables) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 472391447 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 2355202201 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }
 
@@ -56,14 +56,12 @@ function Decode(fPort, bytes, variables) {
 function translate(iotnode) {
 
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
-
-    // CRCs having similar schema: 472391447, 915094797, 3634715455, 4002204643
     var schema = 
     {
-        472391447: {
-            name: "Square-air",
-            versions: "R11 R12 R13 R14 R15",
-            mapData: "M input roamNetworkCount 160 0xa0  1 + M output batteryPercent 161 0xa1  1 + M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 162 0xa2  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempAlarmHighLevel 164 0xa4  1 + M output humidity 179 0xb3  0.01 + M output averageHumidity 144 0x90  0.01 + M input humidityTreshold 180 0xb4  0.01 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M output lux 181 0xb5  1 + M output averageLux 145 0x91  1 + M input luxTresholdPercent 182 0xb6  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M output air_run_in_status 167 0xa7  1 + M output air_stab_status 168 0xa8  1 + M output air_iaq_accuracy 169 0xa9  1 + M output air_iaq 146 0x92  1 + M output air_co2 147 0x93  1 + M output air_pressure 184 0xb8  0.01 + M output air_breath_voc_equivalent 152 0x98  0.01 + M output air_static_iaq 185 0xb9  1 + M input air_interval_minutes 170 0xaa  1 + M input air_static_iaq_alarm_level 186 0xba  1 + M input air_iaq_alarm_level 187 0xbb  1 + M output air_iaq_alarm 129 0x81  1"
+        2355202201: {
+            name: "IR-proximity",
+            versions: "R16",
+            mapData: "M output proximityValue 152 0x98  1 + M input pollInterval 160 0xa0  1 + M input irMode 161 0xa1  1 + M input proximityHysteresis 176 0xb0  1 + M input irPower 162 0xa2  1 + M output temp 177 0xb1  0.01 + M output averageTemp 178 0xb2  0.01 + M input tempHysteresis 179 0xb3  0.01 + M input averageTempIntervalHours 163 0xa3  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 164 0xa4  1 + M input tempAlarmHighLevel 165 0xa5  1 + M output batteryPercent 166 0xa6  1 + M output volts 180 0xb4  0.001"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
