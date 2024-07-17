@@ -384,25 +384,7 @@ function getFilename(schema) {
     if (versions.length === 1) {
         return `${nameWithoutCommas}-${vFrom}.js`;
     }
-
-    // Ensure versions are consecutive
-    const allVersions = versions.map(v => parseInt(v.slice(1))).sort((a, b) => a - b);
-    const lowestVersion = allVersions[0];
-    const highestVersion = allVersions[allVersions.length - 1];
-    const missingVersions = [];
-    for (let i = lowestVersion + 1; i < highestVersion; i++) {
-        if (!allVersions.includes(i)) {
-            missingVersions.push(`R${i}`);
-        }
-    }
-
-    // Construct filename
-    if (missingVersions.length === 0) {
-        return `${nameWithoutCommas}-${vFrom}-to-${vTo}.js`;
-    } else {
-        const allVersions = [vFrom, ...missingVersions, vTo].map(v => v.slice(1)).sort((a, b) => a - b);
-        return `${nameWithoutCommas}-${allVersions.map(v => `R${v}`).join('-')}.js`;
-    }
+    return `${nameWithoutCommas}-${vFrom}-to-${vTo}.js`;
 }
 
 // Check if knownSchemas is defined
