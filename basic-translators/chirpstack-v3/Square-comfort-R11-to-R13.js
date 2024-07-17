@@ -173,6 +173,37 @@ function translate(iotnode) {
         throw new Error("Failed to decode link control message");
     }
 
+    // Link Control service output
+    var translateCustomizationStatus = function(byte) {
+        switch(byte) {
+            case 0: return "None";
+            case 1: return "Applied";
+            case 2: return "Error";
+            case 3: return "Dirty";
+            default: return "Unknown";
+        }
+    };
+
+    var decodeCustomization = function(iotnode, symbolTable, data, time) {
+        var status;
+        if (data.length == 1) {
+            status = translateCustomizationStatus(data[0]);
+            return { result: { vsm: {customization: {status: status, customizedAppCRC: 0, customizationCRC: 0, timestamp: new Date() }}}};
+        } else if (data.length == 9) {
+            var customizationCRC = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
+            if (data[0] & 0x80) {
+                customizationCRC += 0x100000000;    
+            }
+            var customizedAppCRC = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
+            if (data[4] & 0x80) {
+                customizedAppCRC += 0x100000000;
+            }
+            status = translateCustomizationStatus(data[8]);
+            return { result: { vsm: {customization: {status: status, customizedAppCRC: customizedAppCRC, customizationCRC: customizationCRC, timestamp: new Date() }}}};
+        }
+        throw new Error("Failed to decode link control message");
+    };    
+
     // Rule update - CRC value (+build time, +version)
     var decodeRule = function (iotnode, symbolTable, data, time) {
         var rulesCrc32 = ((data[0] & 0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
@@ -804,7 +835,7 @@ function translate(iotnode) {
         idd.gnssSnrLpf = (data[b++] | data[b++] << 8) / 10.0;
         idd.gnssSnrMaxLpf = (data[b++] | data[b++] << 8) / 10.0;
         idd.loraRssiLpf = (0xffff0000 | data[b++] | data[b++] << 8) / 10.0;
-        idd.loraSnrLpf = (data[b++] | data[b++] << 8) / 10.0;
+        idd.loraSnrLpf = ((data[b++]&0xff)|data[b++]<<8)/10.0;
         idd.wifiGwsLpf = data[b++] / 10.0;
         idd.gnssValidSVLpf = data[b++] / 10.0;
 
@@ -858,122 +889,27 @@ function translate(iotnode) {
 
     // Must match definitions in app.c
     var mapPortToDecode = {
-        /* APP_LORA_PORT_OUTPUT     */
-        1: {
-            decode: decodeOutput,
-            name: 'output'
-        },
-        /* APP_LORA_PORT_DIAGNOSTICS */
-        2: {
-            decode: decodeDiagnostics,
-            name: 'diagnostics'
-        },
-        /* APP_LORA_PORT_CRASH      */
-        3: {
-            decode: decodeCrash,
-            name: 'crash'
-        },
-        /* APP_LORA_PORT_IDD        */
-        4: {
-            decode: decodeIddData,
-            name: 'idd'
-        },
-        /* APP_LORA_PORT_PWR        */
-        5: {
-            decode: decodePwrData,
-            name: 'pwr'
-        },
-        /* APP_LORA_PORT_PWR        */
-        6: {
-            decode: decodeLinkControl,
-            name: 'link control'
-        },
-        /* APP_LORA_PORT_COMPRESSED */
-        11: {
-            decode: decodeCompressed,
-            name: 'compressed'
-        },
-        /* APP_LORA_PORT_STORED_UPLINK*/
-        12: {
-            decode: decodeStoredUplink,
-            name: 'stored uplink'
-        },
-        /* APP_LORA_PORT_RULE	    */
-        15: {
-            decode: decodeRule,
-            name: 'rule'
-        },
-        /* APP_LORA_PORT_GNSS_RESULT*/
-        21: {
-            decode: decodeGnssStream,
-            name: 'gnss stream'
-        },
-        /* APP_LORA_PORT_GNSS_METADATA*/
-        22: {
-            decode: decodeGnssMetadata,
-            name: 'gnss metadata'
-        },
-        /* APP_LORA_PORT_WIFI */
-        23: {
-            decode: decodeWifiStream,
-            name: 'wifi stream'
-        },
-        /* PORT FORWARD: 32 */
-        32: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 32)
-            },
-            name: "port forward 32"
-        },
-        /* PORT FORWARD: 33 */
-        33: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 33)
-            },
-            name: "port forward 33"
-        },
-        /* PORT FORWARD: 34 */
-        34: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 34)
-            },
-            name: "port forward 34"
-        },
-        /* PORT FORWARD: 35 */
-        35: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 35)
-            },
-            name: "port forward 35"
-        },
-        /* PORT FORWARD: 36 */
-        36: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 36)
-            },
-            name: "port forward 36"
-        },
-        /* PORT FORWARD: 37 */
-        37: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 37)
-            },
-            name: "port forward 37"
-        },
-        /* PORT FORWARD: 38 */
-        38: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 38)
-            },
-            name: "port forward 38"
-        },
-        /* PORT FORWARD: 39 */
-        39: {
-            decode: function (n, s, d, t) {
-                decodePortForward(n, s, d, t, 39)
-            },
-            name: "port forward 39"
-        }
+        /* APP_LORA_PORT_OUTPUT     */   1: { decode: decodeOutput,       name: 'output'        },
+        /* APP_LORA_PORT_DIAGNOSTICS */	 2: { decode: decodeDiagnostics,  name: 'diagnostics'   },
+        /* APP_LORA_PORT_CRASH      */   3: { decode: decodeCrash,        name: 'crash'         },
+        /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           },
+        /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
+        /* APP_LORA_PORT_PWR        */   6: { decode: decodeLinkControl,  name: 'link control'  }, 
+        /* APP_LORA_PORT_CUSTOMIZATION */7: { decode: decodeCustomization,name: 'customization' }, 
+        /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
+        /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
+        /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },
+        /* APP_LORA_PORT_GNSS_RESULT*/  21: { decode: decodeGnssStream,   name: 'gnss stream'   },
+        /* APP_LORA_PORT_GNSS_METADATA*/22: { decode: decodeGnssMetadata, name: 'gnss metadata' },
+        /* APP_LORA_PORT_WIFI */        23: { decode: decodeWifiStream,   name: 'wifi stream'   },
+        /* PORT FORWARD: 32 */          32: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,32), name: "port forward 32"},
+        /* PORT FORWARD: 33 */          33: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,33), name: "port forward 33"},
+        /* PORT FORWARD: 34 */          34: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,34), name: "port forward 34"},
+        /* PORT FORWARD: 35 */          35: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,35), name: "port forward 35"},
+        /* PORT FORWARD: 36 */          36: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,36), name: "port forward 36"},
+        /* PORT FORWARD: 37 */          37: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,37), name: "port forward 37"},
+        /* PORT FORWARD: 38 */          38: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,38), name: "port forward 38"},
+        /* PORT FORWARD: 39 */          39: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,39), name: "port forward 39"}
     };
 
     // Convert a hexadecimal data representation to binary
