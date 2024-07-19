@@ -1,27 +1,28 @@
 Filename,Product Application,Versions,CRCs
 chirpstack-v3/Airport-int-R11-to-R15.js,Airport-int,R11 R12 R13 R14 R15,1695912328|1872032769
-chirpstack-v3/Airport-int-R16-to-R18.js,Airport-int,R16 R18,3532693249|3625056904
-chirpstack-v3/Airport-int-R6-fw-patch-R18.js,Airport-int-R6-fw-patch,R18,2745602166
-chirpstack-v3/Default-R11-to-R18.js,Default,R11 R12 R13 R14 R15 R16 R18,2132727044
-chirpstack-v3/Digital-gpio-R11-to-R18.js,Digital-gpio,R11 R12 R13 R14 R15 R16 R18,1617091456|3497448490
-chirpstack-v3/Gnss-autonomous-test-R11-to-R18.js,Gnss-autonomous-test,R11 R12 R13 R14 R15 R16 R18,1815337626
-chirpstack-v3/Heartstarter-R11-to-R18.js,Heartstarter,R11 R12 R13 R14 R15 R16 R18,1727723267
-chirpstack-v3/IR-proximity-R16-to-R18.js,IR-proximity,R16 R18,2355202201
+chirpstack-v3/Airport-int-R16-to-R19.js,Airport-int,R16 R18 R19,3532693249|3625056904
+chirpstack-v3/Airport-int-R6-fw-patch-R18-to-R19.js,Airport-int-R6-fw-patch,R18 R19,2745602166
+chirpstack-v3/Default-R11-to-R19.js,Default,R11 R12 R13 R14 R15 R16 R18 R19,2132727044
+chirpstack-v3/Digital-gpio-R11-to-R19.js,Digital-gpio,R11 R12 R13 R14 R15 R16 R18 R19,1617091456|3497448490
+chirpstack-v3/Gnss-autonomous-test-R11-to-R19.js,Gnss-autonomous-test,R11 R12 R13 R14 R15 R16 R18 R19,1815337626
+chirpstack-v3/Heartstarter-R11-to-R19.js,Heartstarter,R11 R12 R13 R14 R15 R16 R18 R19,1727723267
+chirpstack-v3/IR-proximity-R16-to-R19.js,IR-proximity,R16 R18 R19,2355202201
 chirpstack-v3/Lifefinder-R11-to-R15.js,Lifefinder,R11 R12 R13 R14 R15,47853213|3321548430
 chirpstack-v3/Lifefinder-motion-R11-to-R15.js,Lifefinder-motion,R11 R12 R13 R14 R15,1938827428|3031484599
 chirpstack-v3/Lifefinder-squad-R11-to-R15.js,Lifefinder-squad,R11 R12 R13 R14 R15,399948366|3505805917
 chirpstack-v3/Lifefinder-wifi-R11-to-R15.js,Lifefinder-wifi,R11 R12 R13 R14 R15,691254335|3994244140
-chirpstack-v3/Lifefinder-wifi-R16-to-R18.js,Lifefinder-wifi,R16 R18,2274655646
-chirpstack-v3/Motion-measure-R11-to-R18.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18,2297466901
-chirpstack-v3/Puck-radar-R13-to-R18.js,Puck-radar,R13 R14 R15 R16 R18,561898260
+chirpstack-v3/Lifefinder-wifi-R16-to-R19.js,Lifefinder-wifi,R16 R18 R19,2274655646
+chirpstack-v3/Motion-measure-R11-to-R19.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19,2297466901
+chirpstack-v3/Puck-radar-R13-to-R19.js,Puck-radar,R13 R14 R15 R16 R18 R19,561898260
 chirpstack-v3/Puck-radar-R11-to-R12.js,Puck-radar,R11 R12,1325798073
 chirpstack-v3/Puck-radar-fast-rejoin-R12.js,Puck-radar-fast-rejoin,R12,729172455
-chirpstack-v3/Puck-radar-fast-rejoin-R13-to-R18.js,Puck-radar-fast-rejoin,R13 R14 R15 R16 R18,1121182195
+chirpstack-v3/Puck-radar-fast-rejoin-R13-to-R19.js,Puck-radar-fast-rejoin,R13 R14 R15 R16 R18 R19,1121182195
 chirpstack-v3/Square-air-R11-to-R15.js,Square-air,R11 R12 R13 R14 R15,472391447|915094797|3634715455|4002204643
-chirpstack-v3/Square-air-R16-to-R18.js,Square-air,R16 R18,3241343967
-chirpstack-v3/Square-comfort-R14-to-R18.js,Square-comfort,R14 R15 R16 R18,2266505222|2696231198
+chirpstack-v3/Square-air-R16-to-R19.js,Square-air,R16 R18 R19,3241343967
+chirpstack-v3/Square-comfort-R14-to-R19.js,Square-comfort,R14 R15 R16 R18 R19,2266505222|2696231198
 chirpstack-v3/Square-comfort-R11-to-R13.js,Square-comfort,R11 R12 R13,3530880224|4174894842
 chirpstack-v3/Square-comfort-sound-R11-to-R15.js,Square-comfort-sound,R11 R12 R13 R14 R15,517999093|2338085954|2387046759|2766427005
 chirpstack-v3/Square-comfort-sound-R16-to-R18.js,Square-comfort-sound,R16 R18,1355326083
-chirpstack-v3/Tracker-R11-to-R18.js,Tracker,R11 R12 R13 R14 R15 R16 R18,489186430
-chirpstack-v3/Tracker-stats-R11-to-R18.js,Tracker-stats,R11 R12 R13 R14 R15 R16 R18,1711284143
+chirpstack-v3/Square-comfort-sound-R19.js,Square-comfort-sound,R19,3090458506
+chirpstack-v3/Tracker-R11-to-R19.js,Tracker,R11 R12 R13 R14 R15 R16 R18 R19,489186430
+chirpstack-v3/Tracker-stats-R11-to-R19.js,Tracker-stats,R11 R12 R13 R14 R15 R16 R18 R19,1711284143
