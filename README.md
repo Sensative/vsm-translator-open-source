@@ -161,4 +161,16 @@ All this is made available in the MQTT client, which also support reformatting t
 
 # Basic Translator
 
-Should you require a simpler solution in the form of a single JS function to translate a single type of device, for example for Chirpstack, check out the Basic Translators branch https://github.com/Sensative/vsm-translator-open-source/tree/dots-basic-translators of this git repo. These translators are still under development and may be subject to bugs. The README of that branch contains more information on how to use them and the limitations inherit to them.
+Should you be using only a single type of unit and have no ability to set up a independent MQTT client for any reason you can instead use the simplified translators in /basic-translators/ instead of adapting the universal generated translator to your system, as that requires persistent data memory that most LNSes lack. Navigate to the folder compatible with your LNS and find your product and app version and use it in your LNS.
+
+## How to identify which version to use
+
+If you are unsure which version to use, simply chose any version of your product and join your device to the network. After the join sequence, the device will upload data on port 15, which when translated will contain a ´ruleCrc32´ value. If your device is already joined, you can trigger the device to resend the information by sending a downlink with the hex data 00 to port 15. (Note that you will have to wait for the device to send an uplink before it will accept the downlink.)
+
+When you have your CRC, compare that value to the table in vsm-translator-open-source/basic-translator/x/dots-basic-x-translator-index.csv. If your CRC is compatible with the version you already picked you're good to go, if it does not match, simply switch to the correct version and any future data will be decoded correctly.
+
+## Drawbacks to basic translators
+
+To handle large uplinks the device will normally split an uplink into multiple frames when they cannot fit in the max frame allowed by the data rate. The basic translator lacks the memory to access the previous frames and therefore this functionality will not work. This is mainly a concern for the uplink of WiFi and GNSS geopositioning scanning, however, but may in some very rare cases also affect normal data transfer on networks with very poor conditions.
+
+Any positioning data you do manage to get through will also not result in a solved position, as positioning solving requires an external service such as Semtech LoRa Cloud to function which you will have to set up seperately.
