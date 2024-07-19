@@ -42,7 +42,7 @@ function Decode(fPort, bytes, variables) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 561898260 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 2274655646 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }
 
@@ -58,10 +58,10 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     var schema = 
     {
-        561898260: {
-            name: "Puck-radar",
-            versions: "R13 R14 R15 R16 R18",
-            mapData: "M input roamNetworkCount 160 0xa0  1 + M output amplitude 144 0x90  1 + M output distance 145 0x91  0.01 + M output occupied 128 0x80  1 + M input amplitudeHysteresis 176 0xb0  1 + M input distanceHysteresis 161 0xa1  0.01 + M output distanceAverage 146 0x92  0.01 + M input averageDistanceIntervalMinutes 177 0xb1  1 + M input averageDistanceLowAlarmLevel 178 0xb2  0.01 + M input averageDistanceHighAlarmLevel 179 0xb3  0.01 + M output averageDistanceAlarm 129 0x81  1 + M output nfcContactCount 152 0x98  1 + M output radarVoltage_V 180 0xb4  0.001"
+        2274655646: {
+            name: "Lifefinder-wifi",
+            versions: "R16 R18 R19",
+            mapData: "M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 160 0xa0  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempAlarmHighLevel 162 0xa2  1 + M output batteryPercent 163 0xa3  1 + M output volts 179 0xb3  0.001 + M output alarmTime 144 0x90  1 + M output buttonAlarm 129 0x81  1 + M output nfcDisabledAlarm 130 0x82  1 + M input maxAlarmMinutes 180 0xb4  1 + M input alarmAck 164 0xa4  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
