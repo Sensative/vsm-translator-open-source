@@ -1063,6 +1063,34 @@ M output downlinkRssi 165 0xa5  1
             }, 
         
 
+            1016353446: {
+                name: "Airport-int-R6-fw-patch",
+                versions: "",
+                mapData: `M input stillMotionThreshold_mm_s2 176 0xb0  1
+M input movingMotionThreshold_mm_s2 177 0xb1  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 160 0xa0  1
+M input maxBudget 178 0xb2  1
+M input singleWifiScanAgain_minutes 161 0xa1  1
+M input movingWifiScanAgain_minutes 162 0xa2  1
+M input minimumWifiCount 163 0xa3  1
+M input fullWifiScan_minutes 164 0xa4  1
+M input gpsScan_minutes 165 0xa5  1
+M input motionCountEnabled 166 0xa6  1
+M input abandonedCartTime_minutes 179 0xb3  1
+M output abandonedCart 167 0xa7  1
+M input quickRejoinBudgetMax 180 0xb4  1
+M input motionDebugEnable 168 0xa8  1
+M output motionDebug 169 0xa9  1
+M output accelerometerStateDebug 170 0xaa  1
+M input motionReleaseDelay 171 0xab  1
+M output batteryPercent 172 0xac  1
+`,
+            }, 
+        
+
             1047034189: {
                 name: "Sniffer",
                 versions: "R19 R18 R16 R15 R14 R13 R12",
@@ -1610,6 +1638,34 @@ M output batteryPercent 170 0xaa  1
             }, 
         
 
+            1904026967: {
+                name: "Airport-int-R6-fw-patch",
+                versions: "",
+                mapData: `M input stillMotionThreshold_mm_s2 176 0xb0  1
+M input movingMotionThreshold_mm_s2 177 0xb1  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 160 0xa0  1
+M input maxBudget 178 0xb2  1
+M input singleWifiScanAgain_minutes 161 0xa1  1
+M input movingWifiScanAgain_minutes 162 0xa2  1
+M input minimumWifiCount 163 0xa3  1
+M input fullWifiScan_minutes 164 0xa4  1
+M input gpsScan_minutes 165 0xa5  1
+M input motionCountEnabled 166 0xa6  1
+M input abandonedCartTime_minutes 179 0xb3  1
+M output abandonedCart 167 0xa7  1
+M input quickRejoinBudgetMax 180 0xb4  1
+M input motionDebugEnable 168 0xa8  1
+M output motionDebug 169 0xa9  1
+M output accelerometerStateDebug 170 0xaa  1
+M input motionReleaseDelay 171 0xab  1
+M output batteryPercent 172 0xac  1
+`,
+            }, 
+        
+
             1937430598: {
                 name: "Square-air",
                 versions: "R8",
@@ -2054,6 +2110,29 @@ M output humidity 179 0xb3  0.01
 M output averageHumidity 144 0x90  0.01
 M input humidityTreshold 180 0xb4  0.01
 M input averageHumidityIntervalMinutes 165 0xa5  1
+`,
+            }, 
+        
+
+            2719891747: {
+                name: "Airport-int",
+                versions: "",
+                mapData: `M input motionThreshold_mm_s2 176 0xb0  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 160 0xa0  1
+M input maxBudget 177 0xb1  1
+M input singleWifiScanAgain_minutes 161 0xa1  1
+M input movingWifiScanAgain_minutes 162 0xa2  1
+M input minimumWifiCount 163 0xa3  1
+M input fullWifiScan_minutes 164 0xa4  1
+M input gpsScan_minutes 165 0xa5  1
+M input motionCountEnabled 166 0xa6  1
+M input abandonedCartTime_minutes 178 0xb2  1
+M output abandonedCart 167 0xa7  1
+M input quickRejoinBudgetMax 179 0xb3  1
+M output batteryPercent 168 0xa8  1
 `,
             }, 
         
