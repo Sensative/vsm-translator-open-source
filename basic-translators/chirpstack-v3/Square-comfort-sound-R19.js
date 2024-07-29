@@ -900,14 +900,14 @@ function translate(iotnode) {
         /* APP_LORA_PORT_GNSS_RESULT*/  21: { decode: decodeGnssStream,   name: 'gnss stream'   },
         /* APP_LORA_PORT_GNSS_METADATA*/22: { decode: decodeGnssMetadata, name: 'gnss metadata' },
         /* APP_LORA_PORT_WIFI */        23: { decode: decodeWifiStream,   name: 'wifi stream'   },
-        /* PORT FORWARD: 32 */          32: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,32), name: "port forward 32"},
-        /* PORT FORWARD: 33 */          33: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,33), name: "port forward 33"},
-        /* PORT FORWARD: 34 */          34: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,34), name: "port forward 34"},
-        /* PORT FORWARD: 35 */          35: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,35), name: "port forward 35"},
-        /* PORT FORWARD: 36 */          36: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,36), name: "port forward 36"},
-        /* PORT FORWARD: 37 */          37: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,37), name: "port forward 37"},
-        /* PORT FORWARD: 38 */          38: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,38), name: "port forward 38"},
-        /* PORT FORWARD: 39 */          39: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,39), name: "port forward 39"}
+        /* PORT FORWARD: 32 */          32: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,32) }, name: "port forward 32"},
+        /* PORT FORWARD: 33 */          33: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,33) }, name: "port forward 33"},
+        /* PORT FORWARD: 34 */          34: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,34) }, name: "port forward 34"},
+        /* PORT FORWARD: 35 */          35: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,35) }, name: "port forward 35"},
+        /* PORT FORWARD: 36 */          36: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,36) }, name: "port forward 36"},
+        /* PORT FORWARD: 37 */          37: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,37) }, name: "port forward 37"},
+        /* PORT FORWARD: 38 */          38: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,38) }, name: "port forward 38"},
+        /* PORT FORWARD: 39 */          39: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,39) }, name: "port forward 39"}
     };
 
     // Convert a hexadecimal data representation to binary
