@@ -2476,6 +2476,27 @@ M input motionCountEnabled 168 0xa8  1
             }, 
         
 
+            3072625528: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M input maxAlarmMinutes 180 0xb4  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             3086277881: {
                 name: "Linkcheck",
                 versions: "R8 R7 R6 R5 R4 R2",
