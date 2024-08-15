@@ -204,9 +204,9 @@ function translate(iotnode) {
 
     // Rule update - CRC value (+build time, +version)
     var decodeRule = function (iotnode, symbolTable, data, time) {
-        var rulesCrc32 = ((data[0] & 0x7f) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
+        var rulesCrc32 = ((data[0]) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         if (data[0] & 0x80)
-            rulesCrc32 += 0x80000000;
+            rulesCrc32+=0x100000000;
 
         var schemaInfo = {};
         if (schema[rulesCrc32]) {
@@ -220,7 +220,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.70"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.71"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
