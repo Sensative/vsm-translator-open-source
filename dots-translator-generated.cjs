@@ -3198,6 +3198,13 @@ M output batteryPercent 171 0xab  1
             }, 
         
 
+            3550461869: {
+                name: "Radiotest-measure",
+                versions: "",
+                mapData: ``,
+            }, 
+        
+
             3605076574: {
                 name: "Lifefinder-wifi",
                 versions: "R8 R7",
