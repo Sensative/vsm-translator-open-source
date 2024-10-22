@@ -8,7 +8,7 @@
 
 <h3>The following decoders/translators are valid for the following applications and respective firmware version:<h3>
 
-|Product Application    |Firmwave Versions                      |CRCs                                      |
+|Product Application    |Firmware Versions                      |CRCs                                      |
 |-----------------------|---------------------------------------|------------------------------------------|
 |Airport-int            |R11 R12 R13 R14 R15                    |1695912328&#124;1872032769                     |
 |Airport-int            |R21                                    |2371105800                                |
