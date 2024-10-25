@@ -134,7 +134,7 @@ M input averageLuxIntervalMinutes 164 0xa4  1
 
             78751172: {
                 name: "Radiotest",
-                versions: "",
+                versions: "R23",
                 mapData: `M input frequency 184 0xb8  1
 `,
             }, 
@@ -521,7 +521,7 @@ M output batteryPercent 171 0xab  1
 
             493404408: {
                 name: "Lifefinder-wifi",
-                versions: "",
+                versions: "R23",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -627,7 +627,7 @@ M output underVoltage 165 0xa5  1
 
             561898260: {
                 name: "Puck-radar",
-                versions: "R22 R21 R20 R19 R18 R16 R15 R14 R13",
+                versions: "R23 R22 R21 R20 R19 R18 R16 R15 R14 R13",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output amplitude 144 0x90  1
 M output distance 145 0x91  0.01
@@ -1179,7 +1179,7 @@ M output batteryPercent 172 0xac  1
 
             1047034189: {
                 name: "Sniffer",
-                versions: "R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
+                versions: "R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
                 mapData: ``,
             }, 
         
@@ -1433,7 +1433,7 @@ M input motionThresholdG 180 0xb4  0.001
 
             1319111708: {
                 name: "Compliance-test",
-                versions: "R9 R8 R7 R6 R5 R4 R22 R21 R20 R2 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R8 R7 R6 R5 R4 R23 R22 R21 R20 R2 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: ``,
             }, 
         
@@ -1569,7 +1569,7 @@ M output rxCount 185 0xb9  1
 
             1617091456: {
                 name: "Digital-gpio",
-                versions: "R22 R21 R20 R19 R18 R16 R15 R14 R13",
+                versions: "R23 R22 R21 R20 R19 R18 R16 R15 R14 R13",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output detection 128 0x80  1
 M input activation 129 0x81  1
@@ -1680,7 +1680,7 @@ M input alarmAck 164 0xa4  1
 
             1711284143: {
                 name: "Tracker-stats",
-                versions: "R9 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output volts 176 0xb0  0.001
 M input gnssIntervalMinutes 160 0xa0  1
 M input gnssScanMode 177 0xb1  1
@@ -1698,7 +1698,7 @@ M output batteryPercent 164 0xa4  1
 
             1727723267: {
                 name: "Heartstarter",
-                versions: "R9 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1775,7 +1775,7 @@ M input alarmAck 164 0xa4  1
 
             1815337626: {
                 name: "Gnss-autonomous-test",
-                versions: "R9 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
@@ -1852,7 +1852,7 @@ M output batteryPercent 170 0xaa  1
 
             1936564868: {
                 name: "Lifefinder-alternating",
-                versions: "",
+                versions: "R23",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1954,7 +1954,7 @@ M output buttonCount 152 0x98  1
 
             2029355788: {
                 name: "Tracker",
-                versions: "R22",
+                versions: "R23 R22",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2019,7 +2019,7 @@ M output scanCount 185 0xb9  1
 
             2132727044: {
                 name: "Default",
-                versions: "R9 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output helloDefaultApp 160 0xa0  1
 `,
             }, 
@@ -2041,7 +2041,7 @@ M output scanCount 185 0xb9  1
 
             2266505222: {
                 name: "Square-comfort",
-                versions: "R22 R21 R20 R19 R18 R16 R15",
+                versions: "R23 R22 R21 R20 R19 R18 R16 R15",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -2124,7 +2124,7 @@ M input air_interval_minutes 172 0xac  1
 
             2297466901: {
                 name: "Motion-measure",
-                versions: "R9 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2231,7 +2231,7 @@ M input soundAvgMinutes 169 0xa9  1
 
             2355202201: {
                 name: "IR-proximity",
-                versions: "R22 R21 R20 R19 R18 R16",
+                versions: "R23 R22 R21 R20 R19 R18 R16",
                 mapData: `M output proximityValue 152 0x98  1
 M input pollInterval 160 0xa0  1
 M input irMode 161 0xa1  1
@@ -2338,7 +2338,7 @@ M input soundAvgMinutes 168 0xa8  1
 
             2566472474: {
                 name: "Lifefinder-gnss",
-                versions: "",
+                versions: "R23",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2868,7 +2868,7 @@ M output rxCount 185 0xb9  1
 
             3169307235: {
                 name: "Airport-int",
-                versions: "R22 R21",
+                versions: "R23 R22 R21",
                 mapData: `M input stillMotionThreshold_mm_s2 176 0xb0  1
 M input movingMotionThreshold_mm_s2 177 0xb1  1
 M input limitedScanChannels 184 0xb8  1
@@ -2940,7 +2940,7 @@ M input alarmAck 164 0xa4  1
 
             3241343967: {
                 name: "Square-air",
-                versions: "R22 R21 R20 R19 R18 R16",
+                versions: "R23 R22 R21 R20 R19 R18 R16",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -3085,7 +3085,7 @@ M input motionCountEnabled 168 0xa8  1
 
             3338740039: {
                 name: "IR-proximity",
-                versions: "R22",
+                versions: "R23 R22",
                 mapData: `M output proximityValue 152 0x98  1
 M input pollInterval 160 0xa0  1
 M input irMode 161 0xa1  1
@@ -3138,7 +3138,7 @@ M output air_breath_voc_equivalent 152 0x98  0.01
 
             3437792987: {
                 name: "Square-comfort-sound",
-                versions: "",
+                versions: "R23",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -3313,7 +3313,7 @@ M output batteryPercent 171 0xab  1
 
             3550461869: {
                 name: "Radiotest-measure",
-                versions: "",
+                versions: "R23",
                 mapData: ``,
             }, 
         
@@ -3581,7 +3581,7 @@ M input limitedScanChannels 184 0xb8  1
 
             3999624005: {
                 name: "US-Frequency-hop-test",
-                versions: "R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
+                versions: "R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
                 mapData: `M input transmitInterval 176 0xb0  1
 M input transmitCount 184 0xb8  1
 M input count 185 0xb9  1
@@ -3695,7 +3695,7 @@ M input averageLuxIntervalMinutes 167 0xa7  1
 
             4058561182: {
                 name: "Empty",
-                versions: "R9 R8 R7 R6 R5 R4 R22 R21 R20 R2 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R8 R7 R6 R5 R4 R23 R22 R21 R20 R2 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: ``,
             }, 
         
@@ -3752,7 +3752,7 @@ M output underVoltage 166 0xa6  1
 
             4120107816: {
                 name: "Linkcheck",
-                versions: "R9 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M input linkCheckRate 160 0xa0  1
 `,
             }, 
