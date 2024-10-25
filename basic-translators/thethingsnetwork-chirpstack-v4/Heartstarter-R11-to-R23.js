@@ -41,7 +41,7 @@ function decodeUplink(input) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 2266505222 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 1727723267 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }    
 
@@ -60,14 +60,12 @@ function decodeUplink(input) {
 function translate(iotnode) {
     
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
-
-    // CRCs having similar schema: 2266505222, 2696231198
     var schema = 
     {
-        2266505222: {
-            name: "Square-comfort",
-            versions: "R14 R15 R16 R18 R19 R20 R21",
-            mapData: "M input roamNetworkCount 160 0xa0  1 + M output batteryPercent 161 0xa1  1 + M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 162 0xa2  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempAlarmHighLevel 164 0xa4  1 + M output humidity 179 0xb3  0.01 + M output averageHumidity 144 0x90  0.01 + M input humidityTreshold 180 0xb4  0.01 + M input averageHumidityIntervalMinutes 165 0xa5  1"
+        1727723267: {
+            name: "Heartstarter",
+            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23",
+            mapData: "M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalHours 160 0xa0  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempAlarmHighLevel 162 0xa2  1 + M output buttonDetect 129 0x81  1 + M output motionDetect 130 0x82  1 + M input soundScanIntervalMinutes 179 0xb3  1 + M input soundScanMinimumRepeat 163 0xa3  1 + M output soundIntervalS 152 0x98  0.001 + M output soundRepeat 131 0x83  1 + M input motionThresholdG 180 0xb4  0.001 + M output volts 181 0xb5  0.001 + M output batteryPercent 164 0xa4  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -226,7 +224,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.71"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.80"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 

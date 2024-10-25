@@ -42,7 +42,7 @@ function Decode(fPort, bytes, variables) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 3090458506 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 561898260 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }
 
@@ -58,10 +58,10 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     var schema = 
     {
-        3090458506: {
-            name: "Square-comfort-sound",
-            versions: "R19 R20 R21",
-            mapData: "M input roamNetworkCount 160 0xa0  1 + M output batteryPercent 161 0xa1  1 + M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 162 0xa2  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempAlarmHighLevel 164 0xa4  1 + M output humidity 179 0xb3  0.01 + M output averageHumidity 144 0x90  0.01 + M input humidityTreshold 180 0xb4  0.01 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M output lux 181 0xb5  1 + M output averageLux 145 0x91  1 + M input luxTresholdPercent 182 0xb6  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M output soundLevel 183 0xb7  0.1 + M input soundThreshold 167 0xa7  1 + M input soundMinLevel 168 0xa8  1 + M input soundAvgMinutes 169 0xa9  1 + M output soundAlarm 129 0x81  1 + M input soundAlarmTimeoutMinutes 170 0xaa  1 + M output soundAvgMax 184 0xb8  0.1"
+        561898260: {
+            name: "Puck-radar",
+            versions: "R13 R14 R15 R16 R18 R19 R20 R21 R22 R23",
+            mapData: "M input roamNetworkCount 160 0xa0  1 + M output amplitude 144 0x90  1 + M output distance 145 0x91  0.01 + M output occupied 128 0x80  1 + M input amplitudeHysteresis 176 0xb0  1 + M input distanceHysteresis 161 0xa1  0.01 + M output distanceAverage 146 0x92  0.01 + M input averageDistanceIntervalMinutes 177 0xb1  1 + M input averageDistanceLowAlarmLevel 178 0xb2  0.01 + M input averageDistanceHighAlarmLevel 179 0xb3  0.01 + M output averageDistanceAlarm 129 0x81  1 + M output nfcContactCount 152 0x98  1 + M output radarVoltage_V 180 0xb4  0.001"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -220,7 +220,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.71"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.80"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
