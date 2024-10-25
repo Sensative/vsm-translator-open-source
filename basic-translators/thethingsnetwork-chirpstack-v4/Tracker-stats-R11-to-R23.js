@@ -64,7 +64,7 @@ function translate(iotnode) {
     {
         1711284143: {
             name: "Tracker-stats",
-            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21",
+            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23",
             mapData: "M output volts 176 0xb0  0.001 + M input gnssIntervalMinutes 160 0xa0  1 + M input gnssScanMode 177 0xb1  1 + M output numSatellites 161 0xa1  1 + M output bestSatellites 184 0xb8  1 + M output scanCount 185 0xb9  1 + M output gpsTime 186 0xba  1 + M output downlinkRssi 162 0xa2  1 + M input air_pressure_hysteresis_bar 163 0xa3  1 + M output air_pressure 187 0xbb  0.01 + M output batteryPercent 164 0xa4  1"
         }
     };
@@ -224,7 +224,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.71"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.80"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 

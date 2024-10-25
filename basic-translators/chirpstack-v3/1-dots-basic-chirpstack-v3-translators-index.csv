@@ -2,31 +2,36 @@ Filename,Product Application,Versions,CRCs
 chirpstack-v3/Airport-int-R11-to-R15.js,Airport-int,R11 R12 R13 R14 R15,1695912328|1872032769
 chirpstack-v3/Airport-int-R21.js,Airport-int,R21,2371105800
 chirpstack-v3/Airport-int-R20.js,Airport-int,R20,2719891747
-chirpstack-v3/Airport-int-R21.js,Airport-int,R21,3169307235
+chirpstack-v3/Airport-int-R21-to-R23.js,Airport-int,R21 R22 R23,3169307235
 chirpstack-v3/Airport-int-R16-to-R20.js,Airport-int,R16 R18 R19 R20,3532693249|3625056904
 chirpstack-v3/Airport-int-R6-fw-patch-R20-to-R21.js,Airport-int-R6-fw-patch,R20 R21,1016353446
 chirpstack-v3/Airport-int-R6-fw-patch-R18-to-R19.js,Airport-int-R6-fw-patch,R18 R19,2745602166
-chirpstack-v3/Default-R11-to-R21.js,Default,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,2132727044
-chirpstack-v3/Digital-gpio-R11-to-R21.js,Digital-gpio,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,1617091456|3497448490
-chirpstack-v3/Gnss-autonomous-test-R11-to-R21.js,Gnss-autonomous-test,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,1815337626
-chirpstack-v3/Heartstarter-R11-to-R21.js,Heartstarter,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,1727723267
-chirpstack-v3/IR-proximity-R16-to-R21.js,IR-proximity,R16 R18 R19 R20 R21,2355202201
+chirpstack-v3/Default-R11-to-R23.js,Default,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,2132727044
+chirpstack-v3/Digital-gpio-R11-to-R23.js,Digital-gpio,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,1617091456|3497448490
+chirpstack-v3/Gnss-autonomous-test-R11-to-R23.js,Gnss-autonomous-test,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,1815337626
+chirpstack-v3/Heartstarter-R11-to-R23.js,Heartstarter,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,1727723267
+chirpstack-v3/IR-proximity-R16-to-R23.js,IR-proximity,R16 R18 R19 R20 R21 R22 R23,2355202201|3338740039
 chirpstack-v3/Lifefinder-R11-to-R15.js,Lifefinder,R11 R12 R13 R14 R15,47853213|3321548430
+chirpstack-v3/Lifefinder-alternating-R22-to-R23.js,Lifefinder-alternating,R22 R23,1188116463|1936564868
+chirpstack-v3/Lifefinder-gnss-R22-to-R23.js,Lifefinder-gnss,R22 R23,2566472474|2907035249
 chirpstack-v3/Lifefinder-motion-R11-to-R15.js,Lifefinder-motion,R11 R12 R13 R14 R15,1938827428|3031484599
 chirpstack-v3/Lifefinder-squad-R11-to-R15.js,Lifefinder-squad,R11 R12 R13 R14 R15,399948366|3505805917
+chirpstack-v3/Lifefinder-wifi-R22-to-R23.js,Lifefinder-wifi,R22 R23,493404408|685004179
 chirpstack-v3/Lifefinder-wifi-R11-to-R15.js,Lifefinder-wifi,R11 R12 R13 R14 R15,691254335|3994244140
 chirpstack-v3/Lifefinder-wifi-R16-to-R21.js,Lifefinder-wifi,R16 R18 R19 R20 R21,2274655646
-chirpstack-v3/Motion-measure-R11-to-R21.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,2297466901
-chirpstack-v3/Puck-radar-R13-to-R21.js,Puck-radar,R13 R14 R15 R16 R18 R19 R20 R21,561898260
+chirpstack-v3/Motion-measure-R11-to-R23.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,2297466901
+chirpstack-v3/Puck-radar-R13-to-R23.js,Puck-radar,R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,561898260
 chirpstack-v3/Puck-radar-R11-to-R12.js,Puck-radar,R11 R12,1325798073
 chirpstack-v3/Puck-radar-fast-rejoin-R12.js,Puck-radar-fast-rejoin,R12,729172455
 chirpstack-v3/Puck-radar-fast-rejoin-R13-to-R21.js,Puck-radar-fast-rejoin,R13 R14 R15 R16 R18 R19 R20 R21,1121182195
 chirpstack-v3/Square-air-R11-to-R15.js,Square-air,R11 R12 R13 R14 R15,472391447|915094797|3634715455|4002204643
-chirpstack-v3/Square-air-R16-to-R21.js,Square-air,R16 R18 R19 R20 R21,3241343967
-chirpstack-v3/Square-comfort-R14-to-R21.js,Square-comfort,R14 R15 R16 R18 R19 R20 R21,2266505222|2696231198
+chirpstack-v3/Square-air-R16-to-R23.js,Square-air,R16 R18 R19 R20 R21 R22 R23,3241343967
+chirpstack-v3/Square-comfort-R14-to-R23.js,Square-comfort,R14 R15 R16 R18 R19 R20 R21 R22 R23,2266505222|2696231198
 chirpstack-v3/Square-comfort-R11-to-R13.js,Square-comfort,R11 R12 R13,3530880224|4174894842
 chirpstack-v3/Square-comfort-sound-R11-to-R15.js,Square-comfort-sound,R11 R12 R13 R14 R15,517999093|2338085954|2387046759|2766427005
 chirpstack-v3/Square-comfort-sound-R16-to-R18.js,Square-comfort-sound,R16 R18,1355326083
-chirpstack-v3/Square-comfort-sound-R19-to-R21.js,Square-comfort-sound,R19 R20 R21,3090458506
+chirpstack-v3/Square-comfort-sound-R19-to-R22.js,Square-comfort-sound,R19 R20 R21 R22,3090458506
+chirpstack-v3/Square-comfort-sound-R23.js,Square-comfort-sound,R23,3437792987
 chirpstack-v3/Tracker-R11-to-R21.js,Tracker,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,489186430
-chirpstack-v3/Tracker-stats-R11-to-R21.js,Tracker-stats,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,1711284143
+chirpstack-v3/Tracker-R22-to-R23.js,Tracker,R22 R23,2029355788
+chirpstack-v3/Tracker-stats-R11-to-R23.js,Tracker-stats,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,1711284143
