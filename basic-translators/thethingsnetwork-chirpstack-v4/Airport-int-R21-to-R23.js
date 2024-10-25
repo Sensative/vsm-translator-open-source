@@ -41,7 +41,7 @@ function decodeUplink(input) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 1617091456 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 3169307235 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }    
 
@@ -60,14 +60,12 @@ function decodeUplink(input) {
 function translate(iotnode) {
     
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
-
-    // CRCs having similar schema: 1617091456, 3497448490
     var schema = 
     {
-        1617091456: {
-            name: "Digital-gpio",
-            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21",
-            mapData: "M input roamNetworkCount 160 0xa0  1 + M output detection 128 0x80  1 + M input activation 129 0x81  1 + M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalHours 161 0xa1  1 + M output tempAlarm 130 0x82  1 + M input tempAlarmLowLevel 162 0xa2  1 + M input tempAlarmHighLevel 163 0xa3  1"
+        3169307235: {
+            name: "Airport-int",
+            versions: "R21 R22 R23",
+            mapData: "M input stillMotionThreshold_mm_s2 176 0xb0  1 + M input movingMotionThreshold_mm_s2 177 0xb1  1 + M input limitedScanChannels 184 0xb8  1 + M input fullScanChannels 185 0xb9  1 + M output motionCount 186 0xba  1 + M input quarterlyScanBudget 160 0xa0  1 + M input maxBudget 178 0xb2  1 + M input singleWifiScanAgain_minutes 161 0xa1  1 + M input movingWifiScanAgain_minutes 162 0xa2  1 + M input minimumWifiCount 163 0xa3  1 + M input fullWifiScan_minutes 164 0xa4  1 + M input gpsScan_minutes 165 0xa5  1 + M input motionCountEnabled 166 0xa6  1 + M input abandonedCartTime_minutes 179 0xb3  1 + M output abandonedCart 167 0xa7  1 + M input quickRejoinBudgetMax 180 0xb4  1 + M output batteryPercent 168 0xa8  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -226,7 +224,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.71"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.80"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
