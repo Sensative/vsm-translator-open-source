@@ -43,6 +43,30 @@ if (!translatorVersion) {
 console.log("Translator version: " + translatorVersion);
 
 /**
+ * Sorts the mapData rows based on the second and third columns.
+ *
+ * @param {string} mapData - The mapData string to be sorted.
+ * @returns {string} - The sorted mapData string.
+ */
+function sortMapData(mapData) {
+    return mapData.split(' + ') // Split by ' + ' delimiter
+        .filter(line => line.trim() !== '') // Remove any empty lines
+        .sort((a, b) => {
+            const [aFirst, aSecond, aThird] = a.split(/\s+/); // Extract columns for each line
+            const [bFirst, bSecond, bThird] = b.split(/\s+/);
+
+            // Sort by second column ('input' or 'output')
+            if (aSecond === bSecond) {
+                // If second columns are the same, sort by the third column lexicographically
+                return aThird.localeCompare(bThird);
+            }
+            // Otherwise, sort by the second column
+            return aSecond.localeCompare(bSecond);
+        })
+        .join(' + '); // Join back with ' + ' delimiter
+}
+
+/**
  * Groups schemas by name and mapData.
  * 
  * @returns {Object} An object containing grouped schemas.
@@ -58,6 +82,9 @@ function groupSchemasByNameAndMapData() {
 
         // Process schema.mapData - replace \n with + and ensure proper concatenation                
         schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").trim().replace(/\s+\+$/g, "");
+
+        // Sort the mapData
+        schema.mapData = sortMapData(schema.mapData);
 
         // Check if all mapData have outputs mentioned within the group            
         if (!/M\s+output\s+/.test(schema.mapData)) {
