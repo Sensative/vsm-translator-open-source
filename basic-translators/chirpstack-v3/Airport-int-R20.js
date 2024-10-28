@@ -61,7 +61,7 @@ function translate(iotnode) {
         2719891747: {
             name: "Airport-int",
             versions: "R20",
-            mapData: "M input motionThreshold_mm_s2 176 0xb0  1 + M input limitedScanChannels 184 0xb8  1 + M input fullScanChannels 185 0xb9  1 + M output motionCount 186 0xba  1 + M input quarterlyScanBudget 160 0xa0  1 + M input maxBudget 177 0xb1  1 + M input singleWifiScanAgain_minutes 161 0xa1  1 + M input movingWifiScanAgain_minutes 162 0xa2  1 + M input minimumWifiCount 163 0xa3  1 + M input fullWifiScan_minutes 164 0xa4  1 + M input gpsScan_minutes 165 0xa5  1 + M input motionCountEnabled 166 0xa6  1 + M input abandonedCartTime_minutes 178 0xb2  1 + M output abandonedCart 167 0xa7  1 + M input quickRejoinBudgetMax 179 0xb3  1 + M output batteryPercent 168 0xa8  1"
+            mapData: "M input abandonedCartTime_minutes 178 0xb2  1 + M input fullScanChannels 185 0xb9  1 + M input fullWifiScan_minutes 164 0xa4  1 + M input gpsScan_minutes 165 0xa5  1 + M input limitedScanChannels 184 0xb8  1 + M input maxBudget 177 0xb1  1 + M input minimumWifiCount 163 0xa3  1 + M input motionCountEnabled 166 0xa6  1 + M input motionThreshold_mm_s2 176 0xb0  1 + M input movingWifiScanAgain_minutes 162 0xa2  1 + M input quarterlyScanBudget 160 0xa0  1 + M input quickRejoinBudgetMax 179 0xb3  1 + M input singleWifiScanAgain_minutes 161 0xa1  1 + M output abandonedCart 167 0xa7  1 + M output batteryPercent 168 0xa8  1 + M output motionCount 186 0xba  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
