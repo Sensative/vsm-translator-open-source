@@ -65,7 +65,7 @@ function translate(iotnode) {
         1815337626: {
             name: "Gnss-autonomous-test",
             versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23",
-            mapData: "M output numSatellites 160 0xa0  1 + M output bestSatellites 184 0xb8  1 + M output scanCount 185 0xb9  1 + M output batteryPercent 161 0xa1  1"
+            mapData: "M output batteryPercent 161 0xa1  1 + M output bestSatellites 184 0xb8  1 + M output numSatellites 160 0xa0  1 + M output scanCount 185 0xb9  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
