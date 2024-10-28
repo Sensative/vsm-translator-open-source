@@ -61,7 +61,7 @@ function translate(iotnode) {
         2297466901: {
             name: "Motion-measure",
             versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23",
-            mapData: "M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalHours 160 0xa0  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempAlarmHighLevel 162 0xa2  1 + M output accX 144 0x90  0.001 + M output accY 145 0x91  0.001 + M output accZ 146 0x92  0.001 + M output pressure_hPa 184 0xb8  0.01 + M input motionThreshold_m_s2 179 0xb3  0.001 + M input sampleInterval_s 163 0xa3  1 + M input sampleCountMax 164 0xa4  1 + M input enableBarometer 165 0xa5  1 + M output motion 166 0xa6  1 + M output batteryPercent 167 0xa7  1"
+            mapData: "M input averageTempIntervalHours 160 0xa0  1 + M input enableBarometer 165 0xa5  1 + M input motionThreshold_m_s2 179 0xb3  0.001 + M input sampleCountMax 164 0xa4  1 + M input sampleInterval_s 163 0xa3  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output accX 144 0x90  0.001 + M output accY 145 0x91  0.001 + M output accZ 146 0x92  0.001 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 167 0xa7  1 + M output motion 166 0xa6  1 + M output pressure_hPa 184 0xb8  0.01 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
