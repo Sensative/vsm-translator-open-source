@@ -67,7 +67,7 @@ function translate(iotnode) {
         1938827428: {
             name: "Lifefinder-motion",
             versions: "R11 R12 R13 R14 R15",
-            mapData: "M output temp 176 0xb0  0.01 + M output averageTemp 177 0xb1  0.01 + M input tempHysteresis 178 0xb2  0.01 + M input averageTempIntervalMinutes 160 0xa0  1 + M output tempAlarm 128 0x80  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempAlarmHighLevel 162 0xa2  1 + M output batteryPercent 163 0xa3  1 + M output alarmTime 144 0x90  1 + M output buttonAlarm 129 0x81  1 + M output volts 179 0xb3  0.001 + M input alarmAck 164 0xa4  1 + M output motion 165 0xa5  1 + M output motionAlarm 166 0xa6  1 + M input motionThreshold 180 0xb4  0.001"
+            mapData: "M input alarmAck 164 0xa4  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input motionThreshold 180 0xb4  0.001 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output buttonAlarm 129 0x81  1 + M output motion 165 0xa5  1 + M output motionAlarm 166 0xa6  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output volts 179 0xb3  0.001"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
