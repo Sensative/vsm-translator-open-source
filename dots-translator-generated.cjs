@@ -680,6 +680,32 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
+            610943688: {
+                name: "Lifefinder-gnss",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M input maxAlarmMinutes 181 0xb5  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input alarmResendTime 165 0xa5  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             623354129: {
                 name: "dots,lptemp,radar-v5",
                 versions: "R4 R2",
@@ -1149,6 +1175,32 @@ M output downlinkRssi 165 0xa5  1
             }, 
         
 
+            989087646: {
+                name: "Lifefinder-alternating",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M input maxAlarmMinutes 181 0xb5  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input alarmResendTime 165 0xa5  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             1016353446: {
                 name: "Airport-int-R6-fw-patch",
                 versions: "R21 R20",
@@ -1514,6 +1566,32 @@ M input soundAlarmTimeoutMinutes 170 0xaa  1
                 name: "dots,radiotest",
                 versions: "R0",
                 mapData: ``,
+            }, 
+        
+
+            1433253200: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M input maxAlarmMinutes 181 0xb5  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input alarmResendTime 165 0xa5  1
+M input alarmAck 164 0xa4  1
+`,
             }, 
         
 
