@@ -41,7 +41,7 @@ function decodeUplink(input) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 2355202201 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 1368947946 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }    
 
@@ -60,14 +60,12 @@ function decodeUplink(input) {
 function translate(iotnode) {
     
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
-
-    // CRCs having similar schema: 2355202201, 3338740039
     var schema = 
     {
-        2355202201: {
-            name: "IR-proximity",
-            versions: "R16 R18 R19 R20 R21 R22 R23",
-            mapData: "M input averageTempIntervalHours 163 0xa3  1 + M input irMode 161 0xa1  1 + M input irPower 162 0xa2  1 + M input pollInterval 160 0xa0  1 + M input proximityHysteresis 176 0xb0  1 + M input tempAlarmHighLevel 165 0xa5  1 + M input tempAlarmLowLevel 164 0xa4  1 + M input tempHysteresis 179 0xb3  0.01 + M output averageTemp 178 0xb2  0.01 + M output batteryPercent 166 0xa6  1 + M output proximityValue 152 0x98  1 + M output temp 177 0xb1  0.01 + M output tempAlarm 128 0x80  1 + M output volts 180 0xb4  0.001"
+        1368947946: {
+            name: "Digital-gpio",
+            versions: "R24",
+            mapData: "M input activation 129 0x81  1 + M input averageTempIntervalHours 164 0xa4  1 + M input heartbeatMinutes 162 0xa2  1 + M input pollInterval 163 0xa3  1 + M input resendTime 161 0xa1  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 166 0xa6  1 + M input tempAlarmLowLevel 165 0xa5  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output detection 128 0x80  1 + M output heartbeat 130 0x82  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 131 0x83  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -226,7 +224,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.80"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.84"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
