@@ -3796,7 +3796,7 @@ M input debounceSeconds 176 0xb0  1
         let status;
         if (data.length == 1) {
             status = translateCustomizationStatus(data[0]);
-            return { result: { vsm: {customization: {status, customizedAppCRC:0, customizationCRC:0, timestamp:new Date() }}}};
+            return { result: { vsm: {customization: {status, customizedAppCRC:0, customizationCRC:0, timestamp:new Date(time) }}}};
         } else if (data.length == 9) {
             let customizationCRC = data[0]<<24 | data[1]<<16 | data[2]<<8 | data[3];
             if (data[0]&0x80)
@@ -3805,7 +3805,7 @@ M input debounceSeconds 176 0xb0  1
             if (data[4]&0x80)
                 customizedAppCRC+=0x100000000;
             status = translateCustomizationStatus(data[8]);
-            return { result: { vsm: {customization: {status, customizedAppCRC, customizationCRC, timestamp:new Date() }}}};
+            return { result: { vsm: {customization: {status, customizedAppCRC, customizationCRC, timestamp:new Date(time) }}}};
         }
         throw new Error("Failed to decode link control message")
     }
@@ -3840,6 +3840,35 @@ M input debounceSeconds 176 0xb0  1
         for (let pos = 8; pos < data.length; ++pos)
             buildGitVersion += String.fromCharCode(data[pos]);
         return {result: { vsm: {...schemaInfo, rulesCrc32, buildDate, buildType, buildGitVersion, translatorVersion}}};
+    }
+
+    const decodeMesh = (iotnode, symbolTable, data, time) => {
+        if (data.length < 10)
+            return {result: {} };
+
+        let serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
+        let age_s  = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffffff;
+        let port   = data[8];
+        let len    = data[9]; // Included since there may be multiple messages packed in one in some future
+        let pos = 10;
+        let hex = '';
+        for (let i = 0; i < len; ++i) {
+            let byte = data[i+pos].toString(16);
+            if (byte.length < 2)
+                byte = "0"+byte;
+            hex += byte;
+        }
+        let obj = {
+            producedTimestamp: new Date((new Date(time)).getTime()-1000*age_s), // When was the uplink created
+            receivedTimestamp: new Date(time),                             // When was it translated
+            port,
+            len,
+            hex,
+            serial,
+        }
+        let result = {mesh: {} };
+        result.mesh[serial] = obj;
+        return { result };       
     }
 
     // Decode uint32_8_t compressed time format
@@ -4299,6 +4328,7 @@ M input debounceSeconds 176 0xb0  1
         /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
         /* APP_LORA_PORT_PWR        */   6: { decode: decodeLinkControl,  name: 'link control'  }, 
         /* APP_LORA_PORT_CUSTOMIZATION */7: { decode: decodeCustomization,name: 'customization' }, 
+        /* APP_LORA_PORT_MESH */         8: { decode: decodeMesh,         name: 'mesh'          },
         /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
         /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
         /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },

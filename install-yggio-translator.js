@@ -83,7 +83,7 @@ const postYggioTranslator = async (supplier, token, translatorVersion) => {
             timestamps: "object",
             idd: "object",
             forward: "object",
-
+            mesh: "object",
         },
         code: translate.toString().replace("###VERSION###", translatorVersion),
       }
