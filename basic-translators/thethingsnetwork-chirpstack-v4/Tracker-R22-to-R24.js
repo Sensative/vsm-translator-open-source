@@ -596,8 +596,7 @@ function translate(iotnode) {
             payload: encodeSemtechWifi(result.wifi),
             timestamp: result
                 .wifi
-                .timestamp               
-                .toISOString()
+                .timestamp
         };
         result.semtechEncoded = semtechObject;
     }
