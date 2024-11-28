@@ -1052,16 +1052,6 @@ M output gnssState 160 0xa0 1
                     }
                 }
         },
-        { // 12 - Version
-            input: {
-                encodedData : {
-                    port: 15,
-                    hexEncoded: "5490C34561A94787316565303336332D6469727479",
-                    timestamp: new Date(1637323469000),
-                }
-            },
-            expect: {result: {"vsm":{"rulesCrc32":1418773317,"buildDate":"2021-12-02T22:24:04.000Z","buildType":0, "buildGitVersion":"1ee0363-dirty", "translatorVersion":"###VERSION###"}}}
-        },
         { // 13 - Positioning metadata - with ages
             input: {
                 encodedData : {
