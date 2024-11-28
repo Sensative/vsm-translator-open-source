@@ -37,20 +37,22 @@ try {
 
 
 try {
-    let {result, timeseries} = translate({
-            vsm:{
-                rulesCrc32:appCRC,
-            }, 
-            encodedData : {
-                port,
-                hexEncoded : buffer,
-                timestamp: when,
-            }
-        });
+    const input = {
+        vsm:{
+            rulesCrc32:appCRC,
+        }, 
+        encodedData : {
+            port,
+            hexEncoded : buffer,
+            timestamp: when,
+        }
+    };
+    console.log("Input (formatted)", input);
+    let {result, timeseries} = translate(input);
     if (result)
-        console.log("result", result);
+        console.log("Translator Result", result);
     if (timeseries)
-        console.log("time series", timeseries);
+        console.log("Time series", timeseries);
 } catch (e) {
     console.log(e);
     printUsageAndExit("Translation failed");
