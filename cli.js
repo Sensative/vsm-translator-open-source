@@ -1,14 +1,15 @@
-// Very basic script to decode a single uplink. Will not store required context for further downlinks.
+// Very basic script to decode a single uplink. 
+// Will not store required context for further downlinks.
 
 import { translate } from "./dots-translator-generated.cjs";
 
 const printUsageAndExit = () => {
-    console.log(`Usage:\n  node ${argv[1]} <application CRC> <port> <hexdata>`);
+    console.log(`Usage:\n  node ${argv[1]} <application CRC> <port> <hexdata> [timestamp]`);
     process.exit(1);
 }
 
 const argv = process.argv;
-if (argv.length !== 5)
+if (argv.length < 5)
     printUsageAndExit("Wrong number of arguments");
 
 const appCRC = parseInt(argv[2]);
@@ -26,6 +27,15 @@ try {
     printUsageAndExit("Failed to parse hex payload");
 }
 
+let when = new Date();
+try {
+    if (argv[5])
+        when = new Date(argv[5]);
+} catch (e) {
+    printUsageAndExit("Failed to parse date");
+}
+
+
 try {
     let {result, timeseries} = translate({
             vsm:{
@@ -34,7 +44,7 @@ try {
             encodedData : {
                 port,
                 hexEncoded : buffer,
-                timestamp: new Date(),
+                timestamp: when,
             }
         });
     if (result)
