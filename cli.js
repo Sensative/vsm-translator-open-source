@@ -1,5 +1,10 @@
 // Very basic script to decode a single uplink. 
 // Will not store required context for further downlinks.
+//
+// Example use: 
+//  
+//   node cli.js 1325798073 1 509b0074110197 2024-11-28T14:57:19.000Z
+// 
 
 import { translate } from "./dots-translator-generated.cjs";
 
