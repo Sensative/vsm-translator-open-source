@@ -2,31 +2,31 @@ Filename,Product Application,Versions,CRCs
 thethingsnetwork-chirpstack-v4/Airport-int-R11-to-R15.js,Airport-int,R11 R12 R13 R14 R15,1695912328|1872032769
 thethingsnetwork-chirpstack-v4/Airport-int-R21.js,Airport-int,R21,2371105800
 thethingsnetwork-chirpstack-v4/Airport-int-R20.js,Airport-int,R20,2719891747
-thethingsnetwork-chirpstack-v4/Airport-int-R21-to-R24.js,Airport-int,R21 R22 R23 R24,3169307235
+thethingsnetwork-chirpstack-v4/Airport-int-R21-to-R25.js,Airport-int,R21 R22 R23 R24 R25,3094986737|3169307235
 thethingsnetwork-chirpstack-v4/Airport-int-R16-to-R20.js,Airport-int,R16 R18 R19 R20,3532693249|3625056904
 thethingsnetwork-chirpstack-v4/Airport-int-R6-fw-patch-R20-to-R21.js,Airport-int-R6-fw-patch,R20 R21,1016353446
 thethingsnetwork-chirpstack-v4/Airport-int-R6-fw-patch-R18-to-R19.js,Airport-int-R6-fw-patch,R18 R19,2745602166
-thethingsnetwork-chirpstack-v4/Default-R11-to-R24.js,Default,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,2132727044
-thethingsnetwork-chirpstack-v4/Digital-gpio-R24.js,Digital-gpio,R24,1368947946
+thethingsnetwork-chirpstack-v4/Default-R11-to-R25.js,Default,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,2132727044
+thethingsnetwork-chirpstack-v4/Digital-gpio-R24-to-R25.js,Digital-gpio,R24 R25,1368947946
 thethingsnetwork-chirpstack-v4/Digital-gpio-R11-to-R23.js,Digital-gpio,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,1617091456|3497448490
-thethingsnetwork-chirpstack-v4/Gnss-autonomous-test-R11-to-R24.js,Gnss-autonomous-test,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,1815337626
-thethingsnetwork-chirpstack-v4/Heartstarter-R11-to-R24.js,Heartstarter,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,1727723267
-thethingsnetwork-chirpstack-v4/IR-proximity-R16-to-R24.js,IR-proximity,R16 R18 R19 R20 R21 R22 R23 R24,2355202201|3338740039
+thethingsnetwork-chirpstack-v4/Gnss-autonomous-test-R11-to-R25.js,Gnss-autonomous-test,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,1815337626
+thethingsnetwork-chirpstack-v4/Heartstarter-R11-to-R25.js,Heartstarter,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,1727723267
+thethingsnetwork-chirpstack-v4/IR-proximity-R16-to-R25.js,IR-proximity,R16 R18 R19 R20 R21 R22 R23 R24 R25,2355202201|3338740039
 thethingsnetwork-chirpstack-v4/Lifefinder-R11-to-R15.js,Lifefinder,R11 R12 R13 R14 R15,47853213|3321548430
-thethingsnetwork-chirpstack-v4/Lifefinder-alternating-R22-to-R24.js,Lifefinder-alternating,R22 R23 R24,501251891|1188116463|1936564868
-thethingsnetwork-chirpstack-v4/Lifefinder-gnss-R22-to-R24.js,Lifefinder-gnss,R22 R23 R24,58620517|2566472474|2907035249
+thethingsnetwork-chirpstack-v4/Lifefinder-alternating-R22-to-R25.js,Lifefinder-alternating,R22 R23 R24 R25,501251891|1188116463|1936564868
+thethingsnetwork-chirpstack-v4/Lifefinder-gnss-R22-to-R25.js,Lifefinder-gnss,R22 R23 R24 R25,58620517|2566472474|2907035249
 thethingsnetwork-chirpstack-v4/Lifefinder-motion-R11-to-R15.js,Lifefinder-motion,R11 R12 R13 R14 R15,1938827428|3031484599
 thethingsnetwork-chirpstack-v4/Lifefinder-squad-R11-to-R15.js,Lifefinder-squad,R11 R12 R13 R14 R15,399948366|3505805917
-thethingsnetwork-chirpstack-v4/Lifefinder-wifi-R22-to-R24.js,Lifefinder-wifi,R22 R23 R24,493404408|685004179|1920568829
+thethingsnetwork-chirpstack-v4/Lifefinder-wifi-R22-to-R25.js,Lifefinder-wifi,R22 R23 R24 R25,493404408|685004179|1920568829
 thethingsnetwork-chirpstack-v4/Lifefinder-wifi-R11-to-R21.js,Lifefinder-wifi,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,691254335|2274655646|3994244140
-thethingsnetwork-chirpstack-v4/Motion-measure-R11-to-R24.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,2297466901
-thethingsnetwork-chirpstack-v4/Puck-radar-R11-to-R24.js,Puck-radar,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,561898260|1325798073
+thethingsnetwork-chirpstack-v4/Motion-measure-R11-to-R25.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,2297466901
+thethingsnetwork-chirpstack-v4/Puck-radar-R11-to-R25.js,Puck-radar,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,561898260|1325798073
 thethingsnetwork-chirpstack-v4/Puck-radar-fast-rejoin-R12-to-R21.js,Puck-radar-fast-rejoin,R12 R13 R14 R15 R16 R18 R19 R20 R21,729172455|1121182195
 thethingsnetwork-chirpstack-v4/Square-air-R11-to-R15.js,Square-air,R11 R12 R13 R14 R15,472391447|915094797|3634715455|4002204643
-thethingsnetwork-chirpstack-v4/Square-air-R16-to-R24.js,Square-air,R16 R18 R19 R20 R21 R22 R23 R24,3241343967
-thethingsnetwork-chirpstack-v4/Square-comfort-R11-to-R24.js,Square-comfort,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,2266505222|2696231198|3530880224|4174894842
+thethingsnetwork-chirpstack-v4/Square-air-R16-to-R25.js,Square-air,R16 R18 R19 R20 R21 R22 R23 R24 R25,3241343967
+thethingsnetwork-chirpstack-v4/Square-comfort-R11-to-R25.js,Square-comfort,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,2266505222|2696231198|3530880224|4174894842
 thethingsnetwork-chirpstack-v4/Square-comfort-sound-R11-to-R22.js,Square-comfort-sound,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22,517999093|1355326083|2338085954|2387046759|2766427005|3090458506
-thethingsnetwork-chirpstack-v4/Square-comfort-sound-R23-to-R24.js,Square-comfort-sound,R23 R24,3437792987
+thethingsnetwork-chirpstack-v4/Square-comfort-sound-R23-to-R25.js,Square-comfort-sound,R23 R24 R25,3437792987
 thethingsnetwork-chirpstack-v4/Tracker-R11-to-R21.js,Tracker,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,489186430
-thethingsnetwork-chirpstack-v4/Tracker-R22-to-R24.js,Tracker,R22 R23 R24,2029355788
-thethingsnetwork-chirpstack-v4/Tracker-stats-R11-to-R24.js,Tracker-stats,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24,1711284143
+thethingsnetwork-chirpstack-v4/Tracker-R22-to-R25.js,Tracker,R22 R23 R24 R25,2029355788
+thethingsnetwork-chirpstack-v4/Tracker-stats-R11-to-R25.js,Tracker-stats,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25,1711284143
