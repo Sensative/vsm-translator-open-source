@@ -190,7 +190,7 @@ function translate(iotnode) {
         var status;
         if (data.length == 1) {
             status = translateCustomizationStatus(data[0]);
-            return { result: { vsm: {customization: {status: status, customizedAppCRC: 0, customizationCRC: 0, timestamp: new Date() }}}};
+            return { result: { vsm: {customization: {status: status, customizedAppCRC: 0, customizationCRC: 0, timestamp: new Date(time).toISOString() }}}};
         } else if (data.length == 9) {
             var customizationCRC = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
             if (data[0] & 0x80) {
@@ -201,7 +201,7 @@ function translate(iotnode) {
                 customizedAppCRC += 0x100000000;
             }
             status = translateCustomizationStatus(data[8]);
-            return { result: { vsm: {customization: {status: status, customizedAppCRC: customizedAppCRC, customizationCRC: customizationCRC, timestamp: new Date() }}}};
+            return { result: { vsm: {customization: {status: status, customizedAppCRC: customizedAppCRC, customizationCRC: customizationCRC, timestamp: new Date(time).toISOString() }}}};
         }
         throw new Error("Failed to decode link control message");
     };
@@ -302,6 +302,34 @@ function translate(iotnode) {
         };
     }
 
+ var decodeMesh = function (iotnode, symbolTable, data, time) => {
+        if (data.length < 10)
+            return {result: {} };
+
+        var serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
+        var age_s  = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffffff;
+        var port   = data[8];
+        var len    = data[9]; // Included since there may be multiple messages packed in one in some future
+        var pos = 10;
+        var hex = '';
+        for (let i = 0; i < len; ++i) {
+            var byte = data[i+pos].toString(16);
+            if (byte.length < 2)
+                byte = "0"+byte;
+            hex += byte;
+        }
+        var obj = {
+            producedTimestamp: new Date((new Date(time)).getTime()-1000*age_s).toISOString(), // When was the uplink created
+            receivedTimestamp: new Date(time).toISOString(),                             // When was it translated
+            port,
+            len,
+            hex,
+            serial,
+        }
+        var result = {mesh: {} };
+        result.mesh[serial] = obj;
+        return { result };       
+    }
     // Decode uint32_8_t compressed time format
     var decode_uint32_8_t = function(fp) {
         var exp = (fp >> 3);
@@ -597,6 +625,7 @@ function translate(iotnode) {
             timestamp: result
                 .wifi
                 .timestamp
+		.getTime()/1000
         };
         result.semtechEncoded = semtechObject;
     }
@@ -898,12 +927,14 @@ function translate(iotnode) {
         /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
         /* APP_LORA_PORT_PWR        */   6: { decode: decodeLinkControl,  name: 'link control'  }, 
         /* APP_LORA_PORT_CUSTOMIZATION */7: { decode: decodeCustomization,name: 'customization' }, 
+        /* APP_LORA_PORT_MESH */         8: { decode: decodeMesh,         name: 'mesh'          },
         /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
         /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
         /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },
         /* APP_LORA_PORT_GNSS_RESULT*/  21: { decode: decodeGnssStream,   name: 'gnss stream'   },
         /* APP_LORA_PORT_GNSS_METADATA*/22: { decode: decodeGnssMetadata, name: 'gnss metadata' },
         /* APP_LORA_PORT_WIFI */        23: { decode: decodeWifiStream,   name: 'wifi stream'   },
+        /* APP_LORA_PORT_WIFI_MOTION */ 24: { decode: decodeWifiStream,   name: 'wifi stream motion'},
         /* PORT FORWARD: 32 */          32: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,32), name: "port forward 32"},
         /* PORT FORWARD: 33 */          33: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,33), name: "port forward 33"},
         /* PORT FORWARD: 34 */          34: { decode: (n, s, d, t) => decodePortForward(n,s,d,t,34), name: "port forward 34"},
