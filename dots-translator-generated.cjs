@@ -3723,6 +3723,12 @@ M input debounceSeconds 176 0xb0  1
 
 /// END DO NOT CHANGE THE ABOVE
 
+// Export knownSchemas
+try {
+    exports.knownSchemas = knownSchemas;
+}
+catch (ignored) {}
+
 // Response to a reference value query
     const decodeReferences = (iotnode, symbolTable, data, time) => {
         let result = {};
