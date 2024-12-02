@@ -49,17 +49,46 @@ function processAndGroupSchemas() {
  */
 function filterAndFormatSchemas() {
     const schemaGroupsByName = {};
+    const allowedNames = [
+        "Digital-gpio",
+        "Lifefinder-alternating",
+        "Lifefinder-gnss",
+        "Lifefinder-wifi",
+        "Motion-measure",
+        "Puck-radar",
+        "Square-air",
+        "Square-comfort",
+        "Square-comfort-sound",
+        "Square-sound",
+        "Tracker"
+    ];
 
     for (let [crc, schema] of Object.entries(knownSchemas)) {
-        if (!schema.versions || schema.versions.trim() === "" || !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)) {
-            continue; // Skip if version is less than R11
+        // Ensure the schema name is allowed and version is R11 or above
+        if (
+            !allowedNames.includes(schema.name) ||
+            !schema.versions ||
+            schema.versions.trim() === "" ||
+            !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)
+        ) {
+            continue; // Skip if version is less than R11 or name is not allowed
         }
 
-        schema.mapData = schema.mapData.replace(/\r\n|\r|\n/g, " + ").trim().replace(/\s+\+$/g, "");
+        // Format mapData
+        schema.mapData = schema.mapData
+            .replace(/\r\n|\r|\n/g, " + ")
+            .trim()
+            .replace(/\s+\+$/g, "");
         schema.mapData = sortMapData(schema.mapData);
 
+        // Skip schemas without 'output' in mapData
         if (!/M\s+output\s+/.test(schema.mapData)) {
-            continue; // Skip if no 'output' exists in mapData
+            continue;
+        }
+
+        // Rename "Square-comfort-sound" to "Square-sound"
+        if (schema.name === "Square-comfort-sound") {
+            schema.name = "Square-sound";
         }
 
         const nameKey = schema.name;
