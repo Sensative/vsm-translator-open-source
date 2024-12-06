@@ -298,7 +298,7 @@ function translate(iotnode) {
         };
     }
 
-    var decodeMesh = function (iotnode, symbolTable, data, time) => {
+    var decodeMesh = function (iotnode, symbolTable, data, time) {
         if (data.length < 10)
             return {result: {} };
 
