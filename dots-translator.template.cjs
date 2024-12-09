@@ -269,7 +269,7 @@ const knownSchemas = {};
         let timeseries = [];
         while (pos < data.length) {
             if (data.length < pos + 1) {
-                console.log("Incomplete message (pos: " + pos + " len: " + data.length);
+                console.log("Incomplete message (pos: " + pos + " len: " + data.length + ")");
                 return null;
             }
             const head = data[pos++];
@@ -308,7 +308,7 @@ const knownSchemas = {};
             let age_s = 0;
             let age_ms = 0;
             if (pos+timesize+datasize > data.length) {
-                console.log("Incomplete message (pos: " + pos + " datasize: " + datasize + " timesize: " + timesize +" len: " + data.length);                
+                console.log("Incomplete message (pos: " + pos + " datasize: " + datasize + " timesize: " + timesize +" len: " + data.length + ")");
                 return null;
             }
 
