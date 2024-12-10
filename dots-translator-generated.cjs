@@ -362,6 +362,33 @@ M input air_interval_minutes 168 0xa8  1
             }, 
         
 
+            334953694: {
+                name: "Lifefinder-gnss",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M input maxAlarmMinutes 181 0xb5  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input alarmResendTime 165 0xa5  1
+M input quickAlarm 166 0xa6  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             376700598: {
                 name: "Puck-tracker",
                 versions: "R6 R5",
@@ -1990,6 +2017,33 @@ M output scanCount 185 0xb9  1
             }, 
         
 
+            2103348695: {
+                name: "Lifefinder-alternating",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M input maxAlarmMinutes 181 0xb5  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input alarmResendTime 165 0xa5  1
+M input quickAlarm 166 0xa6  1
+M input alarmAck 164 0xa4  1
+`,
+            }, 
+        
+
             2132727044: {
                 name: "Default",
                 versions: "R9 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
@@ -2386,6 +2440,33 @@ M output humidity 179 0xb3  0.01
 M output averageHumidity 144 0x90  0.01
 M input humidityTreshold 180 0xb4  0.01
 M input averageHumidityIntervalMinutes 165 0xa5  1
+`,
+            }, 
+        
+
+            2699351417: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output batteryPercent 163 0xa3  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output buttonAlarm 129 0x81  1
+M output nfcDisabledAlarm 130 0x82  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M input maxAlarmMinutes 181 0xb5  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input alarmResendTime 165 0xa5  1
+M input quickAlarm 166 0xa6  1
+M input alarmAck 164 0xa4  1
 `,
             }, 
         
@@ -3958,7 +4039,7 @@ M input debounceSeconds 176 0xb0  1
         let timeseries = [];
         while (pos < data.length) {
             if (data.length < pos + 1) {
-                console.log("Incomplete message (pos: " + pos + " len: " + data.length);
+                console.log("Incomplete message (pos: " + pos + " len: " + data.length + ")");
                 return null;
             }
             const head = data[pos++];
@@ -3997,7 +4078,7 @@ M input debounceSeconds 176 0xb0  1
             let age_s = 0;
             let age_ms = 0;
             if (pos+timesize+datasize > data.length) {
-                console.log("Incomplete message (pos: " + pos + " datasize: " + datasize + " timesize: " + timesize +" len: " + data.length);                
+                console.log("Incomplete message (pos: " + pos + " datasize: " + datasize + " timesize: " + timesize +" len: " + data.length + ")");
                 return null;
             }
 
