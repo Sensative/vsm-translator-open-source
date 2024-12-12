@@ -100,7 +100,7 @@ const knownSchemas = {};
             case 1: return "Applied";
             case 2: return "Error";
             case 3: return "Dirty";
-            default: "Unknown";
+            default: return "Unknown";
         }
     }
     const decodeCustomization = (iotnode, symbolTable, data, time) => {
