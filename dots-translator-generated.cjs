@@ -4058,9 +4058,11 @@ catch (ignored) {}
                 byte = "0"+byte;
             hex += byte;
         }
+        const producedTimestamp = new Date((new Date(time)).getTime()-1000*age_s);
+        const receivedTimestamp = new Date(time);
         let obj = {
-            producedTimestamp: new Date((new Date(time)).getTime()-1000*age_s), // When was the uplink created
-            receivedTimestamp: new Date(time),                             // When was it translated
+            producedTimestamp, // When was the uplink created
+            receivedTimestamp,                             // When was it translated
             port,
             len,
             hex,
