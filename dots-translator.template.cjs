@@ -186,13 +186,14 @@ const knownSchemas = {};
         return { 
             result, 
             additionalDeviceUpdates : [ {
-                identifier: {secret:serial},
+                identifier: {secret:""+serial},
                 result: { 
+                    mesh : { receivedTimestamp, producedTimestamp, port, hex },
                     encodedData : {
                         port: port,
                         hexEncoded: hex,
                         timestamp: producedTimestamp,
-                    }
+                    },
                 }
             }]
         }
