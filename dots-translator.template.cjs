@@ -177,9 +177,23 @@ const knownSchemas = {};
             hex,
             serial,
         }
+        // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
+        // field (which should magically update nodes with the set secret)
         let result = {mesh: {} };
         result.mesh[serial] = obj;
-        return { result };       
+        return { 
+            result, 
+            additionalDeviceUpdates : [ {
+                identifier: {secret:serial},
+                result: { 
+                    encodedData : {
+                        port: port,
+                        hexEncoded: hex,
+                        timestamp: producedTimestamp,
+                    }
+                }
+            }]
+        }
     }
 
     // Decode uint32_8_t compressed time format

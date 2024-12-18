@@ -248,6 +248,22 @@ M output volts 181 0xb5  0.001
             }, 
         
 
+            239778874: {
+                name: "MeshBridge",
+                versions: "",
+                mapData: `M input meshSyncInterval_h 160 0xa0  1
+M input meshEnableExtension 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+`,
+            }, 
+        
+
             264840926: {
                 name: "dots,radon,temp,air",
                 versions: "R1",
@@ -1120,6 +1136,16 @@ M input air_interval_minutes 172 0xac  1
             }, 
         
 
+            880650985: {
+                name: "Generic-NFC-Reader",
+                versions: "",
+                mapData: `M output card_1 152 0x98  1
+M output card_2 153 0x99  1
+M output card_3 154 0x9a  1
+`,
+            }, 
+        
+
             915094797: {
                 name: "Square-air",
                 versions: "R12 R11",
@@ -1743,6 +1769,33 @@ M output soundLevel 183 0xb7  0.1
 M input soundThreshold 167 0xa7  1
 M input soundMinLevel 168 0xa8  1
 M input soundAvgMinutes 169 0xa9  1
+`,
+            }, 
+        
+
+            1761830827: {
+                name: "MeshRadarLora",
+                versions: "",
+                mapData: `M input meshSyncInterval_h 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 129 0x81  1
+M input amplitudeHysteresis 179 0xb3  1
+M input distanceHysteresis 164 0xa4  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 180 0xb4  1
+M input averageDistanceLowAlarmLevel 181 0xb5  0.01
+M input averageDistanceHighAlarmLevel 182 0xb6  0.01
+M output averageDistanceAlarm 130 0x82  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 183 0xb7  0.001
 `,
             }, 
         
@@ -2420,6 +2473,25 @@ M output averageDistanceAlarm 130 0x82  1
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
+`,
+            }, 
+        
+
+            2652719003: {
+                name: "MeshTemp",
+                versions: "",
+                mapData: `M input meshSyncInterval_h 160 0xa0  1
+M input meshEnableExtension 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+M input air_pressure_hysteresis_bar 165 0xa5  1
+M output air_pressure 184 0xb8  0.01
+M output batteryPercent 166 0xa6  1
 `,
             }, 
         
@@ -3193,6 +3265,18 @@ M output soundAvgMax 184 0xb8  0.1
             }, 
         
 
+            3469695180: {
+                name: "Lifefinder-NFC-Reader-V1",
+                versions: "",
+                mapData: `M output card_1 152 0x98  1
+M output card_2 153 0x99  1
+M output card_3 154 0x9a  1
+M output serial 155 0x9b  1
+M input debounceSeconds 176 0xb0  1
+`,
+            }, 
+        
+
             3497448490: {
                 name: "Digital-gpio",
                 versions: "R12 R11",
@@ -3337,6 +3421,20 @@ M input abandonedCartTime_minutes 181 0xb5  1
 M output abandonedCart 170 0xaa  1
 M input quickRejoinBudgetMax 182 0xb6  1
 M output batteryPercent 171 0xab  1
+`,
+            }, 
+        
+
+            3535569981: {
+                name: "Lifefinder-NFC-Reader-V2",
+                versions: "",
+                mapData: `M output card_1 152 0x98  1
+M output card_2 153 0x99  1
+M output card_3 154 0x9a  1
+M output serial 155 0x9b  1
+M input debounceSeconds 176 0xb0  1
+M input customResendTime 177 0xb1  1
+M input maxResendCount 160 0xa0  1
 `,
             }, 
         
@@ -3736,6 +3834,33 @@ M output underVoltage 166 0xa6  1
             }, 
         
 
+            4111527682: {
+                name: "MeshRadarNoLora",
+                versions: "",
+                mapData: `M input meshSyncInterval_h 160 0xa0  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 176 0xb0  1
+M input distanceHysteresis 161 0xa1  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 177 0xb1  1
+M input averageDistanceLowAlarmLevel 178 0xb2  0.01
+M input averageDistanceHighAlarmLevel 179 0xb3  0.01
+M output averageDistanceAlarm 129 0x81  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 180 0xb4  0.001
+M output temp 181 0xb5  0.01
+M output averageTemp 182 0xb6  0.01
+M input tempHysteresis 183 0xb7  0.01
+M input averageTempIntervalHours 162 0xa2  1
+M output tempAlarm 130 0x82  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+`,
+            }, 
+        
+
             4120107816: {
                 name: "Linkcheck",
                 versions: "R9 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
@@ -3786,18 +3911,6 @@ M input amplitudeHysteresis 179 0xb3 1
 M input distanceHysteresis 163 0xa3 0.01 
 M output batteryPercent 164 0xa4 1 
 M output underVoltage 165 0xa5 1
-`,
-            }, 
-        
-
-            3469695180: {
-                name: "Lifefinder-NFC-Reader-R1",
-                versions: "R1",
-                mapData: `M output card_1 152 0x98  1
-M output card_2 153 0x99  1
-M output card_3 154 0x9a  1
-M output serial 155 0x9b  1
-M input debounceSeconds 176 0xb0  1
 `,
             }, 
         };
@@ -3870,7 +3983,7 @@ M input debounceSeconds 176 0xb0  1
             case 1: return "Applied";
             case 2: return "Error";
             case 3: return "Dirty";
-            default: "Unknown";
+            default: return "Unknown";
         }
     }
     const decodeCustomization = (iotnode, symbolTable, data, time) => {
@@ -3947,9 +4060,23 @@ M input debounceSeconds 176 0xb0  1
             hex,
             serial,
         }
+        // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
+        // field (which should magically update nodes with the set secret)
         let result = {mesh: {} };
         result.mesh[serial] = obj;
-        return { result };       
+        return { 
+            result, 
+            additionalDeviceUpdates : [ {
+                identifier: {secret:serial},
+                result: { 
+                    encodedData : {
+                        port: port,
+                        hexEncoded: hex,
+                        timestamp: producedTimestamp,
+                    }
+                }
+            }]
+        }
     }
 
     // Decode uint32_8_t compressed time format
