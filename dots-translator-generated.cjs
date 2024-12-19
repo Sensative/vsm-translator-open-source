@@ -185,6 +185,33 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
+            148980669: {
+                name: "MeshComfortTimeCount",
+                versions: "",
+                mapData: `M output minutes 160 0xa0  1
+M output hours 161 0xa1  1
+M output days 162 0xa2  1
+M output weeks 176 0xb0  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 181 0xb5  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M output batteryPercent 167 0xa7  1
+M input meshSyncInterval_h 168 0xa8  1
+M input meshEnableExtension 169 0xa9  1
+M input air_pressure_hysteresis_bar 170 0xaa  1
+M output air_pressure 184 0xb8  0.01
+`,
+            }, 
+        
+
             174308877: {
                 name: "Airport-int",
                 versions: "R10",
