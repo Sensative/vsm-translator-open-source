@@ -4093,12 +4093,13 @@ M output underVoltage 165 0xa5 1
         // field (which should magically update nodes with the set secret)
         let result = {mesh: {} };
         result.mesh[serial] = obj;
+        const carrier = iotnode && iotnode.name ? iotnode.name : "";
         return { 
             result, 
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
-                    mesh : { receivedTimestamp, producedTimestamp, port, hex },
+                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier } },
                     encodedData : {
                         port: port,
                         hexEncoded: hex,
