@@ -359,7 +359,7 @@ const knownSchemas = {};
                 let valuestruct = {};
                 valuestruct[name] = value*scale;
                 let sample = {
-                    timestamp: new Date(time_s*1000 + age_ms),
+                    timestamp: new Date(time_s*1000 - age_ms /* note, subsequent data with no time diff were earlier */),
                     value : { output: valuestruct },
                 };
                 // console.log(sample);

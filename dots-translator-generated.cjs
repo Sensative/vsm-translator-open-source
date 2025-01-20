@@ -1340,6 +1340,33 @@ M output air_iaq_alarm 129 0x81  1
             }, 
         
 
+            1179470677: {
+                name: "MeshComfortTimeCount",
+                versions: "",
+                mapData: `M input meshSyncInterval_min 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M output minutes 162 0xa2  1
+M output hours 163 0xa3  1
+M output days 164 0xa4  1
+M output weeks 177 0xb1  1
+M input interval_minutes 165 0xa5  1
+M output temp 178 0xb2  0.01
+M output averageTemp 179 0xb3  0.01
+M input tempHysteresis 180 0xb4  0.01
+M input averageTempIntervalMinutes 166 0xa6  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 167 0xa7  1
+M input tempAlarmHighLevel 168 0xa8  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 182 0xb6  0.01
+M input averageHumidityIntervalMinutes 169 0xa9  1
+M output batteryPercent 170 0xaa  1
+`,
+            }, 
+        
+
             1188116463: {
                 name: "Lifefinder-alternating",
                 versions: "R22",
@@ -2802,33 +2829,6 @@ M output volts 181 0xb5  0.001
 M input enableCapReports 163 0xa3  1
 M input capAlarmLevel 182 0xb6  1
 M input alarmAck 164 0xa4  1
-`,
-            }, 
-        
-
-            2854940459: {
-                name: "MeshComfortTimeCount",
-                versions: "",
-                mapData: `M input meshSyncInterval_min 176 0xb0  1
-M input meshEnableUpside 160 0xa0  1
-M input meshEnableDownside 161 0xa1  1
-M output minutes 162 0xa2  1
-M output hours 163 0xa3  1
-M output days 164 0xa4  1
-M output weeks 177 0xb1  1
-M input interval_minutes 165 0xa5  1
-M output temp 178 0xb2  0.01
-M output averageTemp 179 0xb3  0.01
-M input tempHysteresis 180 0xb4  0.01
-M input averageTempIntervalMinutes 166 0xa6  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 167 0xa7  1
-M input tempAlarmHighLevel 168 0xa8  1
-M output humidity 181 0xb5  0.01
-M output averageHumidity 144 0x90  0.01
-M input humidityTreshold 182 0xb6  0.01
-M input averageHumidityIntervalMinutes 169 0xa9  1
-M output batteryPercent 170 0xaa  1
 `,
             }, 
         
@@ -4334,7 +4334,7 @@ M output underVoltage 165 0xa5 1
                 let valuestruct = {};
                 valuestruct[name] = value*scale;
                 let sample = {
-                    timestamp: new Date(time_s*1000 + age_ms),
+                    timestamp: new Date(time_s*1000 - age_ms /* note, subsequent data with no time diff were earlier */),
                     value : { output: valuestruct },
                 };
                 // console.log(sample);
