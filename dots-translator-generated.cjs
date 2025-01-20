@@ -4775,11 +4775,11 @@ M output gnssState 160 0xa0 1
             expect: {
                 "timeseries":[
                     {"timestamp":"2021-11-19T12:04:20.000Z","value":{"output":{"gpsTime":1637584254}}},
-                    {"timestamp":"2021-11-19T12:04:20.001Z","value":{"output":{"alarmTime":44}}}
+                    {"timestamp":"2021-11-19T12:04:19.999Z","value":{"output":{"alarmTime":44}}}
                 ],
                 "result": {
                     "output":{"gpsTime":1637584254,"alarmTime":44},
-                    "timestamps":{"gpsTime":"2021-11-19T12:04:20.000Z","alarmTime":"2021-11-19T12:04:20.001Z"}}}
+                    "timestamps":{"gpsTime":"2021-11-19T12:04:20.000Z","alarmTime":"2021-11-19T12:04:19.999Z"}}}
         },
         { // 1
             input: {
@@ -4793,12 +4793,12 @@ M output gnssState 160 0xa0 1
             expect: {
                 "timeseries":[
                     {"timestamp":"2021-11-19T12:04:18.000Z","value":{"output":{"gpsTime":1637581376}}},
-                    {"timestamp":"2021-11-19T12:04:18.001Z","value":{"output":{"gnssState":1}}},
-                    {"timestamp":"2021-11-19T12:04:18.001Z","value":{"output":{"alarmTime":4}}}
+                    {"timestamp":"2021-11-19T12:04:17.999Z","value":{"output":{"gnssState":1}}},
+                    {"timestamp":"2021-11-19T12:04:17.999Z","value":{"output":{"alarmTime":4}}}
                 ],
                 "result":{
                     "output":{"gpsTime":1637581376,"gnssState":1,"alarmTime":4},
-                    "timestamps":{"gpsTime":"2021-11-19T12:04:18.000Z","gnssState":"2021-11-19T12:04:18.001Z","alarmTime":"2021-11-19T12:04:18.001Z"}
+                    "timestamps":{"gpsTime":"2021-11-19T12:04:18.000Z","gnssState":"2021-11-19T12:04:17.999Z","alarmTime":"2021-11-19T12:04:17.999Z"}
                 }
             }
         },
@@ -4814,11 +4814,11 @@ M output gnssState 160 0xa0 1
             expect: {
                 "timeseries":[
                     {"timestamp":"2021-11-19T12:04:17.000Z","value":{"output":{"buttonAlarm":0}}},
-                    {"timestamp":"2021-11-19T12:04:17.001Z","value":{"output":{"alarmTime":0}}}
+                    {"timestamp":"2021-11-19T12:04:16.999Z","value":{"output":{"alarmTime":0}}}
                 ],
                 "result":{
                     "output":{"buttonAlarm":0,"alarmTime":0},
-                    "timestamps":{"buttonAlarm":"2021-11-19T12:04:17.000Z","alarmTime":"2021-11-19T12:04:17.001Z"}
+                    "timestamps":{"buttonAlarm":"2021-11-19T12:04:17.000Z","alarmTime":"2021-11-19T12:04:16.999Z"}
                 }
             }
         },
@@ -4837,15 +4837,15 @@ M output gnssState 160 0xa0 1
             expect: {
                 "timeseries": [
                     {"timestamp":"2021-11-19T12:04:27.000Z","value":{"output":{"buttonAlarm":0}}},
-                    {"timestamp":"2021-11-19T12:04:27.001Z","value":{"output":{"alarmTime":0}}},
+                    {"timestamp":"2021-11-19T12:04:26.999Z","value":{"output":{"alarmTime":0}}},
                     {"timestamp":"2021-11-19T12:03:51.000Z","value":{"output":{"alarmTime":2}}},
-                    {"timestamp":"2021-11-19T12:03:51.001Z","value":{"output":{"gnssState":4}}},
+                    {"timestamp":"2021-11-19T12:03:50.999Z","value":{"output":{"gnssState":4}}},
                     {"timestamp":"2021-11-19T12:03:36.000Z","value":{"output":{"buttonAlarm":1}}},
-                    {"timestamp":"2021-11-19T12:03:36.001Z","value":{"output":{"alarmTime":1}}}
+                    {"timestamp":"2021-11-19T12:03:35.999Z","value":{"output":{"alarmTime":1}}}
                 ],
                 "result":{
                     "output":{"buttonAlarm":0,"alarmTime":0}, // Does not include gnss-state since there is a more recent
-                    "timestamps":{"buttonAlarm":"2021-11-19T12:04:27.000Z","alarmTime":"2021-11-19T12:04:27.001Z"}}}
+                    "timestamps":{"buttonAlarm":"2021-11-19T12:04:27.000Z","alarmTime":"2021-11-19T12:04:26.999Z"}}}
         },
         { // 4 compressed
             input: {
@@ -4859,11 +4859,11 @@ M output gnssState 160 0xa0 1
             expect: {
                 "timeseries":[
                     {"timestamp":"2021-11-19T12:03:59.000Z","value":{"output":{"gpsTime":1611137049}}},
-                    {"timestamp":"2021-11-19T12:03:59.001Z","value":{"output":{"gnssState":1}}}
+                    {"timestamp":"2021-11-19T12:03:58.999Z","value":{"output":{"gnssState":1}}}
                 ],
                 "result":{
                     "output":{"gpsTime":1611137049,"gnssState":1},
-                    "timestamps":{"gpsTime":"2021-11-19T12:03:59.000Z","gnssState":"2021-11-19T12:03:59.001Z"}
+                    "timestamps":{"gpsTime":"2021-11-19T12:03:59.000Z","gnssState":"2021-11-19T12:03:58.999Z"}
                 }
             }
         },
@@ -4878,12 +4878,12 @@ M output gnssState 160 0xa0 1
             },
             expect: {
                 "timeseries":[
-                    {"timestamp":"2021-11-19T12:04:29.001Z","value":{"output":{"buttonAlarm":1}}},
-                    {"timestamp":"2021-11-19T12:04:29.001Z","value":{"output":{"alarmTime":1}}}
+                    {"timestamp":"2021-11-19T12:04:28.999Z","value":{"output":{"buttonAlarm":1}}},
+                    {"timestamp":"2021-11-19T12:04:28.999Z","value":{"output":{"alarmTime":1}}}
                 ],
                 "result":{
                     "output":{"buttonAlarm":1,"alarmTime":1},
-                    "timestamps":{"buttonAlarm":"2021-11-19T12:04:29.001Z","alarmTime":"2021-11-19T12:04:29.001Z"}
+                    "timestamps":{"buttonAlarm":"2021-11-19T12:04:28.999Z","alarmTime":"2021-11-19T12:04:28.999Z"}
                 }
             }
         }, 
