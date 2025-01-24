@@ -310,7 +310,7 @@ function translate(iotnode) {
         var len    = data[9]; // Included since there may be multiple messages packed in one in some future
         var pos = 10;
         var hex = '';
-        for (let i = 0; i < len; ++i) {
+        for (var i = 0; i < len; ++i) {
             var byte = data[i+pos].toString(16);
             if (byte.length < 2)
                 byte = "0"+byte;
@@ -319,14 +319,14 @@ function translate(iotnode) {
         var obj = {
             producedTimestamp: new Date((new Date(time)).getTime()-1000*age_s).toISOString(), // When was the uplink created
             receivedTimestamp: new Date(time).toISOString(),                             // When was it translated
-            port,
-            len,
-            hex,
-            serial,
+            port: port,
+            len: len,
+            hex: hex,
+            serial: serial,
         }
         var result = {mesh: {} };
         result.mesh[serial] = obj;
-        return { result };       
+        return { result: result };       
     }
 
     // Decode uint32_8_t compressed time format
