@@ -1304,34 +1304,6 @@ M output radarVoltage_V 180 0xb4  0.001
             }, 
         
 
-            1127073264: {
-                name: "Motion-spectrum",
-                versions: "",
-                mapData: `M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalHours 160 0xa0  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 161 0xa1  1
-M input tempAlarmHighLevel 162 0xa2  1
-M input motionThreshold_m_s2 179 0xb3  0.001
-M input motionSpectrumMode 163 0xa3  1
-M output acc_1hz 129 0x81  1
-M output acc_2hz 130 0x82  1
-M output acc_4hz 131 0x83  1
-M output acc_8hz 132 0x84  1
-M output acc_16hz 133 0x85  1
-M output acc_32hz 134 0x86  1
-M output acc_64hz 135 0x87  1
-M output acc_128hz 136 0x88  1
-M output acc_256hz 137 0x89  1
-M output acc_energy_sum_mms2_square 184 0xb8  1
-M output motion 164 0xa4  1
-M output batteryPercent 165 0xa5  1
-`,
-            }, 
-        
-
             1128699053: {
                 name: "Square-air",
                 versions: "R9 R10",
@@ -1674,6 +1646,35 @@ M input tempAlarmHighLevel 166 0xa6  1
                 name: "dots,radiotest",
                 versions: "R0",
                 mapData: ``,
+            }, 
+        
+
+            1430817125: {
+                name: "Motion-spectrum",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_m_s2 179 0xb3  0.001
+M input motionSpectrumMode 163 0xa3  1
+M output acc_1hz 129 0x81  1
+M output acc_2hz 130 0x82  1
+M output acc_4hz 131 0x83  1
+M output acc_8hz 132 0x84  1
+M output acc_16hz 133 0x85  1
+M output acc_32hz 134 0x86  1
+M output acc_64hz 135 0x87  1
+M output acc_128hz 136 0x88  1
+M output acc_256hz 137 0x89  1
+M output acc_energy_sum_mms2_square 184 0xb8  1
+M output motion 164 0xa4  1
+M input motionPollIntervalMinutes 165 0xa5  1
+M output batteryPercent 166 0xa6  1
+`,
             }, 
         
 
