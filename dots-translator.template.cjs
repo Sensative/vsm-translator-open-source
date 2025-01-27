@@ -154,8 +154,25 @@ const knownSchemas = {};
     }
 
     const decodeMesh = (iotnode, symbolTable, data, time) => {
-        if (data.length < 10)
-            return {result: {} };
+
+        if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
+            return { result: {
+                mesh : { stats : { 
+                    maxRate: data[0],
+                    minRate: data[1], 
+                    mode : data[2],
+                    sync : data[3],
+                    rssiWorst : data[4] << 24 >> 24 /* sign extension */ ,
+                    rssiAverage : data[5] << 24 >> 24 /* sign extension */ ,
+                    msgCount : data[6]*256+data[7],
+                }
+            } }
+        };
+
+        if (data.length < 10) {
+            // Illegal mesh message
+            return {};
+        }
 
         let serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
         let age_s  = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffffff;
