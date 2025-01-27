@@ -165,6 +165,7 @@ const knownSchemas = {};
                     rssiWorst : data[4] << 24 >> 24 /* sign extension */ ,
                     rssiAverage : data[5] << 24 >> 24 /* sign extension */ ,
                     msgCount : data[6]*256+data[7],
+                    timestamp : new Date(),
                 }
             } }
         };
