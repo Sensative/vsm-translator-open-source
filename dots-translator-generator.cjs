@@ -22,7 +22,8 @@
 
 const GENERATED_FILE = 'dots-translator-generated.cjs';
 const VERSIONS_FILE = '../dots-builds/app-versions.json';
-
+const OFFICIAL_GENERATED_FILE = 'dots-translator-release-only-generated.cjs';
+const OFFICIAL_VERSIONS_FILE = '../dots-builds/app-versions-release-only.json';
 const vsoReadFile = require ('../virtual-sensor-machine/vso-file-reader/vsoReadFile').vsoReadFile;
 const fs = require('fs');
 
@@ -48,7 +49,7 @@ M output underVoltage 165 0xa5 1
     },
 };
 
-const generate = () => {
+const generate = (include_nonreleases, generated_filename, versions_filename) => {
     if (!fs.existsSync('../dots-builds'))
         throw new Error("The ../dots-builds git is required");
 
@@ -92,6 +93,8 @@ const generate = () => {
             if (fs.lstatSync(rootfolder + "/" + items[i]).isDirectory())
                 scanFolder(rootfolder + "/" + items[i], false, registerVersion ? items[i] : version);
             else {
+                if (items[i].startsWith("dots,"))
+                    continue;
                 if (items[i].endsWith(".vso")) {
                     processVsoFile(rootfolder + "/" + items[i], items[i].replace('.vso', ''), version);
                 }
@@ -100,8 +103,10 @@ const generate = () => {
     }
 
     const scanBuilds = (rootfolder) => {
-        scanFolder(rootfolder+'/candidates', false);
-        scanFolder(rootfolder+'/builds', false);
+        if (include_nonreleases) {
+            scanFolder(rootfolder+'/candidates', false);
+            scanFolder(rootfolder+'/builds', false);
+        }
         scanFolder(rootfolder+'/releases', true);
         scanFolder(rootfolder+'/specials', false);
     }
@@ -149,11 +154,14 @@ const generate = () => {
     // Read the open-source translator and expand it
     let defaultTranslator = fs.readFileSync('dots-translator.template.cjs').toString();
     let extendedTranslator = defaultTranslator.replace('const knownSchemas = {};', knownSchemas);
-    fs.writeFileSync(GENERATED_FILE, extendedTranslator);
-    console.log("Generated new translator " + GENERATED_FILE);
-    fs.writeFileSync(VERSIONS_FILE, JSON.stringify(apps));
-    console.log("Generated new versions file " + VERSIONS_FILE);
+    fs.writeFileSync(generated_filename, extendedTranslator);
+    console.log("Generated new translator " + generated_filename);
+    fs.writeFileSync(versions_filename, JSON.stringify(apps));
+    console.log("Generated new versions file " + versions_filename);
 }
 
 exports.generate = generate;
-generate();
+console.log("Generating the complete translator");
+generate(true, GENERATED_FILE, VERSIONS_FILE);
+console.log("Generating the releases only translator");
+generate(false, OFFICIAL_GENERATED_FILE, OFFICIAL_VERSIONS_FILE); // Only R and Specials 
