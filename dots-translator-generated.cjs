@@ -273,22 +273,6 @@ M output volts 181 0xb5  0.001
             }, 
         
 
-            239778874: {
-                name: "MeshBridge",
-                versions: "",
-                mapData: `M input meshSyncInterval_h 160 0xa0  1
-M input meshEnableExtension 161 0xa1  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 162 0xa2  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 163 0xa3  1
-M input tempAlarmHighLevel 164 0xa4  1
-`,
-            }, 
-        
-
             264840926: {
                 name: "dots,radon,temp,air",
                 versions: "R1",
@@ -332,6 +316,30 @@ M input humidityTreshold 181 0xb5  0.01
 M input luxTresholdPercent 182 0xb6  1
 M input averageHumidityIntervalMinutes 163 0xa3  1
 M input averageLuxIntervalMinutes 164 0xa4  1
+`,
+            }, 
+        
+
+            313796611: {
+                name: "MeshRadar",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 177 0xb1  1
+M input distanceHysteresis 162 0xa2  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 178 0xb2  1
+M input averageDistanceLowAlarmLevel 179 0xb3  0.01
+M input averageDistanceHighAlarmLevel 180 0xb4  0.01
+M output averageDistanceAlarm 129 0x81  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 181 0xb5  0.001
+M output batteryPercent 163 0xa3  1
+M output temp 182 0xb6  0.01
 `,
             }, 
         
@@ -1340,33 +1348,6 @@ M output air_iaq_alarm 129 0x81  1
             }, 
         
 
-            1179470677: {
-                name: "MeshComfortTimeCount",
-                versions: "",
-                mapData: `M input meshSyncInterval_min 176 0xb0  1
-M input meshEnableUpside 160 0xa0  1
-M input meshEnableDownside 161 0xa1  1
-M output minutes 162 0xa2  1
-M output hours 163 0xa3  1
-M output days 164 0xa4  1
-M output weeks 177 0xb1  1
-M input interval_minutes 165 0xa5  1
-M output temp 178 0xb2  0.01
-M output averageTemp 179 0xb3  0.01
-M input tempHysteresis 180 0xb4  0.01
-M input averageTempIntervalMinutes 166 0xa6  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 167 0xa7  1
-M input tempAlarmHighLevel 168 0xa8  1
-M output humidity 181 0xb5  0.01
-M output averageHumidity 144 0x90  0.01
-M input humidityTreshold 182 0xb6  0.01
-M input averageHumidityIntervalMinutes 169 0xa9  1
-M output batteryPercent 170 0xaa  1
-`,
-            }, 
-        
-
             1188116463: {
                 name: "Lifefinder-alternating",
                 versions: "R22",
@@ -1412,6 +1393,33 @@ M input sampleInterval_s 163 0xa3  1
 M input sampleCountMax 164 0xa4  1
 M input enableBarometer 165 0xa5  1
 M output motion 166 0xa6  1
+`,
+            }, 
+        
+
+            1210641490: {
+                name: "MeshComfortTimeCount",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M output minutes 162 0xa2  1
+M output hours 163 0xa3  1
+M output days 164 0xa4  1
+M output weeks 177 0xb1  1
+M input interval_minutes 165 0xa5  1
+M output temp 178 0xb2  0.01
+M output averageTemp 179 0xb3  0.01
+M input tempHysteresis 180 0xb4  0.01
+M input averageTempIntervalMinutes 166 0xa6  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 167 0xa7  1
+M input tempAlarmHighLevel 168 0xa8  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 182 0xb6  0.01
+M input averageHumidityIntervalMinutes 169 0xa9  1
+M output batteryPercent 170 0xaa  1
 `,
             }, 
         
@@ -1678,6 +1686,27 @@ M output batteryPercent 166 0xa6  1
             }, 
         
 
+            1456440847: {
+                name: "MeshBridge",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+M output batteryPercent 165 0xa5  1
+M input rejoinBudgetMax 166 0xa6  1
+M input rejoinBudgetRefill 167 0xa7  1
+M input rejoinTime 180 0xb4  1
+`,
+            }, 
+        
+
             1457770051: {
                 name: "dots,lptemp,wifitracker",
                 versions: "R2",
@@ -1880,33 +1909,6 @@ M output soundLevel 183 0xb7  0.1
 M input soundThreshold 167 0xa7  1
 M input soundMinLevel 168 0xa8  1
 M input soundAvgMinutes 169 0xa9  1
-`,
-            }, 
-        
-
-            1761830827: {
-                name: "MeshRadarLora",
-                versions: "",
-                mapData: `M input meshSyncInterval_h 160 0xa0  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalHours 161 0xa1  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 162 0xa2  1
-M input tempAlarmHighLevel 163 0xa3  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output occupied 129 0x81  1
-M input amplitudeHysteresis 179 0xb3  1
-M input distanceHysteresis 164 0xa4  0.01
-M output distanceAverage 146 0x92  0.01
-M input averageDistanceIntervalMinutes 180 0xb4  1
-M input averageDistanceLowAlarmLevel 181 0xb5  0.01
-M input averageDistanceHighAlarmLevel 182 0xb6  0.01
-M output averageDistanceAlarm 130 0x82  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 183 0xb7  0.001
 `,
             }, 
         
@@ -2589,25 +2591,6 @@ M output averageDistanceAlarm 130 0x82  1
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
-`,
-            }, 
-        
-
-            2652719003: {
-                name: "MeshTemp",
-                versions: "",
-                mapData: `M input meshSyncInterval_h 160 0xa0  1
-M input meshEnableExtension 161 0xa1  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalMinutes 162 0xa2  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 163 0xa3  1
-M input tempAlarmHighLevel 164 0xa4  1
-M input air_pressure_hysteresis_bar 165 0xa5  1
-M output air_pressure 184 0xb8  0.01
-M output batteryPercent 166 0xa6  1
 `,
             }, 
         
@@ -3951,33 +3934,6 @@ M input amplitudeHysteresis 179 0xb3  1
 M input distanceHysteresis 164 0xa4  0.01
 M output batteryPercent 165 0xa5  1
 M output underVoltage 166 0xa6  1
-`,
-            }, 
-        
-
-            4111527682: {
-                name: "MeshRadarNoLora",
-                versions: "",
-                mapData: `M input meshSyncInterval_h 160 0xa0  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output occupied 128 0x80  1
-M input amplitudeHysteresis 176 0xb0  1
-M input distanceHysteresis 161 0xa1  0.01
-M output distanceAverage 146 0x92  0.01
-M input averageDistanceIntervalMinutes 177 0xb1  1
-M input averageDistanceLowAlarmLevel 178 0xb2  0.01
-M input averageDistanceHighAlarmLevel 179 0xb3  0.01
-M output averageDistanceAlarm 129 0x81  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 180 0xb4  0.001
-M output temp 181 0xb5  0.01
-M output averageTemp 182 0xb6  0.01
-M input tempHysteresis 183 0xb7  0.01
-M input averageTempIntervalHours 162 0xa2  1
-M output tempAlarm 130 0x82  1
-M input tempAlarmLowLevel 163 0xa3  1
-M input tempAlarmHighLevel 164 0xa4  1
 `,
             }, 
         
