@@ -30,6 +30,7 @@ THE SOFTWARE.
 // Refer to VSM documentation for encoding reference
 function translate(iotnode) {
 
+    const MESH_PORT_OFFSET = 300;
 /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
 const knownSchemas = {
 
@@ -3091,7 +3092,7 @@ catch (ignored) {}
                 result: { 
                     mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier } },
                     encodedData : {
-                        port: port,
+                        port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
                         timestamp: producedTimestamp,
                     },
@@ -3667,9 +3668,22 @@ catch (ignored) {}
 
     // Symbol table to translate into "human-readable" format
     const symbolTable = mkSymbolTable(iotnode);
- 
+
+    // Lora ports range is less than 1000. Mesh translation will add 1000 to the port so we can distinguish
+    let clearMeshTransport = false;
+    if (port < MESH_PORT_OFFSET) { // Message transported by lorawan
+        if (iotnode && iotnode.mesh && iotnode.mesh.transport && iotnode.mesh.transport.carrier)
+            clearMeshTransport = true;
+    }
+    else { // Message transported by mesh
+        port -= MESH_PORT_OFFSET;
+    }
+
     if (mapPortToDecode.hasOwnProperty(port)) {
-        return mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
+        let result = mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
+        if (clearMeshTransport && result && result.result)
+            result.result.mesh = {transport:{carrier:"LoRaWan"}}
+        return result;
     } else {
         console.log("No decode function for port " + port);
         return null;
