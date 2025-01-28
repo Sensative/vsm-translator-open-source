@@ -102,34 +102,6 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
-            60422066: {
-                name: "MeshComfortTimeCount",
-                versions: "",
-                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
-M input meshEnableUpside 160 0xa0  1
-M input meshEnableDownside 161 0xa1  1
-M output minutes 162 0xa2  1
-M output hours 163 0xa3  1
-M output days 164 0xa4  1
-M output weeks 165 0xa5  1
-M output years 166 0xa6  1
-M input timecount_interval_minutes 167 0xa7  1
-M output temp 177 0xb1  0.01
-M output averageTemp 178 0xb2  0.01
-M input tempHysteresis 179 0xb3  0.01
-M input averageTempIntervalMinutes 168 0xa8  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 169 0xa9  1
-M input tempAlarmHighLevel 170 0xaa  1
-M output humidity 180 0xb4  0.01
-M output averageHumidity 144 0x90  0.01
-M input humidityTreshold 181 0xb5  0.01
-M input averageHumidityIntervalMinutes 171 0xab  1
-M output batteryPercent 172 0xac  1
-`,
-            }, 
-        
-
             78751172: {
                 name: "Radiotest",
                 versions: "R25 R24 R23",
@@ -2376,23 +2348,30 @@ M input gpsScan_minutes 167 0xa7  1
             }, 
         
 
-            3923887184: {
-                name: "MeshBridge",
+            3980641867: {
+                name: "MeshComfortTimeCount",
                 versions: "",
                 mapData: `M input meshSyncInterval_minutes 176 0xb0  1
 M input meshEnableUpside 160 0xa0  1
 M input meshEnableDownside 161 0xa1  1
+M output minutes 162 0xa2  1
+M output hours 163 0xa3  1
+M output days 164 0xa4  1
+M output weeks 165 0xa5  1
+M output years 166 0xa6  1
+M input timecount_interval_minutes 167 0xa7  1
 M output temp 177 0xb1  0.01
 M output averageTemp 178 0xb2  0.01
 M input tempHysteresis 179 0xb3  0.01
-M input averageTempIntervalMinutes 162 0xa2  1
+M input averageTempIntervalMinutes 168 0xa8  1
 M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 163 0xa3  1
-M input tempAlarmHighLevel 164 0xa4  1
-M output batteryPercent 165 0xa5  1
-M input rejoinBudgetMax 166 0xa6  1
-M input rejoinBudgetRefill 167 0xa7  1
-M input rejoinTime 180 0xb4  1
+M input tempAlarmLowLevel 169 0xa9  1
+M input tempAlarmHighLevel 170 0xaa  1
+M output humidity 180 0xb4  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 181 0xb5  0.01
+M input averageHumidityIntervalMinutes 171 0xab  1
+M output batteryPercent 172 0xac  1
 `,
             }, 
         
@@ -2523,6 +2502,27 @@ M output lux 181 0xb5  1
 M output averageLux 145 0x91  1
 M input luxTresholdPercent 182 0xb6  1
 M input averageLuxIntervalMinutes 166 0xa6  1
+`,
+            }, 
+        
+
+            4209750967: {
+                name: "MeshBridge",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempIntervalMinutes 162 0xa2  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 163 0xa3  1
+M input tempAlarmHighLevel 164 0xa4  1
+M output batteryPercent 165 0xa5  1
+M input rejoinBudgetMax 166 0xa6  1
+M input rejoinBudgetRefill 167 0xa7  1
+M input rejoinTime 180 0xb4  1
 `,
             }, 
           // Additional known schemas:
