@@ -41,7 +41,7 @@ function decodeUplink(input) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 3241343967 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 3441810944 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }    
 
@@ -62,10 +62,10 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     var schema = 
     {
-        3241343967: {
-            name: "Square-air",
-            versions: "R16 R18 R19 R20 R21 R22 R23 R24 R25",
-            mapData: "M input air_iaq_alarm_level 190 0xbe  1 + M input air_interval_minutes 170 0xaa  1 + M input air_static_iaq_alarm_level 189 0xbd  1 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input luxTresholdPercent 182 0xb6  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output air_breath_voc_equivalent 187 0xbb  0.01 + M output air_co2 185 0xb9  1 + M output air_iaq 184 0xb8  1 + M output air_iaq_accuracy 169 0xa9  1 + M output air_iaq_alarm 129 0x81  1 + M output air_pressure 186 0xba  0.01 + M output air_run_in_status 167 0xa7  1 + M output air_stab_status 168 0xa8  1 + M output air_static_iaq 188 0xbc  1 + M output averageHumidity 144 0x90  0.01 + M output averageLux 145 0x91  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output lux 181 0xb5  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
+        3441810944: {
+            name: "Lifefinder-gnss",
+            versions: "R26",
+            mapData: "M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 183 0xb7  1 + M input alarmResendTime 168 0xa8  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input humidityThreshold 182 0xb6  0.01 + M input maxAlarmMinutes 181 0xb5  1 + M input maxTraceMinutes 165 0xa5  1 + M input nfcDisablesAlarm 170 0xaa  1 + M input positioningFreqency 171 0xab  1 + M input quickAlarm 169 0xa9  1 + M input resendsBeforeUnjoin 167 0xa7  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 166 0xa6  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output humidity 180 0xb4  0.01 + M output nfcDisabledAlarm 129 0x81  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output traceTime 145 0x91  1 + M output traceTrigger 130 0x82  1 + M output volts 179 0xb3  0.001"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
@@ -224,7 +224,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.89"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.120"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
@@ -303,7 +303,23 @@ function translate(iotnode) {
     }
 
     var decodeMesh = function (iotnode, symbolTable, data, time) {
+
+        if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
+            return { result: {
+                mesh : { stats : { 
+                    maxRate: data[0],
+                    minRate: data[1], 
+                    mode : data[2],
+                    sync : data[3],
+                    rssiWorst : data[4] << 24 >> 24 /* sign extension */ ,
+                    rssiAverage : data[5] << 24 >> 24 /* sign extension */ ,
+                    msgCount : data[6]*256+data[7],
+                    timestamp : new Date().toISOString(),
+                }
+            } }
+        };
         if (data.length < 10)
+            // Illegal mesh message
             return {result: {} };
 
         var serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
@@ -318,17 +334,41 @@ function translate(iotnode) {
                 byte = "0"+byte;
             hex += byte;
         }
+        var producedTimestamp = new Date((new Date(time)).getTime()-1000*age_s).toISOString();
+        var receivedTimestamp = new Date(time).toISOString();
         var obj = {
-            producedTimestamp: new Date((new Date(time)).getTime()-1000*age_s).toISOString(), // When was the uplink created
-            receivedTimestamp: new Date(time).toISOString(),                             // When was it translated
+            producedTimestamp: producedTimestamp, // When was the uplink created
+            receivedTimestamp: receivedTimestamp, // When was it translated
             port: port,
             len: len,
             hex: hex,
             serial: serial,
         }
+        // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
+        // field (which should magically update nodes with the set secret)
         var result = {mesh: {} };
         result.mesh[serial] = obj;
-        return { result: result };       
+        var carrier = iotnode && iotnode.name ? iotnode.name : "";
+        return { 
+            result, 
+            additionalDeviceUpdates : [ {
+                identifier: {secret:""+serial},
+                result: { 
+                    mesh : { 
+		    	     transport : { 
+			                   receivedTimestamp: receivedTimestamp, 
+					   producedTimestamp: producedTimestamp, 
+					   port: port, 
+					   hex: hex, 
+					   carrier: carrier } },
+                    encodedData : {
+                        port: port + MESH_PORT_OFFSET,
+                        hexEncoded: hex,
+                        timestamp: producedTimestamp,
+                    },
+                }
+            }]
+        }
     }
     // Decode uint32_8_t compressed time format
     var decode_uint32_8_t = function(fp) {
@@ -383,7 +423,7 @@ function translate(iotnode) {
             timestamps = {}
       series.map(function(sample) {
             // Each sample has a field called value and a field called timestamp
-            var sampvartimestamp = sample.timestamp;
+            var sampleTimestamp = sample.timestamp;
             var sampleValues = sample.value;
             if (!sampleValues.output) 
                 throw new Error("The sample does not have output structure");
@@ -393,18 +433,18 @@ function translate(iotnode) {
             for (var k = 0; k < keys.length; ++k) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
-                    var lastSampvartime = new Date(timestamps[name]);                    
-                    if (lastSampvartime < sampvartimestamp) {
-                        timestamps[name] = sampvartimestamp; // Avoid overwrite from this series
-                        result.timestamps[name] = sampvartimestamp;
+                    var lastSampleTime = new Date(timestamps[name]);                    
+                    if (lastSampleTime < sampleTimestamp) {
+                        timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
+                        result.timestamps[name] = sampleTimestamp;
                         result.output[name] = sampleValues.output[name];
                     } else {
                         // Do not touch this output, there is a later value present already
                     }
                 } else {
                     // No previous timestamp, include this value and set a timestamp
-                    timestamps[name] = sampvartimestamp; // Avoid overwrite from this series
-                    result.timestamps[name] = sampvartimestamp;
+                    timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
+                    result.timestamps[name] = sampleTimestamp;
                     result.output[name] = sampleValues.output[name];
                 }
             }
@@ -1065,8 +1105,21 @@ function translate(iotnode) {
     // Symbol table to translate into "human-readable" format
     var symbolTable = mkSymbolTable(iotnode);
 
+    // Lora ports range is less than 1000. Mesh translation will add 1000 to the port so we can distinguish
+    var clearMeshTransport = false;
+    if (port < MESH_PORT_OFFSET) { // Message transported by lorawan
+        if (iotnode && iotnode.mesh && iotnode.mesh.transport && iotnode.mesh.transport.carrier)
+            clearMeshTransport = true;
+    }
+    else { // Message transported by mesh
+        port -= MESH_PORT_OFFSET;
+    }
+
     if (mapPortToDecode.hasOwnProperty(port)) {
-        return mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
+        var result = mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
+        if (clearMeshTransport && result && result.result)
+            result.result.mesh = {transport:{carrier:"LoRaWan"}}
+        return result;
     } else {
         console.log("No decode function for port " + port);
         return null;

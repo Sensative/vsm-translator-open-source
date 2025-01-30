@@ -41,7 +41,7 @@ function decodeUplink(input) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 517999093 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 2029355788 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     }    
 
@@ -61,13 +61,13 @@ function translate(iotnode) {
     
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
 
-    // CRCs having similar schema: 517999093, 1355326083, 2338085954, 2387046759, 2766427005, 3090458506
+    // CRCs having similar schema: 2029355788, 2093063534
     var schema = 
     {
-        517999093: {
-            name: "Square-sound",
-            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22",
-            mapData: "M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input luxTresholdPercent 182 0xb6  1 + M input roamNetworkCount 160 0xa0  1 + M input soundAlarmTimeoutMinutes 170 0xaa  1 + M input soundAvgMinutes 169 0xa9  1 + M input soundMinLevel 168 0xa8  1 + M input soundThreshold 167 0xa7  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageHumidity 144 0x90  0.01 + M output averageLux 145 0x91  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output lux 181 0xb5  1 + M output soundAlarm 129 0x81  1 + M output soundAvgMax 184 0xb8  0.1 + M output soundLevel 183 0xb7  0.1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
+        2029355788: {
+            name: "Tracker",
+            versions: "R22 R23 R24 R25 R26",
+            mapData: "M input averageTempIntervalHours 160 0xa0  1 + M input backUpWifiGnssScanMinutes 173 0xad  1 + M input fullScanChannels 185 0xb9  1 + M input fullWifiScan_minutes 168 0xa8  1 + M input gnssMode 172 0xac  1 + M input gpsScan_minutes 169 0xa9  1 + M input limitedScanChannels 184 0xb8  1 + M input maxBudget 181 0xb5  1 + M input minimumGnssCount 167 0xa7  1 + M input minimumWifiCount 166 0xa6  1 + M input motionCountEnabled 170 0xaa  1 + M input motionTimeEnabled 171 0xab  1 + M input movingMotionThreshold_mm_s2 180 0xb4  1 + M input movingScanIntervalMinutes 188 0xbc  1 + M input quarterlyScanBudget 164 0xa4  1 + M input quickRejoinBudgetMax 182 0xb6  1 + M input roamNetworkCount 163 0xa3  1 + M input singleWifiScanAgain_minutes 165 0xa5  1 + M input stationaryScanIntervalMinutes 189 0xbd  1 + M input stillMotionThreshold_mm_s2 179 0xb3  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 174 0xae  1 + M output motionCount 186 0xba  1 + M output motionTimeMinutes 187 0xbb  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
         }
     };
     /// END DO NOT CHANGE THE ABOVE 
