@@ -6,7 +6,7 @@
 
 <br>
 
-<h3>The following decoders/translators are valid for the following applications and respective firmware version:<h3>
+### The following decoders/translators are valid for the following applications and respective firmware version:
 
 | Product Application      | Versions                                                              | CRCs                              |
 |--------------------------|-----------------------------------------------------------------------|-----------------------------------|
