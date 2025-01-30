@@ -1,5 +1,6 @@
 const { knownSchemas } = require('../../dots-translator-generated.cjs');
 const { processTemplate } = require('./template-utils.cjs');
+const { validSensors } = require('./valid-sensors.cjs');
 
 /**
  * Sorts the mapData rows based on the second and third columns.
@@ -48,25 +49,12 @@ function processAndGroupSchemas() {
  * @returns {Object} An object grouping schemas by their name.
  */
 function filterAndFormatSchemas() {
-    const schemaGroupsByName = {};
-    const allowedNames = [
-        "Digital-gpio",
-        "Lifefinder-alternating",
-        "Lifefinder-gnss",
-        "Lifefinder-wifi",
-        "Motion-measure",
-        "Puck-radar",
-        "Square-air",
-        "Square-comfort",
-        "Square-comfort-sound",
-        "Square-sound",
-        "Tracker"
-    ];
+    const schemaGroupsByName = {};   
 
     for (let [crc, schema] of Object.entries(knownSchemas)) {
         // Ensure the schema name is allowed and version is R11 or above
         if (
-            !allowedNames.includes(schema.name) ||
+            !validSensors.includes(schema.name) ||
             !schema.versions ||
             schema.versions.trim() === "" ||
             !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)
