@@ -13,3 +13,7 @@ const validSensors = [
     "Square-sound",             // Square-shaped sound sensor
     "Tracker"                   // Tracker device
 ];
+
+module.exports = {
+    validSensors
+};
