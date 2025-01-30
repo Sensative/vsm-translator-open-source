@@ -303,7 +303,23 @@ function translate(iotnode) {
     }
 
     var decodeMesh = function (iotnode, symbolTable, data, time) {
+
+        if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
+            return { result: {
+                mesh : { stats : { 
+                    maxRate: data[0],
+                    minRate: data[1], 
+                    mode : data[2],
+                    sync : data[3],
+                    rssiWorst : data[4] << 24 >> 24 /* sign extension */ ,
+                    rssiAverage : data[5] << 24 >> 24 /* sign extension */ ,
+                    msgCount : data[6]*256+data[7],
+                    timestamp : new Date().toISOString(),
+                }
+            } }
+        };
         if (data.length < 10)
+            // Illegal mesh message
             return {result: {} };
 
         var serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
@@ -318,17 +334,41 @@ function translate(iotnode) {
                 byte = "0"+byte;
             hex += byte;
         }
+        var producedTimestamp = new Date((new Date(time)).getTime()-1000*age_s).toISOString();
+        var receivedTimestamp = new Date(time).toISOString();
         var obj = {
-            producedTimestamp: new Date((new Date(time)).getTime()-1000*age_s).toISOString(), // When was the uplink created
-            receivedTimestamp: new Date(time).toISOString(),                             // When was it translated
+            producedTimestamp: producedTimestamp, // When was the uplink created
+            receivedTimestamp: receivedTimestamp, // When was it translated
             port: port,
             len: len,
             hex: hex,
             serial: serial,
         }
+        // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
+        // field (which should magically update nodes with the set secret)
         var result = {mesh: {} };
         result.mesh[serial] = obj;
-        return { result: result };       
+        var carrier = iotnode && iotnode.name ? iotnode.name : "";
+        return { 
+            result, 
+            additionalDeviceUpdates : [ {
+                identifier: {secret:""+serial},
+                result: { 
+                    mesh : { 
+		    	     transport : { 
+			                   receivedTimestamp: receivedTimestamp, 
+					   producedTimestamp: producedTimestamp, 
+					   port: port, 
+					   hex: hex, 
+					   carrier: carrier } },
+                    encodedData : {
+                        port: port + MESH_PORT_OFFSET,
+                        hexEncoded: hex,
+                        timestamp: producedTimestamp,
+                    },
+                }
+            }]
+        }
     }
     // Decode uint32_8_t compressed time format
     var decode_uint32_8_t = function(fp) {
@@ -383,7 +423,7 @@ function translate(iotnode) {
             timestamps = {}
       series.map(function(sample) {
             // Each sample has a field called value and a field called timestamp
-            var sampvartimestamp = sample.timestamp;
+            var sampleTimestamp = sample.timestamp;
             var sampleValues = sample.value;
             if (!sampleValues.output) 
                 throw new Error("The sample does not have output structure");
@@ -393,18 +433,18 @@ function translate(iotnode) {
             for (var k = 0; k < keys.length; ++k) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
-                    var lastSampvartime = new Date(timestamps[name]);                    
-                    if (lastSampvartime < sampvartimestamp) {
-                        timestamps[name] = sampvartimestamp; // Avoid overwrite from this series
-                        result.timestamps[name] = sampvartimestamp;
+                    var lastSampleTime = new Date(timestamps[name]);                    
+                    if (lastSampleTime < sampleTimestamp) {
+                        timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
+                        result.timestamps[name] = sampleTimestamp;
                         result.output[name] = sampleValues.output[name];
                     } else {
                         // Do not touch this output, there is a later value present already
                     }
                 } else {
                     // No previous timestamp, include this value and set a timestamp
-                    timestamps[name] = sampvartimestamp; // Avoid overwrite from this series
-                    result.timestamps[name] = sampvartimestamp;
+                    timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
+                    result.timestamps[name] = sampleTimestamp;
                     result.output[name] = sampleValues.output[name];
                 }
             }
@@ -1065,8 +1105,21 @@ function translate(iotnode) {
     // Symbol table to translate into "human-readable" format
     var symbolTable = mkSymbolTable(iotnode);
 
+    // Lora ports range is less than 1000. Mesh translation will add 1000 to the port so we can distinguish
+    var clearMeshTransport = false;
+    if (port < MESH_PORT_OFFSET) { // Message transported by lorawan
+        if (iotnode && iotnode.mesh && iotnode.mesh.transport && iotnode.mesh.transport.carrier)
+            clearMeshTransport = true;
+    }
+    else { // Message transported by mesh
+        port -= MESH_PORT_OFFSET;
+    }
+
     if (mapPortToDecode.hasOwnProperty(port)) {
-        return mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
+        var result = mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
+        if (clearMeshTransport && result && result.result)
+            result.result.mesh = {transport:{carrier:"LoRaWan"}}
+        return result;
     } else {
         console.log("No decode function for port " + port);
         return null;
