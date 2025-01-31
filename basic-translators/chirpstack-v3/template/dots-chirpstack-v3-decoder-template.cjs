@@ -55,6 +55,7 @@ function Decode(fPort, bytes, variables) {
 
 function translate(iotnode) {
 
+    var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     var schema = {
 
@@ -346,7 +347,7 @@ function translate(iotnode) {
         result.mesh[serial] = obj;
         var carrier = iotnode && iotnode.name ? iotnode.name : "";
         return { 
-            result, 
+            result: result, 
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
