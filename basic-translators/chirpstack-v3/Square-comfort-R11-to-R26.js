@@ -55,6 +55,7 @@ function Decode(fPort, bytes, variables) {
 
 function translate(iotnode) {
 
+    var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
 
     // CRCs having similar schema: 2266505222, 2696231198, 2935762138, 3530880224, 4174894842
@@ -348,7 +349,7 @@ function translate(iotnode) {
         result.mesh[serial] = obj;
         var carrier = iotnode && iotnode.name ? iotnode.name : "";
         return { 
-            result, 
+            result: result, 
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
