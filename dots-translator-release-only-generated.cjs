@@ -2953,10 +2953,52 @@ M output underVoltage 165 0xa5 1
     };
 
     // Control status update
+
+    // Error bitmask
+    const errorBits = {
+        0:'UnknownCommand',   // Typically received a message where port or command does not match
+        1:'Hysterical',       // The VM did not finish execution in the max number of iterations
+        2:'WrongCustomization',  // The customization is for another app than what is in the device
+        3:'Blocked',          // A service had data that could not be sent due to poor DR
+        4:'PriorityInverted', // There was confirmed output to send that did not fit the max size
+        5:'IllegalCommand',   // An otherwise fine downlink had incorrect data
+        6:'BadCustomization', // The customization file did not have a correct CRC
+        7:'CannotJoinRadioBusy', // The radio was occupied when trying to join    
+    };
+    // VM Status Values
+    const statusValues = {
+        0: 'OK',
+        1: 'BadParameter',        // A function was called with incorrect parameters
+        2: 'BadRuleLength',       // A rule longer than the max length was provided to VM
+        3: 'RuleNotSet',          // The referenced rule had not been set
+        4: 'BadVersion',          // Bad rule version vs this VM
+        5: 'BadReference',        // Reference to an illegal address
+        6: 'StackUnderflow',      // Stack underflow
+        7: 'StackOverflow',       // Stack overflow
+        8: 'DivByZero',           // Division by zero
+        9: 'IllegalInstruction',  // Bad instruction format
+        10: 'ProgramOverflow',    // Code did not terminate before reaching next rule
+        11: 'BadRuleState',       // A rule had a RAM state inconsistent with its code
+        12: 'RegisterReadOnly',   // Attempting to write to a read-only register
+        13: 'DependencyOverflow', // Too many dependencies in this ruleset
+        14: 'NotSupported',       // Functionality not supported on this HW
+        15: 'DeviceError',        // Error reported from a hardware device
+        };
+
     const decodeControl = (iotnode, symbolTable, data, time) => {
         const vmError   = data[0];
+        let vmErrorText = "";
+        for (let i = 0; i < 8; ++i) {
+            if (vmError & (1<<i))
+                vmErrorText += errorBits[i] + " ";
+        }
+        if (vmErrorText === "")
+            vmErrorText = "OK";
+        else
+            vmErrorText = vmErrorText.trim();
         const vmStatus  = data[1];
-        return { result: { vsm: {vmError, vmStatus}}};
+        let vmStatusText = statusValues.hasOwnProperty(vmStatus) ? statusValues[vmStatus] : "Unknown";
+        return { result: { vsm: {status: {vmError, vmStatus, vmErrorText, vmStatusText, timestamp: new Date()}}}};
     }
 
     const decodeCrash = (iotnode, symbolTable, data, time) => {
