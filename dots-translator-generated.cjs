@@ -770,6 +770,32 @@ M output batteryPercent 172 0xac  1
             }, 
         
 
+            1054688892: {
+                name: "Lifefinder-motion-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 160 0xa0  0.1
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output batteryPercent 164 0xa4  1
+M output volts 179 0xb3  0.001
+M output deviceActive 129 0x81  1
+M input activeTimeMaxMinutes 180 0xb4  1
+M input stillMotionThreshold_mm_s2 181 0xb5  1
+M input movingMotionThreshold_mm_s2 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+M input stationaryPositionMinutes 165 0xa5  1
+M input movingPositionMinutes 166 0xa6  1
+M output accumulatedStationaryTime 144 0x90  1
+M output accumulatedMovingTime 145 0x91  1
+`,
+            }, 
+        
+
             1121182195: {
                 name: "Puck-radar-fast-rejoin",
                 versions: "R21 R20 R19 R18 R16 R15 R14 R13",
@@ -1060,6 +1086,55 @@ M input averageTempIntervalHours 164 0xa4  1
 M output tempAlarm 131 0x83  1
 M input tempAlarmLowLevel 165 0xa5  1
 M input tempAlarmHighLevel 166 0xa6  1
+`,
+            }, 
+        
+
+            1485817482: {
+                name: "Square-comfort-sound",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M output soundLevel 181 0xb5  0.1
+M input soundThreshold 167 0xa7  1
+M input soundMinLevel 168 0xa8  1
+M input soundAvgMinutes 169 0xa9  1
+M output soundAlarm 129 0x81  1
+M input soundAlarmTimeoutMinutes 170 0xaa  1
+M output soundAvgMax 184 0xb8  0.1
+`,
+            }, 
+        
+
+            1549890427: {
+                name: "Square-comfort",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
 `,
             }, 
         
@@ -1494,6 +1569,40 @@ M input motionThreshold 180 0xb4  0.001
             }, 
         
 
+            2008559510: {
+                name: "Lifefinder-gnss",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 160 0xa0  0.1
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output batteryPercent 165 0xa5  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 181 0xb5  1
+M input maxTraceMinutes 166 0xa6  1
+M input traceTriggerMinutes 167 0xa7  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input resendsBeforeUnjoin 168 0xa8  1
+M input alarmResendTime 169 0xa9  1
+M input quickAlarm 170 0xaa  1
+M input nfcDisablesAlarm 171 0xab  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 172 0xac  1
+`,
+            }, 
+        
+
             2029355788: {
                 name: "Tracker",
                 versions: "R25 R24 R23 R22",
@@ -1823,6 +1932,40 @@ M input soundAvgMinutes 168 0xa8  1
             }, 
         
 
+            2543676283: {
+                name: "Lifefinder-alternating",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 160 0xa0  0.1
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output batteryPercent 165 0xa5  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 181 0xb5  1
+M input maxTraceMinutes 166 0xa6  1
+M input traceTriggerMinutes 167 0xa7  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input resendsBeforeUnjoin 168 0xa8  1
+M input alarmResendTime 169 0xa9  1
+M input quickAlarm 170 0xaa  1
+M input nfcDisablesAlarm 171 0xab  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 172 0xac  1
+`,
+            }, 
+        
+
             2566472474: {
                 name: "Lifefinder-gnss",
                 versions: "R23",
@@ -2064,6 +2207,40 @@ M output averageHumidity 144 0x90  0.01
 M input humidityTreshold 181 0xb5  0.01
 M input averageHumidityIntervalMinutes 165 0xa5  1
 M output batteryPercent 166 0xa6  1
+`,
+            }, 
+        
+
+            2902573446: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 160 0xa0  0.1
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output batteryPercent 165 0xa5  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output humidity 180 0xb4  0.01
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 181 0xb5  1
+M input maxTraceMinutes 166 0xa6  1
+M input traceTriggerMinutes 167 0xa7  1
+M input humidityThreshold 182 0xb6  0.01
+M input alarmResendsBeforeUnjoin 183 0xb7  1
+M input resendsBeforeUnjoin 168 0xa8  1
+M input alarmResendTime 169 0xa9  1
+M input quickAlarm 170 0xaa  1
+M input nfcDisablesAlarm 171 0xab  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 172 0xac  1
 `,
             }, 
         
@@ -2456,6 +2633,43 @@ M output card_2 153 0x99  1
 M output card_3 154 0x9a  1
 M output serial 155 0x9b  1
 M input debounceSeconds 176 0xb0  1
+`,
+            }, 
+        
+
+            3480072224: {
+                name: "Square-air",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 167 0xa7  1
+M output air_run_in_status 168 0xa8  1
+M output air_stab_status 169 0xa9  1
+M output air_iaq_accuracy 170 0xaa  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_breath_voc_equivalent 187 0xbb  0.01
+M output air_static_iaq 188 0xbc  1
+M input air_interval_minutes 171 0xab  1
+M input air_static_iaq_alarm_level 189 0xbd  1
+M input air_iaq_alarm_level 190 0xbe  1
+M output air_iaq_alarm 129 0x81  1
 `,
             }, 
         
@@ -3186,7 +3400,14 @@ M output underVoltage 165 0xa5 1
         let schemaInfo = {}
         if (knownSchemas[rulesCrc32]) {
             // there is a known schema for this node, use it [TBD how to handle conflicting CRCs]
-            schemaInfo = { appName: knownSchemas[rulesCrc32].name, schema: knownSchemas[rulesCrc32].mapData, appVersions: knownSchemas[rulesCrc32].versions}
+            schemaInfo = { 
+                appName: knownSchemas[rulesCrc32].name, 
+                schema: knownSchemas[rulesCrc32].mapData, 
+                appVersions: knownSchemas[rulesCrc32].versions,
+                // Added as requirement from product owner:
+                appDocumentationUrl: `https://github.com/Sensative/vsm-application-documentation/blob/master/${rulesCrc32}-${knownSchemas[rulesCrc32].name}.vso.md`,
+                appConfigurationUrl: `https://vsm-lora-config-app.service.sensative.net/?app=${rulesCrc32}`,
+            }
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }

@@ -3032,7 +3032,14 @@ M output underVoltage 165 0xa5 1
         let schemaInfo = {}
         if (knownSchemas[rulesCrc32]) {
             // there is a known schema for this node, use it [TBD how to handle conflicting CRCs]
-            schemaInfo = { appName: knownSchemas[rulesCrc32].name, schema: knownSchemas[rulesCrc32].mapData, appVersions: knownSchemas[rulesCrc32].versions}
+            schemaInfo = { 
+                appName: knownSchemas[rulesCrc32].name, 
+                schema: knownSchemas[rulesCrc32].mapData, 
+                appVersions: knownSchemas[rulesCrc32].versions,
+                // Added as requirement from product owner:
+                appDocumentationUrl: `https://github.com/Sensative/vsm-application-documentation/blob/master/${rulesCrc32}-${knownSchemas[rulesCrc32].name}.vso.md`,
+                appConfigurationUrl: `https://vsm-lora-config-app.service.sensative.net/?app=${rulesCrc32}`,
+            }
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
