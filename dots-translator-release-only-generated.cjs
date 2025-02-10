@@ -3039,6 +3039,8 @@ M output underVoltage 165 0xa5 1
                 // Added as requirement from product owner:
                 appDocumentationUrl: `https://github.com/Sensative/vsm-application-documentation/blob/master/${rulesCrc32}-${knownSchemas[rulesCrc32].name}.vso.md`,
                 appConfigurationUrl: `https://vsm-lora-config-app.service.sensative.net/?app=${rulesCrc32}`,
+                // Good to know how old this information is
+                timestamp: new Date(),
             }
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
