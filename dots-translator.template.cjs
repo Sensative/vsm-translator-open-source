@@ -206,6 +206,11 @@ const knownSchemas = {};
     }
 
     const decodeMesh = (iotnode, symbolTable, data, time) => {
+        if (data.length == 2) { // Mesh key last 4 digits (decimal) (uplinked as result of 0x02 on port 8)
+            return { result: {
+                mesh: { stats : { keyLast4 : data[0]<<8 | data[1] }}
+            }};
+        }
 
         if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
             return { result: {
