@@ -3214,6 +3214,11 @@ M output underVoltage 165 0xa5 1
     }
 
     const decodeMesh = (iotnode, symbolTable, data, time) => {
+        if (data.length == 2) { // Mesh key last 4 digits (decimal) (uplinked as result of 0x02 on port 8)
+            return { result: {
+                mesh: { stats : { keyLast4 : data[0]<<8 | data[1] }}
+            }};
+        }
 
         if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
             return { result: {
@@ -3236,7 +3241,11 @@ M output underVoltage 165 0xa5 1
         }
 
         let serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
-        let age_s  = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffffff;
+        let upsideRate = (data[4] >> 4) & 0xf;
+        if (upsideRate === 0xf) upsideRate = -1; // Not enabled
+        let downsideRate = data[4] & 0xf;
+        if (downsideRate === 0xf) downsideRate = -1; // Not enabled
+        let age_s  = ((data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffff;
         let port   = data[8];
         let len    = data[9]; // Included since there may be multiple messages packed in one in some future
         let pos = 10;
@@ -3256,6 +3265,8 @@ M output underVoltage 165 0xa5 1
             len,
             hex,
             serial,
+            upsideRate,
+            downsideRate,
         }
         // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
         // field (which should magically update nodes with the set secret)
@@ -3267,7 +3278,7 @@ M output underVoltage 165 0xa5 1
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
-                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier } },
+                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier, upsideRate, downsideRate } },
                     encodedData : {
                         port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
