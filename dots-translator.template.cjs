@@ -262,7 +262,7 @@ const knownSchemas = {};
         }
         // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
         // field (which should magically update nodes with the set secret)
-        let result = {mesh: {} };
+        let result = {mesh: { stats: {upsideRate, downsideRate} } };
         result.mesh[serial] = obj;
         const carrier = iotnode && iotnode.name ? iotnode.name : "";
         return { 
@@ -270,7 +270,7 @@ const knownSchemas = {};
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
-                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier, upsideRate, downsideRate } },
+                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier } },
                     encodedData : {
                         port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
