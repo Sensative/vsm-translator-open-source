@@ -1595,6 +1595,32 @@ M output batteryPercent 174 0xae  1
             }, 
         
 
+            2190134590: {
+                name: "MeshWifiTracker",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M output hours 177 0xb1  1
+M output temp 178 0xb2  0.01
+M output averageTemp 179 0xb3  0.01
+M input tempHysteresis 180 0xb4  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output batteryPercent 166 0xa6  1
+M input rejoinBudgetMax 167 0xa7  1
+M input rejoinBudgetRefill 168 0xa8  1
+M input rejoinTime 181 0xb5  1
+M input wifiStillScanInterval_h 169 0xa9  1
+M input wifiMovingScanInterval_min 170 0xaa  1
+M input motionThreshold_m_s2 182 0xb6  0.01
+`,
+            }, 
+        
+
             2230085897: {
                 name: "Radiotest",
                 versions: "R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
