@@ -4253,7 +4253,17 @@ M output underVoltage 165 0xa5 1
 
     const decodePortForward = (iotnode, symbolTable, data, time, port) => {
         let result = {result: {forward: { }}}
+        let ascii = undefined;
+        if (port === 32 /* puck radar sent a command response */ ) {
+            try {
+                ascii = data.toString('ascii');
+            } catch (ignored) { ascii = undefined; }
+        }
+        // Standard packaging
         result.result.forward["port"+port] = {timestamp: new Date(time), data: data.toString('hex')}
+        // Port 32 interpreted as ascii data
+        if (ascii)
+            result.result.forward["radar"] = { timestamp: new Date(time), ascii};
         return result;
     }
 
@@ -4857,7 +4867,7 @@ M output gnssState 160 0xa0 1
                 vsm: {schema: description },
                 encodedData : {
                     port : 32,
-                    hexEncoded : "0102030405060708",
+                    hexEncoded : "7379733A3F",
                     timestamp: new Date(1640860261670), // Not used
                 }
             },
@@ -4866,8 +4876,12 @@ M output gnssState 160 0xa0 1
                     "forward":{
                         port32: {
                         "timestamp":"2021-12-30T10:31:01.670Z",
-                        "data":"0102030405060708"
-                        }
+                        "data":"7379733a3f"
+                        },
+                        radar: {
+                            "timestamp":"2021-12-30T10:31:01.670Z",
+                            "ascii":"sys:?"                                
+                        },
                     }
                 }
             }
