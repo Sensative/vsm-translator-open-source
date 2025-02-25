@@ -277,6 +277,33 @@ M input wifiScanInterval_h 170 0xaa  1
             }, 
         
 
+            289128601: {
+                name: "Motion-measure",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output accX 144 0x90  0.001
+M output accY 145 0x91  0.001
+M output accZ 146 0x92  0.001
+M output acc 147 0x93  0.001
+M output pressure_hPa 184 0xb8  0.01
+M input motionThreshold_m_s2 179 0xb3  0.001
+M input sampleInterval_s 163 0xa3  1
+M input sampleCountMax 164 0xa4  1
+M input enableBarometer 165 0xa5  1
+M output motion 166 0xa6  1
+M output batteryPercent 167 0xa7  1
+M input powerIndexFilterFactor 168 0xa8  1
+M input maxPowerIndex 169 0xa9  1
+`,
+            }, 
+        
+
             305267858: {
                 name: "MeshBridge",
                 versions: "",
@@ -1232,51 +1259,29 @@ M input positioningFreqency 166 0xa6  1
             }, 
         
 
-            1485817482: {
-                name: "Square-comfort-sound",
+            1586871679: {
+                name: "Motion-measure-unconf",
                 versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output batteryPercent 161 0xa1  1
-M output temp 176 0xb0  0.01
+                mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
-M input averageTempHysteresis 162 0xa2  0.1
-M input averageTempIntervalMinutes 163 0xa3  1
+M input averageTempIntervalHours 160 0xa0  1
 M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 164 0xa4  1
-M input tempAlarmHighLevel 165 0xa5  1
-M output humidity 179 0xb3  0.01
-M output averageHumidity 144 0x90  0.01
-M input humidityTreshold 180 0xb4  0.01
-M input averageHumidityIntervalMinutes 166 0xa6  1
-M output soundLevel 181 0xb5  0.1
-M input soundThreshold 167 0xa7  1
-M input soundMinLevel 168 0xa8  1
-M input soundAvgMinutes 169 0xa9  1
-M output soundAlarm 129 0x81  1
-M input soundAlarmTimeoutMinutes 170 0xaa  1
-M output soundAvgMax 184 0xb8  0.1
-`,
-            }, 
-        
-
-            1549890427: {
-                name: "Square-comfort",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output batteryPercent 161 0xa1  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempHysteresis 162 0xa2  0.1
-M input averageTempIntervalMinutes 163 0xa3  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 164 0xa4  1
-M input tempAlarmHighLevel 165 0xa5  1
-M output humidity 179 0xb3  0.01
-M output averageHumidity 144 0x90  0.01
-M input humidityTreshold 180 0xb4  0.01
-M input averageHumidityIntervalMinutes 166 0xa6  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output accX 179 0xb3  0.001
+M output accY 180 0xb4  0.001
+M output accZ 181 0xb5  0.001
+M output acc 182 0xb6  0.001
+M output pressure_hPa 184 0xb8  0.01
+M input motionThreshold_m_s2 183 0xb7  0.001
+M input sampleInterval_s 163 0xa3  1
+M input sampleCountMax 164 0xa4  1
+M input enableBarometer 165 0xa5  1
+M output motion 166 0xa6  1
+M output batteryPercent 167 0xa7  1
+M input powerIndexFilterFactor 168 0xa8  1
+M input maxPowerIndex 169 0xa9  1
 `,
             }, 
         
@@ -2192,28 +2197,6 @@ M output batteryPercent 168 0xa8  1
             }, 
         
 
-            2724916716: {
-                name: "Puck-radar",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output occupied 128 0x80  1
-M input amplitudeHysteresis 176 0xb0  1
-M input distanceHysteresis 161 0xa1  0.01
-M output distanceAverage 146 0x92  0.01
-M input averageDistanceIntervalMinutes 177 0xb1  1
-M input averageDistanceLowAlarmLevel 178 0xb2  0.01
-M input averageDistanceHighAlarmLevel 179 0xb3  0.01
-M input reportFailedDistanceMeasurements 162 0xa2  1
-M output averageDistanceAlarm 129 0x81  1
-M output radarDetectionPercentageHourly 130 0x82  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 180 0xb4  0.001
-`,
-            }, 
-        
-
             2745602166: {
                 name: "Airport-int-R6-fw-patch",
                 versions: "R19 R18",
@@ -2338,6 +2321,30 @@ M output averageHumidity 144 0x90  0.01
 M input humidityTreshold 181 0xb5  0.01
 M input averageHumidityIntervalMinutes 165 0xa5  1
 M output batteryPercent 166 0xa6  1
+`,
+            }, 
+        
+
+            2847964315: {
+                name: "Puck-radar",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactor 161 0xa1  1
+M input maxPowerIndex 162 0xa2  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 176 0xb0  1
+M input distanceHysteresis 163 0xa3  0.01
+M output distanceAverage 146 0x92  0.01
+M input averageDistanceIntervalMinutes 177 0xb1  1
+M input averageDistanceLowAlarmLevel 178 0xb2  0.01
+M input averageDistanceHighAlarmLevel 179 0xb3  0.01
+M input reportFailedDistanceMeasurements 164 0xa4  1
+M output averageDistanceAlarm 129 0x81  1
+M output radarDetectionPercentageHourly 130 0x82  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 180 0xb4  0.001
 `,
             }, 
         
@@ -2662,6 +2669,60 @@ M output volts 180 0xb4  0.001
             }, 
         
 
+            3343753478: {
+                name: "Motion-spectrum",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_m_s2 179 0xb3  0.001
+M input motionSpectrumMode 163 0xa3  1
+M output acc_1hz 129 0x81  1
+M output acc_2hz 130 0x82  1
+M output acc_4hz 131 0x83  1
+M output acc_8hz 132 0x84  1
+M output acc_16hz 133 0x85  1
+M output acc_32hz 134 0x86  1
+M output acc_64hz 135 0x87  1
+M output acc_128hz 136 0x88  1
+M output acc_256hz 137 0x89  1
+M output acc_energy_sum_mms2_square 184 0xb8  1
+M output motion 164 0xa4  1
+M input motionPollIntervalMinutes 165 0xa5  1
+M output batteryPercent 166 0xa6  1
+M input powerIndexFilterFactor 167 0xa7  1
+M input maxPowerIndex 168 0xa8  1
+`,
+            }, 
+        
+
+            3409025270: {
+                name: "Digital-gpio",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactor 161 0xa1  1
+M input maxPowerIndex 162 0xa2  1
+M output detection 128 0x80  1
+M input activation 129 0x81  1
+M input resendTime 163 0xa3  1
+M input heartbeatMinutes 164 0xa4  1
+M output heartbeat 130 0x82  1
+M input pollInterval 165 0xa5  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 166 0xa6  1
+M output tempAlarm 131 0x83  1
+M input tempAlarmLowLevel 167 0xa7  1
+M input tempAlarmHighLevel 168 0xa8  1
+`,
+            }, 
+        
+
             3437792987: {
                 name: "Square-comfort-sound",
                 versions: "R25 R24 R23",
@@ -2762,8 +2823,25 @@ M input debounceSeconds 176 0xb0  1
             }, 
         
 
-            3480072224: {
-                name: "Square-air",
+            3497448490: {
+                name: "Digital-gpio",
+                versions: "R12 R11",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output detection 128 0x80  1
+M input activation 129 0x81  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 161 0xa1  1
+M output tempAlarm 130 0x82  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+`,
+            }, 
+        
+
+            3500434333: {
+                name: "Square-comfort-sound",
                 versions: "",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
@@ -2779,39 +2857,15 @@ M output humidity 179 0xb3  0.01
 M output averageHumidity 144 0x90  0.01
 M input humidityTreshold 180 0xb4  0.01
 M input averageHumidityIntervalMinutes 166 0xa6  1
-M output lux 181 0xb5  1
-M output averageLux 145 0x91  1
-M input luxTresholdPercent 182 0xb6  1
-M input averageLuxIntervalMinutes 167 0xa7  1
-M output air_run_in_status 168 0xa8  1
-M output air_stab_status 169 0xa9  1
-M output air_iaq_accuracy 170 0xaa  1
-M output air_iaq 184 0xb8  1
-M output air_co2 185 0xb9  1
-M output air_pressure 186 0xba  0.01
-M output air_breath_voc_equivalent 187 0xbb  0.01
-M output air_static_iaq 188 0xbc  1
-M input air_interval_minutes 171 0xab  1
-M input air_static_iaq_alarm_level 189 0xbd  1
-M input air_iaq_alarm_level 190 0xbe  1
-M output air_iaq_alarm 129 0x81  1
-`,
-            }, 
-        
-
-            3497448490: {
-                name: "Digital-gpio",
-                versions: "R12 R11",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M output detection 128 0x80  1
-M input activation 129 0x81  1
-M output temp 176 0xb0  0.01
-M output averageTemp 177 0xb1  0.01
-M input tempHysteresis 178 0xb2  0.01
-M input averageTempIntervalHours 161 0xa1  1
-M output tempAlarm 130 0x82  1
-M input tempAlarmLowLevel 162 0xa2  1
-M input tempAlarmHighLevel 163 0xa3  1
+M input powerIndexFilterFactor 167 0xa7  1
+M input maxPowerIndex 168 0xa8  1
+M output soundLevel 181 0xb5  0.1
+M input soundThreshold 169 0xa9  1
+M input soundMinLevel 170 0xaa  1
+M input soundAvgMinutes 171 0xab  1
+M output soundAlarm 129 0x81  1
+M input soundAlarmTimeoutMinutes 172 0xac  1
+M output soundAvgMax 184 0xb8  0.1
 `,
             }, 
         
@@ -3052,6 +3106,29 @@ M input air_interval_minutes 170 0xaa  1
 M input air_static_iaq_alarm_level 186 0xba  1
 M input air_iaq_alarm_level 187 0xbb  1
 M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
+            3679384538: {
+                name: "Square-comfort",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input powerIndexFilterFactor 167 0xa7  1
+M input maxPowerIndex 168 0xa8  1
 `,
             }, 
         
@@ -3536,6 +3613,45 @@ M output batteryPercent 165 0xa5  1
 M input rejoinBudgetMax 166 0xa6  1
 M input rejoinBudgetRefill 167 0xa7  1
 M input rejoinTime 180 0xb4  1
+`,
+            }, 
+        
+
+            4231041369: {
+                name: "Square-air",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input powerIndexFilterFactor 167 0xa7  1
+M input maxPowerIndex 168 0xa8  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 169 0xa9  1
+M output air_run_in_status 170 0xaa  1
+M output air_stab_status 171 0xab  1
+M output air_iaq_accuracy 172 0xac  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_breath_voc_equivalent 187 0xbb  0.01
+M output air_static_iaq 188 0xbc  1
+M input air_interval_minutes 173 0xad  1
+M input air_static_iaq_alarm_level 189 0xbd  1
+M input air_iaq_alarm_level 190 0xbe  1
+M output air_iaq_alarm 129 0x81  1
 `,
             }, 
           // Additional known schemas:
