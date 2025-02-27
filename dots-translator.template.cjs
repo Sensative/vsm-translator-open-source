@@ -250,27 +250,16 @@ const knownSchemas = {};
         }
         const producedTimestamp = new Date((new Date(time)).getTime()-1000*age_s);
         const receivedTimestamp = new Date(time);
-        let obj = {
-            producedTimestamp, // When was the uplink created
-            receivedTimestamp,                             // When was it translated
-            port,
-            len,
-            hex,
-            serial,
-            upsideRate,
-            downsideRate,
-        }
         // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
         // field (which should magically update nodes with the set secret)
         let result = {mesh: { stats: {upsideRate, downsideRate} } };
-        result.mesh[serial] = obj;
         const carrier = iotnode && iotnode.name ? iotnode.name : "";
         return { 
             result, 
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
-                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier } },
+                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier, upsideRate, downsideRate } },
                     encodedData : {
                         port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
