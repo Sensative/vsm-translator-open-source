@@ -259,7 +259,7 @@ const knownSchemas = {};
             additionalDeviceUpdates : [ {
                 identifier: {secret:""+serial},
                 result: { 
-                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier, upsideRate, downsideRate } },
+                    mesh : { transport : { receivedTimestamp, producedTimestamp, port, hex, carrier, rate: downsideRate /* current nodes downside rate is the transmitting nodes upside rate */} },
                     encodedData : {
                         port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
