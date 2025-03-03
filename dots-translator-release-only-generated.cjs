@@ -1148,22 +1148,6 @@ M input tempAlarmHighLevel 166 0xa6  1
             }, 
         
 
-            1460312788: {
-                name: "MeshGateway",
-                versions: "",
-                mapData: `M output hours 176 0xb0  1
-M output temp 177 0xb1  0.01
-M output averageTemp 178 0xb2  0.01
-M input tempHysteresis 179 0xb3  0.01
-M input averageTempHysteresis 160 0xa0  0.1
-M input averageTempIntervalMinutes 161 0xa1  1
-M output tempAlarm 128 0x80  1
-M input tempAlarmLowLevel 162 0xa2  1
-M input tempAlarmHighLevel 163 0xa3  1
-`,
-            }, 
-        
-
             1592932210: {
                 name: "Lifefinder-alternating",
                 versions: "R26",
@@ -2039,6 +2023,22 @@ M output soundLevel 183 0xb7  0.1
 M input soundThreshold 167 0xa7  1
 M input soundMinLevel 168 0xa8  1
 M input soundAvgMinutes 169 0xa9  1
+`,
+            }, 
+        
+
+            2767105504: {
+                name: "MeshGateway",
+                versions: "",
+                mapData: `M output hours 176 0xb0  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempHysteresis 160 0xa0  0.1
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
 `,
             }, 
         
