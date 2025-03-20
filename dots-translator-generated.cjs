@@ -2144,6 +2144,39 @@ M input soundAvgMinutes 168 0xa8  1
             }, 
         
 
+            2409062033: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 146 0x92  0.01
+M output tempAlarm 128 0x80  1
+M output humidity 176 0xb0  0.01
+M input humidityThreshold 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input tempAlarmLowLevel 160 0xa0  1
+M input tempAlarmHighLevel 161 0xa1  1
+M output batteryPercent 162 0xa2  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 180 0xb4  1
+M input maxTraceMinutes 163 0xa3  1
+M input traceTriggerMinutes 165 0xa5  1
+M input alarmResendsBeforeUnjoin 181 0xb5  1
+M input resendsBeforeUnjoin 166 0xa6  1
+M input alarmResendTime 167 0xa7  1
+M input quickAlarm 168 0xa8  1
+M input nfcDisablesAlarm 169 0xa9  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 170 0xaa  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+`,
+            }, 
+        
+
             2566472474: {
                 name: "Lifefinder-gnss",
                 versions: "R23",
@@ -2602,6 +2635,40 @@ M output batteryPercent 168 0xa8  1
             }, 
         
 
+            3137482613: {
+                name: "MeshComfortSound",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M input powerIndexFilterFactor 162 0xa2  1
+M input maxPowerIndex 163 0xa3  1
+M output hours 177 0xb1  1
+M output temp 178 0xb2  0.01
+M output averageTemp 179 0xb3  0.01
+M input tempHysteresis 180 0xb4  0.01
+M input averageTempHysteresis 164 0xa4  0.1
+M input averageTempIntervalMinutes 165 0xa5  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 166 0xa6  1
+M input tempAlarmHighLevel 167 0xa7  1
+M output humidity 181 0xb5  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 182 0xb6  0.01
+M input averageHumidityIntervalMinutes 168 0xa8  1
+M output batteryPercent 169 0xa9  1
+M input wifiScanInterval_h 170 0xaa  1
+M output soundLevel 183 0xb7  0.1
+M input soundThreshold 171 0xab  1
+M input soundMinLevel 172 0xac  1
+M input soundAvgMinutes 173 0xad  1
+M output soundAlarm 129 0x81  1
+M input soundAlarmTimeoutMinutes 174 0xae  1
+M output soundAvgMax 184 0xb8  0.1
+`,
+            }, 
+        
+
             3169307235: {
                 name: "Airport-int",
                 versions: "R24 R23 R22 R21",
@@ -2622,6 +2689,39 @@ M input abandonedCartTime_minutes 179 0xb3  1
 M output abandonedCart 167 0xa7  1
 M input quickRejoinBudgetMax 180 0xb4  1
 M output batteryPercent 168 0xa8  1
+`,
+            }, 
+        
+
+            3227680283: {
+                name: "Lifefinder-alternating",
+                versions: "",
+                mapData: `M output temp 146 0x92  0.01
+M output tempAlarm 128 0x80  1
+M output humidity 176 0xb0  0.01
+M input humidityThreshold 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input tempAlarmLowLevel 160 0xa0  1
+M input tempAlarmHighLevel 161 0xa1  1
+M output batteryPercent 162 0xa2  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 180 0xb4  1
+M input maxTraceMinutes 163 0xa3  1
+M input traceTriggerMinutes 165 0xa5  1
+M input alarmResendsBeforeUnjoin 181 0xb5  1
+M input resendsBeforeUnjoin 166 0xa6  1
+M input alarmResendTime 167 0xa7  1
+M input quickAlarm 168 0xa8  1
+M input nfcDisablesAlarm 169 0xa9  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 170 0xaa  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
 `,
             }, 
         
