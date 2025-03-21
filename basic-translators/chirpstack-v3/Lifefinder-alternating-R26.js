@@ -90,17 +90,64 @@ function translate(iotnode) {
     };
 
     // Control status update
+
+    // Error bitmask
+    var errorBits = {
+        0:'UnknownCommand',   // Typically received a message where port or command does not match
+        1:'Hysterical',       // The VM did not finish execution in the max number of iterations
+        2:'WrongCustomization',  // The customization is for another app than what is in the device
+        3:'Blocked',          // A service had data that could not be sent due to poor DR
+        4:'PriorityInverted', // There was confirmed output to send that did not fit the max size
+        5:'IllegalCommand',   // An otherwise fine downlink had incorrect data
+        6:'BadCustomization', // The customization file did not have a correct CRC
+        7:'CannotJoinRadioBusy', // The radio was occupied when trying to join    
+    };
+    // VM Status Values
+    var statusValues = {
+        0: 'OK',
+        1: 'BadParameter',        // A function was called with incorrect parameters
+        2: 'BadRuleLength',       // A rule longer than the max length was provided to VM
+        3: 'RuleNotSet',          // The referenced rule had not been set
+        4: 'BadVersion',          // Bad rule version vs this VM
+        5: 'BadReference',        // Reference to an illegal address
+        6: 'StackUnderflow',      // Stack underflow
+        7: 'StackOverflow',       // Stack overflow
+        8: 'DivByZero',           // Division by zero
+        9: 'IllegalInstruction',  // Bad instruction format
+        10: 'ProgramOverflow',    // Code did not terminate before reaching next rule
+        11: 'BadRuleState',       // A rule had a RAM state inconsistent with its code
+        12: 'RegisterReadOnly',   // Attempting to write to a read-only register
+        13: 'DependencyOverflow', // Too many dependencies in this ruleset
+        14: 'NotSupported',       // Functionality not supported on this HW
+        15: 'DeviceError',        // Error reported from a hardware device
+        };
+
     var decodeControl = function (iotnode, symbolTable, data, time) {
         var vmError = data[0];
-        var vmStatus = data[1];
-        return {
-            result: {
+        var vmErrorText = "";
+        for (var i = 0; i < 8; ++i) {
+            if (vmError & (1<<i))
+                vmErrorText += errorBits[i] + " ";
+        }
+        if (vmErrorText === "")
+            vmErrorText = "OK";
+        else
+            vmErrorText = vmErrorText.trim();
+            var vmStatus  = data[1];
+            var vmStatusText = statusValues.hasOwnProperty(vmStatus) ? statusValues[vmStatus] : "Unknown";
+        return { 
+            result: { 
                 vsm: {
-                    vmError: vmError,
-                    vmStatus: vmStatus
+                    status: {
+                        vmError: vmError,
+                        vmStatus: vmStatus, 
+                        vmErrorText: vmErrorText, 
+                        vmStatusText: vmStatusText, 
+                        timestamp: new Date().toISOString()
+                    }
                 }
             }
-        };
+        };    
     }
 
     var decodeCrash = function (iotnode, symbolTable, data, time) {
@@ -215,13 +262,18 @@ function translate(iotnode) {
             schemaInfo = {
                 appName: schema[rulesCrc32].name,
                 schema: schema[rulesCrc32].mapData,
-                appVersions: schema[rulesCrc32].versions
+                appVersions: schema[rulesCrc32].versions,
+                // Added as requirement from product owner:
+                appDocumentationUrl: `https://github.com/Sensative/vsm-application-documentation/blob/master/${rulesCrc32}-${knownSchemas[rulesCrc32].name}.vso.md`,
+                appConfigurationUrl: `https://vsm-lora-config-app.service.sensative.net/?app=${rulesCrc32}`,
+                // Good to know how old this information is
+                timestamp: new Date().toISOString(),
             }
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.120"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.152"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
@@ -300,6 +352,11 @@ function translate(iotnode) {
     }
 
     var decodeMesh = function (iotnode, symbolTable, data, time) {
+        if (data.length == 2) { // Mesh key last 4 digits (decimal) (uplinked as result of 0x02 on port 8)
+            return { result: {
+                mesh: { stats : { keyLast4 : data[0]<<8 | data[1] }}
+            }};
+        }
 
         if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
             return { result: {
@@ -320,7 +377,11 @@ function translate(iotnode) {
             return {result: {} };
 
         var serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
-        var age_s  = ((data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffffff;
+        var upsideRate = (data[4] >> 4) & 0xf;
+        if (upsideRate === 0xf) upsideRate = -1; // Not enabled
+        var downsideRate = data[4] & 0xf;
+        if (downsideRate === 0xf) downsideRate = -1; // Not enabled
+        var age_s  = ((data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffff;
         var port   = data[8];
         var len    = data[9]; // Included since there may be multiple messages packed in one in some future
         var pos = 10;
@@ -332,19 +393,10 @@ function translate(iotnode) {
             hex += byte;
         }
         var producedTimestamp = new Date((new Date(time)).getTime()-1000*age_s).toISOString();
-        var receivedTimestamp = new Date(time).toISOString();
-        var obj = {
-            producedTimestamp: producedTimestamp, // When was the uplink created
-            receivedTimestamp: receivedTimestamp, // When was it translated
-            port: port,
-            len: len,
-            hex: hex,
-            serial: serial,
-        }
+        var receivedTimestamp = new Date(time).toISOString();        
         // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
         // field (which should magically update nodes with the set secret)
-        var result = {mesh: {} };
-        result.mesh[serial] = obj;
+        var result = {mesh: { stats: {upsideRate: upsideRate, downsideRate: downsideRate, receivedTimestamp: receivedTimestamp, serial: serial} } };
         var carrier = iotnode && iotnode.name ? iotnode.name : "";
         return { 
             result: result, 
@@ -357,7 +409,8 @@ function translate(iotnode) {
 					   producedTimestamp: producedTimestamp, 
 					   port: port, 
 					   hex: hex, 
-					   carrier: carrier } },
+					   carrier: carrier, 
+					   rate: downsideRate /* current nodes downside rate is the transmitting nodes upside rate */ } },
                     encodedData : {
                         port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
@@ -431,7 +484,7 @@ function translate(iotnode) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
                     var lastSampleTime = new Date(timestamps[name]);                    
-                    if (lastSampleTime < sampleTimestamp) {
+                    if (lastSampleTime.getTime() < sampleTimestamp.getTime()) {
                         timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
                         result.timestamps[name] = sampleTimestamp;
                         result.output[name] = sampleValues.output[name];
@@ -484,9 +537,9 @@ function translate(iotnode) {
             var decompressvalue = false;
             if (compressed && ((head & 0x40) == 0)) {
                 datasize = 0; // No data representation, value is 0
-                confirmed = (head & 32) ? false : true;
+                confirmed = (head & 0b100000) ? false : true;
             } else {
-                switch ((head >> 3) & 7) {
+                switch ((head >> 3) & 0b111) {
                     case 0:
                         confirmed = true;
                         datasize = 1;
@@ -656,11 +709,6 @@ function translate(iotnode) {
     }
 
     var addSemtechWifiObject = function (result) {
-        // Ensure timestamp is a Date object
-        if (!(result.wifi.timestamp instanceof Date)) {
-            result.wifi.timestamp = new Date(result.wifi.timestamp);
-        }
-
         var semtechObject = {
             msgtype: "wifi",
             payload: encodeSemtechWifi(result.wifi),
@@ -953,10 +1001,20 @@ function translate(iotnode) {
                 forward: {}
             }
         }
+        var ascii = undefined;
+        if (port === 32 /* puck radar sent a command response */ ) {
+            try {
+                ascii = data.toString('ascii');
+            } catch (ignored) { ascii = undefined; }
+        }
+        // Standard packaging
         result.result.forward["port" + port] = {
             timestamp: new Date(time).toISOString(),
             data: data.toString('hex')
         }
+	// Port 32 interpreted as ascii data
+        if (ascii)
+            result.result.forward["radar"] = { timestamp: new Date(time).toISOString(), ascii: ascii};
         return result;
     }
 
