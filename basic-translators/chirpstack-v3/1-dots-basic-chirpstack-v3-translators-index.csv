@@ -1,20 +1,28 @@
 Filename,Product Application,Versions,CRCs
 chirpstack-v3/Digital-gpio-R24-to-R26.js,Digital-gpio,R24 R25 R26,1368947946|1625058930
 chirpstack-v3/Digital-gpio-R11-to-R23.js,Digital-gpio,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23,1617091456|3497448490
+chirpstack-v3/Digital-gpio-R27.js,Digital-gpio,R27,3409025270
 chirpstack-v3/Lifefinder-alternating-R22-to-R25.js,Lifefinder-alternating,R22 R23 R24 R25,501251891|1188116463|1936564868
 chirpstack-v3/Lifefinder-alternating-R26.js,Lifefinder-alternating,R26,1592932210
+chirpstack-v3/Lifefinder-alternating-R27.js,Lifefinder-alternating,R27,3227680283
 chirpstack-v3/Lifefinder-gnss-R22-to-R25.js,Lifefinder-gnss,R22 R23 R24 R25,58620517|2566472474|2907035249
+chirpstack-v3/Lifefinder-gnss-R27.js,Lifefinder-gnss,R27,892254780
 chirpstack-v3/Lifefinder-gnss-R26.js,Lifefinder-gnss,R26,3441810944
 chirpstack-v3/Lifefinder-wifi-R26.js,Lifefinder-wifi,R26,232953314
 chirpstack-v3/Lifefinder-wifi-R22-to-R25.js,Lifefinder-wifi,R22 R23 R24 R25,493404408|685004179|1920568829
 chirpstack-v3/Lifefinder-wifi-R11-to-R21.js,Lifefinder-wifi,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,691254335|2274655646|3994244140
-chirpstack-v3/Motion-measure-R11-to-R26.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26,40829709|2297466901
-chirpstack-v3/Motion-spectrum-R26.js,Motion-spectrum,R26,1367119623
+chirpstack-v3/Lifefinder-wifi-R27.js,Lifefinder-wifi,R27,2409062033
+chirpstack-v3/Motion-measure-R11-to-R27.js,Motion-measure,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26 R27,40829709|289128601|2297466901
+chirpstack-v3/Motion-spectrum-R26-to-R27.js,Motion-spectrum,R26 R27,1367119623|1548534003
 chirpstack-v3/Puck-radar-R11-to-R26.js,Puck-radar,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26,561898260|1325798073
+chirpstack-v3/Puck-radar-R27.js,Puck-radar,R27,2847964315
 chirpstack-v3/Square-air-R11-to-R15.js,Square-air,R11 R12 R13 R14 R15,472391447|915094797|3634715455|4002204643
 chirpstack-v3/Square-air-R16-to-R26.js,Square-air,R16 R18 R19 R20 R21 R22 R23 R24 R25 R26,3241343967|3906402051
+chirpstack-v3/Square-air-R27.js,Square-air,R27,4231041369
 chirpstack-v3/Square-comfort-R11-to-R26.js,Square-comfort,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26,2266505222|2696231198|2935762138|3530880224|4174894842
+chirpstack-v3/Square-comfort-R27.js,Square-comfort,R27,3679384538
 chirpstack-v3/Square-sound-R11-to-R22.js,Square-sound,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22,517999093|1355326083|2338085954|2387046759|2766427005|3090458506
 chirpstack-v3/Square-sound-R23-to-R26.js,Square-sound,R23 R24 R25 R26,3437792987|3842802183
+chirpstack-v3/Square-sound-R27.js,Square-sound,R27,3500434333
 chirpstack-v3/Tracker-R11-to-R21.js,Tracker,R11 R12 R13 R14 R15 R16 R18 R19 R20 R21,489186430
-chirpstack-v3/Tracker-R22-to-R26.js,Tracker,R22 R23 R24 R25 R26,2029355788|2093063534
+chirpstack-v3/Tracker-R22-to-R27.js,Tracker,R22 R23 R24 R25 R26 R27,2029355788|2093063534|3802553086
