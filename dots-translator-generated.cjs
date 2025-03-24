@@ -1472,6 +1472,16 @@ M input wifiIntervalMinutes 165 0xa5  1
             }, 
         
 
+            1654085923: {
+                name: "Lifefinder-wifi-pos-tester",
+                versions: "",
+                mapData: `M input scanFrequency 176 0xb0  1
+M input scanTimeMs 177 0xb1  1
+M input limitedScanChannels 184 0xb8  1
+`,
+            }, 
+        
+
             1657727329: {
                 name: "Heartstarter",
                 versions: "R27 R26",
