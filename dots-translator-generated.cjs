@@ -3732,6 +3732,35 @@ M input motionThreshold_m_s2 182 0xb6  0.01
             }, 
         
 
+            4030513719: {
+                name: "MeshBasicMotion",
+                versions: "",
+                mapData: `M input meshSyncInterval_minutes 176 0xb0  1
+M input meshEnableUpside 160 0xa0  1
+M input meshEnableDownside 161 0xa1  1
+M input powerIndexFilterFactor 162 0xa2  1
+M input maxPowerIndex 163 0xa3  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempHysteresis 164 0xa4  0.1
+M input averageTempIntervalMinutes 165 0xa5  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 166 0xa6  1
+M input tempAlarmHighLevel 167 0xa7  1
+M output batteryPercent 168 0xa8  1
+M input wifiScanInterval_h 169 0xa9  1
+M output accX 144 0x90  0.001
+M output accY 145 0x91  0.001
+M output accZ 146 0x92  0.001
+M output pressure_hPa 184 0xb8  0.01
+M input motionThreshold_m_s2 180 0xb4  0.001
+M input enableBarometer 170 0xaa  1
+M output motion 171 0xab  1
+`,
+            }, 
+        
+
             4058561182: {
                 name: "Empty",
                 versions: "R9 R8 R7 R6 R5 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
