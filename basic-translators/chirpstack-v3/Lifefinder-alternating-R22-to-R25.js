@@ -266,8 +266,8 @@ function translate(iotnode) {
                 schema: schema[rulesCrc32].mapData,
                 appVersions: schema[rulesCrc32].versions,
                 // Added as requirement from product owner:
-                appDocumentationUrl: `https://github.com/Sensative/vsm-application-documentation/blob/master/${rulesCrc32}-${knownSchemas[rulesCrc32].name}.vso.md`,
-                appConfigurationUrl: `https://vsm-lora-config-app.service.sensative.net/?app=${rulesCrc32}`,
+                appDocumentationUrl: "https://github.com/Sensative/vsm-application-documentation/blob/master/" + rulesCrc32 + "-" + knownSchemas[rulesCrc32].name + ".vso.md",
+                appConfigurationUrl: "https://vsm-lora-config-app.service.sensative.net/?app=" + rulesCrc32,
                 // Good to know how old this information is
                 timestamp: new Date().toISOString(),
             }
@@ -539,9 +539,9 @@ function translate(iotnode) {
             var decompressvalue = false;
             if (compressed && ((head & 0x40) == 0)) {
                 datasize = 0; // No data representation, value is 0
-                confirmed = (head & 0b100000) ? false : true;
+                confirmed = (head & 32) ? false : true;
             } else {
-                switch ((head >> 3) & 0b111) {
+                switch ((head >> 3) & 7) {
                     case 0:
                         confirmed = true;
                         datasize = 1;
@@ -717,7 +717,7 @@ function translate(iotnode) {
             timestamp: result
                 .wifi
                 .timestamp
-		.getTime()/1000
+                .getTime()/1000
         };
         result.semtechEncoded = semtechObject;
     }
