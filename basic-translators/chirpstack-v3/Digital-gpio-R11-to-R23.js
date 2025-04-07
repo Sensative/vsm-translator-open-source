@@ -711,6 +711,12 @@ function translate(iotnode) {
     }
 
     var addSemtechWifiObject = function (result) {
+        // [ES5 fix]
+        // Ensure timestamp is a Date object
+        if (!(result.wifi.timestamp instanceof Date)) {
+            result.wifi.timestamp = new Date(result.wifi.timestamp);
+        }
+        
         var semtechObject = {
             msgtype: "wifi",
             payload: encodeSemtechWifi(result.wifi),
