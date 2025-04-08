@@ -43,7 +43,7 @@ function decodeUplink(input) {
         vsm: {
             rulesCrc32: 561898260 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
-    }    
+    };
 
     // Decode an uplink message from a buffer (array) of bytes to an object of fields.
     var decoded = translate(iotnode);
@@ -63,13 +63,16 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
 
     // CRCs having similar schema: 561898260, 1325798073
+    
+    const commonSchema = {
+        name: "Puck-radar",
+        versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26",
+        mapData: "M input amplitudeHysteresis 176 0xb0  1 + M input averageDistanceHighAlarmLevel 179 0xb3  0.01 + M input averageDistanceIntervalMinutes 177 0xb1  1 + M input averageDistanceLowAlarmLevel 178 0xb2  0.01 + M input distanceHysteresis 161 0xa1  0.01 + M input roamNetworkCount 160 0xa0  1 + M output amplitude 144 0x90  1 + M output averageDistanceAlarm 129 0x81  1 + M output distance 145 0x91  0.01 + M output distanceAverage 146 0x92  0.01 + M output nfcContactCount 152 0x98  1 + M output occupied 128 0x80  1 + M output radarVoltage_V 180 0xb4  0.001"
+    };
     var schema = 
     {
-        561898260: {
-            name: "Puck-radar",
-            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26",
-            mapData: "M input amplitudeHysteresis 176 0xb0  1 + M input averageDistanceHighAlarmLevel 179 0xb3  0.01 + M input averageDistanceIntervalMinutes 177 0xb1  1 + M input averageDistanceLowAlarmLevel 178 0xb2  0.01 + M input distanceHysteresis 161 0xa1  0.01 + M input roamNetworkCount 160 0xa0  1 + M output amplitude 144 0x90  1 + M output averageDistanceAlarm 129 0x81  1 + M output distance 145 0x91  0.01 + M output distanceAverage 146 0x92  0.01 + M output nfcContactCount 152 0x98  1 + M output occupied 128 0x80  1 + M output radarVoltage_V 180 0xb4  0.001"
-        }
+        561898260: commonSchema,
+        1325798073: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -154,7 +157,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     var decodeCrash = function(iotnode, symbolTable, data, time) {
         var index = (data[0] << 8) | data[1];
@@ -175,7 +178,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     // Diagnostics output
     var decodeDiagnostics = function(iotnode, symbolTable, data, time) {
@@ -184,7 +187,7 @@ function translate(iotnode) {
         if (data.length % 5 === 0) 
             return decodeReferences(iotnode, symbolTable, data, time);
         throw new Error("Failed to decode diagnostics data");
-    }
+    };
 
     // Link Control service output
     var decodeLinkControl = function(iotnode, symbolTable, data, time) {
@@ -223,7 +226,7 @@ function translate(iotnode) {
             };
         }
         throw new Error("Failed to decode link control message")
-    }
+    };
 
     // Link Control service output
     var translateCustomizationStatus = function(byte) {
@@ -274,7 +277,7 @@ function translate(iotnode) {
                 appConfigurationUrl: "https://vsm-lora-config-app.service.sensative.net/?app=" + rulesCrc32,
                 // Good to know how old this information is
                 timestamp: new Date().toISOString(),
-            }
+            };
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
