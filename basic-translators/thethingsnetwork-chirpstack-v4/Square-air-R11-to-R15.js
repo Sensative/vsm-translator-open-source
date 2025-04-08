@@ -43,7 +43,7 @@ function decodeUplink(input) {
         vsm: {
             rulesCrc32: 472391447 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
-    }    
+    };
 
     // Decode an uplink message from a buffer (array) of bytes to an object of fields.
     var decoded = translate(iotnode);
@@ -63,13 +63,18 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
 
     // CRCs having similar schema: 472391447, 915094797, 3634715455, 4002204643
+    
+    const commonSchema = {
+        name: "Square-air",
+        versions: "R11 R12 R13 R14 R15",
+        mapData: "M input air_iaq_alarm_level 187 0xbb  1 + M input air_interval_minutes 170 0xaa  1 + M input air_static_iaq_alarm_level 186 0xba  1 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input luxTresholdPercent 182 0xb6  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output air_breath_voc_equivalent 152 0x98  0.01 + M output air_co2 147 0x93  1 + M output air_iaq 146 0x92  1 + M output air_iaq_accuracy 169 0xa9  1 + M output air_iaq_alarm 129 0x81  1 + M output air_pressure 184 0xb8  0.01 + M output air_run_in_status 167 0xa7  1 + M output air_stab_status 168 0xa8  1 + M output air_static_iaq 185 0xb9  1 + M output averageHumidity 144 0x90  0.01 + M output averageLux 145 0x91  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output lux 181 0xb5  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
+    };
     var schema = 
     {
-        472391447: {
-            name: "Square-air",
-            versions: "R11 R12 R13 R14 R15",
-            mapData: "M input air_iaq_alarm_level 187 0xbb  1 + M input air_interval_minutes 170 0xaa  1 + M input air_static_iaq_alarm_level 186 0xba  1 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input luxTresholdPercent 182 0xb6  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output air_breath_voc_equivalent 152 0x98  0.01 + M output air_co2 147 0x93  1 + M output air_iaq 146 0x92  1 + M output air_iaq_accuracy 169 0xa9  1 + M output air_iaq_alarm 129 0x81  1 + M output air_pressure 184 0xb8  0.01 + M output air_run_in_status 167 0xa7  1 + M output air_stab_status 168 0xa8  1 + M output air_static_iaq 185 0xb9  1 + M output averageHumidity 144 0x90  0.01 + M output averageLux 145 0x91  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output lux 181 0xb5  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
-        }
+        472391447: commonSchema,
+        915094797: commonSchema,
+        3634715455: commonSchema,
+        4002204643: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -154,7 +159,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     var decodeCrash = function(iotnode, symbolTable, data, time) {
         var index = (data[0] << 8) | data[1];
@@ -175,7 +180,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     // Diagnostics output
     var decodeDiagnostics = function(iotnode, symbolTable, data, time) {
@@ -184,7 +189,7 @@ function translate(iotnode) {
         if (data.length % 5 === 0) 
             return decodeReferences(iotnode, symbolTable, data, time);
         throw new Error("Failed to decode diagnostics data");
-    }
+    };
 
     // Link Control service output
     var decodeLinkControl = function(iotnode, symbolTable, data, time) {
@@ -223,7 +228,7 @@ function translate(iotnode) {
             };
         }
         throw new Error("Failed to decode link control message")
-    }
+    };
 
     // Link Control service output
     var translateCustomizationStatus = function(byte) {
@@ -274,7 +279,7 @@ function translate(iotnode) {
                 appConfigurationUrl: "https://vsm-lora-config-app.service.sensative.net/?app=" + rulesCrc32,
                 // Good to know how old this information is
                 timestamp: new Date().toISOString(),
-            }
+            };
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }

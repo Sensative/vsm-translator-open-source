@@ -44,7 +44,7 @@ function Decode(fPort, bytes, variables) {
         vsm: {
             rulesCrc32: 691254335 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
-    }
+    };
 
     // Decode an uplink message from a buffer (array) of bytes to an object of
     // fields.
@@ -59,13 +59,17 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
 
     // CRCs having similar schema: 691254335, 2274655646, 3994244140
+    
+    const commonSchema = {
+        name: "Lifefinder-wifi",
+        versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21",
+        mapData: "M input alarmAck 164 0xa4  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input limitedScanChannels 184 0xb8  1 + M input maxAlarmMinutes 180 0xb4  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output buttonAlarm 129 0x81  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output volts 179 0xb3  0.001 + M output nfcDisabledAlarm 130 0x82  1"
+    };
     var schema = 
     {
-        691254335: {
-            name: "Lifefinder-wifi",
-            versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21",
-            mapData: "M input alarmAck 164 0xa4  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input limitedScanChannels 184 0xb8  1 + M input maxAlarmMinutes 180 0xb4  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output buttonAlarm 129 0x81  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output volts 179 0xb3  0.001 + M output nfcDisabledAlarm 130 0x82  1"
-        }
+        691254335: commonSchema,
+        2274655646: commonSchema,
+        3994244140: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -150,7 +154,7 @@ function translate(iotnode) {
                 }
             }
         };    
-    }
+    };
 
     var decodeCrash = function (iotnode, symbolTable, data, time) {
         var index = (data[0] << 8) | data[1];
@@ -171,7 +175,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     // Diagnostics output
     var decodeDiagnostics = function (iotnode, symbolTable, data, time) {
@@ -180,7 +184,7 @@ function translate(iotnode) {
         if (data.length % 5 === 0)
             return decodeReferences(iotnode, symbolTable, data, time);
         throw new Error("Failed to decode diagnostics data");
-    }
+    };
 
     // Link Control service output
     var decodeLinkControl = function (iotnode, symbolTable, data, time) {
@@ -219,7 +223,7 @@ function translate(iotnode) {
             };
         }
         throw new Error("Failed to decode link control message");
-    }
+    };
 
     // Link Control service output
     var translateCustomizationStatus = function(byte) {
@@ -270,7 +274,7 @@ function translate(iotnode) {
                 appConfigurationUrl: "https://vsm-lora-config-app.service.sensative.net/?app=" + rulesCrc32,
                 // Good to know how old this information is
                 timestamp: new Date().toISOString(),
-            }
+            };
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
