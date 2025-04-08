@@ -44,7 +44,7 @@ function Decode(fPort, bytes, variables) {
         vsm: {
             rulesCrc32: 2029355788 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
-    }
+    };
 
     // Decode an uplink message from a buffer (array) of bytes to an object of
     // fields.
@@ -59,13 +59,17 @@ function translate(iotnode) {
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
 
     // CRCs having similar schema: 2029355788, 2093063534, 3802553086
+    
+    const commonSchema = {
+        name: "Tracker",
+        versions: "R22 R23 R24 R25 R26 R27",
+        mapData: "M input averageTempIntervalHours 160 0xa0  1 + M input backUpWifiGnssScanMinutes 173 0xad  1 + M input fullScanChannels 185 0xb9  1 + M input fullWifiScan_minutes 168 0xa8  1 + M input gnssMode 172 0xac  1 + M input gpsScan_minutes 169 0xa9  1 + M input limitedScanChannels 184 0xb8  1 + M input maxBudget 181 0xb5  1 + M input minimumGnssCount 167 0xa7  1 + M input minimumWifiCount 166 0xa6  1 + M input motionCountEnabled 170 0xaa  1 + M input motionTimeEnabled 171 0xab  1 + M input movingMotionThreshold_mm_s2 180 0xb4  1 + M input movingScanIntervalMinutes 188 0xbc  1 + M input quarterlyScanBudget 164 0xa4  1 + M input quickRejoinBudgetMax 182 0xb6  1 + M input roamNetworkCount 163 0xa3  1 + M input singleWifiScanAgain_minutes 165 0xa5  1 + M input stationaryScanIntervalMinutes 189 0xbd  1 + M input stillMotionThreshold_mm_s2 179 0xb3  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 174 0xae  1 + M output motionCount 186 0xba  1 + M output motionTimeMinutes 187 0xbb  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
+    };
     var schema = 
     {
-        2029355788: {
-            name: "Tracker",
-            versions: "R22 R23 R24 R25 R26 R27",
-            mapData: "M input averageTempIntervalHours 160 0xa0  1 + M input backUpWifiGnssScanMinutes 173 0xad  1 + M input fullScanChannels 185 0xb9  1 + M input fullWifiScan_minutes 168 0xa8  1 + M input gnssMode 172 0xac  1 + M input gpsScan_minutes 169 0xa9  1 + M input limitedScanChannels 184 0xb8  1 + M input maxBudget 181 0xb5  1 + M input minimumGnssCount 167 0xa7  1 + M input minimumWifiCount 166 0xa6  1 + M input motionCountEnabled 170 0xaa  1 + M input motionTimeEnabled 171 0xab  1 + M input movingMotionThreshold_mm_s2 180 0xb4  1 + M input movingScanIntervalMinutes 188 0xbc  1 + M input quarterlyScanBudget 164 0xa4  1 + M input quickRejoinBudgetMax 182 0xb6  1 + M input roamNetworkCount 163 0xa3  1 + M input singleWifiScanAgain_minutes 165 0xa5  1 + M input stationaryScanIntervalMinutes 189 0xbd  1 + M input stillMotionThreshold_mm_s2 179 0xb3  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 174 0xae  1 + M output motionCount 186 0xba  1 + M output motionTimeMinutes 187 0xbb  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
-        }
+        2029355788: commonSchema,
+        2093063534: commonSchema,
+        3802553086: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -150,7 +154,7 @@ function translate(iotnode) {
                 }
             }
         };    
-    }
+    };
 
     var decodeCrash = function (iotnode, symbolTable, data, time) {
         var index = (data[0] << 8) | data[1];
@@ -171,7 +175,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     // Diagnostics output
     var decodeDiagnostics = function (iotnode, symbolTable, data, time) {
@@ -180,7 +184,7 @@ function translate(iotnode) {
         if (data.length % 5 === 0)
             return decodeReferences(iotnode, symbolTable, data, time);
         throw new Error("Failed to decode diagnostics data");
-    }
+    };
 
     // Link Control service output
     var decodeLinkControl = function (iotnode, symbolTable, data, time) {
@@ -219,7 +223,7 @@ function translate(iotnode) {
             };
         }
         throw new Error("Failed to decode link control message");
-    }
+    };
 
     // Link Control service output
     var translateCustomizationStatus = function(byte) {
@@ -270,7 +274,7 @@ function translate(iotnode) {
                 appConfigurationUrl: "https://vsm-lora-config-app.service.sensative.net/?app=" + rulesCrc32,
                 // Good to know how old this information is
                 timestamp: new Date().toISOString(),
-            }
+            };
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }

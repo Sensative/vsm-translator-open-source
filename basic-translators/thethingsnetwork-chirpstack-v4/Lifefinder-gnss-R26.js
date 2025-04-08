@@ -43,7 +43,7 @@ function decodeUplink(input) {
         vsm: {
             rulesCrc32: 3441810944 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
-    }    
+    };
 
     // Decode an uplink message from a buffer (array) of bytes to an object of fields.
     var decoded = translate(iotnode);
@@ -61,13 +61,15 @@ function translate(iotnode) {
 
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
+    
+    const commonSchema = {
+        name: "Lifefinder-gnss",
+        versions: "R26",
+        mapData: "M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 183 0xb7  1 + M input alarmResendTime 168 0xa8  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input humidityThreshold 182 0xb6  0.01 + M input maxAlarmMinutes 181 0xb5  1 + M input maxTraceMinutes 165 0xa5  1 + M input nfcDisablesAlarm 170 0xaa  1 + M input positioningFreqency 171 0xab  1 + M input quickAlarm 169 0xa9  1 + M input resendsBeforeUnjoin 167 0xa7  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 166 0xa6  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output humidity 180 0xb4  0.01 + M output nfcDisabledAlarm 129 0x81  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output traceTime 145 0x91  1 + M output traceTrigger 130 0x82  1 + M output volts 179 0xb3  0.001"
+    };
     var schema = 
     {
-        3441810944: {
-            name: "Lifefinder-gnss",
-            versions: "R26",
-            mapData: "M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 183 0xb7  1 + M input alarmResendTime 168 0xa8  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input humidityThreshold 182 0xb6  0.01 + M input maxAlarmMinutes 181 0xb5  1 + M input maxTraceMinutes 165 0xa5  1 + M input nfcDisablesAlarm 170 0xaa  1 + M input positioningFreqency 171 0xab  1 + M input quickAlarm 169 0xa9  1 + M input resendsBeforeUnjoin 167 0xa7  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 166 0xa6  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output humidity 180 0xb4  0.01 + M output nfcDisabledAlarm 129 0x81  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output traceTime 145 0x91  1 + M output traceTrigger 130 0x82  1 + M output volts 179 0xb3  0.001"
-        }
+        3441810944: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -152,7 +154,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     var decodeCrash = function(iotnode, symbolTable, data, time) {
         var index = (data[0] << 8) | data[1];
@@ -173,7 +175,7 @@ function translate(iotnode) {
                 }
             }
         };
-    }
+    };
 
     // Diagnostics output
     var decodeDiagnostics = function(iotnode, symbolTable, data, time) {
@@ -182,7 +184,7 @@ function translate(iotnode) {
         if (data.length % 5 === 0) 
             return decodeReferences(iotnode, symbolTable, data, time);
         throw new Error("Failed to decode diagnostics data");
-    }
+    };
 
     // Link Control service output
     var decodeLinkControl = function(iotnode, symbolTable, data, time) {
@@ -221,7 +223,7 @@ function translate(iotnode) {
             };
         }
         throw new Error("Failed to decode link control message")
-    }
+    };
 
     // Link Control service output
     var translateCustomizationStatus = function(byte) {
@@ -272,7 +274,7 @@ function translate(iotnode) {
                 appConfigurationUrl: "https://vsm-lora-config-app.service.sensative.net/?app=" + rulesCrc32,
                 // Good to know how old this information is
                 timestamp: new Date().toISOString(),
-            }
+            };
         } else {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
