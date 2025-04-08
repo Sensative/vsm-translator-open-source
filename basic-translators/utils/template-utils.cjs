@@ -29,7 +29,7 @@ function processTemplate(template, crc, schema, csvData, relatedCRCs) {
     fs.writeFileSync(newFilename, newStr, 'utf8');
 
     // Prepare schema data JSON
-    const schemaJSON = prepareSchemaJSON(crc, schema);
+    const schemaJSON = prepareSchemaJSON(schema);
     
     // Replace placeholder in template with schema data JSON
     const replacedTemplate = replaceTemplatePlaceholders(newStr, schemaJSON, relatedCRCs);
@@ -43,37 +43,49 @@ function processTemplate(template, crc, schema, csvData, relatedCRCs) {
 }
 
 /**
- * Prepares the schema JSON by converting it to a string and applying formatting.
- * @param {string} crc - The CRC value.
+ * Prepares the schema JSON by converting it to a JavaScript object string.
  * @param {object} schema - The schema object.
- * @returns {string} - The formatted schema JSON string.
+ * @returns {string} - The formatted schema JavaScript object string.
  */
-function prepareSchemaJSON(crc, schema) {
-    return JSON.stringify({
-        [crc]: {
-            name: schema.name,
-            versions: schema.versions,
-            mapData: schema.mapData
-        }
-    }, null, 4)
-    .replace(/"(\w+)":/g, '$1:')
-    .replace(/\n/g, '\n    '); // Add indentation
+function prepareSchemaJSON(schema) {
+    return `const commonSchema = {
+        name: "${schema.name}",
+        versions: "${schema.versions}",
+        mapData: "${schema.mapData}"
+    };`;
 }
 
 /**
- * Replaces template placeholders in a string with the provided schema JSON.
+ * Replaces template placeholders in a string with the provided schema JavaScript object.
  *
  * @param {string} templateStr - The string containing the template placeholders.
- * @param {string} schemaJSON - The JSON string representing the schema.
+ * @param {string} schemaJSON - The JavaScript object string representing the schema.
+ * @param {Array} relatedCRCs - An array of related CRCs.
  * @returns {string} The modified string with the template placeholders replaced.
  */
 function replaceTemplatePlaceholders(templateStr, schemaJSON, relatedCRCs) { 
-     // Ensure relatedCRCs is an array
-     if (!Array.isArray(relatedCRCs)) {
+    // Ensure relatedCRCs is an array
+    if (!Array.isArray(relatedCRCs)) {
         relatedCRCs = [relatedCRCs];
-    }    
-    const crcComment = relatedCRCs.length > 1 ? `\n    // CRCs having similar schema: ${relatedCRCs.join(', ')}\n    ` : '    ';    
-    return templateStr.replace(/\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g, `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n${crcComment}var schema = \n    ${schemaJSON};\n    /// END DO NOT CHANGE THE ABOVE`);
+    }
+
+    const crcComment = relatedCRCs.length > 1 
+        ? `\n    // CRCs having similar schema: ${relatedCRCs.join(', ')}\n    ` 
+        : '    ';
+
+    // Generate the new schema block
+    const schemaBlock = `
+    ${schemaJSON}
+    var schema = 
+    {
+        ${relatedCRCs.map(crc => `${crc}: commonSchema`).join(',\n        ')},
+    };`;
+
+    // Replace the placeholder in the template
+    return templateStr.replace(
+        /\/{3} DO NOT CHANGE THE BELOW[\s\S]*\/{3} END DO NOT CHANGE THE ABOVE/g,
+        `/// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA\n${crcComment}${schemaBlock}\n    /// END DO NOT CHANGE THE ABOVE`
+    );
 }
 
 /**
