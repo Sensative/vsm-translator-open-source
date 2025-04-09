@@ -58,7 +58,7 @@ function translate(iotnode) {
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Square-comfort",
         versions: "R27",
         mapData: "M input averageHumidityIntervalMinutes 166 0xa6  1 + M input averageTempHysteresis 162 0xa2  0.1 + M input averageTempIntervalMinutes 163 0xa3  1 + M input humidityTreshold 180 0xb4  0.01 + M input maxPowerIndex 168 0xa8  1 + M input powerIndexFilterFactor 167 0xa7  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 165 0xa5  1 + M input tempAlarmLowLevel 164 0xa4  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageHumidity 144 0x90  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"

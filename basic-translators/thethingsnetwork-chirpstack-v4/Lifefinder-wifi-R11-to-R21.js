@@ -64,7 +64,7 @@ function translate(iotnode) {
 
     // CRCs having similar schema: 691254335, 2274655646, 3994244140
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Lifefinder-wifi",
         versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21",
         mapData: "M input alarmAck 164 0xa4  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input limitedScanChannels 184 0xb8  1 + M input maxAlarmMinutes 180 0xb4  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output buttonAlarm 129 0x81  1 + M output nfcDisabledAlarm 130 0x82  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output volts 179 0xb3  0.001"
