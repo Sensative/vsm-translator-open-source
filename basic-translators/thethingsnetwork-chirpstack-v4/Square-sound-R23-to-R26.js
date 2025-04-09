@@ -64,7 +64,7 @@ function translate(iotnode) {
 
     // CRCs having similar schema: 3437792987, 3842802183
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Square-sound",
         versions: "R23 R24 R25 R26",
         mapData: "M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input roamNetworkCount 160 0xa0  1 + M input soundAlarmTimeoutMinutes 169 0xa9  1 + M input soundAvgMinutes 168 0xa8  1 + M input soundMinLevel 167 0xa7  1 + M input soundThreshold 166 0xa6  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageHumidity 144 0x90  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output soundAlarm 129 0x81  1 + M output soundAvgMax 184 0xb8  0.1 + M output soundLevel 181 0xb5  0.1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"

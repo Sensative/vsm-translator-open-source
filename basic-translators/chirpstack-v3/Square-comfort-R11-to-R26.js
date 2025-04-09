@@ -60,7 +60,7 @@ function translate(iotnode) {
 
     // CRCs having similar schema: 2266505222, 2696231198, 2935762138, 3530880224, 4174894842
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Square-comfort",
         versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26",
         mapData: "M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageHumidity 144 0x90  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M input averageLuxIntervalMinutes 166 0xa6  1 + M input luxTresholdPercent 182 0xb6  1 + M output averageLux 145 0x91  1 + M output lux 181 0xb5  1"
