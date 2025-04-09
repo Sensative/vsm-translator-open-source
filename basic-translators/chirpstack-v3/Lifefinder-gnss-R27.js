@@ -58,7 +58,7 @@ function translate(iotnode) {
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Lifefinder-gnss",
         versions: "R27",
         mapData: "M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 181 0xb5  1 + M input alarmResendTime 167 0xa7  1 + M input humidityThreshold 177 0xb1  0.01 + M input maxAlarmMinutes 180 0xb4  1 + M input maxTraceMinutes 163 0xa3  1 + M input nfcDisablesAlarm 169 0xa9  1 + M input positioningFreqency 170 0xaa  1 + M input quickAlarm 168 0xa8  1 + M input resendsBeforeUnjoin 166 0xa6  1 + M input tempAlarmHighLevel 161 0xa1  1 + M input tempAlarmLowLevel 160 0xa0  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 165 0xa5  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output batteryPercent 162 0xa2  1 + M output humidity 176 0xb0  0.01 + M output nfcDisabledAlarm 129 0x81  1 + M output temp 146 0x92  0.01 + M output tempAlarm 128 0x80  1 + M output traceTime 145 0x91  1 + M output traceTrigger 130 0x82  1 + M output volts 179 0xb3  0.001"
