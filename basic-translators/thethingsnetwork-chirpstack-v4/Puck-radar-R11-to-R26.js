@@ -64,7 +64,7 @@ function translate(iotnode) {
 
     // CRCs having similar schema: 561898260, 1325798073
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Puck-radar",
         versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23 R24 R25 R26",
         mapData: "M input amplitudeHysteresis 176 0xb0  1 + M input averageDistanceHighAlarmLevel 179 0xb3  0.01 + M input averageDistanceIntervalMinutes 177 0xb1  1 + M input averageDistanceLowAlarmLevel 178 0xb2  0.01 + M input distanceHysteresis 161 0xa1  0.01 + M input roamNetworkCount 160 0xa0  1 + M output amplitude 144 0x90  1 + M output averageDistanceAlarm 129 0x81  1 + M output distance 145 0x91  0.01 + M output distanceAverage 146 0x92  0.01 + M output nfcContactCount 152 0x98  1 + M output occupied 128 0x80  1 + M output radarVoltage_V 180 0xb4  0.001"
