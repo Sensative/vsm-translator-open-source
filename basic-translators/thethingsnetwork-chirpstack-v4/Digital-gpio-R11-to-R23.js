@@ -64,7 +64,7 @@ function translate(iotnode) {
 
     // CRCs having similar schema: 1617091456, 3497448490
     
-    const commonSchema = {
+    var commonSchema = {
         name: "Digital-gpio",
         versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21 R22 R23",
         mapData: "M input activation 129 0x81  1 + M input averageTempIntervalHours 161 0xa1  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 163 0xa3  1 + M input tempAlarmLowLevel 162 0xa2  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output detection 128 0x80  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 130 0x82  1"
