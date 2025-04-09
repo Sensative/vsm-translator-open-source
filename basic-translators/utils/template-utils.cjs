@@ -48,7 +48,7 @@ function processTemplate(template, crc, schema, csvData, relatedCRCs) {
  * @returns {string} - The formatted schema JavaScript object string.
  */
 function prepareSchemaJSON(schema) {
-    return `const commonSchema = {
+    return `var commonSchema = {
         name: "${schema.name}",
         versions: "${schema.versions}",
         mapData: "${schema.mapData}"
