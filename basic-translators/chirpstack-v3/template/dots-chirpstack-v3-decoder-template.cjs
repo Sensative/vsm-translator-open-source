@@ -484,7 +484,7 @@ function translate(iotnode) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
                     var lastSampleTime = new Date(timestamps[name]);                    
-                    if (lastSampleTime.getTime() < sampleTimestamp.getTime()) {
+                    if (lastSampleTime.getTime() < new Date(sampleTimestamp).getTime()) {
                         timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
                         result.timestamps[name] = sampleTimestamp;
                         result.output[name] = sampleValues.output[name];
