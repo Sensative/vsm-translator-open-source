@@ -45,7 +45,7 @@ Hence, for proper translation and handling of updates of applications there are 
 Additionally, in order to correctly translate streaming data from the sensor, it is recommended that the whole returned .result object from the translator is also stored and provided as input on the next translation of data from the same node. This will enable correct behaviour for
 
 * Delayed/offline data translation.
-* GNSS positioning where stream data was split in multiple packages.
+* GNSS positioning where stream data was split in multiple uplinks.
 * Mesh data forwarding
 
 ## Levels of integration
@@ -59,7 +59,7 @@ Additionally, in order to correctly translate streaming data from the sensor, it
 
    Cons: 
    * It will not support application updates in the devices without explicit user action to select & replace the translator.
-   * It does not support GNSS positioning
+   * It does not support GNSS positioning where GNSS data was split in multiple uplinks.
    * It does not support offline/delayed data timing correctly in all cases (since it will not know when was the latest updated value for the device).
    * It does not support combined mesh networking.
    * It does not do dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning).
@@ -71,38 +71,38 @@ Additionally, in order to correctly translate streaming data from the sensor, it
    * Automatic application selection
    
    Cons: 
-   * Requires saving one variable specific to the device
-   * It does not support GNSS positioning
+   * Requires saving one variable specific to the device.
+   * It does not support GNSS positioning where GNSS data was split in multiple uplinks.
    * It does not support offline/delayed data timing correctly in all cases (since it will not know when was the latest updated value for the device).
    * It does not support combined mesh networking.
-   * It does not do dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning)
+   * It does not do dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning).
 
 ### Using the dynamic translator, storing the full state output for next translation
 
    Pros:
    * Supports application updates in the devices.
-   * Automatic application selection
-   * Support GNSS data transfer and storage
+   * Automatic application selection.
+   * Support GNSS data transfer and storage where GNSS data was split in multiple uplinks.
    * Support offline/delayed data timing correctly in all cases.
    
    Cons: 
    * Requires periodic updates to the translator to introduce new applications and versions.
    * Requires saving one object specific to the device.
-   * It does not do dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning)
+   * It does not do dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning).
 
 ### Using the vsm-mqtt-client-open-source for translation and tracker device management
 
    Pros:
    * Supports application updates in the devices.
-   * Automatic application selection
-   * Support GNSS data transfer and storage
+   * Automatic application selection.
+   * Support GNSS data transfer and storage.
    * Support offline/delayed data timing correctly in all cases.
-   * Saves device state as required by translator
-   * Does dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning)
+   * Saves device state as required by translator.
+   * Does dynamic tracker device management over LoRaWan (such as device time, almanac, assistance positioning).
    
    Cons: 
    * Requires periodic updates to the translator to introduce new applications and versions.
-   * Requires a managed process to be running at the server with regular updates.
+   * Requires a managed process to be running at a server with regular updates and persistent object storage.
 
 # Troubleshooting
 
