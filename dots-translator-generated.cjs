@@ -2101,6 +2101,26 @@ M output batteryPercent 174 0xae  1
             }, 
         
 
+            2239676098: {
+                name: "Seat-occupancy",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactor 161 0xa1  1
+M input maxPowerIndex 162 0xa2  1
+M output occupied 128 0x80  1
+M output object 129 0x81  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output amplitude2 146 0x92  1
+M output distance2 147 0x93  0.01
+M input debugLevel 163 0xa3  1
+M output state 176 0xb0  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 177 0xb1  0.001
+`,
+            }, 
+        
+
             2266505222: {
                 name: "Square-comfort",
                 versions: "R25 R24 R23 R22 R21 R20 R19 R18 R16 R15",
@@ -2810,23 +2830,6 @@ M input minimumWifiCount 165 0xa5  1
 M input fullWifiScan_minutes 166 0xa6  1
 M input gpsScan_minutes 167 0xa7  1
 M input motionCountEnabled 168 0xa8  1
-`,
-            }, 
-        
-
-            3058923320: {
-                name: "Seat-occupancy",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M input powerIndexFilterFactor 161 0xa1  1
-M input maxPowerIndex 162 0xa2  1
-M output occupied 128 0x80  1
-M output object 129 0x81  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M input debugLevel 163 0xa3  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 176 0xb0  0.001
 `,
             }, 
         
