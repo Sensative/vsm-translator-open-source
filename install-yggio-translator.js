@@ -42,7 +42,7 @@ console.log("Translator version: " + translatorVersion);
 const loginYggio = async (supplier, username, password) => {
     // Login to Yggio to obtain a token
     const supplierAccount = username;
-    const api = 'https://' + supplier + 'api/auth/local';
+    const api = 'https://' + supplier + '/api/auth/local';
     const getAuthOptions = (username, password) => {
         return {
             method: 'POST', port: 443,
