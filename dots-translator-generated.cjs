@@ -773,6 +773,26 @@ M output nfcContactCount 152 0x98  1
             }, 
         
 
+            830096015: {
+                name: "Seat-occupancy",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactor 161 0xa1  1
+M input maxPowerIndex 162 0xa2  1
+M output occupied 128 0x80  1
+M output object 129 0x81  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output amplitude2 146 0x92  1
+M output distance2 147 0x93  0.01
+M input debugLevel 163 0xa3  1
+M output state 176 0xb0  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 177 0xb1  0.001
+`,
+            }, 
+        
+
             871865531: {
                 name: "Lifefinder",
                 versions: "R8 R7",
@@ -2098,26 +2118,6 @@ M output batteryPercent 174 0xae  1
                 name: "Radiotest",
                 versions: "R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
                 mapData: ``,
-            }, 
-        
-
-            2239676098: {
-                name: "Seat-occupancy",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M input powerIndexFilterFactor 161 0xa1  1
-M input maxPowerIndex 162 0xa2  1
-M output occupied 128 0x80  1
-M output object 129 0x81  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output amplitude2 146 0x92  1
-M output distance2 147 0x93  0.01
-M input debugLevel 163 0xa3  1
-M output state 176 0xb0  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 177 0xb1  0.001
-`,
             }, 
         
 
