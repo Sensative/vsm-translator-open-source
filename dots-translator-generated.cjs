@@ -2503,6 +2503,33 @@ M output averageDistanceAlarm 130 0x82  1
             }, 
         
 
+            2692618361: {
+                name: "Seat-occupancy",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactor 161 0xa1  1
+M input maxPowerIndex 162 0xa2  1
+M output occupied 128 0x80  1
+M output object 129 0x81  1
+M output radarVoltage_V 176 0xb0  0.001
+M output nfcContactCount 152 0x98  1
+M output temp 177 0xb1  0.01
+M input timeBetweenJoinAttemts 184 0xb8  1
+M input timeBeforeUnjoin 178 0xb2  1
+M input minResendWaitTime 179 0xb3  1
+M input batteryReportInterval 163 0xa3  1
+M input temperatureReportInterval 164 0xa4  1
+M input temperatureUserCalibration 180 0xb4  0.01
+M input debugLevel 165 0xa5  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output amplitude2 146 0x92  1
+M output distance2 147 0x93  0.01
+M output state 181 0xb5  1
+`,
+            }, 
+        
+
             2696231198: {
                 name: "Square-comfort",
                 versions: "R14",
