@@ -934,6 +934,41 @@ M output underVoltage 166 0xa6  1
             }, 
         
 
+            1005192630: {
+                name: "Lifefinder-wifi",
+                versions: "",
+                mapData: `M output temp 146 0x92  0.01
+M output tempAlarm 128 0x80  1
+M output humidity 176 0xb0  0.01
+M input humidityThreshold 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input tempAlarmLowLevel 160 0xa0  1
+M input tempAlarmHighLevel 161 0xa1  1
+M output batteryPercent 162 0xa2  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output traceAccumulatedTime 153 0x99  1
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 180 0xb4  1
+M input maxTraceMinutes 163 0xa3  1
+M input traceTriggerMinutes 165 0xa5  1
+M input alarmResendsBeforeUnjoin 181 0xb5  1
+M input resendsBeforeUnjoin 166 0xa6  1
+M input alarmResendTime 167 0xa7  1
+M input quickAlarm 168 0xa8  1
+M input nfcDisablesAlarm 169 0xa9  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 170 0xaa  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+M input wifiDoubleScan 171 0xab  1
+`,
+            }, 
+        
+
             1016353446: {
                 name: "Airport-int-R6-fw-patch",
                 versions: "R21 R20",
@@ -1025,6 +1060,40 @@ M output air_iaq_alarm 129 0x81  1
             }, 
         
 
+            1161910006: {
+                name: "Lifefinder-alternating",
+                versions: "",
+                mapData: `M output temp 146 0x92  0.01
+M output tempAlarm 128 0x80  1
+M output humidity 176 0xb0  0.01
+M input humidityThreshold 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input tempAlarmLowLevel 160 0xa0  1
+M input tempAlarmHighLevel 161 0xa1  1
+M output batteryPercent 162 0xa2  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output traceAccumulatedTime 153 0x99  1
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 180 0xb4  1
+M input maxTraceMinutes 163 0xa3  1
+M input traceTriggerMinutes 165 0xa5  1
+M input alarmResendsBeforeUnjoin 181 0xb5  1
+M input resendsBeforeUnjoin 166 0xa6  1
+M input alarmResendTime 167 0xa7  1
+M input quickAlarm 168 0xa8  1
+M input nfcDisablesAlarm 169 0xa9  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 170 0xaa  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+`,
+            }, 
+        
+
             1188116463: {
                 name: "Lifefinder-alternating",
                 versions: "R22",
@@ -1108,33 +1177,6 @@ M input air_interval_minutes 174 0xae  1
 M input air_static_iaq_alarm_level 189 0xbd  1
 M input air_iaq_alarm_level 190 0xbe  1
 M output air_iaq_alarm 129 0x81  1
-`,
-            }, 
-        
-
-            1273113097: {
-                name: "Seat-occupancy",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M input powerIndexFilterFactor 161 0xa1  1
-M input maxPowerIndex 162 0xa2  1
-M output occupied 128 0x80  1
-M output object 129 0x81  1
-M output radarVoltage_V 176 0xb0  0.001
-M output nfcContactCount 152 0x98  1
-M output temp 177 0xb1  0.01
-M input timeBetweenJoinAttemts 184 0xb8  1
-M input timeBeforeUnjoin 178 0xb2  1
-M input minResendWaitTime 179 0xb3  1
-M input batteryReportInterval 163 0xa3  1
-M input temperatureReportInterval 164 0xa4  1
-M input temperatureUserCalibration 180 0xb4  0.01
-M input debugLevel 165 0xa5  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output amplitude2 146 0x92  1
-M output distance2 147 0x93  0.01
-M output state 181 0xb5  1
 `,
             }, 
         
@@ -1389,6 +1431,33 @@ M input positioningFreqency 170 0xaa  1
 M input scanTimeMs 182 0xb6  1
 M input limitedScanChannels 184 0xb8  1
 M input wifiDoubleScan 171 0xab  1
+`,
+            }, 
+        
+
+            1394329318: {
+                name: "Seat-occupancy",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactor 161 0xa1  1
+M input maxPowerIndex 162 0xa2  1
+M output occupied 128 0x80  1
+M output object 129 0x81  1
+M output radarVoltage_V 176 0xb0  0.001
+M output nfcContactCount 152 0x98  1
+M output temp 177 0xb1  0.01
+M input timeBetweenJoinAttemts 184 0xb8  1
+M input timeBeforeUnjoin 178 0xb2  1
+M input minResendWaitTime 179 0xb3  1
+M input batteryReportInterval 163 0xa3  1
+M input temperatureReportInterval 164 0xa4  1
+M input temperatureUserCalibration 180 0xb4  0.01
+M input debugLevel 165 0xa5  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output amplitude2 146 0x92  1
+M output distance2 147 0x93  0.01
+M output state 181 0xb5  1
 `,
             }, 
         
@@ -2474,6 +2543,41 @@ M input quickAlarm 169 0xa9  1
 M input nfcDisablesAlarm 170 0xaa  1
 M input alarmAck 164 0xa4  1
 M input positioningFreqency 171 0xab  1
+`,
+            }, 
+        
+
+            2591224998: {
+                name: "Lifefinder-gnss",
+                versions: "",
+                mapData: `M output temp 146 0x92  0.01
+M output tempAlarm 128 0x80  1
+M output humidity 176 0xb0  0.01
+M input humidityThreshold 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input tempAlarmLowLevel 160 0xa0  1
+M input tempAlarmHighLevel 161 0xa1  1
+M output batteryPercent 162 0xa2  1
+M output volts 179 0xb3  0.001
+M output alarmTime 144 0x90  1
+M output traceTime 145 0x91  1
+M output nfcDisabledAlarm 129 0x81  1
+M output alarmAccumulatedTime 152 0x98  1
+M output traceAccumulatedTime 153 0x99  1
+M output traceTrigger 130 0x82  1
+M input maxAlarmMinutes 180 0xb4  1
+M input maxTraceMinutes 163 0xa3  1
+M input traceTriggerMinutes 165 0xa5  1
+M input alarmResendsBeforeUnjoin 181 0xb5  1
+M input resendsBeforeUnjoin 166 0xa6  1
+M input alarmResendTime 167 0xa7  1
+M input quickAlarm 168 0xa8  1
+M input nfcDisablesAlarm 169 0xa9  1
+M input alarmAck 164 0xa4  1
+M input positioningFreqency 170 0xaa  1
+M output numSatellites 171 0xab  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
 `,
             }, 
         
