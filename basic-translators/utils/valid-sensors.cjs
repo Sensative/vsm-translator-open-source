@@ -7,6 +7,7 @@ const validSensors = [
     "Motion-measure",           // Motion measurement sensor
     "Motion-spectrum",          // Motion spectrum sensor
     "Puck-radar",               // Puck-shaped radar sensor
+    "Seat-occupancy",           // Prism - Seat occupancy application
     "Square-air",               // Square-shaped air quality sensor
     "Square-comfort",           // Square-shaped comfort sensor
     "Square-comfort-sound",     // Square-shaped comfort sensor with sound measurement
