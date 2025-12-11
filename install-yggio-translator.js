@@ -42,7 +42,7 @@ console.log("Translator version: " + translatorVersion);
 const loginYggio = async (supplier, username, password) => {
     // Login to Yggio to obtain a token
     const supplierAccount = username;
-    const api = 'https://' + supplier + '/auth/local';
+    const api = 'https://' + supplier + '/api/auth/local';
     const getAuthOptions = (username, password) => {
         return {
             method: 'POST', port: 443,
@@ -99,7 +99,10 @@ const postYggioTranslator = async (supplier, token, translatorVersion) => {
         }
     }
     let response = await fetch(api, getAuthOptions(token))
-        .then(response => { if(!response.ok) throw {message:'Translator post failed: ' + JSON.stringify(response)}; return response.statusText;})
+    .then(response => {
+    console.log("Response status: " + JSON.stringify(response, null, 2));
+             if(!response.ok) throw {message:'Translator post failed: ' + JSON.stringify(response)}; return response.statusText;
+            })
         .catch(err => {
             console.log("Post failed - check credentials and version?");
             console.log(err);
