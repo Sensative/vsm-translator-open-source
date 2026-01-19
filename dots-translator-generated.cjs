@@ -2759,6 +2759,40 @@ M input alarmAck 164 0xa4  1
             }, 
         
 
+            2578503897: {
+                name: "Seat-occupancy",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactorUp 161 0xa1  1
+M input powerIndexFilterFactorDown 162 0xa2  1
+M input maxPowerIndex 163 0xa3  1
+M input timeBetweenJoinAttemts 184 0xb8  1
+M input timeBeforeUnjoin 185 0xb9  1
+M output temp 176 0xb0  0.01
+M input temperatureReportInterval 177 0xb1  1
+M input temperatureUserCalibration 178 0xb2  0.01
+M input nightmodeStart 179 0xb3  1
+M input nightmodeEnd 180 0xb4  1
+M input radarBtAdvertiseTrigger 164 0xa4  1
+M output occupied 128 0x80  1
+M output object 129 0x81  1
+M output radarVoltage_V 181 0xb5  0.001
+M output nfcContactCount 152 0x98  1
+M output periodicReportsCounter 186 0xba  1
+M input minResendWaitTime 187 0xbb  1
+M input maxResendWaitTime 188 0xbc  1
+M input minResendWaitTimeNight 189 0xbd  1
+M input periodicReportsInterval 165 0xa5  1
+M input debugLevel 166 0xa6  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output amplitude2 146 0x92  1
+M output distance2 147 0x93  0.01
+M output state 182 0xb6  1
+`,
+            }, 
+        
+
             2586467524: {
                 name: "Lifefinder-wifi",
                 versions: "",
