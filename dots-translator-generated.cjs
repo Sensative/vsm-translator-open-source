@@ -1194,6 +1194,37 @@ M input limitedScanChannels 184 0xb8  1
             }, 
         
 
+            1172418602: {
+                name: "Lifefinder-beacon-nfc",
+                versions: "",
+                mapData: `M output settingTrigger 160 0xa0  1
+M output espStatus 161 0xa1  1
+M input settingMode 162 0xa2  1
+M input settingModeTime 176 0xb0  1
+M input espStatusMinutes 177 0xb1  1
+M output temp 178 0xb2  0.01
+M output tempAverage 144 0x90  0.01
+M output hum 179 0xb3  0.01
+M output humAverage 145 0x91  0.01
+M output tempAlarm 128 0x80  1
+M output humAlarm 129 0x81  1
+M input tempHysteresis 180 0xb4  0.1
+M input humHysteresis 181 0xb5  0.01
+M input tempAlarmHighLevel 163 0xa3  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input humAlarmHighLevel 165 0xa5  1
+M input tempHumPollingInterval 166 0xa6  1
+M input tempAverageMeasurements 167 0xa7  1
+M input humAverageMeasurements 168 0xa8  1
+M input positioningFrequency 169 0xa9  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+M output serial 152 0x98  1
+M input debounceSeconds 183 0xb7  1
+`,
+            }, 
+        
+
             1188116463: {
                 name: "Lifefinder-alternating",
                 versions: "R22",
@@ -1621,6 +1652,35 @@ M output accumulatedStationaryTime 146 0x92  1
 M output accumulatedMovingTime 147 0x93  1
 M input limitedScanChannels 184 0xb8  1
 M input positioningFreqency 166 0xa6  1
+`,
+            }, 
+        
+
+            1511133878: {
+                name: "Lifefinder-beacon",
+                versions: "",
+                mapData: `M output settingTrigger 160 0xa0  1
+M output espStatus 161 0xa1  1
+M input settingMode 162 0xa2  1
+M input settingModeTime 176 0xb0  1
+M input espStatusMinutes 177 0xb1  1
+M output temp 178 0xb2  0.01
+M output tempAverage 144 0x90  0.01
+M output hum 179 0xb3  0.01
+M output humAverage 145 0x91  0.01
+M output tempAlarm 128 0x80  1
+M output humAlarm 129 0x81  1
+M input tempHysteresis 180 0xb4  0.1
+M input humHysteresis 181 0xb5  0.01
+M input tempAlarmHighLevel 163 0xa3  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input humAlarmHighLevel 165 0xa5  1
+M input tempHumPollingInterval 166 0xa6  1
+M input tempAverageMeasurements 167 0xa7  1
+M input humAverageMeasurements 168 0xa8  1
+M input positioningFrequency 169 0xa9  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
 `,
             }, 
         
@@ -5884,6 +5944,9 @@ M output underVoltage 165 0xa5 1
         if (data.length > 50) {
 		idd.externalApiMsgCount = data[b++]|data[b++]<<8;
 		idd.externalApiAckTmoCount = data[b++]|data[b++]<<8;
+	}
+        if (data.length > 54) {
+		idd.brownoutCount = data[b++];;
 	}
 
         return {result: {idd}};

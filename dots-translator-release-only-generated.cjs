@@ -4852,6 +4852,9 @@ M output underVoltage 165 0xa5 1
 		idd.externalApiMsgCount = data[b++]|data[b++]<<8;
 		idd.externalApiAckTmoCount = data[b++]|data[b++]<<8;
 	}
+        if (data.length > 54) {
+		idd.brownoutCount = data[b++];;
+	}
 
         return {result: {idd}};
     }
