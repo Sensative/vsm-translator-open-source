@@ -4115,6 +4115,37 @@ M input positioningFreqency 171 0xab  1
             }, 
         
 
+            3459341164: {
+                name: "Lifefinder-beacon-nfc",
+                versions: "",
+                mapData: `M output settingTrigger 160 0xa0  1
+M output espStatus 161 0xa1  1
+M input settingMode 162 0xa2  1
+M input settingModeTime 176 0xb0  1
+M input espStatusMinutes 177 0xb1  1
+M output temp 178 0xb2  0.01
+M output tempAverage 144 0x90  0.01
+M output hum 179 0xb3  0.01
+M output humAverage 145 0x91  0.01
+M output tempAlarm 128 0x80  1
+M output humAlarm 129 0x81  1
+M input tempHysteresis 180 0xb4  0.1
+M input humHysteresis 181 0xb5  0.01
+M input tempAlarmHighLevel 163 0xa3  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input humAlarmHighLevel 165 0xa5  1
+M input tempHumPollingInterval 166 0xa6  1
+M input tempAverageMeasurements 167 0xa7  1
+M input humAverageMeasurements 168 0xa8  1
+M input positioningFrequency 169 0xa9  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+M output serial 152 0x98  1
+M input debounceSeconds 183 0xb7  1
+`,
+            }, 
+        
+
             3465514373: {
                 name: "Lifefinder-motion-nfc-gnss",
                 versions: "R27",
@@ -4226,6 +4257,35 @@ M input alarmAck 164 0xa4  1
                 name: "Sniffer",
                 versions: "R9 R8 R7 R6 R5 R11 R10",
                 mapData: ``,
+            }, 
+        
+
+            3519216112: {
+                name: "Lifefinder-beacon",
+                versions: "",
+                mapData: `M output settingTrigger 160 0xa0  1
+M output espStatus 161 0xa1  1
+M input settingMode 162 0xa2  1
+M input settingModeTime 176 0xb0  1
+M input espStatusMinutes 177 0xb1  1
+M output temp 178 0xb2  0.01
+M output tempAverage 144 0x90  0.01
+M output hum 179 0xb3  0.01
+M output humAverage 145 0x91  0.01
+M output tempAlarm 128 0x80  1
+M output humAlarm 129 0x81  1
+M input tempHysteresis 180 0xb4  0.1
+M input humHysteresis 181 0xb5  0.01
+M input tempAlarmHighLevel 163 0xa3  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input humAlarmHighLevel 165 0xa5  1
+M input tempHumPollingInterval 166 0xa6  1
+M input tempAverageMeasurements 167 0xa7  1
+M input humAverageMeasurements 168 0xa8  1
+M input positioningFrequency 169 0xa9  1
+M input scanTimeMs 182 0xb6  1
+M input limitedScanChannels 184 0xb8  1
+`,
             }, 
         
 
