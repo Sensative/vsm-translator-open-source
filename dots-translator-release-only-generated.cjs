@@ -2941,6 +2941,18 @@ M input limitedScanChannels 184 0xb8  1
             }, 
         
 
+            3236848785: {
+                name: "Precense",
+                versions: "",
+                mapData: `M output proximityValue 152 0x98  1
+M input pollInterval 160 0xa0  1
+M input irMode 161 0xa1  1
+M input proximityHysteresis 176 0xb0  1
+M input irPower 162 0xa2  1
+`,
+            }, 
+        
+
             3241343967: {
                 name: "Square-air",
                 versions: "R25 R24 R23 R22 R21 R20 R19 R18 R16",
@@ -4829,8 +4841,21 @@ M output underVoltage 165 0xa5 1
         idd.wifiGwsLpf = data[b++]/10.0; 
         idd.gnssValidSVLpf = data[b++]/10.0; 
 
+        // Byte 48
         if (b!=48) console.log("Expected 48 but had " + b);
-        
+
+        if (data.length > 48) {
+	        idd.swWatchdogCount = data[b++];
+        	idd.tasksWatchdogCount = data[b++];
+	}
+        if (data.length > 50) {
+		idd.externalApiMsgCount = data[b++]|data[b++]<<8;
+		idd.externalApiAckTmoCount = data[b++]|data[b++]<<8;
+	}
+        if (data.length > 54) {
+		idd.brownoutCount = data[b++];;
+	}
+
         return {result: {idd}};
     }
 

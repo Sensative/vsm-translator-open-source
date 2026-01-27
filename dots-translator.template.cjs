@@ -697,8 +697,21 @@ const knownSchemas = {};
         idd.wifiGwsLpf = data[b++]/10.0; 
         idd.gnssValidSVLpf = data[b++]/10.0; 
 
+        // Byte 48
         if (b!=48) console.log("Expected 48 but had " + b);
-        
+
+        if (data.length > 48) {
+	        idd.swWatchdogCount = data[b++];
+        	idd.tasksWatchdogCount = data[b++];
+	}
+        if (data.length > 50) {
+		idd.externalApiMsgCount = data[b++]|data[b++]<<8;
+		idd.externalApiAckTmoCount = data[b++]|data[b++]<<8;
+	}
+        if (data.length > 54) {
+		idd.brownoutCount = data[b++];;
+	}
+
         return {result: {idd}};
     }
 
