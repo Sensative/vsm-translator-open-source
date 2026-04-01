@@ -37,7 +37,7 @@ const knownSchemas = {
 
             40829709: {
                 name: "Motion-measure",
-                versions: "R29 R28 R27 R26",
+                versions: "R30 R29 R28 R27 R26",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -130,7 +130,7 @@ M input alarmAck 164 0xa4  1
 
             78751172: {
                 name: "Radiotest",
-                versions: "R29 R28 R27 R26 R25 R24 R23",
+                versions: "R30 R29 R28 R27 R26 R25 R24 R23",
                 mapData: `M input frequency 184 0xb8  1
 `,
             }, 
@@ -659,7 +659,7 @@ M output batteryPercent 171 0xab  1
 
             543135441: {
                 name: "Radiotest-ping-pong-ext",
-                versions: "",
+                versions: "R30",
                 mapData: `M input frequency 184 0xb8  1
 `,
             }, 
@@ -1005,7 +1005,7 @@ M output underVoltage 166 0xa6  1
 
             1005192630: {
                 name: "Lifefinder-wifi",
-                versions: "R29",
+                versions: "R30 R29",
                 mapData: `M output temp 146 0x92  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -1068,7 +1068,7 @@ M output batteryPercent 172 0xac  1
 
             1030541641: {
                 name: "Square-comfort-sound",
-                versions: "",
+                versions: "R30",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -1099,7 +1099,7 @@ M output soundAvgMax 184 0xb8  0.1
 
             1047034189: {
                 name: "Sniffer",
-                versions: "R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
+                versions: "R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
                 mapData: ``,
             }, 
         
@@ -1162,7 +1162,7 @@ M output air_iaq_alarm 129 0x81  1
 
             1161910006: {
                 name: "Lifefinder-alternating",
-                versions: "R29",
+                versions: "R30 R29",
                 mapData: `M output temp 146 0x92  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -1406,7 +1406,7 @@ M input positioningFreqency 171 0xab  1
 
             1304526571: {
                 name: "Motion-measure-unconf",
-                versions: "R29 R28 R27 R26",
+                versions: "R30 R29 R28 R27 R26",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1431,7 +1431,7 @@ M output batteryPercent 167 0xa7  1
 
             1319111708: {
                 name: "Compliance-test",
-                versions: "R9 R8 R7 R6 R5 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R8 R7 R6 R5 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: ``,
             }, 
         
@@ -1457,7 +1457,7 @@ M output nfcContactCount 152 0x98  1
 
             1340832739: {
                 name: "Lifefinder-motion-nfc-both",
-                versions: "R29 R28",
+                versions: "R30 R29 R28",
                 mapData: `M output temp 145 0x91  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -1862,7 +1862,7 @@ M input wifiIntervalMinutes 165 0xa5  1
 
             1654085923: {
                 name: "Lifefinder-wifi-pos-tester",
-                versions: "R29 R28",
+                versions: "R30 R29 R28",
                 mapData: `M input scanFrequency 176 0xb0  1
 M input scanTimeMs 177 0xb1  1
 M input limitedScanChannels 184 0xb8  1
@@ -1872,7 +1872,7 @@ M input limitedScanChannels 184 0xb8  1
 
             1657727329: {
                 name: "Heartstarter",
-                versions: "R29 R28 R27 R26",
+                versions: "R30 R29 R28 R27 R26",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -1923,7 +1923,7 @@ M output batteryPercent 170 0xaa  1
 
             1711284143: {
                 name: "Tracker-stats",
-                versions: "R9 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output volts 176 0xb0  0.001
 M input gnssIntervalMinutes 160 0xa0  1
 M input gnssScanMode 177 0xb1  1
@@ -2024,7 +2024,7 @@ M input positioningFreqency 171 0xab  1
 
             1815337626: {
                 name: "Gnss-autonomous-test",
-                versions: "R9 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output numSatellites 160 0xa0  1
 M output bestSatellites 184 0xb8  1
 M output scanCount 185 0xb9  1
@@ -2223,7 +2223,7 @@ M input motionThreshold 180 0xb4  0.001
 
             1977453069: {
                 name: "Puck-radar",
-                versions: "",
+                versions: "R30",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M input powerIndexFilterFactorUp 161 0xa1  1
 M input powerIndexFilterFactorDown 162 0xa2  1
@@ -2249,7 +2249,7 @@ M output radarVoltage_V 180 0xb4  0.001
 
             2014504806: {
                 name: "Lifefinder-motion-button-wifi",
-                versions: "R29 R28",
+                versions: "R30 R29 R28",
                 mapData: `M output temp 144 0x90  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -2455,7 +2455,7 @@ M output state 183 0xb7  1
 
             2132727044: {
                 name: "Default",
-                versions: "R9 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M output helloDefaultApp 160 0xa0  1
 `,
             }, 
@@ -2655,7 +2655,7 @@ M output volts 180 0xb4  0.001
 
             2359357756: {
                 name: "Lifefinder-motion-button-gnss",
-                versions: "R29 R28",
+                versions: "R30 R29 R28",
                 mapData: `M output temp 144 0x90  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -2798,7 +2798,7 @@ M input limitedScanChannels 184 0xb8  1
 
             2409246216: {
                 name: "Motion-spectrum",
-                versions: "",
+                versions: "R30",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2834,7 +2834,7 @@ M input enableXYZ 170 0xaa  1
 
             2473725182: {
                 name: "Motion-measure",
-                versions: "",
+                versions: "R30",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -2988,7 +2988,7 @@ M input positioningFreqency 171 0xab  1
 
             2591224998: {
                 name: "Lifefinder-gnss",
-                versions: "R29",
+                versions: "R30 R29",
                 mapData: `M output temp 146 0x92  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -3370,7 +3370,7 @@ M output radarVoltage_V 180 0xb4  0.001
 
             2878174033: {
                 name: "Square-air",
-                versions: "",
+                versions: "R30",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -3548,7 +3548,7 @@ M output soundAvgMax 184 0xb8  0.1
 
             3094986737: {
                 name: "Airport-int",
-                versions: "R29 R28 R27 R26 R25",
+                versions: "R30 R29 R28 R27 R26 R25",
                 mapData: `M input stillMotionThreshold_mm_s2 176 0xb0  1
 M input movingMotionThreshold_mm_s2 177 0xb1  1
 M input limitedScanChannels 184 0xb8  1
@@ -3574,7 +3574,7 @@ M output batteryPercent 168 0xa8  1
 
             3101276567: {
                 name: "Sniffer-ping-pong-ext",
-                versions: "",
+                versions: "R30",
                 mapData: ``,
             }, 
         
@@ -3720,7 +3720,7 @@ M output air_iaq_alarm 129 0x81  1
 
             3251982802: {
                 name: "Lifefinder-motion-nfc-wifi",
-                versions: "R29 R28",
+                versions: "R30 R29 R28",
                 mapData: `M output temp 145 0x91  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -3774,7 +3774,7 @@ M input averageLuxIntervalMinutes 166 0xa6  1
 
             3297213463: {
                 name: "Seat-occupancy",
-                versions: "",
+                versions: "R30",
                 mapData: `M input powerIndexFilterFactorUp 160 0xa0  1
 M input powerIndexFilterFactorDown 161 0xa1  1
 M input maxPowerIndex 162 0xa2  1
@@ -4010,7 +4010,7 @@ M input limitedScanChannels 184 0xb8  1
 
             3392161576: {
                 name: "Digital-gpio",
-                versions: "",
+                versions: "R30",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M input powerIndexFilterFactorUp 161 0xa1  1
 M input powerIndexFilterFactorDown 162 0xa2  1
@@ -4117,7 +4117,7 @@ M input positioningFreqency 171 0xab  1
 
             3459341164: {
                 name: "Lifefinder-beacon-nfc",
-                versions: "",
+                versions: "R30",
                 mapData: `M output settingTrigger 160 0xa0  1
 M output espStatus 161 0xa1  1
 M input settingMode 162 0xa2  1
@@ -4262,7 +4262,7 @@ M input alarmAck 164 0xa4  1
 
             3519216112: {
                 name: "Lifefinder-beacon",
-                versions: "",
+                versions: "R30",
                 mapData: `M output settingTrigger 160 0xa0  1
 M output espStatus 161 0xa1  1
 M input settingMode 162 0xa2  1
@@ -4359,7 +4359,7 @@ M input maxResendCount 160 0xa0  1
 
             3550461869: {
                 name: "Radiotest-measure",
-                versions: "R29 R28 R27 R26 R25 R24 R23",
+                versions: "R30 R29 R28 R27 R26 R25 R24 R23",
                 mapData: ``,
             }, 
         
@@ -4610,7 +4610,7 @@ M input motionThreshold 180 0xb4  0.001
 
             3705434392: {
                 name: "Motion-measure-unconf",
-                versions: "",
+                versions: "R30",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -4724,7 +4724,7 @@ M input positioningFreqency 170 0xaa  1
 
             3802553086: {
                 name: "Tracker",
-                versions: "R29 R28 R27",
+                versions: "R30 R29 R28 R27",
                 mapData: `M output temp 176 0xb0  0.01
 M output averageTemp 177 0xb1  0.01
 M input tempHysteresis 178 0xb2  0.01
@@ -4760,7 +4760,7 @@ M output batteryPercent 174 0xae  1
 
             3813895388: {
                 name: "IR-proximity",
-                versions: "R29 R28 R27 R26",
+                versions: "R30 R29 R28 R27 R26",
                 mapData: `M output proximityValue 152 0x98  1
 M input pollInterval 160 0xa0  1
 M input irMode 161 0xa1  1
@@ -4903,7 +4903,7 @@ M output air_iaq_alarm 129 0x81  1
 
             3907847420: {
                 name: "Lifefinder-motion-button-both",
-                versions: "R29",
+                versions: "R30 R29",
                 mapData: `M output temp 144 0x90  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -5003,7 +5003,7 @@ M input limitedScanChannels 184 0xb8  1
 
             3999624005: {
                 name: "US-Frequency-hop-test",
-                versions: "R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
+                versions: "R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12",
                 mapData: `M input transmitInterval 176 0xb0  1
 M input transmitCount 184 0xb8  1
 M input count 185 0xb9  1
@@ -5135,7 +5135,7 @@ M output motion 171 0xab  1
 
             4055310652: {
                 name: "Square-comfort",
-                versions: "",
+                versions: "R30",
                 mapData: `M input roamNetworkCount 160 0xa0  1
 M output batteryPercent 161 0xa1  1
 M output temp 176 0xb0  0.01
@@ -5159,14 +5159,14 @@ M input maxPowerIndex 169 0xa9  1
 
             4058561182: {
                 name: "Empty",
-                versions: "R9 R8 R7 R6 R5 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R8 R7 R6 R5 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: ``,
             }, 
         
 
             4072134224: {
                 name: "Lifefinder-motion-nfc-gnss",
-                versions: "R29 R28",
+                versions: "R30 R29 R28",
                 mapData: `M output temp 145 0x91  0.01
 M output tempAlarm 128 0x80  1
 M output humidity 176 0xb0  0.01
@@ -5218,7 +5218,7 @@ M output underVoltage 166 0xa6  1
 
             4120107816: {
                 name: "Linkcheck",
-                versions: "R9 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
+                versions: "R9 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M input linkCheckRate 160 0xa0  1
 `,
             }, 
@@ -6165,6 +6165,12 @@ M output underVoltage 165 0xa5 1
             // console.log("added " + id + ": " + name + " (" + type + ") scale: " + scale);
         }
         return symbolTable;
+    }
+
+    // Port decides which decoder to run
+    if (!iotnode.encodedData) {
+        console.log("no encodedData");
+        return null;
     }
 
     // Port decides which decoder to run
