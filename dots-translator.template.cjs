@@ -838,6 +838,12 @@ const knownSchemas = {};
     }
 
     // Port decides which decoder to run
+    if (!iotnode.encodedData) {
+        console.log("no encodedData");
+        return null;
+    }
+
+    // Port decides which decoder to run
     let port = iotnode.encodedData.port;
     if (!port) {
         console.log("no port supplied");
