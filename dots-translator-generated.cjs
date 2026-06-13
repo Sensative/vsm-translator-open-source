@@ -1823,6 +1823,42 @@ M input enableXYZ 169 0xa9  1
             }, 
         
 
+            1584748272: {
+                name: "Puck-radar",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M input powerIndexFilterFactorUp 161 0xa1  1
+M input powerIndexFilterFactorDown 162 0xa2  1
+M input maxPowerIndex 163 0xa3  1
+M input radarBtAdvertiseTrigger 164 0xa4  1
+M input timeBetweenJoinAttemts 184 0xb8  1
+M input timeBeforeUnjoin 185 0xb9  1
+M output amplitude 144 0x90  1
+M output distance 145 0x91  0.01
+M output amplitude2 146 0x92  1
+M output distance2 147 0x93  0.01
+M output occupied 128 0x80  1
+M input amplitudeHysteresis 176 0xb0  1
+M input distanceHysteresis 165 0xa5  0.01
+M output distanceAverage 148 0x94  0.01
+M input averageDistanceIntervalMinutes 177 0xb1  1
+M input averageDistanceLowAlarmLevel 178 0xb2  0.01
+M input averageDistanceHighAlarmLevel 179 0xb3  0.01
+M input reportFailedDistanceMeasurements 166 0xa6  1
+M output averageDistanceAlarm 129 0x81  1
+M output radarDetectionPercentageDay 149 0x95  1
+M output nfcContactCount 152 0x98  1
+M output radarVoltage_V 180 0xb4  0.001
+M output humidity 181 0xb5  0.01
+M input periodicReportsInterval 167 0xa7  1
+M input maxResendWaitTime 186 0xba  1
+M output periodicReportsCounter 187 0xbb  1
+M output temp 182 0xb6  0.01
+M input temperatureUserCalibration 188 0xbc  0.01
+`,
+            }, 
+        
+
             1586871679: {
                 name: "Motion-measure-unconf",
                 versions: "R29 R28 R27",
@@ -3682,38 +3718,6 @@ M output humidity 179 0xb3  0.01
 M output averageHumidity 144 0x90  0.01
 M input humidityTreshold 180 0xb4  0.01
 M input averageHumidityIntervalMinutes 165 0xa5  1
-`,
-            }, 
-        
-
-            2937285163: {
-                name: "Puck-radar",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M input powerIndexFilterFactorUp 161 0xa1  1
-M input powerIndexFilterFactorDown 162 0xa2  1
-M input maxPowerIndex 163 0xa3  1
-M input radarBtAdvertiseTrigger 164 0xa4  1
-M input timeBetweenJoinAttemts 184 0xb8  1
-M input timeBeforeUnjoin 185 0xb9  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output occupied 128 0x80  1
-M input amplitudeHysteresis 176 0xb0  1
-M input distanceHysteresis 165 0xa5  0.01
-M output distanceAverage 146 0x92  0.01
-M input averageDistanceIntervalMinutes 177 0xb1  1
-M input averageDistanceLowAlarmLevel 178 0xb2  0.01
-M input averageDistanceHighAlarmLevel 179 0xb3  0.01
-M input reportFailedDistanceMeasurements 166 0xa6  1
-M output averageDistanceAlarm 129 0x81  1
-M output radarDetectionPercentageDay 147 0x93  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 180 0xb4  0.001
-M output humidity 181 0xb5  0.01
-M input periodicReportsInterval 167 0xa7  1
-M input maxResendWaitTime 186 0xba  1
-M output periodicReportsCounter 187 0xbb  1
 `,
             }, 
         
@@ -5580,6 +5584,42 @@ M output underVoltage 166 0xa6  1
                 name: "Linkcheck",
                 versions: "R9 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
                 mapData: `M input linkCheckRate 160 0xa0  1
+`,
+            }, 
+        
+
+            4173659976: {
+                name: "Motion-spectrum",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input motionThreshold_m_s2 179 0xb3  0.001
+M input motionSpectrumMode 163 0xa3  1
+M output acc_1hz 129 0x81  1
+M output acc_2hz 130 0x82  1
+M output acc_4hz 131 0x83  1
+M output acc_8hz 132 0x84  1
+M output acc_16hz 133 0x85  1
+M output acc_32hz 134 0x86  1
+M output acc_64hz 135 0x87  1
+M output acc_128hz 136 0x88  1
+M output acc_256hz 137 0x89  1
+M output acc_energy_sum_mms2_square 184 0xb8  1
+M output motion 164 0xa4  1
+M input motionPollIntervalMinutes 165 0xa5  1
+M output batteryPercent 166 0xa6  1
+M input powerIndexFilterFactorUp 167 0xa7  1
+M input powerIndexFilterFactorDown 168 0xa8  1
+M input maxPowerIndex 169 0xa9  1
+M output accX 144 0x90  0.001
+M output accY 145 0x91  0.001
+M output accZ 146 0x92  0.001
+M input enableXYZ 170 0xaa  1
 `,
             }, 
         
