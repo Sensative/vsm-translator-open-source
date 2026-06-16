@@ -106,6 +106,11 @@ const generate = (include_nonreleases, generated_filename, versions_filename) =>
         if (include_nonreleases) {
             scanFolder(rootfolder+'/candidates', false);
             scanFolder(rootfolder+'/builds', false);
+            // Also include the current local build output (latest-build/apps) so translator changes
+            // can be generated/tested without first preparing a candidate or release.
+            // Non-release pass only; the release-only translator never includes un-promoted apps.
+            if (fs.existsSync(rootfolder+'/latest-build/apps'))
+                scanFolder(rootfolder+'/latest-build/apps', false);
         }
         scanFolder(rootfolder+'/releases', true);
         scanFolder(rootfolder+'/specials', false);
