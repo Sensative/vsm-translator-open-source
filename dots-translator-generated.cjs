@@ -1024,6 +1024,46 @@ M output underVoltage 166 0xa6  1
             }, 
         
 
+            974552597: {
+                name: "Air",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input powerIndexFilterFactorUp 167 0xa7  1
+M input powerIndexFilterFactorDown 168 0xa8  1
+M input maxPowerIndex 169 0xa9  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 170 0xaa  1
+M output air_run_in_status 171 0xab  1
+M output air_stab_status 172 0xac  1
+M output air_iaq_accuracy 173 0xad  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_static_iaq 187 0xbb  1
+M output air_breath_voc_equivalent 188 0xbc  0.01
+M input air_interval_minutes 174 0xae  1
+M input air_static_iaq_alarm_level 189 0xbd  1
+M input air_iaq_alarm_level 190 0xbe  1
+M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
             1005192630: {
                 name: "Lifefinder-wifi",
                 versions: "R30 R29",
@@ -3808,6 +3848,47 @@ M output nfcContactCount 152 0x98  1
 M output radarVoltage_V 180 0xb4  0.001
 `,
             }, 
+        
+
+            2878174033: {
+                name: "Square-air",
+                versions: "R30",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input powerIndexFilterFactorUp 167 0xa7  1
+M input powerIndexFilterFactorDown 168 0xa8  1
+M input maxPowerIndex 169 0xa9  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 170 0xaa  1
+M output air_run_in_status 171 0xab  1
+M output air_stab_status 172 0xac  1
+M output air_iaq_accuracy 173 0xad  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_breath_voc_equivalent 187 0xbb  0.01
+M output air_static_iaq 188 0xbc  1
+M input air_interval_minutes 174 0xae  1
+M input air_static_iaq_alarm_level 189 0xbd  1
+M input air_iaq_alarm_level 190 0xbe  1
+M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
 
             2907035249: {
                 name: "Lifefinder-gnss",
@@ -5626,6 +5707,45 @@ M output air_static_iaq 185 0xb9  1
 M input air_interval_minutes 170 0xaa  1
 M input air_static_iaq_alarm_level 186 0xba  1
 M input air_iaq_alarm_level 187 0xbb  1
+M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
+            4008430853: {
+                name: "Air",
+                versions: "",
+                mapData: `M input roamNetworkCount 160 0xa0  1
+M output batteryPercent 161 0xa1  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempHysteresis 162 0xa2  0.1
+M input averageTempIntervalMinutes 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 166 0xa6  1
+M input powerIndexFilterFactorUp 167 0xa7  1
+M input powerIndexFilterFactorDown 168 0xa8  1
+M input maxPowerIndex 169 0xa9  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 170 0xaa  1
+M output air_run_in_status 171 0xab  1
+M output air_stab_status 172 0xac  1
+M output air_iaq_accuracy 173 0xad  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_static_iaq 187 0xbb  1
+M input air_interval_minutes 174 0xae  1
+M input air_static_iaq_alarm_level 188 0xbc  1
+M input air_iaq_alarm_level 189 0xbd  1
 M output air_iaq_alarm 129 0x81  1
 `,
             }, 
