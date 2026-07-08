@@ -161,7 +161,7 @@ const generate = (include_nonreleases, generated_filename, versions_filename) =>
     let extendedTranslator = defaultTranslator.replace('const knownSchemas = {};', knownSchemas);
     fs.writeFileSync(generated_filename, extendedTranslator);
     console.log("Generated new translator " + generated_filename);
-    fs.writeFileSync(versions_filename, JSON.stringify(apps));
+    fs.writeFileSync(versions_filename, JSON.stringify(apps, null, 2) + "\n");
     console.log("Generated new versions file " + versions_filename);
 }
 
