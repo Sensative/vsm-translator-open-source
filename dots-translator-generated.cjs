@@ -2219,6 +2219,25 @@ M output batteryPercent 164 0xa4  1
             }, 
         
 
+            1723137676: {
+                name: "Pir-Motion",
+                versions: "",
+                mapData: `M input PirSamplingRate 176 0xb0  1
+M input PirLpf1 160 0xa0  1
+M input PirLpf2 161 0xa1  1
+M input PirAvgTrim 162 0xa2  1
+M input PirCmd 184 0xb8  1
+M output batteryPercent 163 0xa3  1
+M input PirMotionTheshold 177 0xb1  1
+M input PirHystMotion 164 0xa4  1
+M input debugMinutes 178 0xb2  1
+M output PirFlags 165 0xa5  1
+M output PirTObject 179 0xb3  1
+M output PirTMotion 180 0xb4  1
+`,
+            }, 
+        
+
             1727723267: {
                 name: "Heartstarter",
                 versions: "R9 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
@@ -3564,6 +3583,29 @@ M input wifiScanInterval_h 172 0xac  1
             }, 
         
 
+            2512132866: {
+                name: "Pir-Presence",
+                versions: "",
+                mapData: `M input PirSamplingRate 176 0xb0  1
+M input PirLpf1 160 0xa0  1
+M input PirLpf2 161 0xa1  1
+M input PirAvgTrim 162 0xa2  1
+M input PirCmd 184 0xb8  1
+M output batteryPercent 163 0xa3  1
+M input PirPresenceTheshold 177 0xb1  1
+M input PirHystPresence 164 0xa4  1
+M input PirResetAlgo 165 0xa5  1
+M input debugMinutes 178 0xb2  1
+M output PirFlags 128 0x80  1
+M output PirTObject 179 0xb3  1
+M output PirTPresence 180 0xb4  1
+M input PirResetLuxTreshold 181 0xb5  1
+M input PirResetInDarkMinutes 182 0xb6  1
+M output PirLux 183 0xb7  1
+`,
+            }, 
+        
+
             2566472474: {
                 name: "Lifefinder-gnss",
                 versions: "R23",
@@ -3712,6 +3754,25 @@ M input averageDistanceIntervalMinutes 180 0xb4  1
 M input averageDistanceLowAlarmLevel 181 0xb5  0.01
 M input averageDistanceHighAlarmLevel 182 0xb6  0.01
 M output averageDistanceAlarm 130 0x82  1
+`,
+            }, 
+        
+
+            2689938490: {
+                name: "Pir-Motion",
+                versions: "",
+                mapData: `M input PirSamplingRate 176 0xb0  1
+M input PirLpf1 160 0xa0  1
+M input PirLpf2 161 0xa1  1
+M input PirAvgTrim 162 0xa2  1
+M input PirCmd 184 0xb8  1
+M output batteryPercent 163 0xa3  1
+M input PirMotionTheshold 177 0xb1  1
+M input PirHystMotion 164 0xa4  1
+M input debugMinutes 178 0xb2  1
+M output PirFlags 128 0x80  1
+M output PirTObject 179 0xb3  1
+M output PirTMotion 180 0xb4  1
 `,
             }, 
         
@@ -5981,6 +6042,29 @@ M input air_interval_minutes 174 0xae  1
 M input air_static_iaq_alarm_level 188 0xbc  1
 M input air_iaq_alarm_level 189 0xbd  1
 M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
+            4012915842: {
+                name: "Pir-Presence",
+                versions: "",
+                mapData: `M input PirSamplingRate 176 0xb0  1
+M input PirLpf1 160 0xa0  1
+M input PirLpf2 161 0xa1  1
+M input PirAvgTrim 162 0xa2  1
+M input PirCmd 184 0xb8  1
+M output batteryPercent 163 0xa3  1
+M input PirPresenceTheshold 177 0xb1  1
+M input PirHystPresence 164 0xa4  1
+M input PirResetAlgo 165 0xa5  1
+M input debugMinutes 178 0xb2  1
+M output PirFlags 166 0xa6  1
+M output PirTObject 179 0xb3  1
+M output PirTPresence 180 0xb4  1
+M input PirResetLuxTreshold 181 0xb5  1
+M input PirResetInDarkMinutes 182 0xb6  1
+M output PirLux 183 0xb7  1
 `,
             }, 
         
