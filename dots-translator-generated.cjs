@@ -1964,42 +1964,6 @@ M input enableXYZ 169 0xa9  1
             }, 
         
 
-            1584748272: {
-                name: "Puck-radar",
-                versions: "",
-                mapData: `M input roamNetworkCount 160 0xa0  1
-M input powerIndexFilterFactorUp 161 0xa1  1
-M input powerIndexFilterFactorDown 162 0xa2  1
-M input maxPowerIndex 163 0xa3  1
-M input radarBtAdvertiseTrigger 164 0xa4  1
-M input timeBetweenJoinAttemts 184 0xb8  1
-M input timeBeforeUnjoin 185 0xb9  1
-M output amplitude 144 0x90  1
-M output distance 145 0x91  0.01
-M output amplitude2 146 0x92  1
-M output distance2 147 0x93  0.01
-M output occupied 128 0x80  1
-M input amplitudeHysteresis 176 0xb0  1
-M input distanceHysteresis 165 0xa5  0.01
-M output distanceAverage 148 0x94  0.01
-M input averageDistanceIntervalMinutes 177 0xb1  1
-M input averageDistanceLowAlarmLevel 178 0xb2  0.01
-M input averageDistanceHighAlarmLevel 179 0xb3  0.01
-M input reportFailedDistanceMeasurements 166 0xa6  1
-M output averageDistanceAlarm 129 0x81  1
-M output radarDetectionPercentageDay 149 0x95  1
-M output nfcContactCount 152 0x98  1
-M output radarVoltage_V 180 0xb4  0.001
-M output humidity 181 0xb5  0.01
-M input periodicReportsInterval 167 0xa7  1
-M input maxResendWaitTime 186 0xba  1
-M output periodicReportsCounter 187 0xbb  1
-M output temp 182 0xb6  0.01
-M input temperatureUserCalibration 188 0xbc  0.01
-`,
-            }, 
-        
-
             1586871679: {
                 name: "Motion-measure-unconf",
                 versions: "R29 R28 R27",
