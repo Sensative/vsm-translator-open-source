@@ -118,6 +118,58 @@ So, check the following items:
 * Send a downlink of 00 on port 15 to the device, which will trigger it re-sending the metadata including the rulesCrc32.
 
 
+# Command line
+
+`cli.js` decodes a single uplink, encodes a downlink that sets an application's inputs, and decodes such a downlink back. `npm test` runs its tests.
+
+## Decoding an uplink
+
+```
+node cli.js decode <application CRC> <port> <hexdata> [timestamp]
+node cli.js decode 1325798073 1 509b0074110197 2024-11-28T14:57:19.000Z
+```
+
+The word `decode` may be left out: `node cli.js <application CRC> <port> <hexdata> [timestamp]` does the same. With a port it is an uplink; without one, `decode` reads a settings downlink (below).
+
+## Encoding a settings downlink
+
+Give the application by its CRC and the settings as `name=value`, in the units the application's documentation gives (the translate scale is applied). The encoder prints each downlink's port, hex and base64 (for the ChirpStack queue), and checks it by decoding it back with the translator.
+
+```
+node cli.js encode <application CRC> name=value [name=value ...] [options]
+node cli.js encode --vso <file.vso> name=value ...     # an application the translator does not know yet
+node cli.js encode <application CRC> --list            # what can be set, with id, size and scale
+
+node cli.js encode 40829709 motionThreshold_m_s2=0.92
+Motion-measure (40829709), port 2: 1 downlink
+  1/1  fPort 2  5 bytes  hex B300000398  base64 swAAA5g=
+        motionThreshold_m_s2 = 0.92 (raw 920)
+```
+
+Two ports can set inputs:
+
+* **Port 2** (default): records of 5 bytes, the reference id and the value as a signed 32-bit integer, big-endian. The device writes each value as one of its rules would, so a read-only reference is refused, and it answers on port 2 with the values it now has. Inputs and registers; `--any` also allows outputs and sensors.
+* **Port 1** (`--port 1`): the id's low 6 bits, then the value in 1, 2 or 4 bytes as the id says. More compact, inputs only, and without an answer. A byte holds -128..127 and a word -32768..32767. Firmware before dots `8b47e73` misreads a 4-byte value that is not last in the downlink, so by default each downlink carries at most one, at the end; `--no-legacy` packs them freely.
+
+Other options: `--raw` takes the values as they are sent, without the scale, and `--max-size N` sets the largest downlink payload (default 51 bytes, EU868 at DR0) and splits across downlinks.
+
+## Decoding a settings downlink
+
+The mirror of `encode`: give the application and the payload, without a port before it, and it lists what the device would set, read the way the device reads it. The device's answer on port 2 has the same layout, so it decodes that too.
+
+```
+node cli.js decode <application CRC> <hexdata> [--port 2|1] [--raw]
+node cli.js decode --vso <file.vso> <hexdata> [--port 2|1] [--raw]
+
+node cli.js decode 40829709 B300000398A300000005
+Motion-measure (40829709), port 2: 10 bytes
+        motionThreshold_m_s2 = 0.92 (raw 920)  input id 179
+        sampleInterval_s = 5 (raw 5)  input id 163
+```
+
+On port 2, a payload of 1-4 bytes is a read request: a list of references whose values the device sends back. On port 1, a 4-byte value that is not last is flagged, as firmware before dots `8b47e73` misreads what follows it.
+
+
 # About the Translator
 The translator is a partially context-free parser of uplinks from Sensative devices built on the VSM (Virtual Sensor Machine) architecture.
 Sensors run apps (aka rules or apps) which define their behaviour. Each app (ruleset) when compiled gets a map file which maps binary 
