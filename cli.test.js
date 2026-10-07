@@ -191,3 +191,20 @@ test("decode of an uplink takes no settings options", () => {
     assert.equal(status, 1);
     assert.match(out, /An uplink takes no options/);
 });
+
+test("decode --vso decodes an uplink of an application the translator does not know", () => {
+    const dir = mkdtempSync(join(tmpdir(), "cli-test-"));
+    const file = join(dir, "Radar-example.vso");
+    writeFileSync(file, "C 1234 # 0x4d2\nM output amplitude 144 0x90  1\nM output distance 145 0x91  0.01\n" +
+                        "M output humidity 181 0xb5  0.01\nM output periodicReportsCounter 187 0xbb  1\n");
+    try {
+        const { status, out } = cli("decode", "--vso", file, "1", "1000741101973515933B00000003", "2024-11-28T14:57:19.000Z");
+        assert.equal(status, 0);
+        assert.match(out, /amplitude: 116/);
+        assert.match(out, /distance: 4\.07/);
+        assert.match(out, /humidity: 55\.23/);
+        assert.match(out, /periodicReportsCounter: 3/);
+    } finally {
+        rmSync(dir, { recursive: true, force: true });
+    }
+});

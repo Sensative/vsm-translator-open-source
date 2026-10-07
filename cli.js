@@ -16,6 +16,7 @@ const argv = process.argv;
 
 const usage = `Usage:
   node ${argv[1]} decode <application CRC> <port> <hexdata> [timestamp]   an uplink
+  node ${argv[1]} decode --vso <file.vso> <port> <hexdata> [timestamp]
   node ${argv[1]} decode <application CRC> <hexdata> [--port 2|1] [--raw]  a settings downlink
   node ${argv[1]} decode --vso <file.vso> <hexdata> [--port 2|1] [--raw]
   node ${argv[1]} encode <application CRC> name=value [name=value ...] [options]
@@ -50,13 +51,25 @@ const fail = (reason) => {
 // Decode an uplink
 //
 
-const uplinkCommand = (args) => {
+// With vsoFile, the application's map comes from that .vso and args has no CRC: port, payload and
+// perhaps a timestamp. That decodes an application the translator does not know yet.
+const uplinkCommand = (uplinkArgs, vsoFile) => {
+    const args = vsoFile ? [undefined, ...uplinkArgs] : uplinkArgs;
     if (args.length < 3)
         printUsageAndExit("Wrong number of arguments");
 
-    const appCRC = parseInt(args[0]);
-    if (!isFinite(appCRC))
-        printUsageAndExit("CRC was not an integer");
+    let vsm;
+    if (vsoFile) {
+        const schema = schemaFromVso(vsoFile);
+        vsm = { schema: schema.mapData };
+        if (schema.crc !== undefined)
+            vsm.rulesCrc32 = schema.crc;
+    } else {
+        const appCRC = parseInt(args[0]);
+        if (!isFinite(appCRC))
+            printUsageAndExit("CRC was not an integer");
+        vsm = { rulesCrc32: appCRC };
+    }
 
     const port = parseInt(args[1]);
     if (!isFinite(port) || port > 127 || port < 0)
@@ -74,9 +87,7 @@ const uplinkCommand = (args) => {
 
     try {
         const input = {
-            vsm:{
-                rulesCrc32:appCRC,
-            },
+            vsm,
             encodedData : {
                 port,
                 hexEncoded : buffer,
@@ -345,13 +356,16 @@ const encodeCommand = (args) => {
 //
 
 const decodeCommand = (args) => {
-    // Three or four plain arguments are an uplink: CRC, port, payload and perhaps a timestamp.
-    // The value after --port or --vso belongs to the option, not to the plain arguments.
+    // Three or four plain arguments are an uplink: CRC, port, payload and perhaps a timestamp. With
+    // --vso the file stands in for the CRC, so two or three. The value after --port or --vso belongs
+    // to the option, not to the plain arguments.
     const plain = args.filter((a, i) => !a.startsWith("--") && args[i - 1] !== "--port" && args[i - 1] !== "--vso");
-    if (!args.includes("--vso") && plain.length >= 3) {
-        if (plain.length !== args.length)
-            printUsageAndExit("An uplink takes no options: decode <application CRC> <port> <hexdata> [timestamp]");
-        uplinkCommand(args);
+    const uplinkVso = args.includes("--vso") ? args[args.indexOf("--vso") + 1] : undefined;
+    if (plain.length >= (uplinkVso !== undefined ? 2 : 3)) {
+        const options = args.filter((a, i) => a !== "--vso" && args[i - 1] !== "--vso" && !plain.includes(a));
+        if (options.length)
+            printUsageAndExit("An uplink takes no options other than --vso: decode <application CRC> <port> <hexdata> [timestamp]");
+        uplinkCommand(plain, uplinkVso);
         return;
     }
 

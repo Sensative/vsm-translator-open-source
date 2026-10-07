@@ -131,6 +131,12 @@ node cli.js decode 1325798073 1 509b0074110197 2024-11-28T14:57:19.000Z
 
 The word `decode` may be left out: `node cli.js <application CRC> <port> <hexdata> [timestamp]` does the same. With a port it is an uplink; without one, `decode` reads a settings downlink (below).
 
+For an application the translator does not know yet, give its `.vso` instead of the CRC:
+
+```
+node cli.js decode --vso Puck-radar-us915.vso 1 1000741101973515933B00000003
+```
+
 ## Encoding a settings downlink
 
 Give the application by its CRC and the settings as `name=value`, in the units the application's documentation gives (the translate scale is applied). The encoder prints each downlink's port, hex and base64 (for the ChirpStack queue), and checks it by decoding it back with the translator.
