@@ -1,0 +1,19 @@
+{
+  "name": "basic-translators",
+  "version": "1.0.0",
+  "description": "Basic translators generation module + generated basic translators (.js files) for Chirpstack v3, v4 and TTN LNSes.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sensative/vsm-translator-open-source.git#dots-basic-translators"
+  },
+  "author": "Dhiraj Paryani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sensative/vsm-translator-open-source/issues"
+  },
+  "homepage": "https://github.com/Sensative/vsm-translator-open-source/tree/dots-basic-translators#readme"
+}
