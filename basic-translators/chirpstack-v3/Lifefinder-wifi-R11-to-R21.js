@@ -30,7 +30,7 @@ THE SOFTWARE.
 //  - variables contains the device variables e.g. {"calibration": "3.5"} (both the key / value are of type string)
 // The function must return an object, e.g. {"temperature": 22.5}
 
-function Decode(fPort, bytes, variables) {
+function Decode (fPort, bytes, variables) {
 
     var decoded = {};
 
@@ -53,7 +53,7 @@ function Decode(fPort, bytes, variables) {
     return decoded;
 }
 
-function translate(iotnode) {
+function translate (iotnode) {
 
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
@@ -63,7 +63,7 @@ function translate(iotnode) {
     var commonSchema = {
         name: "Lifefinder-wifi",
         versions: "R11 R12 R13 R14 R15 R16 R18 R19 R20 R21",
-        mapData: "M input alarmAck 164 0xa4  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input limitedScanChannels 184 0xb8  1 + M input maxAlarmMinutes 180 0xb4  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output buttonAlarm 129 0x81  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output volts 179 0xb3  0.001 + M output nfcDisabledAlarm 130 0x82  1"
+        mapData: "M input alarmAck 164 0xa4  1 + M input averageTempIntervalMinutes 160 0xa0  1 + M input limitedScanChannels 184 0xb8  1 + M input maxAlarmMinutes 180 0xb4  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output alarmTime 144 0x90  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 163 0xa3  1 + M output buttonAlarm 129 0x81  1 + M output nfcDisabledAlarm 130 0x82  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1 + M output volts 179 0xb3  0.001"
     };
     var schema = 
     {
@@ -99,14 +99,14 @@ function translate(iotnode) {
 
     // Error bitmask
     var errorBits = {
-        0:'UnknownCommand',   // Typically received a message where port or command does not match
-        1:'Hysterical',       // The VM did not finish execution in the max number of iterations
-        2:'WrongCustomization',  // The customization is for another app than what is in the device
-        3:'Blocked',          // A service had data that could not be sent due to poor DR
-        4:'PriorityInverted', // There was confirmed output to send that did not fit the max size
-        5:'IllegalCommand',   // An otherwise fine downlink had incorrect data
-        6:'BadCustomization', // The customization file did not have a correct CRC
-        7:'CannotJoinRadioBusy', // The radio was occupied when trying to join    
+        0: 'UnknownCommand',   // Typically received a message where port or command does not match
+        1: 'Hysterical',       // The VM did not finish execution in the max number of iterations
+        2: 'WrongCustomization',  // The customization is for another app than what is in the device
+        3: 'Blocked',          // A service had data that could not be sent due to poor DR
+        4: 'PriorityInverted', // There was confirmed output to send that did not fit the max size
+        5: 'IllegalCommand',   // An otherwise fine downlink had incorrect data
+        6: 'BadCustomization', // The customization file did not have a correct CRC
+        7: 'CannotJoinRadioBusy', // The radio was occupied when trying to join
     };
     // VM Status Values
     var statusValues = {
@@ -126,34 +126,34 @@ function translate(iotnode) {
         13: 'DependencyOverflow', // Too many dependencies in this ruleset
         14: 'NotSupported',       // Functionality not supported on this HW
         15: 'DeviceError',        // Error reported from a hardware device
-        };
+    };
 
     var decodeControl = function (iotnode, symbolTable, data, time) {
         var vmError = data[0];
         var vmErrorText = "";
         for (var i = 0; i < 8; ++i) {
-            if (vmError & (1<<i))
+            if (vmError & (1 << i))
                 vmErrorText += errorBits[i] + " ";
         }
         if (vmErrorText === "")
             vmErrorText = "OK";
         else
             vmErrorText = vmErrorText.trim();
-            var vmStatus  = data[1];
-            var vmStatusText = statusValues.hasOwnProperty(vmStatus) ? statusValues[vmStatus] : "Unknown";
-        return { 
-            result: { 
+        var vmStatus = data[1];
+        var vmStatusText = statusValues.hasOwnProperty(vmStatus) ? statusValues[vmStatus] : "Unknown";
+        return {
+            result: {
                 vsm: {
                     status: {
                         vmError: vmError,
-                        vmStatus: vmStatus, 
-                        vmErrorText: vmErrorText, 
-                        vmStatusText: vmStatusText, 
+                        vmStatus: vmStatus,
+                        vmErrorText: vmErrorText,
+                        vmStatusText: vmStatusText,
                         timestamp: new Date().toISOString()
                     }
                 }
             }
-        };    
+        };
     };
 
     var decodeCrash = function (iotnode, symbolTable, data, time) {
@@ -226,8 +226,8 @@ function translate(iotnode) {
     };
 
     // Link Control service output
-    var translateCustomizationStatus = function(byte) {
-        switch(byte) {
+    var translateCustomizationStatus = function (byte) {
+        switch (byte) {
             case 0: return "None";
             case 1: return "Applied";
             case 2: return "Error";
@@ -236,31 +236,31 @@ function translate(iotnode) {
         }
     };
 
-    var decodeCustomization = function(iotnode, symbolTable, data, time) {
+    var decodeCustomization = function (iotnode, symbolTable, data, time) {
         var status;
         if (data.length == 1) {
             status = translateCustomizationStatus(data[0]);
-            return { result: { vsm: {customization: {status: status, customizedAppCRC: 0, customizationCRC: 0, timestamp: new Date(time).toISOString() }}}};
+            return {result: {vsm: {customization: {status: status, customizedAppCRC: 0, customizationCRC: 0, timestamp: new Date(time).toISOString()}}}};
         } else if (data.length == 9) {
             var customizationCRC = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
             if (data[0] & 0x80) {
-                customizationCRC += 0x100000000;    
+                customizationCRC += 0x100000000;
             }
             var customizedAppCRC = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
             if (data[4] & 0x80) {
                 customizedAppCRC += 0x100000000;
             }
             status = translateCustomizationStatus(data[8]);
-            return { result: { vsm: {customization: {status: status, customizedAppCRC: customizedAppCRC, customizationCRC: customizationCRC, timestamp: new Date(time).toISOString() }}}};
+            return {result: {vsm: {customization: {status: status, customizedAppCRC: customizedAppCRC, customizationCRC: customizationCRC, timestamp: new Date(time).toISOString()}}}};
         }
         throw new Error("Failed to decode link control message");
-    };    
+    };
 
     // Rule update - CRC value (+build time, +version)
     var decodeRule = function (iotnode, symbolTable, data, time) {
         var rulesCrc32 = ((data[0]) << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
         if (data[0] & 0x80)
-            rulesCrc32+=0x100000000;
+            rulesCrc32 += 0x100000000;
 
         var schemaInfo = {};
         if (schema[rulesCrc32]) {
@@ -279,7 +279,7 @@ function translate(iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.152"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.186"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
@@ -359,65 +359,72 @@ function translate(iotnode) {
 
     var decodeMesh = function (iotnode, symbolTable, data, time) {
         if (data.length == 2) { // Mesh key last 4 digits (decimal) (uplinked as result of 0x02 on port 8)
-            return { result: {
-                mesh: { stats : { keyLast4 : data[0]<<8 | data[1] }}
-            }};
+            return {
+                result: {
+                    mesh: {stats: {keyLast4: data[0] << 8 | data[1]}}
+                }
+            };
         }
 
         if (data.length == 8) // Mesh statistics (uplinked as result of sending 0x01 on port 8)
-            return { result: {
-                mesh : { stats : { 
-                    maxRate: data[0],
-                    minRate: data[1], 
-                    mode : data[2],
-                    sync : data[3],
-                    rssiWorst : data[4] << 24 >> 24 /* sign extension */ ,
-                    rssiAverage : data[5] << 24 >> 24 /* sign extension */ ,
-                    msgCount : data[6]*256+data[7],
-                    timestamp : new Date().toISOString(),
+            return {
+                result: {
+                    mesh: {
+                        stats: {
+                            maxRate: data[0],
+                            minRate: data[1],
+                            mode: data[2],
+                            sync: data[3],
+                            rssiWorst: data[4] << 24 >> 24 /* sign extension */,
+                            rssiAverage: data[5] << 24 >> 24 /* sign extension */,
+                            msgCount: data[6] * 256 + data[7],
+                            timestamp: new Date().toISOString(),
+                        }
+                    }
                 }
-            } }
-        };
+            };
         if (data.length < 10)
             // Illegal mesh message
-            return {result: {} };
+            return {result: {}};
 
         var serial = ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]) & 0xffffffff;
         var upsideRate = (data[4] >> 4) & 0xf;
         if (upsideRate === 0xf) upsideRate = -1; // Not enabled
         var downsideRate = data[4] & 0xf;
         if (downsideRate === 0xf) downsideRate = -1; // Not enabled
-        var age_s  = ((data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffff;
-        var port   = data[8];
-        var len    = data[9]; // Included since there may be multiple messages packed in one in some future
+        var age_s = ((data[5] << 16) | (data[6] << 8) | data[7]) & 0xffffff;
+        var port = data[8];
+        var len = data[9]; // Included since there may be multiple messages packed in one in some future
         var pos = 10;
         var hex = '';
         for (var i = 0; i < len; ++i) {
-            var byte = data[i+pos].toString(16);
+            var byte = data[i + pos].toString(16);
             if (byte.length < 2)
-                byte = "0"+byte;
+                byte = "0" + byte;
             hex += byte;
         }
-        var producedTimestamp = new Date((new Date(time)).getTime()-1000*age_s).toISOString();
-        var receivedTimestamp = new Date(time).toISOString();        
+        var producedTimestamp = new Date((new Date(time)).getTime() - 1000 * age_s).toISOString();
+        var receivedTimestamp = new Date(time).toISOString();
         // The mesh data is both recorded in the result object, and in the yggio-specific additionalDeviceUpdates
         // field (which should magically update nodes with the set secret)
-        var result = {mesh: { stats: {upsideRate: upsideRate, downsideRate: downsideRate, receivedTimestamp: receivedTimestamp, serial: serial} } };
+        var result = {mesh: {stats: {upsideRate: upsideRate, downsideRate: downsideRate, receivedTimestamp: receivedTimestamp, serial: serial}}};
         var carrier = iotnode && iotnode.name ? iotnode.name : "";
-        return { 
-            result: result, 
-            additionalDeviceUpdates : [ {
-                identifier: {secret:""+serial},
-                result: { 
-                    mesh : { 
-		    	     transport : { 
-			                   receivedTimestamp: receivedTimestamp, 
-					   producedTimestamp: producedTimestamp, 
-					   port: port, 
-					   hex: hex, 
-					   carrier: carrier, 
-					   rate: downsideRate /* current nodes downside rate is the transmitting nodes upside rate */ } },
-                    encodedData : {
+        return {
+            result: result,
+            additionalDeviceUpdates: [{
+                identifier: {secret: "" + serial},
+                result: {
+                    mesh: {
+                        transport: {
+                            receivedTimestamp: receivedTimestamp,
+                            producedTimestamp: producedTimestamp,
+                            port: port,
+                            hex: hex,
+                            carrier: carrier,
+                            rate: downsideRate /* current nodes downside rate is the transmitting nodes upside rate */
+                        }
+                    },
+                    encodedData: {
                         port: port + MESH_PORT_OFFSET,
                         hexEncoded: hex,
                         timestamp: producedTimestamp,
@@ -469,7 +476,7 @@ function translate(iotnode) {
     }
 
     // Determine latest value on each field in time series, return that as a result object
-    var createResultFromTimeSeries = function(iotnode, series) {
+    var createResultFromTimeSeries = function (iotnode, series) {
         var timestamps = iotnode.timestamps;
         var result = {
             output: {},
@@ -489,7 +496,7 @@ function translate(iotnode) {
             for (var k = 0; k < keys.length; ++k) {
                 var name = keys[k];
                 if (timestamps.hasOwnProperty(name)) {
-                    var lastSampleTime = new Date(timestamps[name]);                    
+                    var lastSampleTime = new Date(timestamps[name]);
                     if (lastSampleTime.getTime() < new Date(sampleTimestamp).getTime()) {
                         timestamps[name] = sampleTimestamp; // Avoid overwrite from this series
                         result.timestamps[name] = sampleTimestamp;
@@ -632,10 +639,10 @@ function translate(iotnode) {
                         pos += 2;
                         break;
                     }
-                    case 1:
-                        value = (data[pos] << 24 >> 24);
-                        pos++;
-                        break;
+                case 1:
+                    value = (data[pos] << 24 >> 24);
+                    pos++;
+                    break;
             }
 
             if (symbolTable.hasOwnProperty(kind + 128)) {
@@ -681,7 +688,7 @@ function translate(iotnode) {
                 result.gnss.assistanceLatitude, result.gnss.assistanceLongitude
             ],
 
-            result.semtechEncoded = semtechObject;
+                result.semtechEncoded = semtechObject;
     }
 
     var encodeSemtechWifi = function (wifi) {
@@ -720,14 +727,14 @@ function translate(iotnode) {
         if (!(result.wifi.timestamp instanceof Date)) {
             result.wifi.timestamp = new Date(result.wifi.timestamp);
         }
-        
+
         var semtechObject = {
             msgtype: "wifi",
             payload: encodeSemtechWifi(result.wifi),
             timestamp: result
                 .wifi
                 .timestamp
-                .getTime()/1000
+                .getTime() / 1000
         };
         result.semtechEncoded = semtechObject;
     }
@@ -803,7 +810,7 @@ function translate(iotnode) {
                 console.log("Partial frame error: could not read previous data");
                 return {}; // Not ok / discard frame
             }
-            if (streamOffset - 1 /*bytes*/ !== iotnode.gnss.incompleteHex.length / 2 /*hex*/ ) {
+            if (streamOffset - 1 /*bytes*/ !== iotnode.gnss.incompleteHex.length / 2 /*hex*/) {
                 console.log("Partial frame error: expected stream offset: " + streamOffset + " - current length: " + iotnode.gnss.incompleteHex.length / 2);
                 return {}; // Wrong frame / repeat frame
             }
@@ -913,7 +920,7 @@ function translate(iotnode) {
         if (data.length < 5)
             return null;
         var linktime = 1000 * ((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
-        if (linktime > time) 
+        if (linktime > time)
             return null; // No future uplinks
         var linkport = data[4];
         var linkdecoder = mapPortToDecode[linkport];
@@ -968,12 +975,25 @@ function translate(iotnode) {
         idd.gnssSnrLpf = (data[b++] | data[b++] << 8) / 10.0;
         idd.gnssSnrMaxLpf = (data[b++] | data[b++] << 8) / 10.0;
         idd.loraRssiLpf = (0xffff0000 | data[b++] | data[b++] << 8) / 10.0;
-        idd.loraSnrLpf = ((data[b++]&0xff)|data[b++]<<8)/10.0;
+        idd.loraSnrLpf = ((data[b++] & 0xff) | data[b++] << 8) / 10.0;
         idd.wifiGwsLpf = data[b++] / 10.0;
         idd.gnssValidSVLpf = data[b++] / 10.0;
 
+        // Byte 48
         if (b != 48)
             console.log("Expected 48 but had " + b);
+        if (data.length > 48) {
+            idd.swWatchdogCount = data[b++];
+            idd.tasksWatchdogCount = data[b++];
+        }
+        if (data.length > 50) {
+            idd.externalApiMsgCount = data[b++] | data[b++] << 8;
+            idd.externalApiAckTmoCount = data[b++] | data[b++] << 8;
+        }
+        if (data.length > 54) {
+            idd.brownoutCount = data[b++];
+        }
+
 
         return {
             result: {
@@ -1014,51 +1034,51 @@ function translate(iotnode) {
             }
         }
         var ascii = undefined;
-        if (port === 32 /* puck radar sent a command response */ ) {
+        if (port === 32 /* puck radar sent a command response */) {
             try {
                 ascii = data.toString('ascii');
-            } catch (ignored) { ascii = undefined; }
+            } catch (ignored) {ascii = undefined;}
         }
         // Standard packaging
         result.result.forward["port" + port] = {
             timestamp: new Date(time).toISOString(),
             data: data.toString('hex')
         }
-	// Port 32 interpreted as ascii data
+        // Port 32 interpreted as ascii data
         if (ascii)
-            result.result.forward["radar"] = { timestamp: new Date(time).toISOString(), ascii: ascii};
+            result.result.forward["radar"] = {timestamp: new Date(time).toISOString(), ascii: ascii};
         return result;
     }
 
     // Must match definitions in app.c
     var mapPortToDecode = {
-        /* APP_LORA_PORT_OUTPUT     */   1: { decode: decodeOutput,       name: 'output'        },
-        /* APP_LORA_PORT_DIAGNOSTICS */	 2: { decode: decodeDiagnostics,  name: 'diagnostics'   },
-        /* APP_LORA_PORT_CRASH      */   3: { decode: decodeCrash,        name: 'crash'         },
-        /* APP_LORA_PORT_IDD        */   4: { decode: decodeIddData,      name: 'idd'           },
-        /* APP_LORA_PORT_PWR        */   5: { decode: decodePwrData,      name: 'pwr'           }, 
-        /* APP_LORA_PORT_PWR        */   6: { decode: decodeLinkControl,  name: 'link control'  }, 
-        /* APP_LORA_PORT_CUSTOMIZATION */7: { decode: decodeCustomization,name: 'customization' }, 
-        /* APP_LORA_PORT_MESH */         8: { decode: decodeMesh,         name: 'mesh'          },
-        /* APP_LORA_PORT_COMPRESSED */  11: { decode: decodeCompressed,   name: 'compressed'    },
-        /* APP_LORA_PORT_STORED_UPLINK*/12: { decode: decodeStoredUplink, name: 'stored uplink' },
-        /* APP_LORA_PORT_RULE	    */	15: { decode: decodeRule,         name: 'rule'          },
-        /* APP_LORA_PORT_GNSS_RESULT*/  21: { decode: decodeGnssStream,   name: 'gnss stream'   },
-        /* APP_LORA_PORT_GNSS_METADATA*/22: { decode: decodeGnssMetadata, name: 'gnss metadata' },
-        /* APP_LORA_PORT_WIFI */        23: { decode: decodeWifiStream,   name: 'wifi stream'   },
-        /* APP_LORA_PORT_WIFI_MOTION */ 24: { decode: decodeWifiStream,   name: 'wifi stream motion'},
-        /* PORT FORWARD: 32 */          32: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,32) }, name: "port forward 32"},
-        /* PORT FORWARD: 33 */          33: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,33) }, name: "port forward 33"},
-        /* PORT FORWARD: 34 */          34: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,34) }, name: "port forward 34"},
-        /* PORT FORWARD: 35 */          35: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,35) }, name: "port forward 35"},
-        /* PORT FORWARD: 36 */          36: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,36) }, name: "port forward 36"},
-        /* PORT FORWARD: 37 */          37: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,37) }, name: "port forward 37"},
-        /* PORT FORWARD: 38 */          38: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,38) }, name: "port forward 38"},
-        /* PORT FORWARD: 39 */          39: { decode: function (n, s, d, t) { decodePortForward(n,s,d,t,39) }, name: "port forward 39"}
+        /* APP_LORA_PORT_OUTPUT     */   1: {decode: decodeOutput, name: 'output'},
+        /* APP_LORA_PORT_DIAGNOSTICS */	 2: {decode: decodeDiagnostics, name: 'diagnostics'},
+        /* APP_LORA_PORT_CRASH      */   3: {decode: decodeCrash, name: 'crash'},
+        /* APP_LORA_PORT_IDD        */   4: {decode: decodeIddData, name: 'idd'},
+        /* APP_LORA_PORT_PWR        */   5: {decode: decodePwrData, name: 'pwr'},
+        /* APP_LORA_PORT_PWR        */   6: {decode: decodeLinkControl, name: 'link control'},
+        /* APP_LORA_PORT_CUSTOMIZATION */7: {decode: decodeCustomization, name: 'customization'},
+        /* APP_LORA_PORT_MESH */         8: {decode: decodeMesh, name: 'mesh'},
+        /* APP_LORA_PORT_COMPRESSED */  11: {decode: decodeCompressed, name: 'compressed'},
+        /* APP_LORA_PORT_STORED_UPLINK*/12: {decode: decodeStoredUplink, name: 'stored uplink'},
+        /* APP_LORA_PORT_RULE	    */	15: {decode: decodeRule, name: 'rule'},
+        /* APP_LORA_PORT_GNSS_RESULT*/  21: {decode: decodeGnssStream, name: 'gnss stream'},
+        /* APP_LORA_PORT_GNSS_METADATA*/22: {decode: decodeGnssMetadata, name: 'gnss metadata'},
+        /* APP_LORA_PORT_WIFI */        23: {decode: decodeWifiStream, name: 'wifi stream'},
+        /* APP_LORA_PORT_WIFI_MOTION */ 24: {decode: decodeWifiStream, name: 'wifi stream motion'},
+        /* PORT FORWARD: 32 */          32: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 32)}, name: "port forward 32"},
+        /* PORT FORWARD: 33 */          33: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 33)}, name: "port forward 33"},
+        /* PORT FORWARD: 34 */          34: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 34)}, name: "port forward 34"},
+        /* PORT FORWARD: 35 */          35: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 35)}, name: "port forward 35"},
+        /* PORT FORWARD: 36 */          36: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 36)}, name: "port forward 36"},
+        /* PORT FORWARD: 37 */          37: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 37)}, name: "port forward 37"},
+        /* PORT FORWARD: 38 */          38: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 38)}, name: "port forward 38"},
+        /* PORT FORWARD: 39 */          39: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 39)}, name: "port forward 39"}
     };
 
     // Convert a hexadecimal data representation to binary
-    function hexToDecimalArray(data) {
+    function hexToDecimalArray (data) {
         if (!data)
             return null;
 
@@ -1078,7 +1098,7 @@ function translate(iotnode) {
     }
 
     // Generate a symbol table from the nodes vsm.schema field
-    function mkSymbolTable(iotnode) {
+    function mkSymbolTable (iotnode) {
         var symbolTable = {};
 
         var description = "";
@@ -1149,6 +1169,12 @@ function translate(iotnode) {
     }
 
     // Port decides which decoder to run
+    if (!iotnode.encodedData) {
+        console.log("no encodedData");
+        return null;
+    }
+
+    // Port decides which decoder to run
     var port = iotnode.encodedData.port;
     if (!port) {
         console.log("no port supplied");
@@ -1185,7 +1211,7 @@ function translate(iotnode) {
     if (mapPortToDecode.hasOwnProperty(port)) {
         var result = mapPortToDecode[port].decode(iotnode, symbolTable, data, time);
         if (clearMeshTransport && result && result.result)
-            result.result.mesh = {transport:{carrier:"LoRaWan"}}
+            result.result.mesh = {transport: {carrier: "LoRaWan"}}
         return result;
     } else {
         console.log("No decode function for port " + port);
