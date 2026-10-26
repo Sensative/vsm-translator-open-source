@@ -1,6 +1,7 @@
 const { knownSchemas } = require('../../dots-translator-generated.cjs');
 const { processTemplate } = require('./template-utils.cjs');
 const { validSensors } = require('./valid-sensors.cjs');
+const { combineVersions, isSupportedVersion, versionNumber } = require('./version-utils.cjs');
 
 /**
  * Sorts the mapData rows based on the second and third columns.
@@ -51,16 +52,18 @@ function processAndGroupSchemas() {
 function filterAndFormatSchemas() {
     const schemaGroupsByName = {};   
 
-    for (let [crc, schema] of Object.entries(knownSchemas)) {
-        // Ensure the schema name is allowed and version is R11 or above
+    for (let [crc, knownSchema] of Object.entries(knownSchemas)) {
+        // Ensure the schema name is allowed and it has a version of R11 or above, or a generation II version
         if (
-            !validSensors.includes(schema.name) ||
-            !schema.versions ||
-            schema.versions.trim() === "" ||
-            !schema.versions.match(/R(1[1-9]|[2-9]\d+)/)
+            !validSensors.includes(knownSchema.name) ||
+            !knownSchema.versions ||
+            !knownSchema.versions.split(/\s+/).some(isSupportedVersion)
         ) {
-            continue; // Skip if version is less than R11 or name is not allowed
+            continue; // Skip if no version is supported or name is not allowed
         }
+
+        // Copy so that every template run starts from the unmodified knownSchemas
+        const schema = { ...knownSchema };
 
         // Format mapData
         schema.mapData = schema.mapData
@@ -107,10 +110,14 @@ function parseMapDataItems(mapData) {
  * 
  * @param {Object} item1 - First mapData item.
  * @param {Object} item2 - Second mapData item.
- * @returns {string} "exact_match" if compatible, "col3_mismatch" if only col3 
- * matches but others differ, "unique" if no matches.
+ * @returns {string} "exact_match" if compatible, "col3_mismatch" if col3 (name) or
+ * col4 (id) matches but the rest of the mapping differs, "unique" if no matches.
  */
-function checkMergeCompatibility(item1, item2) {  
+function checkMergeCompatibility(item1, item2) {
+    // C lines only name the schema's own CRC, so they never conflict with another schema
+    if (item1.col1 === "C" || item2.col1 === "C") {
+        return item1.original === item2.original ? "exact_match" : "unique";
+    }
     if (
         item1.col2 === item2.col2 &&
         item1.col3 === item2.col3 &&
@@ -125,6 +132,10 @@ function checkMergeCompatibility(item1, item2) {
         (item1.col4 !== item2.col4 || item1.col5 !== item2.col5 || item1.col6 !== item2.col6)
     ) {
         return "col3_mismatch"; // Only column 3 matches but others differ
+    }
+    if (item1.col4 === item2.col4 && item1.col3 !== item2.col3) {
+        // The translator's symbol table is keyed by id, so one id can only carry one name
+        return "col3_mismatch";
     }
 
     // No matches at all, unique items
@@ -197,14 +208,15 @@ function mergeSchemasByName(schemas, groupedSchemas) {
 
         // Create a new group key for the merged schemas
         if (finalMergedArray.length > 0) {
-            const mergedMapData = finalMergedArray.map(item => item.original).join(" + ");
+            const mergedMapData = sortMapData(finalMergedArray.map(item => item.original).join(" + "));
             const mergedKey = `${groupKey}_merged_${mergedMapData}`;
 
             if (!(mergedKey in groupedSchemas)) {
                 groupedSchemas[mergedKey] = [];
             }
 
-            for (let crc of localMergedCRCs) {
+            // List the group in CRC order, so the output does not depend on the merge order
+            for (let crc of localMergedCRCs.sort((a, b) => a - b)) {
                 // Find the schema and replace its mapData with mergedMapData
                 const schema = schemas.find(s => s.crc === crc).schema;
                 schema.mapData = mergedMapData;
@@ -218,9 +230,21 @@ function mergeSchemasByName(schemas, groupedSchemas) {
         }
     }
 
-    processSchemas(schemas, schemas[0].schema.name);
+    // Merge in release order, so a schema groups with its neighbouring versions before later, conflicting ones
+    const schemasByOldestVersion = [...schemas].sort((a, b) => oldestVersion(a.schema) - oldestVersion(b.schema));
+    processSchemas(schemasByOldestVersion, schemas[0].schema.name);
 
     return { mergedMapDataSet: Array.from(mergedMapDataSet), mergedCRCs };
+}
+
+/**
+ * Returns the oldest supported version number of a schema.
+ *
+ * @param {Object} schema - The schema object.
+ * @returns {number} The lowest supported version number.
+ */
+function oldestVersion(schema) {
+    return versionNumber(combineVersions(schema.versions.split(" "))[0]);
 }
 
 /**
@@ -228,37 +252,16 @@ function mergeSchemasByName(schemas, groupedSchemas) {
  * @param {Object} schema - The schema object to process.
  */
 function processSchemaVersions(schema) {
-    const versions = schema.versions.split(" ");
-    const validVersions = versions.filter(version => version.match(/R(1[1-9]|[2-9]\d+)/)); // Filter out invalid versions
-    const combinedVersions = combineVersions(validVersions); // Combine versions
-    schema.versions = combinedVersions.join(' '); // Update schema versions    
+    schema.versions = combineVersions(schema.versions.split(" ")).join(' ');
 }
 
 /**
- * Combines and sorts versions that are R11 or higher.
- *
- * @param {string[]} versions - An array of versions to combine.
- * @returns {string[]} - An array of unique versions that are R11 or higher, sorted in ascending order.
- */
-function combineVersions(versions) {
-    const allVersions = new Set(); // Use a Set to store unique versions
-    versions.forEach(version => {
-        if (parseInt(version.slice(1)) >= 11) { // Check if version is R11 or higher
-            allVersions.add(version); // Add versions to the Set
-        }
-    });
-    return [...allVersions].sort(); // Convert Set back to an array and sort it
-}
-
-/**
- * Combines and sorts an array of version arrays, filtering out versions that do not match the pattern.
+ * Combines and sorts an array of version arrays, filtering out unsupported versions.
  * @param {string[]} versionArrays - An array of version arrays.
  * @returns {string} - A string containing the combined and sorted versions.
  */
 function combineAndSortVersions(versionArrays) {
-    const allVersions = versionArrays.flatMap(versions => versions.split(" "));
-    const combinedVersions = allVersions.filter(version => version.match(/R(1[1-9]|[2-9]\d+)/));
-    return [...new Set(combinedVersions)].sort().join(' ');
+    return combineVersions(versionArrays.flatMap(versions => versions.split(" "))).join(' ');
 }
 
 /**
