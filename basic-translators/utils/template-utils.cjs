@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { exitWithError } = require('./error-utils.cjs');
+const { combineVersions, isGen2Version } = require('./version-utils.cjs');
 
 // Update translator version 
 let translatorVersion = JSON.parse(fs.readFileSync("../package.json").toString("utf-8")).version;
@@ -25,8 +26,10 @@ function processTemplate(template, crc, schema, csvData, relatedCRCs) {
     const newStr = getSchemaReplacement(templateStr, crc, schema);
     const newFilename = path.join(template.outputDir, getFilename(schema));
 
-    // Write modified template to file
-    fs.writeFileSync(newFilename, newStr, 'utf8');
+    // Output files are cleared before generation, so an existing file means two schema groups got the same name
+    if (fs.existsSync(newFilename)) {
+        exitWithError(`Generated filename collision for CRC ${crc}: ${newFilename}`);
+    }
 
     // Prepare schema data JSON
     const schemaJSON = prepareSchemaJSON(schema);
@@ -128,19 +131,29 @@ function getSchemaReplacement(template, crc, schema) {
  * @returns {string} The generated filename.
  */
 function getFilename(schema) {
-    // Extract versions
-    const versions = schema.versions.split(" ").sort();
-    const vFrom = versions[0];
-    const vTo = versions[versions.length - 1];
+    // One range per generation, as generation II numbering does not continue generation I
+    const versions = combineVersions(schema.versions.split(" "));
+    const versionRanges = [
+        versions.filter(version => !isGen2Version(version)),
+        versions.filter(isGen2Version)
+    ].filter(range => range.length > 0).map(formatVersionRange);
 
     // Replace commas with dashes in the schema name
     const nameWithoutCommas = schema.name.replace(/,/g, '-');
 
-    // Check if there's only one version
-    if (versions.length === 1) {
-        return `${nameWithoutCommas}-${vFrom}.js`;
-    }
-    return `${nameWithoutCommas}-${vFrom}-to-${vTo}.js`;
+    return `${nameWithoutCommas}-${versionRanges.join('-and-')}.js`;
+}
+
+/**
+ * Formats sorted versions as "R27" for a single version or "R27-to-R29" for a range.
+ *
+ * @param {string[]} versions - Versions sorted in ascending order.
+ * @returns {string} The formatted range.
+ */
+function formatVersionRange(versions) {
+    const vFrom = versions[0];
+    const vTo = versions[versions.length - 1];
+    return versions.length === 1 ? vFrom : `${vFrom}-to-${vTo}`;
 }
 
 module.exports = {
