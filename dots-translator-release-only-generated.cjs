@@ -295,6 +295,23 @@ M output air_iaq_alarm 129 0x81  1
             }, 
         
 
+            169948890: {
+                name: "Pir-Motion",
+                versions: "",
+                mapData: `M input PirSamplingRate 160 0xa0  1
+M input PirLpf1 161 0xa1  1
+M input PirLpf2 162 0xa2  1
+M input PirAvgTrim 163 0xa3  1
+M input PirCmd 184 0xb8  1
+M input PirResetAlgo 164 0xa4  1
+M output batteryPercent 128 0x80  1
+M input PirMotionTheshold 185 0xb9  1
+M input PirHystMotion 165 0xa5  1
+C 169948890 # 0x0a2136da
+`,
+            }, 
+        
+
             174308877: {
                 name: "Airport-int",
                 versions: "R10",
@@ -380,6 +397,36 @@ C 186643291 # 0x0b1ff35b
                 name: "Radiotest-measure",
                 versions: "R13 R12",
                 mapData: ``,
+            }, 
+        
+
+            194524023: {
+                name: "Pir-Debug-3Algo",
+                versions: "",
+                mapData: `M input PirSamplingRate 160 0xa0  1
+M input PirLpf1 161 0xa1  1
+M input PirLpf2 162 0xa2  1
+M input PirAvgTrim 163 0xa3  1
+M input PirCmd 184 0xb8  1
+M input PirResetAlgo 164 0xa4  1
+M input PirPresenceTheshold 185 0xb9  1
+M input PirHystPresence 165 0xa5  1
+M input PirMotionTheshold 186 0xba  1
+M input PirHystMotion 166 0xa6  1
+M input PirShockTheshold 187 0xbb  1
+M input PirHystShock 167 0xa7  1
+M output PirFlags 128 0x80  1
+M input PirResetLuxTreshold 188 0xbc  1
+M input PirResetInDarkMinutes 189 0xbd  1
+M input debugMinutes 190 0xbe  1
+M output PirTObject 176 0xb0  1
+M output PirTPresence 177 0xb1  1
+M output PirTMotion 178 0xb2  1
+M output PirTAmbShock 179 0xb3  1
+M output PirTAmbient 180 0xb4  1
+M output PirLux 181 0xb5  1
+C 194524023 # 0x0b983377
+`,
             }, 
         
 
@@ -1016,6 +1063,43 @@ C 666673201 # 0x27bca031
             }, 
         
 
+            668739862: {
+                name: "Air",
+                versions: "",
+                mapData: `M output batteryPercent 128 0x80  1
+M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 129 0x81  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 164 0xa4  1
+M input powerIndexFilterFactorUp 165 0xa5  1
+M input powerIndexFilterFactorDown 166 0xa6  1
+M input maxPowerIndex 167 0xa7  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 168 0xa8  1
+M output air_run_in_status 169 0xa9  1
+M output air_stab_status 170 0xaa  1
+M output air_iaq_accuracy 171 0xab  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_static_iaq 187 0xbb  1
+M output air_breath_voc_equivalent 188 0xbc  0.01
+M input air_interval_minutes 172 0xac  1
+C 668739862 # 0x27dc2916
+`,
+            }, 
+        
+
             685004179: {
                 name: "Lifefinder-wifi",
                 versions: "R22",
@@ -1243,6 +1327,43 @@ M output underVoltage 166 0xa6  1
             }, 
         
 
+            996432499: {
+                name: "Tracker",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M input roamNetworkCount 163 0xa3  1
+M input stillMotionThreshold_mm_s2 179 0xb3  1
+M input movingMotionThreshold_mm_s2 180 0xb4  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M output motionTimeMinutes 187 0xbb  1
+M input quarterlyScanBudget 164 0xa4  1
+M input maxBudget 181 0xb5  1
+M input quickRejoinBudgetMax 182 0xb6  1
+M input singleWifiScanAgain_minutes 165 0xa5  1
+M input minimumWifiCount 166 0xa6  1
+M input minimumGnssCount 167 0xa7  1
+M input fullWifiScan_minutes 168 0xa8  1
+M input gpsScan_minutes 169 0xa9  1
+M input motionCountEnabled 170 0xaa  1
+M input motionTimeEnabled 171 0xab  1
+M input gnssMode 172 0xac  1
+M input movingScanIntervalMinutes 188 0xbc  1
+M input stationaryScanIntervalMinutes 189 0xbd  1
+M input backUpWifiGnssScanMinutes 173 0xad  1
+M output batteryPercent 129 0x81  1
+C 996432499 # 0x3b645a73
+`,
+            }, 
+        
+
             1005192630: {
                 name: "Lifefinder-wifi",
                 versions: "R30 R29",
@@ -1372,7 +1493,8 @@ C 1042039355 # 0x3e1c423b
             1047034189: {
                 name: "Sniffer",
                 versions: "R33 R32 R31 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R1001 R1000",
-                mapData: ``,
+                mapData: `C 1047034189 # 0x3e68794d
+`,
             }, 
         
 
@@ -1457,6 +1579,32 @@ M input air_interval_minutes 170 0xaa  1
 M input air_static_iaq_alarm_level 186 0xba  1
 M input air_iaq_alarm_level 187 0xbb  1
 M output air_iaq_alarm 129 0x81  1
+`,
+            }, 
+        
+
+            1154330543: {
+                name: "Motion-measure-unconf",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output accX 179 0xb3  0.001
+M output accY 180 0xb4  0.001
+M output accZ 181 0xb5  0.001
+M output acc 182 0xb6  0.001
+M output pressure_hPa 184 0xb8  0.01
+M input motionThreshold_m_s2 183 0xb7  0.001
+M input sampleInterval_s 163 0xa3  1
+M input sampleCountMax 164 0xa4  1
+M input enableBarometer 165 0xa5  1
+M output motion 166 0xa6  1
+M output batteryPercent 129 0x81  1
+C 1154330543 # 0x44cdafaf
 `,
             }, 
         
@@ -2058,6 +2206,38 @@ C 1508685242 # 0x59ecb5ba
             }, 
         
 
+            1538244444: {
+                name: "Pir-State-Debug",
+                versions: "",
+                mapData: `M input PirSamplingRate 160 0xa0  1
+M input PirLpf1 161 0xa1  1
+M input PirLpf2 162 0xa2  1
+M input PirAvgTrim 163 0xa3  1
+M input PirCmd 184 0xb8  1
+M input PirResetAlgo 164 0xa4  1
+M input PirPresenceTheshold 185 0xb9  1
+M input PirHystPresence 165 0xa5  1
+M input PirMotionTheshold 186 0xba  1
+M input PirHystMotion 166 0xa6  1
+M output PirFlags 128 0x80  1
+M output pirOutput 129 0x81  1
+M input pirAim1Seconds 176 0xb0  1
+M input pirAim2Seconds 177 0xb1  1
+M input pirAim2MotCount 167 0xa7  1
+M input pirAim2MotSeconds 178 0xb2  1
+M input pirBusyNoMotMinutes 168 0xa8  1
+M input PirResetLuxTreshold 187 0xbb  1
+M input PirResetInDarkMinutes 188 0xbc  1
+M input debugMinutes 189 0xbd  1
+M output PirTObject 179 0xb3  1
+M output PirTPresence 180 0xb4  1
+M output PirTMotion 181 0xb5  1
+M output PirState 169 0xa9  1
+C 1538244444 # 0x5bafbf5c
+`,
+            }, 
+        
+
             1548534003: {
                 name: "Motion-spectrum",
                 versions: "R29 R28 R27",
@@ -2314,6 +2494,30 @@ M output batteryPercent 164 0xa4  1
             }, 
         
 
+            1725374354: {
+                name: "Square-comfort",
+                versions: "",
+                mapData: `M output batteryPercent 128 0x80  1
+M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 129 0x81  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 164 0xa4  1
+M input powerIndexFilterFactorUp 165 0xa5  1
+M input powerIndexFilterFactorDown 166 0xa6  1
+M input maxPowerIndex 167 0xa7  1
+C 1725374354 # 0x66d71f92
+`,
+            }, 
+        
+
             1727723267: {
                 name: "Heartstarter",
                 versions: "R9 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R10",
@@ -2498,6 +2702,37 @@ M output air_iaq_alarm 129 0x81  1
             }, 
         
 
+            1860649675: {
+                name: "Square-comfort-sound",
+                versions: "",
+                mapData: `M output batteryPercent 128 0x80  1
+M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 129 0x81  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 164 0xa4  1
+M input powerIndexFilterFactorUp 165 0xa5  1
+M input powerIndexFilterFactorDown 166 0xa6  1
+M input maxPowerIndex 167 0xa7  1
+M output soundLevel 181 0xb5  0.1
+M input soundThreshold 168 0xa8  1
+M input soundMinLevel 169 0xa9  1
+M input soundAvgMinutes 170 0xaa  1
+M output soundAlarm 130 0x82  1
+M input soundAlarmTimeoutMinutes 171 0xab  1
+M output soundAvgMax 184 0xb8  0.1
+C 1860649675 # 0x6ee742cb
+`,
+            }, 
+        
+
             1872032769: {
                 name: "Airport-int",
                 versions: "R15 R14 R13",
@@ -2522,6 +2757,33 @@ M input motionCountEnabled 168 0xa8  1
 M input abandonedCartTime_minutes 181 0xb5  1
 M output abandonedCart 169 0xa9  1
 M output batteryPercent 170 0xaa  1
+`,
+            }, 
+        
+
+            1875267019: {
+                name: "Airport-int",
+                versions: "",
+                mapData: `M input stillMotionThreshold_mm_s2 176 0xb0  1
+M input movingMotionThreshold_mm_s2 177 0xb1  1
+M input limitedScanChannels 184 0xb8  1
+M input fullScanChannels 185 0xb9  1
+M output motionCount 186 0xba  1
+M input quarterlyScanBudget 160 0xa0  1
+M input maxBudget 178 0xb2  1
+M input singleWifiScanAgain_minutes 161 0xa1  1
+M input movingWifiScanAgain_minutes 162 0xa2  1
+M input minimumWifiCount 163 0xa3  1
+M input fullWifiScan_minutes 164 0xa4  1
+M input gpsScan_minutes 165 0xa5  1
+M input motionCountEnabled 166 0xa6  1
+M input abandonedCartTime_minutes 179 0xb3  1
+M output abandonedCart 167 0xa7  1
+M input quickRejoinBudgetMax 180 0xb4  1
+M input movingScanIntervalMinutes 187 0xbb  1
+M input stationaryScanIntervalMinutes 188 0xbc  1
+M output batteryPercent 128 0x80  1
+C 1875267019 # 0x6fc64dcb
 `,
             }, 
         
@@ -3078,6 +3340,25 @@ M output batteryPercent 174 0xae  1
             }, 
         
 
+            2107417816: {
+                name: "Tracker-stats",
+                versions: "",
+                mapData: `M output volts 176 0xb0  0.001
+M input gnssIntervalMinutes 160 0xa0  1
+M input gnssScanMode 177 0xb1  1
+M output numSatellites 161 0xa1  1
+M output bestSatellites 184 0xb8  1
+M output scanCount 185 0xb9  1
+M output gpsTime 186 0xba  1
+M output downlinkRssi 162 0xa2  1
+M input air_pressure_hysteresis_bar 163 0xa3  1
+M output air_pressure 187 0xbb  0.01
+M output batteryPercent 128 0x80  1
+C 2107417816 # 0x7d9ca4d8
+`,
+            }, 
+        
+
             2132727044: {
                 name: "Default",
                 versions: "R9 R33 R32 R31 R30 R29 R28 R27 R26 R25 R24 R23 R22 R21 R20 R19 R18 R16 R15 R14 R13 R12 R11 R1001 R1000 R10",
@@ -3601,6 +3882,25 @@ M output PirTPresence 180 0xb4  1
 M input PirResetLuxTreshold 181 0xb5  1
 M input PirResetInDarkMinutes 182 0xb6  1
 M output PirLux 183 0xb7  1
+`,
+            }, 
+        
+
+            2554490671: {
+                name: "Pir-Presence",
+                versions: "",
+                mapData: `M input PirSamplingRate 160 0xa0  1
+M input PirLpf1 161 0xa1  1
+M input PirLpf2 162 0xa2  1
+M input PirAvgTrim 163 0xa3  1
+M input PirCmd 184 0xb8  1
+M input PirResetAlgo 164 0xa4  1
+M output batteryPercent 128 0x80  1
+M input PirPresenceTheshold 185 0xb9  1
+M input PirHystPresence 165 0xa5  1
+M input PirResetLuxTreshold 186 0xba  1
+M input PirResetInDarkMinutes 187 0xbb  1
+C 2554490671 # 0x98426f2f
 `,
             }, 
         
@@ -4427,6 +4727,32 @@ M output batteryPercent 168 0xa8  1
             }, 
         
 
+            3226492911: {
+                name: "Motion-measure",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output accX 144 0x90  0.001
+M output accY 145 0x91  0.001
+M output accZ 146 0x92  0.001
+M output acc 147 0x93  0.001
+M output pressure_hPa 184 0xb8  0.01
+M input motionThreshold_m_s2 179 0xb3  0.001
+M input sampleInterval_s 163 0xa3  1
+M input sampleCountMax 164 0xa4  1
+M input enableBarometer 165 0xa5  1
+M output motion 166 0xa6  1
+M output batteryPercent 129 0x81  1
+C 3226492911 # 0xc0505fef
+`,
+            }, 
+        
+
             3227680283: {
                 name: "Lifefinder-alternating",
                 versions: "R27",
@@ -4844,6 +5170,30 @@ M output card_2 153 0x99  1
 M output card_3 154 0x9a  1
 M output serial 155 0x9b  1
 M input debounceSeconds 176 0xb0  1
+`,
+            }, 
+        
+
+            3487880400: {
+                name: "Heartstarter",
+                versions: "",
+                mapData: `M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalHours 160 0xa0  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 161 0xa1  1
+M input tempAlarmHighLevel 162 0xa2  1
+M output buttonDetect 129 0x81  1
+M output motionDetect 130 0x82  1
+M input soundScanIntervalMinutes 179 0xb3  1
+M input soundScanMinimumRepeat 163 0xa3  1
+M output soundIntervalS 152 0x98  0.001
+M output soundRepeat 131 0x83  1
+M input motionThresholdG 180 0xb4  0.001
+M output volts 181 0xb5  0.001
+M output batteryPercent 132 0x84  1
+C 3487880400 # 0xcfe4d4d0
 `,
             }, 
         
@@ -5301,6 +5651,28 @@ M input alarmAck 164 0xa4  1
 M output motion 163 0xa3  1
 M output motionAlarm 165 0xa5  1
 M input motionThreshold 180 0xb4  0.001
+`,
+            }, 
+        
+
+            3693183552: {
+                name: "IR-proximity",
+                versions: "",
+                mapData: `M output proximityValue 152 0x98  1
+M input pollInterval 160 0xa0  1
+M input irMode 161 0xa1  1
+M input proximityHysteresis 176 0xb0  1
+M input irPower 162 0xa2  1
+M output temp 177 0xb1  0.01
+M output averageTemp 178 0xb2  0.01
+M input tempHysteresis 179 0xb3  0.01
+M input averageTempIntervalHours 163 0xa3  1
+M output tempAlarm 128 0x80  1
+M input tempAlarmLowLevel 164 0xa4  1
+M input tempAlarmHighLevel 165 0xa5  1
+M output batteryPercent 166 0xa6  1
+M output volts 144 0x90  0.001
+C 3693183552 # 0xdc218240
 `,
             }, 
         
@@ -6033,6 +6405,40 @@ M output batteryPercent 165 0xa5  1
 M input rejoinBudgetMax 166 0xa6  1
 M input rejoinBudgetRefill 167 0xa7  1
 M input rejoinTime 180 0xb4  1
+`,
+            }, 
+        
+
+            4228601043: {
+                name: "Presence",
+                versions: "",
+                mapData: `M output presence 128 0x80  1
+M input debugMinutes 184 0xb8  1
+M output dbgState 160 0xa0  1
+M output dbgFlags 161 0xa1  1
+M output dbgHeld 162 0xa2  1
+M output dbgTObject 185 0xb9  1
+M output dbgTPresence 186 0xba  1
+M output dbgBaseline 187 0xbb  1
+M output dbgBusyLevel 188 0xbc  1
+M output dbgDev 176 0xb0  1
+M output dbgMotdev 177 0xb1  1
+M output dbgTMotion 178 0xb2  1
+M output dbgMotionLevel 179 0xb3  1
+M output dbgTAmbient 189 0xbd  1
+M input pirReleaseQ 163 0xa3  1
+M input pirFastDetect 164 0xa4  1
+M input pirPromoteDelta 180 0xb4  1
+M input pirLevelMin 181 0xb5  1
+M input pirQuietRelease 190 0xbe  1
+M input pirDecisionInfo 165 0xa5  1
+M output batteryPercent 129 0x81  1
+M output averageTemp 144 0x90  0.01
+M output averageHumidity 145 0x91  0.01
+M input averageTempHumIntervalMinutes 182 0xb6  1
+M output averageLux 146 0x92  1
+M input averageLuxIntervalMinutes 183 0xb7  1
+C 4228601043 # 0xfc0b54d3
 `,
             }, 
         
