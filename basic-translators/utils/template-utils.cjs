@@ -19,12 +19,13 @@ console.log("Translator version: " + translatorVersion);
  * @param {string} crc - The CRC value.
  * @param {object} schema - The schema object.
  * @param {Array} csvData - The array to store CSV row data.
+ * @param {string} [filenameSuffix] - Appended to the filename to tell apart groups with the same name and versions.
  * @returns {void}
  */
-function processTemplate(template, crc, schema, csvData, relatedCRCs) {
+function processTemplate(template, crc, schema, csvData, relatedCRCs, filenameSuffix = '') {
     const templateStr = fs.readFileSync(template.path, 'utf8');
     const newStr = getSchemaReplacement(templateStr, crc, schema);
-    const newFilename = path.join(template.outputDir, getFilename(schema));
+    const newFilename = path.join(template.outputDir, getFilename(schema, filenameSuffix));
 
     // Output files are cleared before generation, so an existing file means two schema groups got the same name
     if (fs.existsSync(newFilename)) {
@@ -128,9 +129,10 @@ function getSchemaReplacement(template, crc, schema) {
  * Generates a filename based on the given schema.
  *
  * @param {object} schema - The schema object.
+ * @param {string} [filenameSuffix] - Appended after the version ranges.
  * @returns {string} The generated filename.
  */
-function getFilename(schema) {
+function getFilename(schema, filenameSuffix = '') {
     // One range per generation, as generation II numbering does not continue generation I
     const versions = combineVersions(schema.versions.split(" "));
     const versionRanges = [
@@ -141,7 +143,7 @@ function getFilename(schema) {
     // Replace commas with dashes in the schema name
     const nameWithoutCommas = schema.name.replace(/,/g, '-');
 
-    return `${nameWithoutCommas}-${versionRanges.join('-and-')}.js`;
+    return `${nameWithoutCommas}-${versionRanges.join('-and-')}${filenameSuffix}.js`;
 }
 
 /**

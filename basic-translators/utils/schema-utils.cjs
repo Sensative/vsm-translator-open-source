@@ -1,5 +1,5 @@
 const { knownSchemas } = require('../../dots-translator-generated.cjs');
-const { processTemplate } = require('./template-utils.cjs');
+const { getFilename, processTemplate } = require('./template-utils.cjs');
 const { validSensors } = require('./valid-sensors.cjs');
 const { combineVersions, isSupportedVersion, versionNumber } = require('./version-utils.cjs');
 
@@ -281,12 +281,13 @@ function combineCRCs(schemas) {
  * @param {Object} template - The template object.
  * @param {Array} schemas - An array of schema objects.
  * @param {Array} csvData - An array of CSV data.
+ * @param {string} filenameSuffix - Appended to the generated filename.
  */
-function processIdenticalMapData(template, schemas, csvData) {
+function processIdenticalMapData(template, schemas, csvData, filenameSuffix) {
     const { crc, schema } = schemas[0];
     schema.versions = combineAndSortVersions(schemas.map(({ schema }) => schema.versions));
     const relatedCRCs = schemas.map(({ crc }) => crc);
-    processTemplate(template, crc, schema, csvData, relatedCRCs); // Process template
+    processTemplate(template, crc, schema, csvData, relatedCRCs, filenameSuffix); // Process template
 
     // Combine CRCs for schemas with the same name
     const combinedCRCs = combineCRCs(schemas);
@@ -302,28 +303,48 @@ function processIdenticalMapData(template, schemas, csvData) {
  * @param {object} template - The template object.
  * @param {Array<object>} schemas - An array of schema objects.
  * @param {object} csvData - The csv data object.
+ * @param {string} filenameSuffix - Appended to the generated filename.
  */
-function processNonIdenticalMapData(template, schemas, csvData) {
+function processNonIdenticalMapData(template, schemas, csvData, filenameSuffix) {
     schemas.forEach(({ crc, schema }) => {
         processSchemaVersions(schema);
-        processTemplate(template, crc, schema, csvData, crc);
+        processTemplate(template, crc, schema, csvData, crc, filenameSuffix);
     });    
 }
 
 /**
+ * Returns the filename a schema group gets before any CRC suffix.
+ *
+ * @param {Array} schemas - The schemas of one group.
+ * @returns {string} The filename.
+ */
+function groupFilename(schemas) {
+    const versions = combineAndSortVersions(schemas.map(({ schema }) => schema.versions));
+    return getFilename({ name: schemas[0].schema.name, versions });
+}
+
+/**
  * Processes the schemas based on the provided template, grouped schemas, and CSV data.
- * 
+ *
  * @param {Object} template - The template object.
  * @param {Object} groupedSchemas - The grouped schemas object.
  * @param {Array} csvData - The CSV data array.
  */
 function processSchemas(template, groupedSchemas, csvData) {
+    // Variants of one application can share versions but not mappings, so those filenames also carry the lowest CRC
+    const filenameCounts = {};
+    for (const schemas of Object.values(groupedSchemas)) {
+        const filename = groupFilename(schemas);
+        filenameCounts[filename] = (filenameCounts[filename] || 0) + 1;
+    }
+
     // Iterate over each group of knownSchemas with the same name and mapData
-    for (let [key, schemas] of Object.entries(groupedSchemas)) {                
-        if (schemas.length > 1) { 
-            processIdenticalMapData(template, schemas, csvData);
-        } else {            
-            processNonIdenticalMapData(template, schemas, csvData);
+    for (let [key, schemas] of Object.entries(groupedSchemas)) {
+        const filenameSuffix = filenameCounts[groupFilename(schemas)] > 1 ? `-${schemas[0].crc}` : '';
+        if (schemas.length > 1) {
+            processIdenticalMapData(template, schemas, csvData, filenameSuffix);
+        } else {
+            processNonIdenticalMapData(template, schemas, csvData, filenameSuffix);
         }
     }
 }
