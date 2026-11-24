@@ -42,7 +42,7 @@ function Decode (fPort, bytes, variables) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 1368947946 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 701440494 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     };
 
@@ -57,18 +57,15 @@ function translate (iotnode) {
 
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
-
-    // CRCs having similar schema: 1368947946, 1625058930
     
     var commonSchema = {
-        name: "Digital-gpio",
-        versions: "R24 R25 R26",
-        mapData: "M input activation 129 0x81  1 + M input averageTempIntervalHours 164 0xa4  1 + M input heartbeatMinutes 162 0xa2  1 + M input pollInterval 163 0xa3  1 + M input resendTime 161 0xa1  1 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 166 0xa6  1 + M input tempAlarmLowLevel 165 0xa5  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output detection 128 0x80  1 + M output heartbeat 130 0x82  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 131 0x83  1"
+        name: "Square-comfort",
+        versions: "R1002",
+        mapData: "C 701440494 # 0x29cf21ee + M input averageHumidityIntervalMinutes 164 0xa4  1 + M input averageTempIntervalMinutes 161 0xa1  1 + M input humidityTreshold 180 0xb4  0.01 + M input roamNetworkCount 160 0xa0  1 + M input tempAlarmHighLevel 163 0xa3  1 + M input tempAlarmLowLevel 162 0xa2  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageHumidity 144 0x90  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 128 0x80  1 + M output humidity 179 0xb3  0.01 + M output temp 176 0xb0  0.01 + M output tempAlarm 129 0x81  1"
     };
     var schema = 
     {
-        1368947946: commonSchema,
-        1625058930: commonSchema,
+        701440494: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -278,7 +275,7 @@ function translate (iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.186"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.190"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 

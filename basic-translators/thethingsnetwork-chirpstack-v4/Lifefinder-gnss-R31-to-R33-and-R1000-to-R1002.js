@@ -41,7 +41,7 @@ function decodeUplink (input) {
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 1793139152 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 523897088 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     };
 
@@ -61,15 +61,18 @@ function translate (iotnode) {
 
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
+
+    // CRCs having similar schema: 523897088, 3756050244
     
     var commonSchema = {
-        name: "Lifefinder-wifi",
-        versions: "R31 R32 R33 R1000 R1001",
-        mapData: "C 1793139152 # 0x6ae121d0 + M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 180 0xb4  1 + M input alarmResendTime 168 0xa8  1 + M input humidityThreshold 177 0xb1  0.01 + M input limitedScanChannels 184 0xb8  1 + M input maxAlarmMinutes 179 0xb3  1 + M input maxTraceMinutes 165 0xa5  1 + M input nfcDisablesAlarm 170 0xaa  1 + M input positioningFreqency 171 0xab  1 + M input quickAlarm 169 0xa9  1 + M input resendsBeforeUnjoin 167 0xa7  1 + M input scanTimeMs 181 0xb5  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 166 0xa6  1 + M input wifiDoubleScan 172 0xac  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output batteryPercent 163 0xa3  1 + M output humidity 176 0xb0  0.01 + M output nfcDisabledAlarm 128 0x80  1 + M output temp 146 0x92  0.01 + M output tempAlarm 160 0xa0  1 + M output traceAccumulatedTime 153 0x99  1 + M output traceTime 145 0x91  1 + M output traceTrigger 129 0x81  1 + M output volts 147 0x93  0.001"
+        name: "Lifefinder-gnss",
+        versions: "R31 R32 R33 R1000 R1001 R1002",
+        mapData: "C 3756050244 # 0xdfe0c744 + C 523897088 # 0x1f3a0900 + M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 180 0xb4  1 + M input alarmResendTime 168 0xa8  1 + M input humidityThreshold 177 0xb1  0.01 + M input maxAlarmMinutes 179 0xb3  1 + M input maxTraceMinutes 165 0xa5  1 + M input nfcDisablesAlarm 170 0xaa  1 + M input positioningFreqency 171 0xab  1 + M input quickAlarm 169 0xa9  1 + M input resendsBeforeUnjoin 167 0xa7  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 166 0xa6  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output batteryPercent 163 0xa3  1 + M output bestSatellites 184 0xb8  1 + M output humidity 176 0xb0  0.01 + M output nfcDisabledAlarm 128 0x80  1 + M output numSatellites 172 0xac  1 + M output scanCount 185 0xb9  1 + M output temp 146 0x92  0.01 + M output tempAlarm 160 0xa0  1 + M output traceAccumulatedTime 153 0x99  1 + M output traceTime 145 0x91  1 + M output traceTrigger 129 0x81  1 + M output volts 147 0x93  0.001"
     };
     var schema = 
     {
-        1793139152: commonSchema,
+        523897088: commonSchema,
+        3756050244: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -279,7 +282,7 @@ function translate (iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.186"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.190"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 

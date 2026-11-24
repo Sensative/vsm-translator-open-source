@@ -26,50 +26,50 @@ THE SOFTWARE.
 //
 // Decode decodes an array of bytes into an object.
 //  - fPort contains the LoRaWAN fPort number
-//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+//  - bytes is base64 data
 //  - variables contains the device variables e.g. {"calibration": "3.5"} (both the key / value are of type string)
 // The function must return an object, e.g. {"temperature": 22.5}
-//
-// This Decoder is also applicable for Chirpstack v4
 
-function decodeUplink (input) {
+function Decode (fPort, bytes, variables) {
+
+    var decoded = {};
+
     var iotnode = {
         encodedData: {
-            port: input.fPort,
-            hexEncoded: input.bytes,
+            port: fPort,
+            hexEncoded: bytes,
             timestamp: Date.now(),
             maxSize: 256
         },
         vsm: {
-            rulesCrc32: 3756050244 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
+            rulesCrc32: 156242849 //Hardcoded - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMAS
         }
     };
 
-    // Decode an uplink message from a buffer (array) of bytes to an object of fields.
-    var decoded = translate(iotnode);
+    // Decode an uplink message from a buffer (array) of bytes to an object of
+    // fields.
+    decoded = translate(iotnode);
 
-    return {
-        data: {
-            decoded
-        },
-        warnings: [],
-        errors: []
-    };
+    return decoded;
 }
 
 function translate (iotnode) {
 
     var MESH_PORT_OFFSET = 300;
     /// DO NOT CHANGE THE BELOW - IT IS REPLACED AUTOMATICALLY WITH KNOWN SCHEMA
+
+    // CRCs having similar schema: 156242849, 1167154829, 3563830815
     
     var commonSchema = {
-        name: "Lifefinder-gnss",
-        versions: "R31 R32 R33 R1000 R1001",
-        mapData: "C 3756050244 # 0xdfe0c744 + M input alarmAck 164 0xa4  1 + M input alarmResendsBeforeUnjoin 180 0xb4  1 + M input alarmResendTime 168 0xa8  1 + M input humidityThreshold 177 0xb1  0.01 + M input maxAlarmMinutes 179 0xb3  1 + M input maxTraceMinutes 165 0xa5  1 + M input nfcDisablesAlarm 170 0xaa  1 + M input positioningFreqency 171 0xab  1 + M input quickAlarm 169 0xa9  1 + M input resendsBeforeUnjoin 167 0xa7  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M input traceTriggerMinutes 166 0xa6  1 + M output alarmAccumulatedTime 152 0x98  1 + M output alarmTime 144 0x90  1 + M output batteryPercent 163 0xa3  1 + M output bestSatellites 184 0xb8  1 + M output humidity 176 0xb0  0.01 + M output nfcDisabledAlarm 128 0x80  1 + M output numSatellites 172 0xac  1 + M output scanCount 185 0xb9  1 + M output temp 146 0x92  0.01 + M output tempAlarm 160 0xa0  1 + M output traceAccumulatedTime 153 0x99  1 + M output traceTime 145 0x91  1 + M output traceTrigger 129 0x81  1 + M output volts 147 0x93  0.001"
+        name: "Air",
+        versions: "R1000 R1001",
+        mapData: "C 1167154829 # 0x45915e8d + C 3563830815 # 0xd46bbe1f + M input air_iaq_alarm_level 190 0xbe  1 + M input air_interval_minutes 173 0xad  1 + M input air_static_iaq_alarm_level 189 0xbd  1 + M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageLuxIntervalMinutes 169 0xa9  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input luxTresholdPercent 182 0xb6  1 + M input maxPowerIndex 168 0xa8  1 + M input powerIndexFilterFactorDown 167 0xa7  1 + M input powerIndexFilterFactorUp 166 0xa6  1 + M input roamNetworkCount 161 0xa1  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output air_breath_voc_equivalent 188 0xbc  0.01 + M output air_co2 185 0xb9  1 + M output air_iaq 184 0xb8  1 + M output air_iaq_accuracy 172 0xac  1 + M output air_iaq_alarm 129 0x81  1 + M output air_pressure 186 0xba  0.01 + M output air_run_in_status 170 0xaa  1 + M output air_stab_status 171 0xab  1 + M output air_static_iaq 187 0xbb  1 + M output averageHumidity 144 0x90  0.01 + M output averageLux 145 0x91  1 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 160 0xa0  1 + M output humidity 179 0xb3  0.01 + M output lux 181 0xb5  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1"
     };
     var schema = 
     {
-        3756050244: commonSchema,
+        156242849: commonSchema,
+        1167154829: commonSchema,
+        3563830815: commonSchema,
     };
     /// END DO NOT CHANGE THE ABOVE 
 
@@ -222,7 +222,7 @@ function translate (iotnode) {
                 }
             };
         }
-        throw new Error("Failed to decode link control message")
+        throw new Error("Failed to decode link control message");
     };
 
     // Link Control service output
@@ -262,7 +262,7 @@ function translate (iotnode) {
         if (data[0] & 0x80)
             rulesCrc32 += 0x100000000;
 
-        var schemaInfo = {}
+        var schemaInfo = {};
         if (schema[rulesCrc32]) {
             // there is a known schema for this node, use it
             schemaInfo = {
@@ -279,7 +279,7 @@ function translate (iotnode) {
             console.log("Unknown application with CRC32: " + rulesCrc32);
         }
 
-        var translatorVersion = "0.2.186"; // Replaced when creating new CRC based basic translators
+        var translatorVersion = "0.2.190"; // Replaced when creating new CRC based basic translators
         if (data.length < 8) {
             var resultVsm = {}; // This new object will hold the combined properties.
 
@@ -485,7 +485,7 @@ function translate (iotnode) {
         if (!timestamps)
             timestamps = {}
         series.map(function (sample) {
-            // Each sample has a field called value and a field called timestamp
+            // Each sample has a field called value and a field called timestamp    
             var sampleTimestamp = sample.timestamp;
             var sampleValues = sample.value;
             if (!sampleValues.output)
@@ -994,6 +994,7 @@ function translate (iotnode) {
             idd.brownoutCount = data[b++];
         }
 
+
         return {
             result: {
                 idd: idd
@@ -1066,14 +1067,14 @@ function translate (iotnode) {
         /* APP_LORA_PORT_GNSS_METADATA*/22: {decode: decodeGnssMetadata, name: 'gnss metadata'},
         /* APP_LORA_PORT_WIFI */        23: {decode: decodeWifiStream, name: 'wifi stream'},
         /* APP_LORA_PORT_WIFI_MOTION */ 24: {decode: decodeWifiStream, name: 'wifi stream motion'},
-        /* PORT FORWARD: 32 */          32: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 32), name: "port forward 32"},
-        /* PORT FORWARD: 33 */          33: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 33), name: "port forward 33"},
-        /* PORT FORWARD: 34 */          34: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 34), name: "port forward 34"},
-        /* PORT FORWARD: 35 */          35: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 35), name: "port forward 35"},
-        /* PORT FORWARD: 36 */          36: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 36), name: "port forward 36"},
-        /* PORT FORWARD: 37 */          37: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 37), name: "port forward 37"},
-        /* PORT FORWARD: 38 */          38: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 38), name: "port forward 38"},
-        /* PORT FORWARD: 39 */          39: {decode: (n, s, d, t) => decodePortForward(n, s, d, t, 39), name: "port forward 39"}
+        /* PORT FORWARD: 32 */          32: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 32)}, name: "port forward 32"},
+        /* PORT FORWARD: 33 */          33: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 33)}, name: "port forward 33"},
+        /* PORT FORWARD: 34 */          34: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 34)}, name: "port forward 34"},
+        /* PORT FORWARD: 35 */          35: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 35)}, name: "port forward 35"},
+        /* PORT FORWARD: 36 */          36: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 36)}, name: "port forward 36"},
+        /* PORT FORWARD: 37 */          37: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 37)}, name: "port forward 37"},
+        /* PORT FORWARD: 38 */          38: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 38)}, name: "port forward 38"},
+        /* PORT FORWARD: 39 */          39: {decode: function (n, s, d, t) {decodePortForward(n, s, d, t, 39)}, name: "port forward 39"}
     };
 
     // Convert a hexadecimal data representation to binary
