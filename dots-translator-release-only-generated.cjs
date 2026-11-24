@@ -1506,6 +1506,42 @@ M output nfcContactCount 152 0x98  1
             }, 
         
 
+            777450758: {
+                name: "Air",
+                versions: "",
+                mapData: `M output batteryPercent 128 0x80  1
+M input roamNetworkCount 160 0xa0  1
+M output temp 176 0xb0  0.01
+M output averageTemp 177 0xb1  0.01
+M input tempHysteresis 178 0xb2  0.01
+M input averageTempIntervalMinutes 161 0xa1  1
+M output tempAlarm 129 0x81  1
+M input tempAlarmLowLevel 162 0xa2  1
+M input tempAlarmHighLevel 163 0xa3  1
+M output humidity 179 0xb3  0.01
+M output averageHumidity 144 0x90  0.01
+M input humidityTreshold 180 0xb4  0.01
+M input averageHumidityIntervalMinutes 164 0xa4  1
+M input powerIndexFilterFactorUp 165 0xa5  1
+M input powerIndexFilterFactorDown 166 0xa6  1
+M input maxPowerIndex 167 0xa7  1
+M output lux 181 0xb5  1
+M output averageLux 145 0x91  1
+M input luxTresholdPercent 182 0xb6  1
+M input averageLuxIntervalMinutes 168 0xa8  1
+M output air_run_in_status 169 0xa9  1
+M output air_stab_status 170 0xaa  1
+M output air_iaq_accuracy 171 0xab  1
+M output air_iaq 184 0xb8  1
+M output air_co2 185 0xb9  1
+M output air_pressure 186 0xba  0.01
+M output air_static_iaq 187 0xbb  1
+M input air_interval_minutes 172 0xac  1
+C 777450758 # 0x2e56f506
+`,
+            }, 
+        
+
             786337538: {
                 name: "Motion-measure",
                 versions: "R1002",
