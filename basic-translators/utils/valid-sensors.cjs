@@ -1,5 +1,6 @@
 // List of allowed Sensative sensors and devices
 const validSensors = [
+    "Air",                      // Square Air quality sensor (Gen2)
     "Digital-gpio",             // Digital General Purpose Input/Output
     "Lifefinder-alternating",   // Lifefinder sensor with alternating signal
     "Lifefinder-gnss",          // Lifefinder sensor with GNSS (Global Navigation Satellite System)
