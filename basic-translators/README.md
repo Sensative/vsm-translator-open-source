@@ -4,6 +4,8 @@
 
 * The decoders for Chirpstack V4 & The Things Network (TTN) can be found in the `thethingsnetwork-chirpstack-v4` folder
 
+* Developers regenerating these decoders: see [README-DEVELOPER.md](README-DEVELOPER.md)
+
 <br>
 
 ### The following decoders/translators are valid for the following applications and respective firmware version:
